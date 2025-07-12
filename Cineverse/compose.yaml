@@ -1,0 +1,7 @@
+﻿services:
+  cineverse:
+    image: cineverse
+    build:
+      context: .
+      dockerfile: Cineverse/Dockerfile
+
