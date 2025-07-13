@@ -2,6 +2,16 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Cineverse.Infrastructure\Cineverse.Infrastructure.csproj" />
+      <ProjectReference Include="..\Cineverse.Mongo\Cineverse.Mongo.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation.AspNetCore" />
+      <PackageReference Include="MediatR" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="MediatR\Authentication\Queries\" />
     </ItemGroup>
 
 </Project>
