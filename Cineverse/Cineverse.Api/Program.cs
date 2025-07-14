@@ -5,6 +5,7 @@ using Cineverse.Infrastructure.Authentication;
 using Cineverse.Infrastructure.Common.Configurations;
 using Cineverse.Infrastructure.GraphQl;
 using Cineverse.Mongo;
+using Cineverse.Notifications;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,7 @@ builder.Services
     .AddMongoRepositories()
     .AddJwtAuthentication(builder.Configuration)
     .AddApplicationServices()
+    .AddNotificationService(builder.Configuration)
     .AddInfrastructureServices()
     .AddPipelineBehaviours()
     .AddGraphQLServer()

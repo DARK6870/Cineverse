@@ -11,7 +11,7 @@ public interface IUserContext
     Role Role { get; }
     
 
-    string GetRefreshTokenFromCookie();
+    string? GetRefreshTokenFromCookie();
 
     void AddRefreshTokenToCookie(string refreshToken);
     

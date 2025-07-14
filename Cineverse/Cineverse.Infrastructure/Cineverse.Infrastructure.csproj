@@ -15,5 +15,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cineverse.Mongo\Cineverse.Mongo.csproj" />
+    <ProjectReference Include="..\Cineverse.Notifications\Cineverse.Notifications.csproj" />
   </ItemGroup>
 </Project>

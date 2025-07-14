@@ -10,7 +10,8 @@ public static class Configuration
     {
         requestExecutorBuilder
             .AddQueryType<BaseGraphQlQuery>()
-            .AddTypeExtension<MovieQueryType>();
+            .AddTypeExtension<MovieQueryType>()
+            ;
 
         return requestExecutorBuilder;
     }
@@ -19,7 +20,9 @@ public static class Configuration
     {
         requestExecutorBuilder
             .AddMutationType<BaseGraphQlMutation>()
-            .AddTypeExtension<MovieMutationType>();
+            .AddTypeExtension<MovieMutationType>()
+            .AddTypeExtension<AuthenticationMutationType>()
+            ;
         
         return requestExecutorBuilder;
     }

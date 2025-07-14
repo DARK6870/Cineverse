@@ -37,10 +37,9 @@ public class UserContext(
         }
     }
 
-    public string GetRefreshTokenFromCookie()
+    public string? GetRefreshTokenFromCookie()
     {
-        return httpContextAccessor.HttpContext?.Request.Cookies[CookieConstants.RefreshTokenCookieKey]
-               ?? throw new ApiRequestException("Refresh Token cookie not found", HttpStatusCode.BadRequest);
+        return httpContextAccessor.HttpContext?.Request.Cookies[CookieConstants.RefreshTokenCookieKey];
     }
 
     public void AddRefreshTokenToCookie(string refreshToken)

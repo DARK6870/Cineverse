@@ -27,7 +27,7 @@ public static class Configuration
         services.AddHttpContextAccessor();
         
         services
-            .AddSingleton<IAuthenticationService, AuthenticationService>()
+            .AddScoped<IAuthenticationService, AuthenticationService>()
             .AddScoped<IUserContext, UserContext>()
             .AddMemoryCache()
             ;

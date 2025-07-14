@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cineverse.Application", "Ci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cineverse.Infrastructure", "Cineverse.Infrastructure\Cineverse.Infrastructure.csproj", "{0B2B0C40-E2C3-4CC5-B6BF-CCA6CF6AB723}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cineverse.Notifications", "Cineverse.Notifications\Cineverse.Notifications.csproj", "{7119111D-B74F-4D5C-9E0C-E3E571FF1A6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{0B2B0C40-E2C3-4CC5-B6BF-CCA6CF6AB723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B2B0C40-E2C3-4CC5-B6BF-CCA6CF6AB723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B2B0C40-E2C3-4CC5-B6BF-CCA6CF6AB723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7119111D-B74F-4D5C-9E0C-E3E571FF1A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7119111D-B74F-4D5C-9E0C-E3E571FF1A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7119111D-B74F-4D5C-9E0C-E3E571FF1A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7119111D-B74F-4D5C-9E0C-E3E571FF1A6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A1B26297-06E4-44CD-89DA-22481A4595A0} = {CF0C5AAD-DD1B-4D2E-989B-7A5EEDF8BE95}
@@ -54,5 +60,6 @@ Global
 		{167AFBE9-699B-4786-82C7-13C8912EFEA9} = {CF0C5AAD-DD1B-4D2E-989B-7A5EEDF8BE95}
 		{2ECB7F0E-273B-48E5-BFEB-82DD596B8C22} = {CF0C5AAD-DD1B-4D2E-989B-7A5EEDF8BE95}
 		{0B2B0C40-E2C3-4CC5-B6BF-CCA6CF6AB723} = {CF0C5AAD-DD1B-4D2E-989B-7A5EEDF8BE95}
+		{7119111D-B74F-4D5C-9E0C-E3E571FF1A6A} = {CF0C5AAD-DD1B-4D2E-989B-7A5EEDF8BE95}
 	EndGlobalSection
 EndGlobal

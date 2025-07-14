@@ -18,6 +18,7 @@ public static class Configuration
             .AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>))
             .AddSingleton<IUserRepository, UserRepository>()
             .AddSingleton<IMovieRepository, MovieRepository>()
+            .AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>()
             ;
 
         return services;

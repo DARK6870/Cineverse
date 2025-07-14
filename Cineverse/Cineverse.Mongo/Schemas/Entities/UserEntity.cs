@@ -21,7 +21,7 @@ public class UserEntity : BaseEntity
     [BsonRepresentation(BsonType.String)]
     public UserStatus Status { get; set; } = UserStatus.Normal;
     
-    public string PasswordHash { get; set; } = "";
+    public string? PasswordHash { get; set; }
     
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     

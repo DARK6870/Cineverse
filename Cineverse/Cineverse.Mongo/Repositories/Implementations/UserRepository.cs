@@ -19,4 +19,12 @@ public class UserRepository(
             x.PasswordHash == passwordHash
         ).FirstOrDefaultAsync();
     }
+
+    public async Task CreateUserAsync(UserEntity user, string password)
+    {
+        var passwordHash = HashHelper.ComputeHash(password);
+
+        user.PasswordHash = passwordHash;
+        await Collection.InsertOneAsync(user);
+    }
 }

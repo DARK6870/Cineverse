@@ -1,14 +1,21 @@
-﻿using Cineverse.Mongo.Schemas.Enums;
+﻿using Cineverse.Infrastructure.Common.Models;
 
 namespace Cineverse.Infrastructure.Services.Interfaces;
 
 public interface IAuthenticationService
 {
-    public string GenerateJwtToken(
+    Task RegisterUserAsync(
         string email,
-        Role role,
-        string fullName
+        string firstName,
+        string lastName,
+        string password
     );
+
+    Task ConfirmUserEmailAsync(string email, string verificationCode);
+
+    Task GenerateVerificationCodeAsync(string email);
     
-    public string GenerateRefreshToken();
+    Task<LoginResponse> LoginUserAsync(string email, string password);
+
+    Task LogoutUserAsync();
 }
