@@ -4,14 +4,14 @@ namespace Cineverse.Infrastructure.Services.Interfaces;
 
 public interface IAuthenticationService
 {
-    Task RegisterUserAsync(
+    Task<LoginResponse> RegisterUserAsync(
         string email,
         string firstName,
         string lastName,
         string password
     );
 
-    Task ConfirmUserEmailAsync(string email, string verificationCode);
+    Task ConfirmUserEmailAsync(int verificationCode);
 
     Task GenerateVerificationCodeAsync(string email);
     

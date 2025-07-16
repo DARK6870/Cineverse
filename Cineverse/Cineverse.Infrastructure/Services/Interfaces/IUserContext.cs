@@ -4,6 +4,7 @@ namespace Cineverse.Infrastructure.Services.Interfaces;
 
 public interface IUserContext
 {
+    string UserId { get; }
     string UserName { get; }
     
     string Email { get; }
@@ -16,5 +17,4 @@ public interface IUserContext
     void AddRefreshTokenToCookie(string refreshToken);
     
     void RemoveRefreshTokenFromCookie();
-    
 }

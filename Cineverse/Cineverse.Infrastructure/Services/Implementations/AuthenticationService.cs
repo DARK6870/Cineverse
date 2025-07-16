@@ -27,41 +27,7 @@ public class AuthenticationService(
     INotificationService notificationService
 ) : IAuthenticationService
 {
-    private string GenerateJwtToken(
-        string email,
-        Role role,
-        string fullName
-    )
-    {
-        var jwtOptions = authenticationOptions.JwtOptions;
-        
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(jwtOptions.SecretKey);
-
-        var claims = new List<Claim>
-        {
-            new(ClaimTypes.Name, fullName),
-            new(ClaimTypes.Email, email),
-            new(ClaimTypes.Role, role.ToString())
-        };
-
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.UtcNow.AddMinutes(jwtOptions.ExpireInMinutes),
-            SigningCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(key),
-                SecurityAlgorithms.HmacSha256Signature
-            ),
-            Issuer = jwtOptions.Issuer,
-            Audience = jwtOptions.Audience
-        };
-
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
-    }
-
-    public async Task RegisterUserAsync(
+    public async Task<LoginResponse> RegisterUserAsync(
         string email,
         string firstName,
         string lastName,
@@ -81,8 +47,10 @@ public class AuthenticationService(
         
         await userRepository.CreateUserAsync(user, password);
 
+        // Generate verification code
         await GenerateVerificationCodeAsync(email);
 
+        // Generate refresh token
         var refreshToken = GenerateRefreshToken();
         var refreshTokenEntity = new RefreshTokenEntity
         {
@@ -92,20 +60,23 @@ public class AuthenticationService(
 
         await refreshTokenRepository.InsertOneAsync(refreshTokenEntity);
         userContext.AddRefreshTokenToCookie(refreshToken);
+
+        // Generate access token
+        var accessToken = GenerateJwtToken(user);
+        return new LoginResponse(refreshToken, accessToken);
     }
 
-    public async Task ConfirmUserEmailAsync(string email, string verificationCode)
+    public async Task ConfirmUserEmailAsync(int verificationCode)
     {
-        var user = userRepository
-            .AsQueryable()
-            .FirstOrDefault(x => x.Email == email)
+        var user = await userRepository
+                       .FindByIdAsync(userContext.UserId)
                    ?? throw new ApiRequestException("User not found", HttpStatusCode.NotFound);
 
-        if (!cache.TryGetValue<string>(CacheConstants.VerificationCodeCacheLifetime, out var cachedVerificationCode))
-            throw new ApiRequestException("Verification code expired, please try again", HttpStatusCode.BadRequest);
+        if (user.Status is not UserStatus.PendingEmailConfirmation)
+            throw new ApiRequestException("Email already confirmed", HttpStatusCode.Conflict);
 
-        if (verificationCode != cachedVerificationCode)
-            throw new ApiRequestException("Invalid verification code, please try again", HttpStatusCode.BadRequest);
+        if (!cache.TryGetValue<int>(CacheConstants.VerificationCodeCacheKey(user.Email), out var cachedVerificationCode) || verificationCode != cachedVerificationCode)
+            throw new ApiRequestException("Verification code invalid or expired, please try again", HttpStatusCode.BadRequest);
 
         // Set user status to normal
         user.Status = UserStatus.Normal;
@@ -114,12 +85,11 @@ public class AuthenticationService(
 
     public async Task GenerateVerificationCodeAsync(string email)
     {
-        // TODO send email notifications
         var random = new Random();
         var verificationCode = random.Next(11111, 99999);
 
-        if (cache.TryGetValue<string>(CacheConstants.VerificationCodeCacheLifetime, out var _))
-            throw new ApiRequestException("You already received verification code, try again in 2 minutes", HttpStatusCode.BadRequest);
+        if (cache.TryGetValue<int>(CacheConstants.VerificationCodeCacheLifetime, out var _))
+            throw new ApiRequestException("You already received verification code, try again later", HttpStatusCode.BadRequest);
         
         cache.Set(
             CacheConstants.VerificationCodeCacheKey(email),

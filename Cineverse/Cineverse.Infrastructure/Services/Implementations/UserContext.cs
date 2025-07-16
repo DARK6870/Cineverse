@@ -16,9 +16,11 @@ public class UserContext(
     private readonly ClaimsPrincipal _user = httpContextAccessor.HttpContext?.User
                                              ?? throw new ApiRequestException("You are not logged in.", HttpStatusCode.Unauthorized);
 
-    public string UserName => _user.Identity?.Name ?? "Unknown";
+    public string UserId => _user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value ?? "";
+    
+    public string UserName => _user.Identity?.Name ?? "";
 
-    public string Email => _user.Claims.FirstOrDefault(c => c.Type is ClaimTypes.Email)?.Value ?? "Unknown";
+    public string Email => _user.Claims.FirstOrDefault(c => c.Type is ClaimTypes.Email)?.Value ?? "";
 
 
     public Role Role
