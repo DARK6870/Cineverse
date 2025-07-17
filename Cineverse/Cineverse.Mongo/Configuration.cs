@@ -19,6 +19,9 @@ public static class Configuration
             .AddSingleton<IUserRepository, UserRepository>()
             .AddSingleton<IMovieRepository, MovieRepository>()
             .AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>()
+            .AddSingleton<IScreeningRepository, ScreeningRepository>()
+            .AddSingleton<IBookingRepository, BookingRepository>()
+            .AddSingleton<IHallRepository, HallRepository>()
             ;
 
         return services;

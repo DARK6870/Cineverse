@@ -1,5 +1,7 @@
 ﻿using Cineverse.Mongo.Common.Attribues;
 using Cineverse.Mongo.Schemas.Base;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Cineverse.Mongo.Schemas.Entities;
 
@@ -12,9 +14,12 @@ public class MovieEntity : BaseEntity
     
     public required string[] Images { get; set; }
     
+    [BsonRepresentation(BsonType.String)]
     public required DateOnly ReleaseDate { get; set; }
     
     public required int Duration { get; set; }
+
+    public bool IsAvailable { get; set; } = true;
 
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 }
