@@ -11,6 +11,8 @@ public static class Configuration
         requestExecutorBuilder
             .AddQueryType<BaseGraphQlQuery>()
             .AddTypeExtension<MovieQueryType>()
+            .AddTypeExtension<ScreeningQueryType>()
+            .AddTypeExtension<HallQueryType>()
             ;
 
         return requestExecutorBuilder;
@@ -22,6 +24,8 @@ public static class Configuration
             .AddMutationType<BaseGraphQlMutation>()
             .AddTypeExtension<MovieMutationType>()
             .AddTypeExtension<AuthenticationMutationType>()
+            .AddTypeExtension<ScreeningMutationType>()
+            .AddTypeExtension<HallMutationType>()
             ;
         
         return requestExecutorBuilder;
