@@ -4,4 +4,8 @@
       <ProjectReference Include="..\Cineverse.Mongo\Cineverse.Mongo.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+    </ItemGroup>
+
 </Project>

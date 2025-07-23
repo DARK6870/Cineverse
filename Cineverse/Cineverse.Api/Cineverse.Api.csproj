@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Cineverse.Application\Cineverse.Application.csproj" />
+      <ProjectReference Include="..\Cineverse.Mongo.Migrations\Cineverse.Mongo.Migrations.csproj" />
     </ItemGroup>
 
 </Project>

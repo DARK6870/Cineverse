@@ -22,6 +22,7 @@ public static class Configuration
             .AddSingleton<IScreeningRepository, ScreeningRepository>()
             .AddSingleton<IBookingRepository, BookingRepository>()
             .AddSingleton<IHallRepository, HallRepository>()
+            .AddSingleton<IMigrationRepository, MigrationRepository>()
             ;
 
         return services;

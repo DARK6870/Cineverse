@@ -5,6 +5,7 @@ using Cineverse.Infrastructure.Authentication;
 using Cineverse.Infrastructure.Common.Configurations;
 using Cineverse.Infrastructure.GraphQl;
 using Cineverse.Mongo;
+using Cineverse.Mongo.Migrations;
 using Cineverse.Notifications;
 using Serilog;
 
@@ -21,6 +22,7 @@ builder.Host.UseSerilog();
 builder.Services
     .AddMongoDb(builder.Configuration)
     .AddMongoRepositories()
+    .AddMongoMigrations()
     .AddJwtAuthentication(builder.Configuration)
     .AddApplicationServices()
     .AddNotificationService(builder.Configuration)
@@ -32,13 +34,15 @@ builder.Services
     .AddGraphQlMutations()
     ;
     
-
+// Configure WebApplication
 var app = builder.Build();
 
 app.MapCineverseGraphQl();
-app
-    .UseAuthentication()
+app.UseAuthentication()
     .UseAuthorization()
     .UseMiddleware<GraphQlStatusCodeMiddleware>();
+
+// Execute Migrations
+await app.ExecuteMigrations();
 
 app.Run();
