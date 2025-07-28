@@ -14,7 +14,9 @@ public class BookingEntity : BaseEntity
     [BsonRepresentation(BsonType.ObjectId)]
     public required string ScreeningId { get; set; }
 
-    public required int[] SeatIds { get; set; }
+    public required string[] SeatIds { get; set; }
+    
+    public required int TotalPrice { get; set; }
 
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 }

@@ -11,25 +11,28 @@ public class ScreeningMutation
 {
     public async Task<bool> CreateScreening(
         [Service] IMediator mediator,
-        CreateScreeningRequest createScreeningRequest
+        CreateScreeningRequest request,
+        CancellationToken cancellationToken
     )
     {
-        return await mediator.Send(createScreeningRequest);
+        return await mediator.Send(request, cancellationToken);
     }
     
     public async Task<bool> UpdateScreening(
         [Service] IMediator mediator,
-        UpdateScreeningRequest updateScreeningRequest
+        UpdateScreeningRequest request,
+        CancellationToken cancellationToken
     )
     {
-        return await mediator.Send(updateScreeningRequest);
+        return await mediator.Send(request, cancellationToken);
     }
     
     public async Task<bool> DeleteScreening(
         [Service] IMediator mediator,
-        string id
+        string id,
+        CancellationToken cancellationToken
     )
     {
-        return await mediator.Send(new DeleteScreeningRequest(id));
+        return await mediator.Send(new DeleteScreeningRequest(id), cancellationToken);
     }
 }

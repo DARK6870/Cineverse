@@ -18,17 +18,19 @@ public class HallQuery
     [UseFiltering]
     [UseSorting]
     public Task<IQueryable<HallEntity>> GetHalls(
-        [Service] IMediator mediator
+        [Service] IMediator mediator,
+        CancellationToken cancellationToken
     )
     {
-        return mediator.Send(new GetHallsRequest());
+        return mediator.Send(new GetHallsRequest(), cancellationToken);
     }
 
     public async Task<HallEntity?> GetHallById(
         [Service] IMediator mediator,
-        string id
+        string id,
+        CancellationToken cancellationToken
     )
     {
-        return await mediator.Send(new GetHallByIdRequest(id));
+        return await mediator.Send(new GetHallByIdRequest(id), cancellationToken);
     }
 }

@@ -17,9 +17,10 @@ public class MovieQuery
     [UseFiltering]
     [UseSorting]
     public Task<IQueryable<MovieEntity>> GetMovies(
-        [Service] IMediator mediator
+        [Service] IMediator mediator,
+        CancellationToken cancellationToken
     )
     {
-        return mediator.Send(new GetMoviesRequest());
+        return mediator.Send(new GetMoviesRequest(), cancellationToken);
     }
 }

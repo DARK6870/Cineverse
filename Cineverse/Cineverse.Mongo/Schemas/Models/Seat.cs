@@ -2,9 +2,14 @@
 
 public class Seat
 {
-    public string SeatId => $"{Row}-{Number}";
+    public string SeatId {get; set;} = string.Empty;
     
     public int Row { get; set; }
     
     public int Number { get; set; }
+    
+    public void GenerateSeatId()
+    {
+        SeatId = $"{Row}-{Number}";
+    }
 }

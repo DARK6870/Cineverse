@@ -7,7 +7,7 @@ namespace Cineverse.Application.MediatR.Hall.Commands;
 
 public record CreateHallRequest(
     string Name,
-    Seat[] Seats
+    List<Seat> Seats
 ) : IRequest<bool>;
 
 public class CreateHallRequestHandler(
@@ -16,13 +16,15 @@ public class CreateHallRequestHandler(
 {
     public async Task<bool> Handle(CreateHallRequest request, CancellationToken cancellationToken)
     {
+        request.Seats.ForEach(seat => seat.GenerateSeatId());
+        
         var hall = new HallEntity
         {
             Name = request.Name,
-            Seats = request.Seats
+            Seats = request.Seats.ToArray()
         };
-        
         await hallRepository.InsertOneAsync(hall, cancellationToken);
+        
         return true;
     }
 }

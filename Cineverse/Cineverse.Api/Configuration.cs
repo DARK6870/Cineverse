@@ -13,6 +13,7 @@ public static class Configuration
             .AddTypeExtension<MovieQueryType>()
             .AddTypeExtension<ScreeningQueryType>()
             .AddTypeExtension<HallQueryType>()
+            .AddTypeExtension<BookingQueryType>()
             ;
 
         return requestExecutorBuilder;
@@ -26,6 +27,7 @@ public static class Configuration
             .AddTypeExtension<AuthenticationMutationType>()
             .AddTypeExtension<ScreeningMutationType>()
             .AddTypeExtension<HallMutationType>()
+            .AddTypeExtension<BookingMutationType>()
             ;
         
         return requestExecutorBuilder;

@@ -11,25 +11,28 @@ public class HallMutation
 {
     public async Task<bool> CreateHall(
         [Service] IMediator mediator,
-        CreateHallRequest createHallRequest
+        CreateHallRequest request,
+        CancellationToken cancellationToken
     )
     {
-        return await mediator.Send(createHallRequest);
+        return await mediator.Send(request, cancellationToken);
     }
     
     public async Task<bool> UpdateHall(
         [Service] IMediator mediator,
-        UpdateHallRequest updateHallRequest
+        UpdateHallRequest request,
+        CancellationToken cancellationToken
     )
     {
-        return await mediator.Send(updateHallRequest);
+        return await mediator.Send(request, cancellationToken);
     }
     
     public async Task<bool> DeleteHall(
         [Service] IMediator mediator,
-        string id
+        string id,
+        CancellationToken cancellationToken
     )
     {
-        return await mediator.Send(new DeleteHallRequest(id));
+        return await mediator.Send(new DeleteHallRequest(id), cancellationToken);
     }
 }
