@@ -16,9 +16,11 @@ public class MessageBuilder
         get
         {
             var stringBuilder = new StringBuilder();
-
             stringBuilder.Append($"<h2>{Title}</h2>");
-            stringBuilder.Append($"<p>Hello, <strong>{FullName}</strong>!</p>");
+            
+            if (FullName is not null)
+                stringBuilder.Append($"<p>Hello, <strong>{FullName}</strong>!</p>");
+            
             stringBuilder.Append($"<p>{Message}</p>");
 
             if (!string.IsNullOrEmpty(ActionUrl))

@@ -12,7 +12,7 @@ public class GenerateEmailVerificationCodeRequestHandler(
 {
     public async Task<bool> Handle(GenerateVerificationCodeRequest request, CancellationToken cancellationToken)
     {
-        await authenticationService.GenerateVerificationCodeAsync(userContext.Email);
+        await authenticationService.GenerateVerificationCodeAsync(userContext.Email, userContext.UserName);
         
         return true;
     }

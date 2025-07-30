@@ -57,10 +57,10 @@ public class CreateBookingRequestHandler(
             Title = "Your booking has been created",
             FullName = userContext.UserName,
             Message =
-                $"Your booking has been created" +
-                $"<br>Number of tickets: {request.SeatsIds.Length}" +
-                $"<br><b>Total tickets price: {booking.TotalPrice}$</b>"+
-                $"<br><br>We are waiting for you on <b>{screening.Date} | {screening.StartTime}</b>",
+                $"Your booking has been created<br>" +
+                $"Number of tickets: {request.SeatsIds.Length}<br>" +
+                $"<b>Total tickets price: {booking.TotalPrice}$</b><br>"+
+                $"<br>We are waiting for you on <b>{screening.Date} | {screening.StartTime}</b>",
             ActionUrl = $"https://www.bookings.com/bookings/{booking.Id}",
             ActionText = "to view booking details"
         };

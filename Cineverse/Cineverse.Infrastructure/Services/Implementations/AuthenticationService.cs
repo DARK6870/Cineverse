@@ -48,7 +48,7 @@ public class AuthenticationService(
         await userRepository.CreateUserAsync(user, password);
 
         // Generate verification code
-        await GenerateVerificationCodeAsync(email);
+        await GenerateVerificationCodeAsync(email, user.FirstName + ' ' + user.LastName);
 
         // Generate refresh token
         var refreshToken = GenerateRefreshToken();
@@ -83,7 +83,7 @@ public class AuthenticationService(
         await userRepository.ReplaceOneAsync(user);
     }
 
-    public async Task GenerateVerificationCodeAsync(string email)
+    public async Task GenerateVerificationCodeAsync(string email, string fullName)
     {
         var random = new Random();
         var verificationCode = random.Next(11111, 99999);
@@ -99,8 +99,11 @@ public class AuthenticationService(
 
         var notification = new MessageBuilder
         {
-            Title = "Verification code",
-            Message = $"Your verification code is {verificationCode}",
+            Title = "Email Confirmation Code",
+            FullName = fullName,
+            Message = "Please complete your account setup to explore our website without restrictions<br><br>" +
+                      $"Your verification code is <b>{verificationCode}</b><br>" +
+                      $"<small>The code will be valid for {CacheConstants.VerificationCodeCacheLifetime} minutes</small>",
             ActionUrl = "https://localhost/confirm/" + verificationCode,
             ActionText = "to confirm your email"
         };

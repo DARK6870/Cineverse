@@ -13,7 +13,7 @@ public interface IAuthenticationService
 
     Task ConfirmUserEmailAsync(int verificationCode);
 
-    Task GenerateVerificationCodeAsync(string email);
+    Task GenerateVerificationCodeAsync(string email, string fullName);
     
     Task<LoginResponse> LoginUserAsync(string email, string password);
 
