@@ -21,7 +21,7 @@ public class MessageBuilder
             if (FullName is not null)
                 stringBuilder.Append($"<p>Hello, <strong>{FullName}</strong>!</p>");
             
-            stringBuilder.Append($"<p>{Message}</p>");
+            stringBuilder.Append($"<p>{Message}</p><br><br>");
 
             if (!string.IsNullOrEmpty(ActionUrl))
                 stringBuilder.Append($"<p><small><a href=\"{ActionUrl}\">Click here</a> {ActionText}.<small></p>");
