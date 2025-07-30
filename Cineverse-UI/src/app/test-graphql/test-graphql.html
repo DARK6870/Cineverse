@@ -1,0 +1,26 @@
+<button
+  (click)="testConnection()"
+  [disabled]="isLoading"
+  class="test-btn"
+>
+  @if (isLoading) {
+    <span class="spinner">⏳</span>
+    Testing...
+  } @else {
+    Test GraphQL Connection
+  }
+</button>
+
+@if (response) {
+  <div class="response success">
+    <h3>Success!</h3>
+    <pre>{{ response | json }}</pre>
+  </div>
+}
+
+@if (error) {
+  <div class="response error">
+    <h3>Error</h3>
+    <p>{{ error }}</p>
+  </div>
+}
