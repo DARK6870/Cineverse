@@ -28,6 +28,7 @@ public static class Configuration
             .AddTypeExtension<ScreeningMutationType>()
             .AddTypeExtension<HallMutationType>()
             .AddTypeExtension<BookingMutationType>()
+            .AddTypeExtension<SupportMutationType>()
             ;
         
         return requestExecutorBuilder;

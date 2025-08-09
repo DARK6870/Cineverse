@@ -34,9 +34,21 @@ builder.Services
     .AddGraphQlMutations()
     ;
     
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 // Configure WebApplication
 var app = builder.Build();
 
+app.UseCors("AllowAll");
 app.MapCineverseGraphQl();
 app.UseAuthentication()
     .UseAuthorization()

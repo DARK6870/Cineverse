@@ -14,6 +14,7 @@ public static class Configuration
     )
     {
         services.Configure<SmtpOptions>(configuration.GetSection(nameof(SmtpOptions)));
+        services.Configure<EmailOptions>(configuration.GetSection(nameof(EmailOptions)));
         
         services.AddSingleton<INotificationService, NotificationService>();
         
