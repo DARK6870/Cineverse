@@ -7,8 +7,7 @@ import {filter} from 'rxjs';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Header, Footer],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  templateUrl: 'app.html'
 })
 export class App implements OnInit {
   constructor(private router: Router) {}

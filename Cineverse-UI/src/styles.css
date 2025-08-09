@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import "../node_modules/primeicons/primeicons.css";
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.menu-text{
+  padding-top: 100px;
+}
+
+body{
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+:root {
+  color-scheme: light!important;
+  --cv-primary-dark: #000000;
+  --cv-light: #e6e6e6;
+  --cv-gray: #c7c7c7;
+  --cv-accent: #677C77;
+}
+
+*{
+  font-family: 'Manrope', sans-serif;
+}
+
+.page-container {
+  margin-top: 5rem;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.p-field {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+}

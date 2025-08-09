@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
+import { CREATE_SUPPORT_TICKET_MUTATION } from '../constants/graphql/support.operations';
 
 @Injectable({
   providedIn: 'root'
@@ -8,18 +9,16 @@ import { Observable } from 'rxjs';
 export class GraphqlService {
   constructor(private apollo: Apollo) {}
 
-  testQuery(): Observable<any> {
-    return this.apollo.query({
-      query: gql`
-        query TestQuery {
-          __schema {
-            types {
-              name
-              kind
-            }
-          }
-        }
-      `
+  createSupportTicket(request: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    subject: string;
+    description: string;
+  }): Observable<any> {
+    return this.apollo.mutate({
+      mutation: CREATE_SUPPORT_TICKET_MUTATION,
+      variables: { request }
     });
   }
 }

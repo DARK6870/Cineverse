@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  overflow: hidden;
+}
+
+.card{
+  min-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .card{
+    min-width: 90%;
+  }
+}

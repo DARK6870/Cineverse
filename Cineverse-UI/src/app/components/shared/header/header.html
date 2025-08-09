@@ -1,1 +1,21 @@
-<p>header works!</p>
+<div class="wrapper">
+  <header>
+    <nav>
+      <div class="logo-wrapper">
+        <div class="logo">
+          CINEVERSE
+        </div>
+      </div>
+      <div class="menu-icon" (click)="toggleMenu($event)">
+        <i class="pi pi-bars fa-2x"></i>
+      </div>
+      <ul [class.showing]="isMenuOpen">
+        <li><a routerLink="/" (click)="closeMenu()">Home</a></li>
+        <li><a routerLink="/screenings" (click)="closeMenu()">Screenings</a></li>
+        <li><a routerLink="/support" (click)="closeMenu()">Support</a></li>
+        <li><a routerLink="/about-us" (click)="closeMenu()">About</a></li>
+        <li><a routerLink="/about-us" (click)="closeMenu()">Account</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>

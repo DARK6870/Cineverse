@@ -9,14 +9,17 @@ import { InMemoryCache } from '@apollo/client/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeuix/themes/aura';
+import MyPreset from '../mypreset';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura
+        preset: MyPreset,
+        options: {
+          darkModeSelector: false
+        }
       }
     }),
     provideBrowserGlobalErrorListeners(),
