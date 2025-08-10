@@ -9,9 +9,9 @@ namespace Cineverse.API.GraphQl.Mutations;
 [ExtendObjectType(nameof(BaseGraphQlMutation))]
 public class SupportMutation
 {
-    public async Task<bool> CreateSupportTicket(
+    public async Task<bool> CreateContactRequest(
         [Service] IMediator mediator,
-        CreateSupportTicketRequest request,
+        CreateContactRequest request,
         CancellationToken cancellationToken
     )
     {

@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Cineverse.Application.FluentValidation.Support;
 
-public class CreateSupportTicketRequestValidator : AbstractValidator<CreateSupportTicketRequest>
+public class CreateContactRequestValidator : AbstractValidator<CreateContactRequest>
 {
-    public CreateSupportTicketRequestValidator()
+    public CreateContactRequestValidator()
     {
         RuleFor(x => x.FirstName)
             .NotEmpty()
