@@ -2,7 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessC
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
@@ -10,6 +10,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { providePrimeNG } from 'primeng/config';
 import MyPreset from '../mypreset';
+import { errorInterceptor } from './common/interceptors/error.interceptor';
+import {MessageService} from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,9 +24,11 @@ export const appConfig: ApplicationConfig = {
         }
       }
     }),
+    MessageService,
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideRouter(routes), provideHttpClient(), provideApollo(() => {
+    provideRouter(routes),
+    provideHttpClient(withInterceptors([errorInterceptor])), provideApollo(() => {
       const httpLink = inject(HttpLink);
 
       return {
@@ -33,7 +37,8 @@ export const appConfig: ApplicationConfig = {
         }),
         cache: new InMemoryCache(),
       };
-    }), provideHttpClient(), provideApollo(() => {
+    }),
+    provideHttpClient(withInterceptors([errorInterceptor])),provideApollo(() => {
       const httpLink = inject(HttpLink);
 
       return {
@@ -43,5 +48,5 @@ export const appConfig: ApplicationConfig = {
         cache: new InMemoryCache(),
       };
     })
-  ]
+  ],
 };

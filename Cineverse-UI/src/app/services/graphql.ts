@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
-import { CREATE_SUPPORT_TICKET_MUTATION } from '../constants/graphql/support.operations';
+import { CREATE_CONTACT } from '../common/constants/graphql/contact.operations';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class GraphqlService {
     description: string;
   }): Observable<any> {
     return this.apollo.mutate({
-      mutation: CREATE_SUPPORT_TICKET_MUTATION,
+      mutation: CREATE_CONTACT,
       variables: { request }
     });
   }

@@ -1,0 +1,127 @@
+<div class="page-container p-4 sm:p-8">
+  <div class="main-container max-w-xl min-w-[400px] mx-auto">
+    <div class="card p-8 shadow-xl rounded-2xl bg-white">
+      <h1 class="text-3xl font-bold mb-6 text-center">WE ARE ALWAYS IN TOUCH!</h1>
+      <p class="text-center mb-6">
+        You can always contact us by calling the numbers listed at the top of the website.<br>
+        You can also send your request/calibration/proposal using the following form.
+      </p>
+
+      <div class="contact-info text-center mb-8">
+        <p class="text-xl font-semibold">+373 (88) 055 555</p>
+      </div>
+
+      <form [formGroup]="supportForm" (ngSubmit)="onSubmit()" class="mt-3 flex flex-col gap-6">
+
+        <!-- Department -->
+        <div class="flex flex-col gap-1">
+          <label class="font-medium">Department</label>
+          <p-select
+            [options]="departmentOptions"
+            formControlName="department"
+            optionLabel="name"
+            placeholder="Select Department"
+            [invalid]="isInvalid('department')">
+          </p-select>
+          @if (getErrorMessageByName('department')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('department') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- First Name -->
+        <div class="flex flex-col gap-1">
+          <label for="firstName" class="font-medium">First Name</label>
+          <input
+            pInputText
+            id="firstName"
+            placeholder="Enter your first name"
+            formControlName="firstName"
+            [invalid]="isInvalid('firstName')"
+          />
+          @if (getErrorMessageByName('firstName')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('firstName') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Last Name -->
+        <div class="flex flex-col gap-1">
+          <label for="lastName" class="font-medium">Last Name</label>
+          <input
+            pInputText
+            id="lastName"
+            placeholder="Enter your last name"
+            formControlName="lastName"
+            [invalid]="isInvalid('lastName')"
+          />
+          @if (getErrorMessageByName('lastName')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('lastName') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="flex flex-col gap-1">
+          <label for="email" class="font-medium">Email</label>
+          <input
+            pInputText
+            id="email"
+            placeholder="Enter your email"
+            formControlName="email"
+            [invalid]="isInvalid('email')"
+          />
+          @if (getErrorMessageByName('email')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('email') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Subject -->
+        <div class="flex flex-col gap-1">
+          <label for="subject" class="font-medium">Message subject</label>
+          <input
+            pInputText
+            id="subject"
+            placeholder="Enter subject"
+            formControlName="subject"
+            [invalid]="isInvalid('subject')"
+          />
+          @if (getErrorMessageByName('subject')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('subject') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Description -->
+        <div class="flex flex-col gap-1">
+          <label for="description" class="font-medium">Message description</label>
+          <textarea
+            pInputTextarea
+            id="description"
+            rows="4"
+            placeholder="Enter description"
+            formControlName="description"
+            [invalid]="isInvalid('description')"
+          ></textarea>
+          @if (getErrorMessageByName('description')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('description') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Submit -->
+        <button pButton severity="primary" type="submit" class="mt-4">
+          <span pButtonLabel>Submit</span>
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -2,9 +2,9 @@
   <header>
     <nav>
       <div class="logo-wrapper">
-        <div class="logo">
+        <a routerLink="/" class="logo">
           CINEVERSE
-        </div>
+        </a>
       </div>
       <div class="menu-icon" (click)="toggleMenu($event)">
         <i class="pi pi-bars fa-2x"></i>
@@ -12,9 +12,9 @@
       <ul [class.showing]="isMenuOpen">
         <li><a routerLink="/" (click)="closeMenu()">Home</a></li>
         <li><a routerLink="/screenings" (click)="closeMenu()">Screenings</a></li>
-        <li><a routerLink="/support" (click)="closeMenu()">Support</a></li>
+        <li><a routerLink="/contact" (click)="closeMenu()">Contact</a></li>
         <li><a routerLink="/about-us" (click)="closeMenu()">About</a></li>
-        <li><a routerLink="/about-us" (click)="closeMenu()">Account</a></li>
+        <li><a routerLink="/account" (click)="closeMenu()">Account</a></li>
       </ul>
     </nav>
   </header>

@@ -3,11 +3,12 @@ import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {Header} from './components/shared/header/header';
 import {Footer} from './components/shared/footer/footer';
 import {filter} from 'rxjs';
+import {Toast} from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer],
-  templateUrl: 'app.html'
+  imports: [RouterOutlet, Header, Footer, Toast],
+  templateUrl: 'app.html',
 })
 export class App implements OnInit {
   constructor(private router: Router) {}
