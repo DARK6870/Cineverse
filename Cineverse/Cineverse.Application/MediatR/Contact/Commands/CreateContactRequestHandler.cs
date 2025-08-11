@@ -6,7 +6,7 @@ using Cineverse.Notifications.Services.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Options;
 
-namespace Cineverse.Application.MediatR.Support.Commands;
+namespace Cineverse.Application.MediatR.Contact.Commands;
 
 public record CreateContactRequest(
     Department Department,

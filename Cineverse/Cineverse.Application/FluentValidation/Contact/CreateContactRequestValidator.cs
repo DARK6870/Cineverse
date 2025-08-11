@@ -1,7 +1,7 @@
-﻿using Cineverse.Application.MediatR.Support.Commands;
+﻿using Cineverse.Application.MediatR.Contact.Commands;
 using FluentValidation;
 
-namespace Cineverse.Application.FluentValidation.Support;
+namespace Cineverse.Application.FluentValidation.Contact;
 
 public class CreateContactRequestValidator : AbstractValidator<CreateContactRequest>
 {
@@ -25,6 +25,6 @@ public class CreateContactRequestValidator : AbstractValidator<CreateContactRequ
         
         RuleFor(x => x.Description)
             .Length(30, 300)
-            .WithMessage("Subject must be between 30 and 300 characters");
+            .WithMessage("Description must be between 30 and 300 characters");
     }
 }

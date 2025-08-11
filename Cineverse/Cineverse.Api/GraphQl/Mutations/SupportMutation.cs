@@ -1,5 +1,5 @@
 ﻿using Cineverse.API.GraphQl.Base;
-using Cineverse.Application.MediatR.Support.Commands;
+using Cineverse.Application.MediatR.Contact.Commands;
 using HotChocolate;
 using HotChocolate.Types;
 using MediatR;
