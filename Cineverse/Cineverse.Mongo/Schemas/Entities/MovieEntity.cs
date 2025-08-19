@@ -10,9 +10,13 @@ public class MovieEntity : BaseEntity
 {
     public required string Title { get; set; }
     
+    public required string Genre { get; set; }
+    
     public required string Description { get; set; }
     
-    public required string[] Images { get; set; }
+    public required string PosterUrl { get; set; }
+    
+    public required string TrailerUrl { get; set; }
     
     [BsonRepresentation(BsonType.String)]
     public required DateOnly ReleaseDate { get; set; }

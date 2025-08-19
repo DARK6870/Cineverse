@@ -9,8 +9,10 @@ namespace Cineverse.Application.MediatR.Movies.Commands;
 public record UpdateMovieRequest(
     string Id,
     string Title,
+    string Genre,
     string Description,
-    string[] Images,
+    string PosterUrl,
+    string TrailerUrl,
     DateOnly ReleaseDate,
     int Duration,
     bool IsAvailable
@@ -29,8 +31,10 @@ public class UpdateMovieRequestHandler(
         {
             Id = request.Id,
             Title = request.Title,
+            Genre = request.Genre,
             Description = request.Description,
-            Images = request.Images,
+            PosterUrl = request.PosterUrl,
+            TrailerUrl = request.TrailerUrl,
             ReleaseDate = request.ReleaseDate,
             Duration = request.Duration,
             IsAvailable = request.IsAvailable,

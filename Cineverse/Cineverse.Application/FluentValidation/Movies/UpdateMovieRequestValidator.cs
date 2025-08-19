@@ -11,17 +11,21 @@ public class UpdateMovieRequestValidator : AbstractValidator<UpdateMovieRequest>
             .NotEmpty()
             .WithMessage("Title cannot be empty");
         
+        RuleFor(x => x.Genre)
+            .NotEmpty()
+            .WithMessage("Genre cannot be empty");
+        
         RuleFor(x => x.Description)
             .NotEmpty()
             .WithMessage("Description cannot be empty");
         
-        RuleFor(x => x.Images.Length)
-            .GreaterThan(0)
-            .WithMessage("Images can not be empty");
-        
-        RuleForEach(x => x.Images)
+        RuleFor(x => x.PosterUrl)
             .NotEmpty()
-            .WithMessage("Image can not be empty");
+            .WithMessage("PosterUrl cannot be empty");
+        
+        RuleForEach(x => x.TrailerUrl)
+            .NotEmpty()
+            .WithMessage("TrailerUrl cannot be empty");
 
         RuleFor(x => x.Duration)
             .GreaterThan(40)

@@ -6,8 +6,10 @@ namespace Cineverse.Application.MediatR.Movies.Commands;
 
 public record CreateMovieRequest(
     string Title,
+    string Genre,
     string Description,
-    string[] Images,
+    string PosterUrl,
+    string TrailerUrl,
     DateOnly ReleaseDate,
     int Duration
 ) : IRequest<bool>;
@@ -21,10 +23,12 @@ public class CreateMovieRequestHandler(
         var movie = new MovieEntity
         {
             Title = request.Title,
+            Genre = request.Genre,
             Description = request.Description,
             Duration = request.Duration,
             ReleaseDate = request.ReleaseDate,
-            Images = request.Images
+            PosterUrl = request.PosterUrl,
+            TrailerUrl = request.TrailerUrl
         };
 
         await movieRepository.InsertOneAsync(movie, cancellationToken);
