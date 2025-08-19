@@ -4,9 +4,10 @@ import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { GraphqlService } from '../../services/graphql-service';
 import { Movie } from '../../common/models/movie';
-import {DatePipe, NgOptimizedImage} from '@angular/common';
 import { LoadingService } from '../../services/loading-service';
-import {RouterLink} from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { Screening } from '../../common/models/screening';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,7 @@ import {RouterLink} from '@angular/router';
     RatingModule,
     Button,
     FormsModule,
-    DatePipe,
     RouterLink,
-    NgOptimizedImage,
   ],
   templateUrl: 'home.html',
   styleUrl: 'home.css',
@@ -24,6 +23,8 @@ import {RouterLink} from '@angular/router';
 })
 export class Home implements OnInit {
   movies = signal<Movie[]>([]);
+  screenings = signal<Screening[]>([]);
+  comingSoonMovies = signal<Movie[]>([]);
 
   constructor(
     private graphqlService: GraphqlService,
@@ -31,9 +32,41 @@ export class Home implements OnInit {
   ) {}
   ngOnInit(): void {
     this.loadingService.show();
-    this.graphqlService.getMovies().subscribe(result => {
-      this.movies.set(result);
-      this.loadingService.hide();
+
+    const today = new Date();
+    const twoWeeksLater = new Date();
+    twoWeeksLater.setDate(today.getDate() + 14);
+
+    this.graphqlService.getScreenings().pipe(
+      switchMap(screeningsResult => {
+        this.screenings.set(screeningsResult);
+
+        const movieIds = [...new Set(this.screenings().map(screening => screening.movieId))];
+        return this.graphqlService.getMovies(movieIds);
+      })
+    ).subscribe({
+      next: (moviesResult) => {
+        const comingSoon = moviesResult.filter(movie => {
+          const movieScreenings = this.screenings().filter(screening =>
+            screening.movieId === movie.id
+          );
+
+          if (movieScreenings.length === 0) return false;
+
+          const nearestScreeningDate = movieScreenings
+            .map(screening => new Date(screening.date))[0];
+
+          return nearestScreeningDate >= twoWeeksLater;
+        });
+        this.comingSoonMovies.set(comingSoon);
+        const comingSoonIds = new Set(comingSoon.map(m => m.id));
+
+        this.movies.set(
+          moviesResult.filter(m => !comingSoonIds.has(m.id))
+        );
+
+        this.loadingService.hide();
+      }
     });
   }
 }

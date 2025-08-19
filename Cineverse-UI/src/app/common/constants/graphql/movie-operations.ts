@@ -1,8 +1,13 @@
 ﻿import { gql } from 'apollo-angular';
 
 const GET_MOVIES = gql`
-query getMovies {
-  movies(take: 10, order: { dateCreated: DESC }) {
+query getMovies($ids: [String]!) {
+  movies(
+    take: 250,
+    order: {dateCreated: DESC },
+    where: { id: { in: $ids } }
+    )
+    {
     items {
       id
       title

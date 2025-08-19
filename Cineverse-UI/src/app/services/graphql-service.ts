@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import {map, Observable, of} from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { CREATE_CONTACT } from '../common/constants/graphql/contact-operations';
 import { GET_MOVIES } from '../common/constants/graphql/movie-operations';
-import {catchError} from 'rxjs/operators';
-import {Movie} from '../common/models/movie';
+import { Movie } from '../common/models/movie';
+import { Screening } from '../common/models/screening';
+import { GET_SCREENINGS } from '../common/constants/graphql/screenings-operations';
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +26,25 @@ export class GraphqlService {
     });
   }
 
-  getMovies(): Observable<Movie[]> {
+  getMovies(ids: string[]): Observable<Movie[]> {
     return this.apollo.watchQuery({
-      query: GET_MOVIES
+      query: GET_MOVIES,
+      variables: {
+        ids: ids
+      }
     }).valueChanges.pipe(
       map((result: any) => result.data.movies.items),
-      catchError(error => {
-        console.error('Error fetching movies:', error);
-        return of([]);
-      })
+    );
+  }
+
+  getScreenings() : Observable<Screening[]>{
+    return this.apollo.watchQuery({
+      query: GET_SCREENINGS,
+      variables: {
+        currentDate: new Date().toISOString().split('T')[0]
+      }
+    }).valueChanges.pipe(
+      map((result: any) => result.data.screenings.items),
     );
   }
 }
