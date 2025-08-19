@@ -1,29 +1,213 @@
 <div class="page-container">
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
-  <p>Home page</p>
+  <div class="main-container">
+    <!-- Banner -->
+    <div class="banner-container mb-8 rounded-lg overflow-hidden shadow-lg">
+      <div class="relative">
+        <img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_3392/q_auto/v1740000000/fom-website/2025/F1%20movie/f1_movie_poster16x9%20(1).webp"
+             alt="Now Showing" class="w-full h-auto" fill>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+          <h1 class="text-4xl font-bold text-white absolute bottom-5">Now in Cinemas</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="bg-black text-white rounded-lg p-6 mb-10 shadow-md">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div>
+          <div class="text-2xl font-bold">12</div>
+          <div class="text-sm">Screens</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold">2,400</div>
+          <div class="text-sm">Total Seats</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold">15M+</div>
+          <div class="text-sm">Guests Served</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold">24/7</div>
+          <div class="text-sm">Online Booking</div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Current movies -->
+    <div class="current-movies mb-8">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800">Now showing</h2>
+
+      <swiper-container
+        slides-per-view="2"
+        space-between="16"
+        loop="true"
+        autoPlay="true"
+        breakpoints='{
+          "640": { "slidesPerView": 2 },
+          "768": { "slidesPerView": 3 },
+          "1024": { "slidesPerView": 4 }
+          }'
+        class="mySwiper"
+      >
+        @for (movie of movies(); track movie.id) {
+          <swiper-slide>
+            <div class="movie-card bg-white rounded-lg shadow-md overflow-hidden">
+              <div class="poster-container">
+                <img [src]="movie.posterUrl" [alt]="movie.title + ' poster'" loading="lazy" />
+              </div>
+              <div class="p-3">
+                <h3 class="font-bold text-lg mb-1">{{ movie.title }}</h3>
+                <p class="text-gray-600 text-sm mb-2">Genre: <strong>{{ movie.genre }}</strong></p>
+                <p-button
+                  severity="contrast"
+                  label="Buy Ticket"
+                  icon="pi pi-ticket"
+                  styleClass="p-button-sm w-full mt-2"
+                ></p-button>
+              </div>
+            </div>
+          </swiper-slide>
+        }
+      </swiper-container>
+
+      <div class="mt-3 flex justify-center items-center">
+        <a routerLink="/screenings" class="flex flex-col items-center text-center">
+          <span>Show More</span>
+          <i class="pi pi-angle-down mt-1"></i>
+        </a>
+      </div>
+
+    </div>
+
+
+    <!-- Coming soon -->
+    <div class="current-movies mb-8">
+      <h2 class="text-2xl font-bold mb-4">Coming soon</h2>
+
+      <swiper-container
+        slides-per-view="2"
+        space-between="16"
+        loop="true"
+        breakpoints='{
+          "640": { "slidesPerView": 2 },
+          "768": { "slidesPerView": 3 },
+          "1024": { "slidesPerView": 4 }
+          }'
+        class="mySwiper"
+      >
+        @for (movie of movies(); track movie.id) {
+          <swiper-slide>
+            <div class="movie-card bg-white rounded-lg shadow-md overflow-hidden">
+              <div class="poster-container">
+                <img [src]="movie.posterUrl" [alt]="movie.title + ' poster'" loading="lazy" />
+              </div>
+              <div class="p-3">
+                <h3 class="font-bold text-lg mb-1">{{ movie.title }}</h3>
+                <p class="text-gray-600 text-sm mb-2">Genre: N/A</p>
+                <p-button
+                  severity="contrast"
+                  label="Buy Ticket"
+                  icon="pi pi-ticket"
+                  styleClass="p-button-sm w-full mt-2"
+                ></p-button>
+              </div>
+            </div>
+          </swiper-slide>
+        }
+      </swiper-container>
+
+    </div>
+
+    <!-- About cinema section -->
+    <div class="about rounded-lg p-8 mb-8">
+      <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">About Our Cinema</h2>
+
+      <div class="bg-gray-50 rounded-lg p-6 grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">About Us</h3>
+          <p class="mb-4 text-gray-700 leading-relaxed">
+            Welcome to <strong class="text-black">Cineverse</strong>, where movie magic comes to life.
+            Established in 2010, we've been bringing the ultimate cinematic experience to our community
+            with state-of-the-art technology and unparalleled comfort.
+          </p>
+
+          <p class="mb-4 text-gray-700 leading-relaxed">
+            Our 12-screen multiplex features the latest in digital projection and sound technology,
+            including IMAX with Laser and Dolby Atmos systems that transport you directly into the heart
+            of every story. Each auditorium is equipped with luxury recliners featuring heated seats
+            and individual cup holders.
+          </p>
+        </div>
+
+        <div class="overflow-hidden">
+          <img src="https://cdn.celluloidjunkie.com/wp-content/uploads/2024/07/24024452/ScreenX_Auditorium_BrandTrailer-TopRight-ALT.jpg"
+               alt="Modern cinema auditorium with luxury seating"
+               class="w-full h-64 object-cover rounded-lg">
+        </div>
+      </div>
+
+      <!-- Technology Section -->
+      <div class="bg-gray-50 rounded-lg p-6 mb-8">
+        <h3 class="text-xl font-semibold mb-4 text-gray-800">Cutting-Edge Technology</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="rounded-lg overflow-hidden">
+            <img src="https://www.cultura.id/wp-content/uploads/2024/11/screenX-1.jpg"
+                 alt="IMAX with Laser projection system"
+                 class="w-full h-48 object-cover rounded-lg">
+          </div>
+          <div>
+            <p class="text-gray-700 mb-3">
+              Experience crystal-clear images with our <strong>4K laser projection</strong> systems that deliver
+              exceptional brightness and contrast ratios up to 1,000,000:1.
+            </p>
+            <p class="text-gray-700">
+              Our <strong>Dolby Atmos</strong> sound systems feature 64 speakers strategically placed throughout
+              each theater, creating a three-dimensional audio experience that surrounds you from every angle.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <h3 class="text-2xl font-semibold mb-4 text-gray-800">Cineverse features</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+        <div class="feature text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <i class="pi pi-thumbs-up text-4xl text-blue-600 mb-3"></i>
+          <h3 class="font-bold text-gray-800 mb-2">8K Projection</h3>
+          <p class="text-sm text-gray-600">Crystal-clear 8K resolution with HDR10+ support</p>
+        </div>
+
+        <div class="feature text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <i class="pi pi-volume-up text-4xl text-green-600 mb-3"></i>
+          <h3 class="font-bold text-gray-800 mb-2">Dolby Atmos</h3>
+          <p class="text-sm text-gray-600">128-channel immersive audio experience</p>
+        </div>
+
+        <div class="feature text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <i class="pi pi-heart text-4xl text-red-600 mb-3"></i>
+          <h3 class="font-bold text-gray-800 mb-2">Heated Seats</h3>
+          <p class="text-sm text-gray-600">Temperature-controlled memory foam recliners</p>
+        </div>
+
+        <div class="feature text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <i class="pi pi-truck text-4xl text-orange-600 mb-3"></i>
+          <h3 class="font-bold text-gray-800 mb-2">Express Service</h3>
+          <p class="text-sm text-gray-600">Quick delivery of food and beverages</p>
+        </div>
+
+        <div class="feature text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <i class="pi pi-wifi text-4xl text-purple-600 mb-3"></i>
+          <h3 class="font-bold text-gray-800 mb-2">Free WiFi</h3>
+          <p class="text-sm text-gray-600">High-speed internet throughout the complex</p>
+        </div>
+
+        <div class="feature text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <i class="pi pi-car text-4xl text-teal-600 mb-3"></i>
+          <h3 class="font-bold text-gray-800 mb-2">Free Parking</h3>
+          <p class="text-sm text-gray-600">Secure underground parking facility</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

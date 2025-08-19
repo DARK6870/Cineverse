@@ -4,12 +4,12 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Textarea } from 'primeng/textarea';
-import { GraphqlService } from '../../services/graphql'
+import { GraphqlService } from '../../services/graphql-service'
 import { MessageService } from 'primeng/api';
 import {Message} from 'primeng/message';
 import {Select} from 'primeng/select';
 import { getErrorMessage } from '../../common/helpers/validation.helper';
-import { departmentOptions } from '../../common/mappers/department.options';
+import { departmentOptions } from '../../common/mappers/department-options';
 
 @Component({
   selector: 'app-contact',

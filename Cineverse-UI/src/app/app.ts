@@ -1,14 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
-import {Header} from './components/shared/header/header';
-import {Footer} from './components/shared/footer/footer';
-import {filter} from 'rxjs';
-import {Toast} from 'primeng/toast';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { Header } from './components/shared/header/header';
+import { Footer } from './components/shared/footer/footer';
+import { filter } from 'rxjs';
+import { Toast } from 'primeng/toast';
+import { LoadingOverlay } from './components/shared/loading-overlay/loading-overlay';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer, Toast],
+  imports: [
+    RouterOutlet,
+    Header,
+    Footer,
+    Toast,
+    LoadingOverlay
+  ],
   templateUrl: 'app.html',
+  styleUrl: 'app.css'
 })
 export class App implements OnInit {
   constructor(private router: Router) {}

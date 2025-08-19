@@ -29,7 +29,7 @@ body{
 }
 
 .page-container {
-  margin-top: 5rem;
+  margin-top: 6rem;
   min-height: 80vh;
   display: flex;
   justify-content: center;
@@ -39,7 +39,7 @@ body{
   padding: 10px;
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  max-width: 1200px;
   width: 100%;
   box-sizing: border-box;
 }
