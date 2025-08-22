@@ -23,7 +23,7 @@ public class CreateScreeningRequestHandler(
 {
     public async Task<bool> Handle(CreateScreeningRequest request, CancellationToken cancellationToken)
     {
-        if (await movieRepository.ExistsAsync(x => x.Id == request.MovieId && x.IsAvailable, cancellationToken))
+        if (!await movieRepository.ExistsAsync(x => x.Id == request.MovieId && x.IsAvailable, cancellationToken))
             throw new ApiRequestException("Movie does not exist", HttpStatusCode.BadRequest);
         
         if (!await hallRepository.ExistsAsync(x => x.Id == request.HallId, cancellationToken))
