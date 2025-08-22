@@ -7,5 +7,6 @@
     environment:
       MongoDbSettings__ConnectionString: "mongo"
       AuthenticationOptions__EnableSecurity: false
+      ASPNETCORE_URLS: "http://+:7404"
     ports:
       - "7404:7404"
