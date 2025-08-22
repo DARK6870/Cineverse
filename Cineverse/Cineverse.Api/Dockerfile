@@ -1,23 +1,36 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
+﻿# ---------------- Base stage ----------------
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 7404
 
+# ---------------- Build stage ----------------
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Cineverse/Cineverse.csproj", "Cineverse/"]
-RUN dotnet restore "Cineverse/Cineverse.csproj"
-COPY . .
-WORKDIR "/src/Cineverse"
-RUN dotnet build "./Cineverse.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Cineverse.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
+COPY ["Cineverse.API/Cineverse.API.csproj", "Cineverse.API/"]
+COPY ["Cineverse.Application/Cineverse.Application.csproj", "Cineverse.Application/"]
+COPY ["Cineverse.Infrastructure/Cineverse.Infrastructure.csproj", "Cineverse.Infrastructure/"]
+COPY ["Cineverse.Mongo/Cineverse.Mongo.csproj", "Cineverse.Mongo/"]
+COPY ["Cineverse.Mongo.Migrations/Cineverse.Mongo.Migrations.csproj", "Cineverse.Mongo.Migrations/"]
+COPY ["Cineverse.Notifications/Cineverse.Notifications.csproj", "Cineverse.Notifications/"]
+
+COPY Directory.Packages.props Directory.Build.props ./
+
+RUN dotnet restore "Cineverse.API/Cineverse.API.csproj"
+
+COPY . .
+
+WORKDIR "/src/Cineverse.API"
+
+RUN dotnet publish "./Cineverse.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# ---------------- Final stage ----------------
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Cineverse.dll"]
+
+COPY --from=build /app/publish .
+
+RUN ls -la /app
+
+ENTRYPOINT ["dotnet", "Cineverse.API.dll"]

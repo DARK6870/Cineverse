@@ -3,5 +3,9 @@
     image: cineverse
     build:
       context: .
-      dockerfile: Cineverse/Dockerfile
-
+      dockerfile: Cineverse.API/Dockerfile
+    environment:
+      MongoDbSettings__ConnectionString: "mongo"
+      AuthenticationOptions__EnableSecurity: false
+    ports:
+      - "7404:7404"
