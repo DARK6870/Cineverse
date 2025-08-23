@@ -1,0 +1,8 @@
+:host {
+  display: block;
+  overflow: hidden;
+}
+
+.main-container{
+  max-width: 500px;
+}

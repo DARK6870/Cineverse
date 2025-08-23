@@ -1,0 +1,73 @@
+<div class="page-container p-4 sm:p-8">
+  <div class="main-container min-w-[400px] mx-auto">
+    <div class="card p-8 shadow-xl rounded-2xl bg-white">
+
+      <div class="flex justify-center mb-2">
+        <img src="/icons/logo.svg" alt="Cineverse Logo">
+      </div>
+
+      <h1 class="text-2xl font-bold mb-10 text-center">Login into account</h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-3 flex flex-col gap-6">
+
+        <!-- Email -->
+        <div class="flex flex-col gap-1">
+          <label for="email" class="font-medium flex items-center gap-2">
+            <i class="pi pi-envelope"></i>
+            Email
+          </label>
+
+          <input
+            pInputText
+            id="email"
+            placeholder="Enter your email"
+            formControlName="email"
+            autocomplete="username"
+            [invalid]="isInvalid('email')"
+          />
+          @if (getErrorMessageByName('email')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('email') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="flex flex-col gap-1">
+          <label for="password" class="font-medium flex items-center gap-2">
+            <i class="pi pi-lock"></i>
+            Password
+          </label>
+          <input
+            pInputText
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            formControlName="password"
+            [invalid]="isInvalid('password')"
+          />
+          @if (getErrorMessageByName('password')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('password') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Submit -->
+        <button pButton severity="contrast" type="submit" class="mt-4">
+          <span pButtonLabel>Login</span>
+        </button>
+
+        <div class="flex flex-col gap-1 text-sm text-gray-700 mt-5">
+          <p>
+            Don't have an account?
+            <a class="text-blue-600 hover:underline font-medium" routerLink="/register">
+              Register a new account
+            </a>
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

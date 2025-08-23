@@ -1,0 +1,135 @@
+<div class="page-container p-4 sm:p-8">
+  <div class="main-container min-w-[400px] mx-auto">
+    <div class="card p-8 shadow-xl rounded-2xl bg-white">
+
+      <div class="flex justify-center mb-2">
+        <img src="/icons/logo.svg" alt="Cineverse Logo">
+      </div>
+
+      <h1 class="text-2xl font-bold mb-20 text-center">Login into account</h1>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-3 flex flex-col gap-6">
+
+        <!-- FirstName -->
+        <div class="flex flex-col gap-1">
+          <label for="firstName" class="font-medium flex items-center gap-2">
+            <i class="pi pi-user"></i>
+            First Name
+          </label>
+
+          <input
+            pInputText
+            id="firstName"
+            placeholder="Enter your first name"
+            formControlName="firstName"
+            [invalid]="isInvalid('firstName')"
+          />
+          @if (getErrorMessageByName('firstName')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('firstName') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- LastName -->
+        <div class="flex flex-col gap-1">
+          <label for="lastName" class="font-medium flex items-center gap-2">
+            <i class="pi pi-user"></i>
+            Last Name
+          </label>
+
+          <input
+            pInputText
+            id="lastName"
+            placeholder="Enter your last name"
+            formControlName="lastName"
+            [invalid]="isInvalid('lastName')"
+          />
+          @if (getErrorMessageByName('lastName')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('lastName') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="flex flex-col gap-1">
+          <label for="email" class="font-medium flex items-center gap-2">
+            <i class="pi pi-envelope"></i>
+            Email
+          </label>
+
+          <input
+            pInputText
+            id="email"
+            placeholder="Enter your email"
+            formControlName="email"
+            [invalid]="isInvalid('email')"
+          />
+          @if (getErrorMessageByName('email')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('email') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="flex flex-col gap-1">
+          <label for="password" class="font-medium flex items-center gap-2">
+            <i class="pi pi-lock"></i>
+            Password
+          </label>
+          <input
+            pInputText
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            formControlName="password"
+            [invalid]="isInvalid('password')"
+          />
+          @if (getErrorMessageByName('password')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('password') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="flex flex-col gap-1">
+          <label for="confirmPassword" class="font-medium flex items-center gap-2">
+            <i class="pi pi-lock"></i>
+            Confirm password
+          </label>
+          <input
+            pInputText
+            type="password"
+            id="confirmPassword"
+            placeholder="Enter your password again"
+            formControlName="confirmPassword"
+            [invalid]="isInvalid('confirmPassword')"
+          />
+          @if (getErrorMessageByName('confirmPassword')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('confirmPassword') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Submit -->
+        <button pButton severity="contrast" type="submit" class="mt-4">
+          <span pButtonLabel>Register</span>
+        </button>
+
+        <div class="flex flex-col gap-1 text-sm text-gray-700 mt-5">
+          <p>
+            Have already an account?
+            <a class="text-blue-600 hover:underline font-medium" routerLink="/login">
+              Login here
+            </a>
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
