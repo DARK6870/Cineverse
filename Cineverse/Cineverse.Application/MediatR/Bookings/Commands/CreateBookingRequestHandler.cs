@@ -3,6 +3,7 @@ using Cineverse.Infrastructure.Common.Exceptions;
 using Cineverse.Infrastructure.Services.Interfaces;
 using Cineverse.Mongo.Repositories.Interfaces;
 using Cineverse.Mongo.Schemas.Entities;
+using Cineverse.Mongo.Schemas.Enums;
 using Cineverse.Notifications.Common.Builders;
 using Cineverse.Notifications.Services.Interfaces;
 using MediatR;
@@ -24,6 +25,9 @@ public class CreateBookingRequestHandler(
 {
     public async Task<bool> Handle(CreateBookingRequest request, CancellationToken cancellationToken)
     {
+        if (userContext.UserStatus == UserStatus.PendingEmailConfirmation)
+            throw new ApiRequestException("Please confirm your email to create a booking.", HttpStatusCode.Forbidden);
+        
         var screening = await screeningRepository.FindByIdAsync(request.ScreeningId, cancellationToken)
             ?? throw new ApiRequestException("Screening not found", HttpStatusCode.NotFound);
         
