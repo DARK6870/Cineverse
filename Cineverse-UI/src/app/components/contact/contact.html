@@ -1,21 +1,28 @@
 <div class="page-container p-4 sm:p-8">
   <div class="main-container min-w-[400px] mx-auto">
     <div class="card p-8 shadow-xl rounded-2xl bg-white">
+
+      <div class="flex justify-center mb-2">
+        <img src="/icons/logo.svg" alt="Cineverse Logo">
+      </div>
+
       <h1 class="text-3xl font-bold mb-6 text-center">WE ARE ALWAYS IN TOUCH!</h1>
-      <p class="text-center mb-6">
-        You can always contact us by calling the numbers listed at the top of the website.<br>
-        You can also send your request/calibration/proposal using the following form.
+      <p class="text-center mb-6 text-gray-600">
+        You can always contact us by calling the numbers listed at the top of the website <strong>or send your request/calibration/proposal using the following form</strong>
       </p>
 
       <div class="contact-info text-center mb-8">
-        <p class="text-xl font-semibold">+373 (88) 055 555</p>
+        <p class="text-xl font-semibold"><i class="pi pi-phone"></i> +373 69-077-251</p>
       </div>
 
       <form [formGroup]="supportForm" (ngSubmit)="onSubmit()" class="mt-3 flex flex-col gap-6">
 
         <!-- Department -->
         <div class="flex flex-col gap-1">
-          <label class="font-medium">Department</label>
+          <label class="font-medium flex items-center gap-2">
+            <i class="pi pi-briefcase"></i>
+            Department
+          </label>
           <p-select
             [options]="departmentOptions"
             formControlName="department"
@@ -32,7 +39,10 @@
 
         <!-- First Name -->
         <div class="flex flex-col gap-1">
-          <label for="firstName" class="font-medium">First Name</label>
+          <label for="firstName" class="font-medium flex items-center gap-2">
+            <i class="pi pi-user"></i>
+            First Name
+          </label>
           <input
             pInputText
             id="firstName"
@@ -49,7 +59,7 @@
 
         <!-- Last Name -->
         <div class="flex flex-col gap-1">
-          <label for="lastName" class="font-medium">Last Name</label>
+          <label for="lastName" class="font-medium flex items-center gap-2">Last Name</label>
           <input
             pInputText
             id="lastName"
@@ -66,7 +76,10 @@
 
         <!-- Email -->
         <div class="flex flex-col gap-1">
-          <label for="email" class="font-medium">Email</label>
+          <label for="email" class="font-medium flex items-center gap-2">
+            <i class="pi pi-envelope"></i>
+            Email
+          </label>
           <input
             pInputText
             id="email"
@@ -83,7 +96,10 @@
 
         <!-- Subject -->
         <div class="flex flex-col gap-1">
-          <label for="subject" class="font-medium">Message subject</label>
+          <label for="subject" class="font-medium flex items-center gap-2">
+            <i class="pi pi-comment"></i>
+            Message subject
+          </label>
           <input
             pInputText
             id="subject"
@@ -100,7 +116,10 @@
 
         <!-- Description -->
         <div class="flex flex-col gap-1">
-          <label for="description" class="font-medium">Message description</label>
+          <label for="description" class="font-medium flex items-center gap-2">
+            <i class="pi pi-file"></i>
+            Message description
+          </label>
           <textarea
             pInputTextarea
             id="description"
@@ -117,8 +136,8 @@
         </div>
 
         <!-- Submit -->
-        <button pButton severity="primary" type="submit" class="mt-4">
-          <span pButtonLabel>Submit</span>
+        <button pButton severity="contrast" type="submit" class="mt-4">
+          <span pButtonLabel>Submit my contact request</span>
         </button>
 
       </form>

@@ -30,6 +30,7 @@ FROM base AS final
 WORKDIR /app
 
 COPY --from=build /app/publish .
+COPY NotificationTemplates /app/NotificationTemplates
 
 RUN ls -la /app
 

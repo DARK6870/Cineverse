@@ -1,6 +1,6 @@
 ﻿import { gql } from 'apollo-angular';
 
-const GET_MOVIES = gql`
+const GET_MOVIES_QUERY = gql`
 query getMovies($ids: [String]!) {
   movies(
     take: 250,
@@ -23,4 +23,4 @@ query getMovies($ids: [String]!) {
 }
 `
 
-export { GET_MOVIES };
+export { GET_MOVIES_QUERY };

@@ -5,6 +5,9 @@ namespace Cineverse.Infrastructure.Services.Interfaces;
 public interface IUserContext
 {
     string UserId { get; }
+    
+    UserStatus UserStatus { get; }
+    
     string UserName { get; }
     
     string Email { get; }

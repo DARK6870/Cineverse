@@ -89,12 +89,12 @@ public class NotificationService(
 
     private static string GetTemplatesRootPath()
     {
-        var rootPath = AppDomain.CurrentDomain.BaseDirectory;
-        
-        var directory = new DirectoryInfo(rootPath);
-        while (directory != null && directory.Name != AppDomain.CurrentDomain.FriendlyName)
-            directory = directory.Parent;
-        
-        return Path.Combine(directory!.FullName, "..", typeof(Configuration).Assembly.GetName().Name!, "Templates");
+        var rootPath = AppContext.BaseDirectory;
+        var templatePath = Path.Combine(rootPath, "NotificationTemplates");
+
+        if (!Directory.Exists(templatePath))
+            throw new DirectoryNotFoundException($"Templates folder not found at path: {templatePath}");
+
+        return templatePath;
     }
 }

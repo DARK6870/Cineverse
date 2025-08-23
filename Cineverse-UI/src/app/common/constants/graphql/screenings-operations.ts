@@ -1,6 +1,6 @@
 ﻿import { gql } from 'apollo-angular';
 
-const GET_SCREENINGS = gql`
+const GET_SCREENINGS_QUERY = gql`
 query getScreenings($currentDate: LocalDate!) {
   screenings(
   take: 10,
@@ -24,4 +24,4 @@ query getScreenings($currentDate: LocalDate!) {
 }
 `//TODO retrieve only movie id
 
-export { GET_SCREENINGS };
+export { GET_SCREENINGS_QUERY };

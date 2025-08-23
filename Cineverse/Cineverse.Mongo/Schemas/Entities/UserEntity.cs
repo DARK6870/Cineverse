@@ -19,7 +19,7 @@ public class UserEntity : BaseEntity
     public Role Role { get; set; } = Role.User;
 
     [BsonRepresentation(BsonType.String)]
-    public UserStatus Status { get; set; } = UserStatus.Normal;
+    public UserStatus Status { get; set; } = UserStatus.PendingEmailConfirmation;
     
     public string? PasswordHash { get; set; }
     

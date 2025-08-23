@@ -16,7 +16,14 @@ public class UserContext(
     private readonly ClaimsPrincipal _user = httpContextAccessor.HttpContext?.User
                                              ?? throw new ApiRequestException("You are not logged in.", HttpStatusCode.Unauthorized);
 
-    public string UserId => _user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value ?? "";
+    public string UserId => _user.Claims.FirstOrDefault(c => c.Type == JwtClaims.UserIdClaimType)?.Value ?? "";
+    
+    public UserStatus UserStatus =>
+        Enum.TryParse<UserStatus>(
+            _user.Claims.FirstOrDefault(c => c.Type == JwtClaims.UserStatusClaimType)?.Value,
+            ignoreCase: true,
+            out var status
+        ) ? status : UserStatus.Disabled;
     
     public string UserName => _user.Identity?.Name ?? "";
 

@@ -2,9 +2,10 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal } from '@angular/core
 import { RatingModule } from 'primeng/rating';
 import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
-import { GraphqlService } from '../../services/graphql-service';
+import { ScreeningGraphQlService } from '../../services/graphQl/screening-graphql-service';
+import { MovieGraphQlService } from '../../services/graphQl/movie-graphql-service';
 import { Movie } from '../../common/models/movie';
-import { LoadingService } from '../../services/loading-service';
+import { LoadingService } from '../../services/loading/loading-service';
 import { RouterLink } from '@angular/router';
 import { Screening } from '../../common/models/screening';
 import { switchMap } from 'rxjs';
@@ -27,7 +28,8 @@ export class Home implements OnInit {
   comingSoonMovies = signal<Movie[]>([]);
 
   constructor(
-    private graphqlService: GraphqlService,
+    private screeningService: ScreeningGraphQlService,
+    private movieService: MovieGraphQlService,
     private loadingService: LoadingService
   ) {}
   ngOnInit(): void {
@@ -37,12 +39,12 @@ export class Home implements OnInit {
     const twoWeeksLater = new Date();
     twoWeeksLater.setDate(today.getDate() + 14);
 
-    this.graphqlService.getScreenings().pipe(
+    this.screeningService.getScreenings().pipe(
       switchMap(screeningsResult => {
         this.screenings.set(screeningsResult);
 
         const movieIds = [...new Set(this.screenings().map(screening => screening.movieId))];
-        return this.graphqlService.getMovies(movieIds);
+        return this.movieService.getMovies(movieIds);
       })
     ).subscribe({
       next: (moviesResult) => {

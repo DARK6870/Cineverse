@@ -33,7 +33,7 @@ export const appConfig: ApplicationConfig = {
 
       return {
         link: httpLink.create({
-          uri: 'http://localhost:5199/api/graphql',
+          uri: 'http://localhost:7404/api/graphql',
         }),
         cache: new InMemoryCache(),
       };
@@ -43,7 +43,7 @@ export const appConfig: ApplicationConfig = {
 
       return {
         link: httpLink.create({
-          uri: 'http://localhost:5199/api/graphql',
+          uri: 'http://localhost:7404/api/graphql',
         }),
         cache: new InMemoryCache(),
       };

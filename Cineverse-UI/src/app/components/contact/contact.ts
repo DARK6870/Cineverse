@@ -4,12 +4,13 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Textarea } from 'primeng/textarea';
-import { GraphqlService } from '../../services/graphql-service'
+import { ContactGraphQlService } from '../../services/graphQl/contact-graphql-service'
 import { MessageService } from 'primeng/api';
-import {Message} from 'primeng/message';
-import {Select} from 'primeng/select';
+import { Message } from 'primeng/message';
+import { Select } from 'primeng/select';
 import { getErrorMessage } from '../../common/helpers/validation.helper';
 import { departmentOptions } from '../../common/mappers/department-options';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -30,9 +31,11 @@ export class Contact {
   formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
 
-  constructor(private graphqlService: GraphqlService,
-              private fb: FormBuilder,
-              private messageService: MessageService
+  constructor(
+    private contactService: ContactGraphQlService,
+    private fb: FormBuilder,
+    private messageService: MessageService,
+    private router: Router
   ) {
     this.supportForm  = this.fb.group({
       department: ['', Validators.required],
@@ -62,11 +65,11 @@ export class Contact {
         description: this.supportForm.value.description
       };
 
-      this.graphqlService.createSupportTicket(request).subscribe({
+      this.contactService.createSupportTicket(request).subscribe({
         next: () => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Ticket created successfully' });
-          this.supportForm.reset();
-          this.formSubmitted = false;
+
+          this.router.navigate(['/']).then();
         }
       });
     }
