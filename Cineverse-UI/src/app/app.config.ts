@@ -12,6 +12,7 @@ import { providePrimeNG } from 'primeng/config';
 import MyPreset from '../mypreset';
 import { errorInterceptor } from './common/interceptors/error.interceptor';
 import {MessageService} from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +26,7 @@ export const appConfig: ApplicationConfig = {
       }
     }),
     MessageService,
+    CookieService,
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
@@ -32,6 +34,7 @@ export const appConfig: ApplicationConfig = {
       const httpLink = inject(HttpLink);
 
       return {
+        // TODO: add routing
         link: httpLink.create({
           uri: 'http://localhost:7404/api/graphql',
         }),

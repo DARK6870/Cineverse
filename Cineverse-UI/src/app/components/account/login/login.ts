@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { getErrorMessage } from '../../../common/helpers/validation.helper';
-import { AuthenticationGraphQlService } from '../../../services/graphQl/authentication-graphql-service';
-import { Router, RouterLink } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { RouterLink } from '@angular/router';
+import { AuthenticationService } from '../../../services/authentication/authentication-service';
 
 @Component({
   selector: 'app-login',
@@ -21,21 +20,24 @@ import { MessageService } from 'primeng/api';
   templateUrl: 'login.html',
   styleUrl: 'login.css'
 })
-export class Login {
+
+export class Login implements OnInit {
   loginForm : FormGroup;
   formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
 
   constructor(
-    private authenticationService: AuthenticationGraphQlService,
-    private fb: FormBuilder,
-    private router: Router,
-    private messageService: MessageService
+    private authenticationService: AuthenticationService,
+    private fb: FormBuilder
   ) {
     this.loginForm  = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      password: ['', [Validators.required]]
     });
+  }
+
+  ngOnInit() {
+    this.authenticationService.ensureUserNotAuthorized();
   }
 
   getErrorMessageByName(controlName: string): string | null {
@@ -58,14 +60,8 @@ export class Login {
         password: this.loginForm.value.password
       }
 
-      // Send mutation
-      this.authenticationService.login(request).subscribe({
-        next: () => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Successfully logged in' });
-          this.router.navigate(['/']).then();
-        }
-      });
-
+      // Login user
+      this.authenticationService.loginUser(request);
     }
   }
 }

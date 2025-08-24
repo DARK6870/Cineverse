@@ -1,12 +1,13 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationGraphQlService } from '../../../services/graphQl/authentication-graphql-service';
 import { getErrorMessage } from '../../../common/helpers/validation.helper';
 import { MessageService } from 'primeng/api';
 import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { Message } from 'primeng/message';
 import { InputOtp } from 'primeng/inputotp';
+import { AuthenticationService } from '../../../services/authentication/authentication-service';
 
 @Component({
   selector: 'app-confirm-email',
@@ -21,7 +22,9 @@ import { InputOtp } from 'primeng/inputotp';
   templateUrl: 'confirm-email.html',
   styleUrl: 'confirm-email.css'
 })
-export class ConfirmEmail {
+
+// TODO: check somehow if the confirmation code already has been sent
+export class ConfirmEmail implements OnInit {
   protected confirmEmailForm: FormGroup;
   private formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
@@ -33,7 +36,9 @@ export class ConfirmEmail {
   constructor(
     fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private authenticationService: AuthenticationGraphQlService,
+    private authService: AuthenticationService,
     private messageService: MessageService,
     private cdr: ChangeDetectorRef
   ) {
@@ -42,46 +47,63 @@ export class ConfirmEmail {
     })
   }
 
-  onSubmit() {
+  async ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      if (params.get('sent') === 'true')
+        this.startCountDown();
+    })
+    // TODO: get verification code countdown from backend
+    this.authService.requireRefreshToken();
+    // TODO: if user status != PendingEmailConfirmation -> redirect
+  }
+
+  async onSubmit() {
     this.confirmEmailForm.markAllAsTouched();
     this.formSubmitted = true;
+    const accessToken = await this.authService.getAccessTokenAsync();
 
     if (this.confirmEmailForm.valid) {
-      const code : number = this.confirmEmailForm.value.verificationCode;
-      this.authenticationService.confirmEmail(code).subscribe({
+      const code: number = Number(this.confirmEmailForm.value.verificationCode);
+      this.authenticationService.confirmEmail(code, accessToken).subscribe({
         next: () => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Successfully logged in' });
-          this.router.navigate(['/account']).then();
+          // TODO: regenerate access token to update user status in token
+          this.router.navigate(['/']).then(() => {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Email confirmed successfully' });
+          });
         }
       })
     }
   }
 
-  resendVerificationCode() {
-    if (!this.canResend) return;
+  async resendVerificationCode() {
+    if (!this.canResend)
+      return;
+
+    const accessToken = await this.authService.getAccessTokenAsync();
 
     // Resend verification code
-    this.authenticationService.resendVerificationCode().subscribe({
+    this.authenticationService.resendVerificationCode(accessToken).subscribe({
       next: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Verification code resent',
-          detail: 'A new verification code has been resent'
-        });
+        this.messageService.add({severity: 'info', summary: 'Verification code resent', detail: 'A new verification code has been resent'});
       }
     })
+
+    this.startCountDown();
+  }
+
+  startCountDown() {
     // Block for 2 min
     this.canResend = false;
     this.countDown = 120;
 
     this.timer = setInterval(() => {
-        this.countDown--;
-        this.cdr.detectChanges();
-        if (this.countDown <= 0) {
-          this.canResend = true;
-          clearInterval(this.timer);
-        }
-      }, 1000);
+      this.countDown--;
+      this.cdr.detectChanges();
+      if (this.countDown <= 0) {
+        this.canResend = true;
+        clearInterval(this.timer);
+      }
+    }, 1000);
   }
 
   getErrorMessageByName(controlName: string) : string | null {

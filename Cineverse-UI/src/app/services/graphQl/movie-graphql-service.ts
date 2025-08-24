@@ -2,7 +2,7 @@
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 import { GET_MOVIES_QUERY } from '../../common/constants/graphql/movie-operations';
-import { Movie } from '../../common/models/movie';
+import { Movie } from '../../common/models/movie/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class MovieGraphQlService {
         ids: ids
       }
     }).valueChanges.pipe(
-      map((result: any) => result.data.movies.items),
+      map((result: any) => result.data.movies.items)
     );
   }
 }

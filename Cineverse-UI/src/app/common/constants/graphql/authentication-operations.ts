@@ -5,6 +5,8 @@ mutation login($request: LoginRequestInput!) {
   login(request: $request) {
     accessToken
     refreshToken
+    success
+    message
   }
 }
 `
@@ -14,6 +16,8 @@ mutation register($request: RegisterRequestInput!) {
   register(registerRequest: $request) {
     accessToken
     refreshToken
+    success
+    message
   }
 }
 `
@@ -30,9 +34,28 @@ mutation generateVerificationCode{
 }
 `
 
+const GENERATE_ACCESS_TOKEN_MUTATION = gql`
+mutation generateAccessToken($refreshToken: String!){
+  generateAccessToken(refreshToken: $refreshToken){
+    success
+    message
+    accessToken
+    refreshToken
+  }
+}
+`
+
+const DELETE_REFRESH_TOKEN_MUTATION = gql`
+mutation deleteRefreshToken{
+  deleteRefreshToken
+}
+`
+
 export {
   LOGIN_MUTATION,
   REGISTER_MUTATION,
   CONFIRM_EMAIL_MUTATION,
-  RESEND_VERIFICATION_CODE_MUTATION
+  RESEND_VERIFICATION_CODE_MUTATION,
+  GENERATE_ACCESS_TOKEN_MUTATION,
+  DELETE_REFRESH_TOKEN_MUTATION
 };

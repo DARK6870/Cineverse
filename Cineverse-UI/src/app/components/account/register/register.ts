@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { getErrorMessage } from '../../../common/helpers/validation.helper';
-import { AuthenticationGraphQlService } from '../../../services/graphQl/authentication-graphql-service';
-import { MessageService } from 'primeng/api';
-import {Router, RouterLink} from '@angular/router';
+import { AuthenticationService } from '../../../services/authentication/authentication-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,21 +15,20 @@ import {Router, RouterLink} from '@angular/router';
     InputText,
     Message,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: 'register.html',
   styleUrl: 'register.css'
 })
 
-export class Register {
+// TODO: check if user is not authorized
+export class Register implements OnInit {
   registerForm: FormGroup;
   formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
 
   constructor(
-    private authenticationService: AuthenticationGraphQlService,
-    private messageService: MessageService,
-    private router: Router,
+    private authenticationService: AuthenticationService,
     private fb: FormBuilder
   ) {
     this.registerForm = this.fb.group({
@@ -40,6 +38,10 @@ export class Register {
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
     })
+  }
+
+  ngOnInit() {
+    this.authenticationService.ensureUserNotAuthorized();
   }
 
   getErrorMessageByName(controlName: string) : string | null {
@@ -66,12 +68,7 @@ export class Register {
         confirmPassword: this.registerForm.value.confirmPassword
       };
 
-      this.authenticationService.register(request).subscribe({
-        next: () => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Account created successfully' });
-          this.router.navigate(['/']).then();
-        }
-      })
+      this.authenticationService.registerUser(request);
     }
   }
 }

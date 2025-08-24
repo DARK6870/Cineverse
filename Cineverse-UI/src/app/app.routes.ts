@@ -8,6 +8,7 @@ import { Account } from './components/account/account/account';
 import { Movies } from './components/movie/movies/movies';
 import { Movie } from './components/movie/movie/movie';
 import { ConfirmEmail } from './components/account/confirm-email/confirm-email';
+import { Logout } from './components/account/logout/logout';
 
 export const routes: Routes = [
   {
@@ -51,8 +52,13 @@ export const routes: Routes = [
     title: 'Movie Details'
   },
   {
-    path: 'confirm-email',
+    path: 'confirm-email/:sent',
     component: ConfirmEmail,
     title: 'Confirm Email'
+  },
+  {
+    path: 'logout',
+    component: Logout,
+    title: 'Logout'
   }
 ];

@@ -22,6 +22,6 @@ query getScreenings($currentDate: LocalDate!) {
     }
   }
 }
-`//TODO retrieve only movie id
+`//TODO: retrieve only movie id
 
 export { GET_SCREENINGS_QUERY };

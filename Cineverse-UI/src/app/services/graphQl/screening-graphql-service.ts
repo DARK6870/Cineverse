@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
-import { Screening } from '../../common/models/screening';
+import { Screening } from '../../common/models/screening/screening';
 import { GET_SCREENINGS_QUERY } from '../../common/constants/graphql/screenings-operations';
 
 @Injectable({

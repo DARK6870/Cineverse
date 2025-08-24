@@ -4,10 +4,10 @@ import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { ScreeningGraphQlService } from '../../services/graphQl/screening-graphql-service';
 import { MovieGraphQlService } from '../../services/graphQl/movie-graphql-service';
-import { Movie } from '../../common/models/movie';
+import { Movie } from '../../common/models/movie/movie';
 import { LoadingService } from '../../services/loading/loading-service';
 import { RouterLink } from '@angular/router';
-import { Screening } from '../../common/models/screening';
+import { Screening } from '../../common/models/screening/screening';
 import { switchMap } from 'rxjs';
 
 @Component({
