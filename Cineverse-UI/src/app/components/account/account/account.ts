@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../../services/authentication/authentication-service';
 
 @Component({
   selector: 'app-account',
@@ -6,6 +7,15 @@ import { Component } from '@angular/core';
   templateUrl: './account.html',
   styleUrl: './account.css'
 })
-export class Account {
 
+export class Account implements OnInit{
+
+  constructor(
+    private authenticationService: AuthenticationService
+  ) {
+  }
+
+  ngOnInit() {
+    this.authenticationService.requireRefreshToken();
+  }
 }
