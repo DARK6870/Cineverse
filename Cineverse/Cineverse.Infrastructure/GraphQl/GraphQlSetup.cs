@@ -44,12 +44,7 @@ public static class GraphQlSetup
                 DisableTelemetry = true,
                 GaTrackingId = null
             });
-        
-        var graphQlEndpointConventionBuilder = endpointRouteBuilder
-            .MapGraphQL(GraphQlConstants.GraphQlPath)
-            .RequireAuthorization();
 
-        if (!AuthenticationSetup.EnableSecurity)
-            graphQlEndpointConventionBuilder.AllowAnonymous();
+        endpointRouteBuilder.MapGraphQL(GraphQlConstants.GraphQlPath);
     }
 }

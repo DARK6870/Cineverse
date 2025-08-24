@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Cineverse.Notifications;
 
+// TODO: refactor all email notifications
 public static class Configuration
 {
     public static IServiceCollection AddNotificationService(

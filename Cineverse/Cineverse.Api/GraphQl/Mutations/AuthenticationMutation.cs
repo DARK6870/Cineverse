@@ -1,17 +1,17 @@
 ﻿using Cineverse.API.GraphQl.Base;
 using Cineverse.Application.MediatR.Authentication.Commands;
 using Cineverse.Infrastructure.Common.Models;
-using Cineverse.Notifications.Services.Interfaces;
 using HotChocolate;
 using HotChocolate.Types;
 using MediatR;
 
 namespace Cineverse.API.GraphQl.Mutations;
+// TODO: refactor all return true
 
 [ExtendObjectType(nameof(BaseGraphQlMutation))]
 public class AuthenticationMutation
 {
-    public async Task<LoginResponse> Register(
+    public async Task<AuthenticationResponse> Register(
         [Service] IMediator mediator,
         RegisterRequest registerRequest,
         CancellationToken cancellationToken
@@ -37,7 +37,7 @@ public class AuthenticationMutation
         return await mediator.Send(new GenerateVerificationCodeRequest(), cancellationToken);
     }
     
-    public async Task<LoginResponse> Login(
+    public async Task<AuthenticationResponse> Login(
         [Service] IMediator mediator,
         LoginRequest request,
         CancellationToken cancellationToken
@@ -45,13 +45,21 @@ public class AuthenticationMutation
     {
         return await mediator.Send(request, cancellationToken);
     }
-    
-    public async Task<bool> Logout(
+
+    public async Task<AuthenticationResponse> GenerateAccessToken(
         [Service] IMediator mediator,
-        [Service] INotificationService service,
+        string refreshToken,
         CancellationToken cancellationToken
     )
     {
-        return await mediator.Send(new LogoutRequest(), cancellationToken);
+        return await mediator.Send(new GenerateAccessTokenRequest(refreshToken), cancellationToken);
+    }
+    
+    public async Task<bool> DeleteRefreshToken(
+        [Service] IMediator mediator,
+        CancellationToken cancellationToken
+    )
+    {
+        return await mediator.Send(new DeleteRefreshTokenRequest(), cancellationToken);
     }
 }

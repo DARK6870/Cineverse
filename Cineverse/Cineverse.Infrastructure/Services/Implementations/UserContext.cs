@@ -16,18 +16,45 @@ public class UserContext(
     private readonly ClaimsPrincipal _user = httpContextAccessor.HttpContext?.User
                                              ?? throw new ApiRequestException("You are not logged in.", HttpStatusCode.Unauthorized);
 
-    public string UserId => _user.Claims.FirstOrDefault(c => c.Type == JwtClaims.UserIdClaimType)?.Value ?? "";
-    
-    public UserStatus UserStatus =>
-        Enum.TryParse<UserStatus>(
-            _user.Claims.FirstOrDefault(c => c.Type == JwtClaims.UserStatusClaimType)?.Value,
-            ignoreCase: true,
-            out var status
-        ) ? status : UserStatus.Disabled;
-    
-    public string UserName => _user.Identity?.Name ?? "";
+    public string UserId
+    {
+        get
+        {
+            return _user.Claims.FirstOrDefault(c => c.Type == JwtClaims.UserIdClaimType)?.Value ?? "";       
+        }
+    }
 
-    public string Email => _user.Claims.FirstOrDefault(c => c.Type is ClaimTypes.Email)?.Value ?? "";
+    public UserStatus UserStatus
+    {
+        get
+        {
+            if (!AuthenticationSetup.EnableSecurity)
+                return UserStatus.Normal;
+            
+            var statusValue = _user.FindFirst(JwtClaims.UserStatusClaimType)?.Value;
+
+            if (statusValue == null || !Enum.TryParse<UserStatus>(statusValue, out var status))
+                throw new NullReferenceException("UserStatus not found or invalid.");
+
+            return status;
+        }
+    }
+
+    public string UserName
+    {
+        get
+        {
+            return _user.Identity?.Name ?? "";
+        }
+    }
+
+    public string Email
+    {
+        get
+        {
+            return _user.Claims.FirstOrDefault(c => c.Type is ClaimTypes.Email)?.Value ?? "";
+        }
+    } 
 
 
     public Role Role
@@ -46,29 +73,16 @@ public class UserContext(
         }
     }
 
-    public string? GetRefreshTokenFromCookie()
+    public string IpAddress
     {
-        return httpContextAccessor.HttpContext?.Request.Cookies[CookieConstants.RefreshTokenCookieKey];
-    }
+        get
+        {
+            var ip = httpContextAccessor.HttpContext?.Connection?.RemoteIpAddress?.ToString();
 
-    public void AddRefreshTokenToCookie(string refreshToken)
-    {
-        httpContextAccessor
-            .HttpContext?
-            .Response
-            .Cookies.Append(
-                CookieConstants.RefreshTokenCookieKey,
-                refreshToken,
-                CookieConstants.CookieOptions
-            );
-    }
+            if (string.IsNullOrWhiteSpace(ip))
+                ip = httpContextAccessor.HttpContext?.Request.Headers["X-Forwarded-For"].FirstOrDefault();
 
-    public void RemoveRefreshTokenFromCookie()
-    {
-        httpContextAccessor
-            .HttpContext?
-            .Response
-            .Cookies
-            .Delete(CookieConstants.RefreshTokenCookieKey);
+            return ip ?? string.Empty;
+        }
     }
 }

@@ -33,6 +33,7 @@ public static class Configuration
         IConfiguration configuration
     )
     {
+        // TODO: maybe change this to IOptions<model>
         var mongoSettings = configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>()
                             ?? throw new InvalidOperationException("MongoDb configuration is missing");
         

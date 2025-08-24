@@ -11,6 +11,8 @@ public class RefreshTokenEntity : BaseEntity
     [BsonRepresentation(BsonType.ObjectId)]
     public required string UserId { get; set; }
     
+    public required string IpAddress { get; set; }
+    
     public required string Token { get; set; }
     
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;

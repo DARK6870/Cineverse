@@ -4,7 +4,7 @@ namespace Cineverse.Infrastructure.Services.Interfaces;
 
 public interface IAuthenticationService
 {
-    Task<LoginResponse> RegisterUserAsync(
+    Task<AuthenticationResponse> RegisterUserAsync(
         string email,
         string firstName,
         string lastName,
@@ -15,7 +15,9 @@ public interface IAuthenticationService
 
     Task GenerateVerificationCodeAsync(string email, string fullName);
     
-    Task<LoginResponse> LoginUserAsync(string email, string password);
-
-    Task LogoutUserAsync();
+    Task<AuthenticationResponse> LoginUserAsync(string email, string password);
+    
+    Task<AuthenticationResponse> GenerateAccessTokenAsync(string refreshToken);
+    
+    // TODO: add logic to change user password
 }

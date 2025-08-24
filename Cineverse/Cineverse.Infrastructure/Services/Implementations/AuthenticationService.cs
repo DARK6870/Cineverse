@@ -15,6 +15,7 @@ using Cineverse.Notifications.Common.Builders;
 using Cineverse.Notifications.Services.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Driver.Linq;
 
 namespace Cineverse.Infrastructure.Services.Implementations;
 
@@ -27,7 +28,7 @@ public class AuthenticationService(
     INotificationService notificationService
 ) : IAuthenticationService
 {
-    public async Task<LoginResponse> RegisterUserAsync(
+    public async Task<AuthenticationResponse> RegisterUserAsync(
         string email,
         string firstName,
         string lastName,
@@ -55,15 +56,15 @@ public class AuthenticationService(
         var refreshTokenEntity = new RefreshTokenEntity
         {
             UserId = user.Id,
+            IpAddress = userContext.IpAddress,
             Token = refreshToken
         };
 
         await refreshTokenRepository.InsertOneAsync(refreshTokenEntity);
-        userContext.AddRefreshTokenToCookie(refreshToken);
 
         // Generate access token
         var accessToken = GenerateJwtToken(user);
-        return new LoginResponse(refreshToken, accessToken);
+        return new AuthenticationResponse(refreshToken, accessToken);
     }
 
     public async Task ConfirmUserEmailAsync(int verificationCode)
@@ -85,16 +86,16 @@ public class AuthenticationService(
 
     public async Task GenerateVerificationCodeAsync(string email, string fullName)
     {
+        if (cache.TryGetValue<int>(CacheConstants.VerificationCodeCacheKey(email), out var _))
+            throw new ApiRequestException("You already received verification code, try again later", HttpStatusCode.BadRequest);
+        
         var random = new Random();
         var verificationCode = random.Next(11111, 99999);
-
-        if (cache.TryGetValue<int>(CacheConstants.VerificationCodeCacheLifetime, out var _))
-            throw new ApiRequestException("You already received verification code, try again later", HttpStatusCode.BadRequest);
         
         cache.Set(
             CacheConstants.VerificationCodeCacheKey(email),
             verificationCode,
-            TimeSpan.FromMinutes(CacheConstants.VerificationCodeCacheLifetime)
+            TimeSpan.FromMinutes(CacheConstants.VerificationCodeCacheLifetimeMinutes)
         );
 
         var notification = new MessageBuilder
@@ -103,47 +104,65 @@ public class AuthenticationService(
             FullName = fullName,
             Message = "Please complete your account setup to explore our website without restrictions<br><br>" +
                       $"Your verification code is <b>{verificationCode}</b><br>" +
-                      $"<small>The code will be valid for {CacheConstants.VerificationCodeCacheLifetime} minutes</small>",
+                      $"<small>The code will be valid for {CacheConstants.VerificationCodeCacheLifetimeMinutes} minutes</small>",
             ActionUrl = "https://localhost/confirm/" + verificationCode,
             ActionText = "to confirm your email"
         };
         await notificationService.SendEmailNotification(email, notification.Title, notification);
     }
 
-    public async Task<LoginResponse> LoginUserAsync(string email, string password)
+    public async Task<AuthenticationResponse> LoginUserAsync(string email, string password)
     {
         var user = await userRepository.GetUserByCredentialsAsync(email, password)
                    ?? throw new ApiRequestException("Invalid credentials, please try again", HttpStatusCode.BadRequest);
 
-        var refreshTokenEntity = refreshTokenRepository
+        var refreshTokenEntity = await refreshTokenRepository
             .AsQueryable()
-            .FirstOrDefault(x => x.UserId == user.Id);
+            .FirstOrDefaultAsync(
+                x => x.UserId == user.Id &&
+                     x.IpAddress == userContext.IpAddress
+            );
 
         if (refreshTokenEntity is null)
         {
             refreshTokenEntity = new RefreshTokenEntity
             {
                 UserId = user.Id,
+                IpAddress = userContext.IpAddress,
                 Token = GenerateRefreshToken()
             };
             
             await refreshTokenRepository.InsertOneAsync(refreshTokenEntity);
         }
-        
-        userContext.AddRefreshTokenToCookie(refreshTokenEntity.Token);
         var accessToken = GenerateJwtToken(user);
 
-        return new LoginResponse(refreshTokenEntity.Token, accessToken);
+        return new AuthenticationResponse(refreshTokenEntity.Token, accessToken);
     }
 
-    public async Task LogoutUserAsync()
+    public async Task<AuthenticationResponse> GenerateAccessTokenAsync(string refreshToken)
     {
-        var cookieRefreshToken = userContext.GetRefreshTokenFromCookie();
-        if (cookieRefreshToken is null)
-            return;
+        var refreshTokenEntity = await refreshTokenRepository
+            .AsQueryable()
+            .FirstOrDefaultAsync(
+                x => x.Token == refreshToken &&
+                     x.IpAddress == userContext.IpAddress
+            );
+
+        if (refreshTokenEntity is null)
+        {
+            return new AuthenticationResponse(
+                string.Empty,
+                string.Empty,
+                false,
+                "No active authentication sessions, please login into account"
+            );
+        }
         
-        await refreshTokenRepository.DeleteOneAsync(x => x.Token == cookieRefreshToken);
-        userContext.RemoveRefreshTokenFromCookie();
+        var user = await userRepository.FindByIdAsync(refreshTokenEntity.UserId)
+            ?? throw new ApiRequestException("User not found", HttpStatusCode.NotFound);
+
+        var accessToken = GenerateJwtToken(user);
+        return new AuthenticationResponse(refreshTokenEntity.Token, accessToken);
     }
 
     private string GenerateRefreshToken()

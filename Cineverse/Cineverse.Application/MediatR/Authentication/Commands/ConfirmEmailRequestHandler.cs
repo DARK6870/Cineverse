@@ -5,6 +5,7 @@ namespace Cineverse.Application.MediatR.Authentication.Commands;
 
 public record ConfirmEmailRequest(int VerificationCode) : IRequest<bool>;
 
+// TODO: rename to ConfirmEmailHandler
 public class ConfirmEmailRequestHandler(
     IAuthenticationService authenticationService
 ) : IRequestHandler<ConfirmEmailRequest, bool>

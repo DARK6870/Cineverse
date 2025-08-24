@@ -7,13 +7,13 @@ namespace Cineverse.Application.MediatR.Authentication.Commands;
 public record LoginRequest(
     string Email,
     string Password
-) : IRequest<LoginResponse>;
+) : IRequest<AuthenticationResponse>;
 
 public class LoginRequestHandler(
     IAuthenticationService authenticationService
-) : IRequestHandler<LoginRequest, LoginResponse>
+) : IRequestHandler<LoginRequest, AuthenticationResponse>
 {
-    public async Task<LoginResponse> Handle(LoginRequest request, CancellationToken cancellationToken)
+    public async Task<AuthenticationResponse> Handle(LoginRequest request, CancellationToken cancellationToken)
     {
         return await authenticationService.LoginUserAsync(request.Email, request.Password);
     }

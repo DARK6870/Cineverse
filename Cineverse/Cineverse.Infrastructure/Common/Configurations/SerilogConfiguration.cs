@@ -4,6 +4,7 @@ using Serilog.Sinks.SystemConsole.Themes;
 
 namespace Cineverse.Infrastructure.Common.Configurations;
 
+//TODO: create a separate json config for serilog
 public static class SerilogConfiguration
 {
     public static LoggerConfiguration GetLoggerConfiguration()

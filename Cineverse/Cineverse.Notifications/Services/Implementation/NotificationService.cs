@@ -89,6 +89,7 @@ public class NotificationService(
 
     private static string GetTemplatesRootPath()
     {
+        // TODO: change root path
         var rootPath = AppContext.BaseDirectory;
         var templatePath = Path.Combine(rootPath, "NotificationTemplates");
 

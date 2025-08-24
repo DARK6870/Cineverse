@@ -1,3 +1,8 @@
 ﻿namespace Cineverse.Infrastructure.Common.Models;
 
-public record LoginResponse(string RefreshToken, string AccessToken);
+public record AuthenticationResponse(
+    string RefreshToken,
+    string AccessToken,
+    bool Success = true,
+    string? Message = null
+);

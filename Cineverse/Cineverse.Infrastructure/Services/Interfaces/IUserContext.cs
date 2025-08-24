@@ -14,10 +14,5 @@ public interface IUserContext
     
     Role Role { get; }
     
-
-    string? GetRefreshTokenFromCookie();
-
-    void AddRefreshTokenToCookie(string refreshToken);
-    
-    void RemoveRefreshTokenFromCookie();
+    string IpAddress { get; }
 }

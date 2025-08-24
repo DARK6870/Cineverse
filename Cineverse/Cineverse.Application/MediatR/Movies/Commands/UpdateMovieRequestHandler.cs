@@ -24,6 +24,7 @@ public class UpdateMovieRequestHandler(
 {
     public async Task<bool> Handle(UpdateMovieRequest request, CancellationToken cancellationToken)
     {
+        // TODO: refactor all same moments
         var movie = await movieRepository.FindByIdAsync(request.Id, cancellationToken)
                     ?? throw new ApiRequestException("Movie not found", HttpStatusCode.NotFound);
 

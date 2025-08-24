@@ -10,13 +10,13 @@ public record RegisterRequest(
     string LastName,
     string Password,
     string ConfirmPassword
-) : IRequest<LoginResponse>;
+) : IRequest<AuthenticationResponse>;
 
 public class RegisterRequestHandler(
     IAuthenticationService authenticationService
-) : IRequestHandler<RegisterRequest, LoginResponse>
+) : IRequestHandler<RegisterRequest, AuthenticationResponse>
 {
-    public async Task<LoginResponse> Handle(RegisterRequest request, CancellationToken cancellationToken)
+    public async Task<AuthenticationResponse> Handle(RegisterRequest request, CancellationToken cancellationToken)
     {
         return await authenticationService.RegisterUserAsync(
             request.Email,
