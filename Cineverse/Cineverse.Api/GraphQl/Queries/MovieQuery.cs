@@ -1,4 +1,4 @@
-﻿using Cineverse.API.GraphQl.Base;
+﻿using Cineverse.Api.GraphQl.Base;
 using Cineverse.Application.MediatR.Movies.Queries;
 using Cineverse.Infrastructure.Common.Constants;
 using Cineverse.Mongo.Schemas.Entities;
@@ -7,7 +7,7 @@ using HotChocolate.Data;
 using HotChocolate.Types;
 using MediatR;
 
-namespace Cineverse.API.GraphQl.Queries;
+namespace Cineverse.Api.GraphQl.Queries;
 
 [ExtendObjectType(nameof(BaseGraphQlQuery))]
 public class MovieQuery

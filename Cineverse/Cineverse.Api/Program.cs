@@ -1,4 +1,4 @@
-using Cineverse.API;
+using Cineverse.Api;
 using Cineverse.Application;
 using Cineverse.Infrastructure;
 using Cineverse.Infrastructure.Authentication;

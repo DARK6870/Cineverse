@@ -1,9 +1,9 @@
-﻿using Cineverse.API.GraphQl.Base;
-using Cineverse.API.GraphQl.Mutations;
+﻿using Cineverse.Api.GraphQl.Base;
+using Cineverse.Api.GraphQl.Mutations;
 using Cineverse.Infrastructure.Authentication;
 using HotChocolate.Types;
 
-namespace Cineverse.API.GraphQl.Types;
+namespace Cineverse.Api.GraphQl.Types;
 
 public class BookingMutationType : ObjectTypeExtension<BookingMutation>
 {

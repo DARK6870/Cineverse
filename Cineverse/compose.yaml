@@ -3,9 +3,9 @@
     image: cineverse
     build:
       context: .
-      dockerfile: Cineverse.API/Dockerfile
+      dockerfile: Cineverse.Api/Dockerfile
     environment:
-      MongoDbSettings__ConnectionString: "mongo"
+      MongoDbSettings__ConnectionString: "mongodb+srv://tsymbalvlad6870:SMkXnkVI2pBOLVpv@cineverse.0ns7se7.mongodb.net/"
       AuthenticationOptions__EnableSecurity: false
       ASPNETCORE_URLS: "http://+:7404"
     ports:

@@ -1,8 +1,8 @@
-﻿using Cineverse.API.GraphQl.Queries;
+﻿using Cineverse.Api.GraphQl.Queries;
 using Cineverse.Infrastructure.Authentication;
 using HotChocolate.Types;
 
-namespace Cineverse.API.GraphQl.Types;
+namespace Cineverse.Api.GraphQl.Types;
 
 public class MovieQueryType : ObjectTypeExtension<MovieQuery>
 {

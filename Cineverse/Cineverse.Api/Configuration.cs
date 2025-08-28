@@ -1,8 +1,8 @@
-﻿using Cineverse.API.GraphQl.Base;
-using Cineverse.API.GraphQl.Types;
+﻿using Cineverse.Api.GraphQl.Base;
+using Cineverse.Api.GraphQl.Types;
 using HotChocolate.Execution.Configuration;
 
-namespace Cineverse.API;
+namespace Cineverse.Api;
 
 public static class Configuration
 {

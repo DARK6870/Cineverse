@@ -1,8 +1,8 @@
-﻿using Cineverse.API.GraphQl.Mutations;
+﻿using Cineverse.Api.GraphQl.Mutations;
 using Cineverse.Infrastructure.Authentication;
 using HotChocolate.Types;
 
-namespace Cineverse.API.GraphQl.Types;
+namespace Cineverse.Api.GraphQl.Types;
 
 public class MovieMutationType : ObjectTypeExtension<MovieMutation>
 {

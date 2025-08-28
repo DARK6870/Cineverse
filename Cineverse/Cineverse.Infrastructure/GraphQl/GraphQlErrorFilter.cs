@@ -22,8 +22,8 @@ internal class GraphQlErrorFilter(
         
         switch (error.Exception?.GetBaseException())
         {
-            case ApiRequestException apiRequestException:
-                HandleApiErrorException(errorBuilder, apiRequestException);
+            case ApiRequestException ApiRequestException:
+                HandleApiErrorException(errorBuilder, ApiRequestException);
                 break;
             case ValidationException validationException:
                 HandleValidationException(errorBuilder, validationException);
@@ -36,11 +36,11 @@ internal class GraphQlErrorFilter(
         return errorBuilder.Build();
     }
 
-    private static void HandleApiErrorException(IErrorBuilder errorBuilder, ApiRequestException apiRequestException)
+    private static void HandleApiErrorException(IErrorBuilder errorBuilder, ApiRequestException ApiRequestException)
     {
         errorBuilder
-            .SetMessage(apiRequestException.Message)
-            .SetCode(((int)apiRequestException.StatusCode)
+            .SetMessage(ApiRequestException.Message)
+            .SetCode(((int)ApiRequestException.StatusCode)
                 .ToString());
     }
     

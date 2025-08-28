@@ -1,11 +1,11 @@
-﻿using Cineverse.API.GraphQl.Base;
+﻿using Cineverse.Api.GraphQl.Base;
 using Cineverse.Application.MediatR.Authentication.Commands;
 using Cineverse.Infrastructure.Common.Models;
 using HotChocolate;
 using HotChocolate.Types;
 using MediatR;
 
-namespace Cineverse.API.GraphQl.Mutations;
+namespace Cineverse.Api.GraphQl.Mutations;
 // TODO: refactor all return true
 
 [ExtendObjectType(nameof(BaseGraphQlMutation))]

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cineverse.API", "Cineverse.API\Cineverse.API.csproj", "{A1B26297-06E4-44CD-89DA-22481A4595A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cineverse.Api", "Cineverse.Api\Cineverse.Api.csproj", "{A1B26297-06E4-44CD-89DA-22481A4595A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB4A124C-B5A9-4A3D-8907-4C6F32ECF0F6}"
 	ProjectSection(SolutionItems) = preProject

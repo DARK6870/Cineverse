@@ -1,10 +1,10 @@
-﻿using Cineverse.API.GraphQl.Base;
+﻿using Cineverse.Api.GraphQl.Base;
 using Cineverse.Application.MediatR.Movies.Commands;
 using HotChocolate;
 using HotChocolate.Types;
 using MediatR;
 
-namespace Cineverse.API.GraphQl.Mutations;
+namespace Cineverse.Api.GraphQl.Mutations;
 
 [ExtendObjectType(nameof(BaseGraphQlMutation))]
 public class MovieMutation
