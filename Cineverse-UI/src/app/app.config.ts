@@ -36,17 +36,7 @@ export const appConfig: ApplicationConfig = {
       return {
         // TODO: add routing
         link: httpLink.create({
-          uri: 'http://localhost:7404/api/graphql',
-        }),
-        cache: new InMemoryCache(),
-      };
-    }),
-    provideHttpClient(withInterceptors([errorInterceptor])),provideApollo(() => {
-      const httpLink = inject(HttpLink);
-
-      return {
-        link: httpLink.create({
-          uri: 'http://localhost:7404/api/graphql',
+          uri: 'api',
         }),
         cache: new InMemoryCache(),
       };
