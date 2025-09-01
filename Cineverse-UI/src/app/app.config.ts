@@ -36,7 +36,7 @@ export const appConfig: ApplicationConfig = {
       return {
         // TODO: add routing
         link: httpLink.create({
-          uri: 'api',
+          uri: 'cineverse-api',
         }),
         cache: new InMemoryCache(),
       };
