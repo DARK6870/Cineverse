@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Cineverse-UI": {
+    "cineverse-ui": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -31,7 +31,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -53,10 +53,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Cineverse-UI:build:production"
+              "buildTarget": "cineverse-ui:build:production"
             },
             "development": {
-              "buildTarget": "Cineverse-UI:build:development"
+              "buildTarget": "cineverse-ui:build:development"
             }
           },
           "options": {

@@ -1,9 +1,12 @@
 ﻿const PROXY_CONFIG = {
   "/api": {
-    "target": "http://localhost:7404/api/graphql",
+    "target": "http://199.247.23.165:7404",
     "secure": false,
     "changeOrigin": true,
-    "logLevel": "debug"
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": "/api/graphql"
+    }
   }
 };
 
