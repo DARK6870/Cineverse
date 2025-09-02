@@ -47,7 +47,7 @@ export const routes: Routes = [
     title: 'Movies'
   },
   {
-    path: 'movies/:id',
+    path: 'movie/:movieId',
     component: Movie,
     title: 'Movie Details'
   },

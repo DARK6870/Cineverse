@@ -34,7 +34,7 @@
 @media (min-width: 1000px) {
   .movie-card:hover {
     transform: scale(0.95);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     z-index: 2;
   }
 

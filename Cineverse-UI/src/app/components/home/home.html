@@ -4,7 +4,7 @@
     <div class="banner-container mb-8 rounded-lg overflow-hidden shadow-lg">
       <div class="relative">
         <img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_3392/q_auto/v1740000000/fom-website/2025/F1%20movie/f1_movie_poster16x9%20(1).webp"
-             alt="Now Showing" class="w-full h-auto" fill>
+             alt="Now Showing" class="w-full h-auto">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
           <h1 class="text-4xl font-bold text-white absolute bottom-5">Now in Cinemas</h1>
         </div>
@@ -51,7 +51,7 @@
       >
         @for (movie of movies(); track movie.id) {
           <swiper-slide>
-            <div class="movie-card bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="movie-card bg-white rounded-lg shadow-md overflow-hidden mb-2">
               <div class="poster-container">
                 <img [src]="movie.posterUrl" [alt]="movie.title + ' poster'" loading="lazy" />
               </div>
@@ -63,6 +63,7 @@
                   label="Buy Ticket"
                   icon="pi pi-ticket"
                   styleClass="p-button-sm w-full mt-2"
+                  [routerLink]="'/movie/' + movie.id"
                 ></p-button>
               </div>
             </div>
@@ -71,7 +72,7 @@
       </swiper-container>
 
       <div class="mt-3 flex justify-center items-center">
-        <a routerLink="/screenings" class="flex flex-col items-center text-center">
+        <a routerLink="/movies" class="flex flex-col items-center text-center">
           <span>Show More</span>
           <i class="pi pi-angle-down mt-1"></i>
         </a>
@@ -97,12 +98,12 @@
       >
         @for (movie of comingSoonMovies(); track movie.id) {
           <swiper-slide>
-            <div class="movie-card bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="movie-card bg-white rounded-lg shadow-md overflow-hidden mb-2">
               <div class="poster-container">
                 <img [src]="movie.posterUrl" [alt]="movie.title + ' poster'" loading="lazy" />
               </div>
               <div class="p-3">
-                <h3 class="font-bold text-lg mb-1">{{ movie.title }}</h3>
+                <h3 class="font-bold text-lg">{{ movie.title }}</h3>
                 <p class="text-gray-600 text-sm mb-2">Genre: <strong>{{ movie.genre }}</strong></p>
                 <p class="text-gray-600 text-sm">{{ movie.releaseDate }}</p>
               </div>
@@ -114,7 +115,7 @@
     </div>
 
     <!-- About cinema section -->
-    <div class="about rounded-lg p-8 mb-8">
+    <div class="about rounded-lg p-0 mb-8">
       <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">About Our Cinema</h2>
 
       <div class="bg-gray-50 rounded-lg p-6 grid md:grid-cols-2 gap-8 mb-8">
