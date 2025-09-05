@@ -9,6 +9,8 @@ public interface IGenericRepository<T> where T : IEntity
     IQueryable<T> AsQueryable(AggregateOptions? options = null);
     
     Task<T?> FindByIdAsync(string id, CancellationToken cancellationToken = default);
+
+    Task<T> FindByIdAndThrowAsync(string id, CancellationToken cancellationToken = default);
     
     Task InsertOneAsync(T entity, CancellationToken cancellationToken = default);
     
@@ -21,4 +23,6 @@ public interface IGenericRepository<T> where T : IEntity
     Task ReplaceOneAsync(T entity, CancellationToken cancellationToken = default);
     
     Task<bool> ExistsAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default);
+
+    Task ExistOrThrowAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default);
 }

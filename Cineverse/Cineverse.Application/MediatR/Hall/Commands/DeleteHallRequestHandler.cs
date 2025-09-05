@@ -1,4 +1,4 @@
-﻿using Cineverse.Mongo.Repositories.Interfaces;
+﻿using Cineverse.Mongo.Repositories.Hall;
 using MediatR;
 
 namespace Cineverse.Application.MediatR.Hall.Commands;

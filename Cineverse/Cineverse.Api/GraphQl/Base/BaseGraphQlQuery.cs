@@ -1,3 +1,3 @@
 ﻿namespace Cineverse.Api.GraphQl.Base;
 
-public class BaseGraphQlQuery;
+public abstract class BaseGraphQlQuery;

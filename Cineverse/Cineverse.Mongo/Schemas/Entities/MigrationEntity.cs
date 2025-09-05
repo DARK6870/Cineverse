@@ -1,4 +1,4 @@
-﻿using Cineverse.Mongo.Common.Attribues;
+﻿using Cineverse.Mongo.Common.Attributes;
 using Cineverse.Mongo.Schemas.Base;
 
 namespace Cineverse.Mongo.Schemas.Entities;

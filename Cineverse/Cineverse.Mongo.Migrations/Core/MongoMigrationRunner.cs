@@ -1,4 +1,4 @@
-﻿using Cineverse.Mongo.Repositories.Interfaces;
+﻿using Cineverse.Mongo.Repositories.Migration;
 using Cineverse.Mongo.Schemas.Entities;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;

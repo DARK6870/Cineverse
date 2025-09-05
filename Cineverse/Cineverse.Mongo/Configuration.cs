@@ -1,7 +1,12 @@
 ﻿using Cineverse.Mongo.Common.Settings;
+using Cineverse.Mongo.Repositories.Booking;
 using Cineverse.Mongo.Repositories.Generic;
-using Cineverse.Mongo.Repositories.Implementations;
-using Cineverse.Mongo.Repositories.Interfaces;
+using Cineverse.Mongo.Repositories.Hall;
+using Cineverse.Mongo.Repositories.Migration;
+using Cineverse.Mongo.Repositories.Movie;
+using Cineverse.Mongo.Repositories.RefreshToken;
+using Cineverse.Mongo.Repositories.Screening;
+using Cineverse.Mongo.Repositories.User;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

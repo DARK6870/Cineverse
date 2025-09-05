@@ -1,4 +1,4 @@
-﻿using Cineverse.Mongo.Repositories.Interfaces;
+﻿using Cineverse.Mongo.Repositories.Movie;
 using Cineverse.Mongo.Schemas.Entities;
 using MediatR;
 

@@ -1,7 +1,9 @@
 ﻿using System.Net;
-using Cineverse.Infrastructure.Common.Exceptions;
-using Cineverse.Infrastructure.Services.Interfaces;
-using Cineverse.Mongo.Repositories.Interfaces;
+using Cineverse.Domain.Common.Exceptions;
+using Cineverse.Identity.Services.UserContext;
+using Cineverse.Mongo.Repositories.Booking;
+using Cineverse.Mongo.Repositories.Hall;
+using Cineverse.Mongo.Repositories.Screening;
 using Cineverse.Mongo.Schemas.Entities;
 using Cineverse.Mongo.Schemas.Enums;
 using Cineverse.Notifications.Common.Builders;

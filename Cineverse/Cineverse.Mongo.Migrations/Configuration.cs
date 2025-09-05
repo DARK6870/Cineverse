@@ -1,4 +1,6 @@
 ﻿using Cineverse.Mongo.Migrations.Core;
+using Cineverse.Mongo.Repositories.Generic;
+using Cineverse.Mongo.Repositories.Migration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 

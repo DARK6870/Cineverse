@@ -1,5 +1,7 @@
 ﻿using Cineverse.Api.GraphQl.Base;
 using Cineverse.Api.GraphQl.Types;
+using Cineverse.Api.GraphQl.Types.MutationTypes;
+using Cineverse.Api.GraphQl.Types.QueryTypes;
 using HotChocolate.Execution.Configuration;
 
 namespace Cineverse.Api;
@@ -23,8 +25,8 @@ public static class Configuration
     {
         requestExecutorBuilder
             .AddMutationType<BaseGraphQlMutation>()
-            .AddTypeExtension<MovieMutationType>()
             .AddTypeExtension<AuthenticationMutationType>()
+            .AddTypeExtension<MovieMutationType>()
             .AddTypeExtension<ScreeningMutationType>()
             .AddTypeExtension<HallMutationType>()
             .AddTypeExtension<BookingMutationType>()

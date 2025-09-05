@@ -15,4 +15,13 @@
       <ProjectReference Include="..\Cineverse.Mongo.Migrations\Cineverse.Mongo.Migrations.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Serilog.Enrichers.ClientInfo" />
+      <PackageReference Include="Serilog.Sinks.Console" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Middlewares\" />
+    </ItemGroup>
+
 </Project>

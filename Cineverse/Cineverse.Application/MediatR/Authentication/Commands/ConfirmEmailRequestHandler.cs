@@ -1,4 +1,4 @@
-﻿using Cineverse.Infrastructure.Services.Interfaces;
+﻿using Cineverse.Identity.Services.Authentication;
 using MediatR;
 
 namespace Cineverse.Application.MediatR.Authentication.Commands;

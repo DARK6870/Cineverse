@@ -1,3 +1,3 @@
 ﻿namespace Cineverse.Api.GraphQl.Base;
 
-public class BaseGraphQlMutation;
+public abstract class BaseGraphQlMutation;

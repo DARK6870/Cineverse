@@ -1,4 +1,4 @@
-﻿using Cineverse.Mongo.Common.Attribues;
+﻿using Cineverse.Mongo.Common.Attributes;
 using Cineverse.Mongo.Schemas.Base;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;

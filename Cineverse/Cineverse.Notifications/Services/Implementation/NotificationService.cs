@@ -94,7 +94,7 @@ public class NotificationService(
         var templatePath = Path.Combine(rootPath, "NotificationTemplates");
 
         if (!Directory.Exists(templatePath))
-            throw new DirectoryNotFoundException($"Templates folder not found at path: {templatePath}");
+            return "";//throw new DirectoryNotFoundException($"Templates folder not found at path: {templatePath}");
 
         return templatePath;
     }

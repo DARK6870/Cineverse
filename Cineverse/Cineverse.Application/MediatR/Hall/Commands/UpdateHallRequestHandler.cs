@@ -1,6 +1,6 @@
 ﻿using System.Net;
-using Cineverse.Infrastructure.Common.Exceptions;
-using Cineverse.Mongo.Repositories.Interfaces;
+using Cineverse.Domain.Common.Exceptions;
+using Cineverse.Mongo.Repositories.Hall;
 using Cineverse.Mongo.Schemas.Entities;
 using Cineverse.Mongo.Schemas.Models;
 using MediatR;

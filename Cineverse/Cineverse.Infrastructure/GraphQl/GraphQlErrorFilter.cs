@@ -1,10 +1,10 @@
-﻿using Cineverse.Infrastructure.Common.Exceptions;
+﻿using Cineverse.Domain.Common.Exceptions;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 
 namespace Cineverse.Infrastructure.GraphQl;
 
-internal class GraphQlErrorFilter(
+public class GraphQlErrorFilter(
     ILogger<GraphQlErrorFilter> logger
 ) : IErrorFilter
 {
@@ -22,8 +22,8 @@ internal class GraphQlErrorFilter(
         
         switch (error.Exception?.GetBaseException())
         {
-            case ApiRequestException ApiRequestException:
-                HandleApiErrorException(errorBuilder, ApiRequestException);
+            case ApiRequestException apiRequestException:
+                HandleApiErrorException(errorBuilder, apiRequestException);
                 break;
             case ValidationException validationException:
                 HandleValidationException(errorBuilder, validationException);

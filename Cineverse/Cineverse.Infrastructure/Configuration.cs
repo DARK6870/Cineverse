@@ -1,6 +1,4 @@
 ﻿using Cineverse.Infrastructure.Common.Behaviours;
-using Cineverse.Infrastructure.Services.Implementations;
-using Cineverse.Infrastructure.Services.Interfaces;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,11 +22,10 @@ public static class Configuration
         this IServiceCollection services
     )
     {
+        // TODO: change this
         services.AddHttpContextAccessor();
         
         services
-            .AddScoped<IAuthenticationService, AuthenticationService>()
-            .AddScoped<IUserContext, UserContext>()
             .AddMemoryCache()
             ;
 

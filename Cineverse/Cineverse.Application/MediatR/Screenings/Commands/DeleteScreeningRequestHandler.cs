@@ -1,4 +1,4 @@
-﻿using Cineverse.Mongo.Repositories.Interfaces;
+﻿using Cineverse.Mongo.Repositories.Screening;
 using MediatR;
 
 namespace Cineverse.Application.MediatR.Screenings.Commands;

@@ -1,31 +1,30 @@
 using Cineverse.Api;
+using Cineverse.Api.GraphQl;
+using Cineverse.Api.GraphQl.Middlewares.StatusCodeMiddleware;
 using Cineverse.Application;
+using Cineverse.Identity;
+using Cineverse.Identity.Middlewares;
 using Cineverse.Infrastructure;
-using Cineverse.Infrastructure.Authentication;
-using Cineverse.Infrastructure.Common.Configurations;
-using Cineverse.Infrastructure.GraphQl;
+using Cineverse.Infrastructure.Logging;
 using Cineverse.Mongo;
 using Cineverse.Mongo.Migrations;
 using Cineverse.Notifications;
-using Serilog;
 
+// TODO: add telemetry
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Configure logger
-Log.Logger = SerilogConfiguration
-    .GetLoggerConfiguration()
-    .CreateLogger();
-
-builder.Host.UseSerilog();
+builder.AddSerilogLogging();
 
 // Configure services
 builder.Services
-    .AddMongoDb(builder.Configuration)
+    .AddMongoDb(configuration)
     .AddMongoRepositories()
     .AddMongoMigrations()
-    .AddJwtAuthentication(builder.Configuration)
+    .AddIdentityServices(configuration)
     .AddApplicationServices()
-    .AddNotificationService(builder.Configuration)
+    .AddNotificationService(configuration)
     .AddInfrastructureServices()
     .AddPipelineBehaviours()
     .AddGraphQLServer()
@@ -52,7 +51,9 @@ app.UseCors("AllowAll");
 app.MapCineverseGraphQl();
 app.UseAuthentication()
     .UseAuthorization()
-    .UseMiddleware<GraphQlStatusCodeMiddleware>();
+    .UseMiddleware<GraphQlStatusCodeMiddleware>()
+    .UseMiddleware<UserContextMiddleware>()
+    ;
 
 // Execute Migrations
 await app.ExecuteMigrations();

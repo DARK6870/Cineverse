@@ -1,0 +1,56 @@
+﻿{
+  "Serilog": {
+    "BasePath": "/logs",
+    "Using": [
+      "Serilog.Formatting.Compact",
+      "Serilog.Enrichers.ClientInfo"
+    ],
+    "LevelSwitches": {
+      "controlSwitch": "Debug"
+    },
+    "MinimumLevel": {
+      "ControlledBy": "$controlSwitch",
+      "Override": {
+        "Hangfire": "Warning",
+        "Microsoft": "Warning"
+      }
+    },
+    "Enrich": [
+      "WithLokiInfoLogLevel",
+      "FromLogContext",
+      "WithSpan",
+      "WithInstance",
+      "WithThreadId",
+      "WithThreadName",
+      "WithClientIp",
+      {
+        "Name": "WithRequestHeader",
+        "Args": {
+          "headerName": "User-Agent"
+        }
+      }
+    ],
+    "WriteTo": [
+      {
+        "Name": "Console",
+        "Args": {
+          "theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console",
+          "outputTemplate": "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
+          "restrictedToMinimumLevel": "Debug"
+        }
+      },
+      {
+        "Name": "File",
+        "Args": {
+          "formatter": "Serilog.Formatting.Compact.RenderedCompactJsonFormatter, Serilog.Formatting.Compact",
+          "rollOnFileSizeLimit": true,
+          "fileSizeLimitBytes": 30000000,
+          "retainedFileCountLimit": 10,
+          "rollingInterval": "Day",
+          "path": "$basePath/rolling-.log",
+          "restrictedToMinimumLevel": "Information"
+        }
+      }
+    ]
+  }
+}

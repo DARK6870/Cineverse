@@ -1,5 +1,5 @@
-﻿using Cineverse.Infrastructure.Services.Interfaces;
-using Cineverse.Mongo.Repositories.Interfaces;
+﻿using Cineverse.Identity.Services.UserContext;
+using Cineverse.Mongo.Repositories.RefreshToken;
 using MediatR;
 
 namespace Cineverse.Application.MediatR.Authentication.Commands;

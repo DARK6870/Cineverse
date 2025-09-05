@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
-using Cineverse.Mongo.Common.Attribues;
+using Cineverse.Domain.Common.Exceptions;
+using Cineverse.Mongo.Common.Attributes;
 using Cineverse.Mongo.Schemas.Base;
 using MongoDB.Driver;
 
@@ -25,6 +26,17 @@ public class GenericRepository<T>(
             .FindAsync(e => e.Id == id, cancellationToken: cancellationToken);
 
         return await findResult.SingleOrDefaultAsync(cancellationToken);
+    }
+    
+    public async Task<T> FindByIdAndThrowAsync(
+        string id,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var findResult = await Collection
+            .FindAsync(e => e.Id == id, cancellationToken: cancellationToken);
+
+        return await findResult.SingleOrDefaultAsync(cancellationToken) ?? throw new EntityNotFoundException(typeof(T));
     }
 
     public async Task InsertOneAsync(
@@ -77,5 +89,14 @@ public class GenericRepository<T>(
     )
     {
         return await Collection.CountDocumentsAsync(filter, new CountOptions(), cancellationToken) > 0L;
+    }
+    
+    public async Task ExistOrThrowAsync(
+        Expression<Func<T, bool>> filter,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (await Collection.CountDocumentsAsync(filter, new CountOptions(), cancellationToken) == 0L)
+            throw new EntityNotFoundException(typeof(T));
     }
 }

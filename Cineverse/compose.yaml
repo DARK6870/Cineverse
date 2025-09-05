@@ -6,7 +6,7 @@
       dockerfile: Cineverse.Api/Dockerfile
     environment:
       MongoDbSettings__ConnectionString: "mongodb+srv://tsymbalvlad6870:SMkXnkVI2pBOLVpv@cineverse.0ns7se7.mongodb.net/"
-      AuthenticationOptions__EnableSecurity: false
+      AuthenticationOptions__EnableSecurity: true
       ASPNETCORE_URLS: "http://+:7404"
     ports:
       - "7404:7404"
