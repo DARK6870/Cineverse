@@ -1,4 +1,4 @@
-﻿using Cineverse.Application.MediatR.Hall.Commands;
+﻿using Cineverse.Application.MediatR.Requests.Hall.CreateHall;
 using FluentValidation;
 
 namespace Cineverse.Application.FluentValidation.Halls;

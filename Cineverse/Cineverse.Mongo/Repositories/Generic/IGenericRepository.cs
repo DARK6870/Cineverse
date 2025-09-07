@@ -10,7 +10,7 @@ public interface IGenericRepository<T> where T : IEntity
     
     Task<T?> FindByIdAsync(string id, CancellationToken cancellationToken = default);
 
-    Task<T> FindByIdAndThrowAsync(string id, CancellationToken cancellationToken = default);
+    Task<T> FindByIdOrThrowAsync(string id, CancellationToken cancellationToken = default);
     
     Task InsertOneAsync(T entity, CancellationToken cancellationToken = default);
     

@@ -22,12 +22,8 @@ public static class Configuration
         this IServiceCollection services
     )
     {
-        // TODO: change this
         services.AddHttpContextAccessor();
-        
-        services
-            .AddMemoryCache()
-            ;
+        services.AddMemoryCache();
 
         return services;
     }

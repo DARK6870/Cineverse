@@ -1,4 +1,4 @@
-﻿using Cineverse.Application.MediatR.Movies.Commands;
+﻿using Cineverse.Application.MediatR.Requests.Movies.UpdateMovie;
 using FluentValidation;
 
 namespace Cineverse.Application.FluentValidation.Movies;

@@ -28,7 +28,7 @@ public class GenericRepository<T>(
         return await findResult.SingleOrDefaultAsync(cancellationToken);
     }
     
-    public async Task<T> FindByIdAndThrowAsync(
+    public async Task<T> FindByIdOrThrowAsync(
         string id,
         CancellationToken cancellationToken = default
     )

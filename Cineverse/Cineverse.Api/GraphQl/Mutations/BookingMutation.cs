@@ -1,5 +1,6 @@
 ﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Bookings.Commands;
+using Cineverse.Application.MediatR.Requests.Bookings.CreateBooking;
+using Cineverse.Application.MediatR.Requests.Bookings.DeleteBooking;
 using HotChocolate;
 using HotChocolate.Types;
 using MediatR;

@@ -1,5 +1,6 @@
 ﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Bookings.Queries;
+using Cineverse.Application.MediatR.Requests.Bookings.GetBookingById;
+using Cineverse.Application.MediatR.Requests.Bookings.GetBookings;
 using Cineverse.Infrastructure.Common.Constants;
 using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;

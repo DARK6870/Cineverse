@@ -7,19 +7,14 @@ using Microsoft.AspNetCore.Http;
 
 namespace Cineverse.Identity.Middlewares;
 
-public class UserContextMiddleware(
-    RequestDelegate next
-)
+public class UserContextMiddleware(RequestDelegate next)
 {
-    public async Task InvokeAsync(
-        HttpContext context,
-        IUserContext userContext    
-    )
+    public async Task InvokeAsync(HttpContext context, IUserContext userContext)
     {
         var claimsUser = context.User;
         
         
-        if (claimsUser.Identity?.IsAuthenticated == false && AuthenticationSetup.EnableSecurity)
+        if (claimsUser.Identity?.IsAuthenticated is true && AuthenticationSetup.EnableSecurity)
         {
             if (userContext is UserContext ctx)
             {

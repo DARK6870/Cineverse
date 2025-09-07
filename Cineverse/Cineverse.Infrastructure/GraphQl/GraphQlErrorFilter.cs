@@ -1,4 +1,5 @@
-﻿using Cineverse.Domain.Common.Exceptions;
+﻿using System.Net;
+using Cineverse.Domain.Common.Exceptions;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 
@@ -36,19 +37,26 @@ public class GraphQlErrorFilter(
         return errorBuilder.Build();
     }
 
-    private static void HandleApiErrorException(IErrorBuilder errorBuilder, ApiRequestException ApiRequestException)
+    private static void HandleApiErrorException(IErrorBuilder errorBuilder, ApiRequestException exception)
     {
         errorBuilder
-            .SetMessage(ApiRequestException.Message)
-            .SetCode(((int)ApiRequestException.StatusCode)
+            .SetMessage(exception.ErrorMessage)
+            .SetCode(((int)exception.StatusCode)
                 .ToString());
     }
     
-    private static void HandleValidationException(IErrorBuilder errorBuilder, ValidationException validationException)
+    private static void HandleValidationException(IErrorBuilder errorBuilder, ValidationException exception)
     {
         errorBuilder
             .SetMessage("Invalid request")
             .SetCode("INVALID_INPUT")
-            .SetExtension("validationErrors", validationException.Errors);
+            .SetExtension("validationErrors", exception.Errors);
+    }
+    
+    private static void HandleEntityNotFoundException(IErrorBuilder errorBuilder, EntityNotFoundException exception)
+    {
+        errorBuilder
+            .SetMessage(exception.ErrorMessage)
+            .SetCode(((int)HttpStatusCode.NotFound).ToString());
     }
 }

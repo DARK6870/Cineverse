@@ -48,7 +48,7 @@
           "retainedFileCountLimit": 10,
           "rollingInterval": "Day",
           "path": "$basePath/rolling-.log",
-          "restrictedToMinimumLevel": "Information"
+          "restrictedToMinimumLevel": "Warning"
         }
       }
     ]

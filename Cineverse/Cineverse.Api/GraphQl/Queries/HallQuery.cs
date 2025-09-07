@@ -1,6 +1,6 @@
 ﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Hall.Queries;
-using Cineverse.Application.MediatR.Screenings.Queries;
+using Cineverse.Application.MediatR.Requests.Hall.GetHallById;
+using Cineverse.Application.MediatR.Requests.Hall.GetHalls;
 using Cineverse.Infrastructure.Common.Constants;
 using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;

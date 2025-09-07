@@ -1,4 +1,4 @@
-﻿using Cineverse.Application.MediatR.Authentication.Commands;
+﻿using Cineverse.Application.MediatR.Requests.Authentication.Login;
 using FluentValidation;
 
 namespace Cineverse.Application.FluentValidation.Authentication;

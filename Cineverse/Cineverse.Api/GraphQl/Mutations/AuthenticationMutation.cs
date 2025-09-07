@@ -1,6 +1,13 @@
 ﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Authentication.Commands;
+using Cineverse.Application.MediatR.Requests.Authentication.ConfirmEmail;
+using Cineverse.Application.MediatR.Requests.Authentication.DeleteRefreshToken;
+using Cineverse.Application.MediatR.Requests.Authentication.GenerateAccessToken;
+using Cineverse.Application.MediatR.Requests.Authentication.GenerateEmailVerificationCode;
+using Cineverse.Application.MediatR.Requests.Authentication.Login;
+using Cineverse.Application.MediatR.Requests.Authentication.Register;
+using Cineverse.Domain.Common.Exceptions;
 using Cineverse.Infrastructure.Common.Models;
+using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;
 using HotChocolate.Types;
 using MediatR;

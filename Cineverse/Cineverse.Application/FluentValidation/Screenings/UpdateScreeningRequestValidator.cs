@@ -1,4 +1,4 @@
-﻿using Cineverse.Application.MediatR.Screenings.Commands;
+﻿using Cineverse.Application.MediatR.Requests.Screenings.UpdateScreening;
 using FluentValidation;
 
 namespace Cineverse.Application.FluentValidation.Screenings;

@@ -1,0 +1,76 @@
+﻿using System.Net;
+using Cineverse.Domain.Common.Exceptions;
+using Cineverse.Identity.Services.UserContext;
+using Cineverse.Mongo.Repositories.Booking;
+using Cineverse.Mongo.Repositories.Hall;
+using Cineverse.Mongo.Repositories.Screening;
+using Cineverse.Mongo.Schemas.Entities;
+using Cineverse.Mongo.Schemas.Enums;
+using Cineverse.Notifications.Common.Builders;
+using Cineverse.Notifications.Services.Notification;
+using MediatR;
+
+namespace Cineverse.Application.MediatR.Requests.Bookings.CreateBooking;
+
+public class CreateBookingHandler(
+    IBookingRepository bookingRepository,
+    IHallRepository hallRepository,
+    IScreeningRepository screeningRepository,
+    //INotificationService notificationService,
+    IUserContext userContext
+) : IRequestHandler<CreateBookingRequest, bool>
+{
+    public async Task<bool> Handle(CreateBookingRequest request, CancellationToken cancellationToken)
+    {
+        // TODO: change validation
+        if (userContext.UserStatus == UserStatus.PendingEmailConfirmation)
+            throw new ApiRequestException("Please confirm your email to create a booking.", HttpStatusCode.Forbidden);
+
+        var screening = await screeningRepository.FindByIdOrThrowAsync(request.ScreeningId, cancellationToken);
+        
+        if (await bookingRepository.ExistsAsync(
+                x => x.SeatIds.Any(s => Enumerable.Contains(request.SeatsIds, s)),
+                cancellationToken
+                )
+        ) throw new ApiRequestException("Some of the provided seats are already booked.", HttpStatusCode.Conflict);
+
+
+        if (!await hallRepository.ExistsAsync(x =>
+                    x.Id == screening.HallId &&
+                    Enumerable.All<string>(request.SeatsIds, s => x.Seats.Select(seat => seat.SeatId).Contains(s)),
+                cancellationToken
+           )
+        ) throw new ApiRequestException("Some of the provided seat IDs do not exist in the selected hall", HttpStatusCode.BadRequest);
+
+        // Create booking
+        var booking = new BookingEntity
+        {
+            ScreeningId = request.ScreeningId,
+            SeatIds = request.SeatsIds,
+            UserId = userContext.UserId,
+            TotalPrice = request.SeatsIds.Length * screening.TicketPrice
+        };
+        await bookingRepository.InsertOneAsync(booking, cancellationToken);
+
+        // Send email notification
+        /*var notification = new MessageBuilder
+        {
+            Title = "Your booking has been created",
+            FullName = userContext.UserName,
+            Message =
+                $"Your booking has been created<br>" +
+                $"Number of tickets: {request.SeatsIds.Length}<br>" +
+                $"<b>Total tickets price: {booking.TotalPrice}$</b><br>"+
+                $"<br>We are waiting for you on <b>{screening.Date} | {screening.StartTime}</b>",
+            ActionUrl = $"https://www.bookings.com/bookings/{booking.Id}",
+            ActionText = "to view booking details"
+        };
+        await notificationService.SendEmailNotification(
+            userContext.Email,
+            "Your booking has been created",
+            notification
+        );*/
+
+        return true;
+    }
+}

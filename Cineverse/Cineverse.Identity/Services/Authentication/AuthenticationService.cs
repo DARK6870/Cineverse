@@ -52,7 +52,7 @@ public class AuthenticationService(
 
     public async Task ConfirmUserEmailAsync(int verificationCode)
     {
-        var user = await userRepository.FindByIdAndThrowAsync(userContext.UserId);
+        var user = await userRepository.FindByIdOrThrowAsync(userContext.UserId);
 
         if (user.Status is not UserStatus.PendingEmailConfirmation)
             throw new ApiRequestException("Email already confirmed", HttpStatusCode.Conflict);
@@ -88,7 +88,7 @@ public class AuthenticationService(
             userContext.IpAddress
         ) ??  throw new ApiRequestException("Invalid request, no active sessions found", HttpStatusCode.BadRequest);
 
-        var user = await userRepository.FindByIdAndThrowAsync(token.UserId);
+        var user = await userRepository.FindByIdOrThrowAsync(token.UserId);
         var accessToken = tokenManagamentService.GenerateJwtToken(user);
         
         return new AuthenticationResponse(refreshToken, accessToken);

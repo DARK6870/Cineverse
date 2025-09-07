@@ -1,5 +1,5 @@
 ﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Movies.Queries;
+using Cineverse.Application.MediatR.Requests.Movies.GetMovies;
 using Cineverse.Infrastructure.Common.Constants;
 using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;

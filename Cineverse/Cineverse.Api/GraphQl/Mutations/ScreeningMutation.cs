@@ -1,5 +1,7 @@
 ﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Screenings.Commands;
+using Cineverse.Application.MediatR.Requests.Screenings.CreateScreening;
+using Cineverse.Application.MediatR.Requests.Screenings.DeleteScreening;
+using Cineverse.Application.MediatR.Requests.Screenings.UpdateScreening;
 using HotChocolate;
 using HotChocolate.Types;
 using MediatR;

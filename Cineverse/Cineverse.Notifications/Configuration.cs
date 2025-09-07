@@ -1,6 +1,5 @@
 ﻿using Cineverse.Notifications.Common.Options;
-using Cineverse.Notifications.Services.Implementation;
-using Cineverse.Notifications.Services.Interfaces;
+using Cineverse.Notifications.Services.Notification;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +15,7 @@ public static class Configuration
     {
         services.Configure<SmtpOptions>(configuration.GetSection(nameof(SmtpOptions)));
         services.Configure<EmailOptions>(configuration.GetSection(nameof(EmailOptions)));
+        services.Configure<NotificationLinksOptions>(configuration.GetSection(nameof(NotificationLinksOptions)));
         
         services.AddSingleton<INotificationService, NotificationService>();
         

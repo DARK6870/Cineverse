@@ -4,29 +4,64 @@ namespace Cineverse.Notifications.Common.Builders;
 
 public class MessageBuilder
 {
-    public string? Title { get; set; }
-    public string? FullName { get; set; }
-    public required string Message { get; set; }
-    public string? ActionUrl { get; set; }
-    public string? ActionText { get; set; }
+    private readonly StringBuilder _stringBuilder = new StringBuilder();
 
-    
-    public string FormattedMessage
+    public MessageBuilder AppendTitle(string title)
     {
-        get
-        {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.Append($"<h2>{Title}</h2>");
-            
-            if (FullName is not null)
-                stringBuilder.Append($"<p>Hello, <strong>{FullName}</strong>!</p>");
-            
-            stringBuilder.Append($"<p>{Message}</p><br><br>");
+        _stringBuilder.Append($"<h2>{title}</h2>");
+        return this;
+    }
 
-            if (!string.IsNullOrEmpty(ActionUrl))
-                stringBuilder.Append($"<p><small><a href=\"{ActionUrl}\">Click here</a> {ActionText}.<small></p>");
+    public MessageBuilder AppendGreeting(string fullName)
+    {
+        _stringBuilder.Append($"<p>Hello, <strong>{fullName}</strong>!</p>");
+        return this;
+    }
 
-            return stringBuilder.ToString();
-        }
+    public MessageBuilder AppendMessage(string message)
+    {
+        _stringBuilder.Append($"<p>{message}</p><br><br>");
+        return this;
+    }
+
+    public MessageBuilder AppendAction(string url, string actionText)
+    {
+        _stringBuilder.Append($"<p><small><a href=\"{url}\">Click here</a> {actionText}.<small></p>");
+        return this;
+    }
+
+    public MessageBuilder AppendLineBreak()
+    {
+        _stringBuilder.Append("<br>");
+        return this;
+    }
+
+    public MessageBuilder AppendParagraph(string text)
+    {
+        _stringBuilder.Append($"<p>{text}</p>");
+        return this;
+    }
+    
+    public MessageBuilder AppendBold(string text)
+    {
+        _stringBuilder.Append($"<b>{text}</b>");
+        return this;
+    }
+    
+    public MessageBuilder AppendSmall(string text)
+    {
+        _stringBuilder.Append($"<small>{text}</small>");
+        return this;
+    }
+
+    public string Build()
+    {
+        return _stringBuilder.ToString();
+    }
+
+    public MessageBuilder Clear()
+    {
+        _stringBuilder.Clear();
+        return this;
     }
 }

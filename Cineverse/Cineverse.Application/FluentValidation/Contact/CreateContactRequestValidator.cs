@@ -1,4 +1,4 @@
-﻿using Cineverse.Application.MediatR.Contact.Commands;
+﻿using Cineverse.Application.MediatR.Requests.Contact.CreateContact;
 using FluentValidation;
 
 namespace Cineverse.Application.FluentValidation.Contact;

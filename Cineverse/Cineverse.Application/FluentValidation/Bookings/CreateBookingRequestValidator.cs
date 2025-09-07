@@ -1,4 +1,4 @@
-﻿using Cineverse.Application.MediatR.Bookings.Commands;
+﻿using Cineverse.Application.MediatR.Requests.Bookings.CreateBooking;
 using FluentValidation;
 
 namespace Cineverse.Application.FluentValidation.Bookings;

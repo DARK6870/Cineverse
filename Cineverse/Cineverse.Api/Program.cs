@@ -1,24 +1,28 @@
-using Cineverse.Api;
 using Cineverse.Api.GraphQl;
 using Cineverse.Api.GraphQl.Middlewares.StatusCodeMiddleware;
 using Cineverse.Application;
+using Cineverse.Domain.Common.Exceptions;
 using Cineverse.Identity;
 using Cineverse.Identity.Middlewares;
 using Cineverse.Infrastructure;
+using Cineverse.Infrastructure.Cors;
 using Cineverse.Infrastructure.Logging;
 using Cineverse.Mongo;
 using Cineverse.Mongo.Migrations;
+using Cineverse.Mongo.Schemas.Entities;
 using Cineverse.Notifications;
 
 // TODO: add telemetry
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-// Configure logger
+// ====== Configure logger ======
 builder.AddSerilogLogging();
 
-// Configure services
+
+// ====== Configure services ======
 builder.Services
+    .AddCorsPolicy(configuration, builder.Environment)
     .AddMongoDb(configuration)
     .AddMongoRepositories()
     .AddMongoMigrations()
@@ -32,22 +36,12 @@ builder.Services
     .AddGraphQlQueries()
     .AddGraphQlMutations()
     ;
-    
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", policy =>
-    {
-        policy
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
-});
 
-// Configure WebApplication
+
+// ====== Configure WebApplication ======
 var app = builder.Build();
 
-app.UseCors("AllowAll");
+app.UseCors(CorsConfiguration.CorsPolicy);
 app.MapCineverseGraphQl();
 app.UseAuthentication()
     .UseAuthorization()
@@ -55,7 +49,8 @@ app.UseAuthentication()
     .UseMiddleware<UserContextMiddleware>()
     ;
 
-// Execute Migrations
+
+// ====== Execute Migrations ======
 await app.ExecuteMigrations();
 
 app.Run();
