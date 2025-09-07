@@ -10,6 +10,7 @@ import {RouterLink} from '@angular/router';
   styleUrls: ['header.css']
 })
 
+// TODO: add icons for mobile
 export class Header {
   isMenuOpen = false;
 

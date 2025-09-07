@@ -13,3 +13,5 @@ import { AsyncPipe } from '@angular/common';
 export class LoadingOverlay {
   constructor(public loadingService: LoadingService) {}
 }
+
+// TODO: fix fonts

@@ -24,6 +24,7 @@ import { AuthenticationService } from '../../../services/authentication/authenti
 })
 
 // TODO: check somehow if the confirmation code already has been sent
+// TODO: auto-submit form when the code is present
 export class ConfirmEmail implements OnInit {
   protected confirmEmailForm: FormGroup;
   private formSubmitted = false;

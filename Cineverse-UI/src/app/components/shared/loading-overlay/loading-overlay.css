@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
-
   opacity: 1;
 }
 
@@ -16,7 +15,7 @@
   transition: opacity 0.8s ease;
 }
 
-.cineverse-logo {
+.loading-logo {
   width: 270px;
   height: 80px;
   background-color: #ffffff;
@@ -25,10 +24,16 @@
   justify-content: center;
 }
 
-.cineverse-text {
+.loading-text {
   font-family: 'Segoe UI', sans-serif;
   font-size: 40px;
   color: #000000;
   font-weight: bold;
   letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+  .loading-logo {
+    transform: scale(0.8);
+  }
 }
