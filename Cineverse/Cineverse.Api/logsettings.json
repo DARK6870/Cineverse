@@ -42,13 +42,13 @@
       {
         "Name": "File",
         "Args": {
-          "formatter": "Serilog.Formatting.Compact.RenderedCompactJsonFormatter, Serilog.Formatting.Compact",
+          "path": "logs/cineverse-.log",
+          "rollingInterval": "Day",
           "rollOnFileSizeLimit": true,
           "fileSizeLimitBytes": 30000000,
           "retainedFileCountLimit": 10,
-          "rollingInterval": "Day",
-          "path": "$basePath/rolling-.log",
-          "restrictedToMinimumLevel": "Warning"
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
+          "restrictedToMinimumLevel": "Debug"
         }
       }
     ]

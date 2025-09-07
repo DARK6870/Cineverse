@@ -73,7 +73,7 @@ public class NotificationService(
 
     private async Task<string> GetEmailTemplateAsync(string content)
     {
-        var filePath = Path.Combine(_templateFolderPath  + ".html");
+        var filePath = Path.Combine(_templateFolderPath  + "/Notification.html");
         
         var htmlTemplate = await File.ReadAllTextAsync(filePath);
         var finalHtml = htmlTemplate.Replace("{Content}", content);

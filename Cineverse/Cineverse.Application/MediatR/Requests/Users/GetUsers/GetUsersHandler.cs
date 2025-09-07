@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Cineverse.Application.MediatR.Requests.Users.GetUsers;
 
-public class GetUsersRequestHandler(
+public class GetUsersHandler(
     IUserRepository userRepository
 ) : IRequestHandler<GetUsersRequest, IQueryable<UserEntity>>
 {
