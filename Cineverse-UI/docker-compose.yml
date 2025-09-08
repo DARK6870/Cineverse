@@ -1,9 +1,14 @@
-﻿name: "cineverse-ui"
-
-services:
-  frontend:
+﻿services:
+  cineverse-ui:
+    image: cineverse-ui
     build:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    networks:
+      - cineverse-network
     restart: always
+
+networks:
+  cineverse-network:
+    external: true

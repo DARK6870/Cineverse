@@ -6,7 +6,15 @@
       dockerfile: Cineverse.Api/Dockerfile
     environment:
       MongoDbSettings__ConnectionString: "mongodb+srv://tsymbalvlad6870:SMkXnkVI2pBOLVpv@cineverse.0ns7se7.mongodb.net/"
+      TelemetryOptions__EndpointUrl: "http://seq:80/ingest/otlp/v1/logs"
       AuthenticationOptions__EnableSecurity: true
       ASPNETCORE_URLS: "http://+:7404"
     ports:
       - "7404:7404"
+    networks:
+      - cineverse-network
+    restart: always
+        
+networks:
+  cineverse-network:
+    external: true

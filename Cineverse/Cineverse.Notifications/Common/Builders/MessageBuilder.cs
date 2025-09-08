@@ -4,7 +4,7 @@ namespace Cineverse.Notifications.Common.Builders;
 
 public class MessageBuilder
 {
-    private readonly StringBuilder _stringBuilder = new StringBuilder();
+    private readonly StringBuilder _stringBuilder = new();
 
     public MessageBuilder AppendTitle(string title)
     {
@@ -14,19 +14,22 @@ public class MessageBuilder
 
     public MessageBuilder AppendGreeting(string fullName)
     {
-        _stringBuilder.Append($"<p>Hello, <strong>{fullName}</strong>!</p>");
-        return this;
-    }
-
-    public MessageBuilder AppendMessage(string message)
-    {
-        _stringBuilder.Append($"<p>{message}</p><br><br>");
+        AppendParagraphStart();
+        _stringBuilder.Append($"Hello, <strong>{fullName}</strong>!");
+        AppendParagraphEnd();
+        
         return this;
     }
 
     public MessageBuilder AppendAction(string url, string actionText)
     {
-        _stringBuilder.Append($"<p><small><a href=\"{url}\">Click here</a> {actionText}.<small></p>");
+        AppendLineBreak();
+        AppendLineBreak();
+        AppendLineBreak();
+        AppendParagraphStart();
+        AppendSmall($"<a href=\"{url}\">Click here</a> {actionText}");
+        AppendParagraphEnd();
+        
         return this;
     }
 
@@ -35,22 +38,34 @@ public class MessageBuilder
         _stringBuilder.Append("<br>");
         return this;
     }
-
-    public MessageBuilder AppendParagraph(string text)
+    
+    public MessageBuilder AppendText(string text)
     {
-        _stringBuilder.Append($"<p>{text}</p>");
+        _stringBuilder.Append(text);
+        return this;
+    }
+
+    public MessageBuilder AppendParagraphStart()
+    {
+        _stringBuilder.Append("<p>");
         return this;
     }
     
-    public MessageBuilder AppendBold(string text)
+    public MessageBuilder AppendParagraphEnd()
     {
-        _stringBuilder.Append($"<b>{text}</b>");
+        _stringBuilder.Append("</p>");
         return this;
     }
     
     public MessageBuilder AppendSmall(string text)
     {
         _stringBuilder.Append($"<small>{text}</small>");
+        return this;
+    }
+    
+    public MessageBuilder AppendBold(string text)
+    {
+        _stringBuilder.Append($"<b>{text}</b>");
         return this;
     }
 

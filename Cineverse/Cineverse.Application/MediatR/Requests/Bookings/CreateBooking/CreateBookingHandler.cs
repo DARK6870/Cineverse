@@ -7,8 +7,11 @@ using Cineverse.Mongo.Repositories.Screening;
 using Cineverse.Mongo.Schemas.Entities;
 using Cineverse.Mongo.Schemas.Enums;
 using Cineverse.Notifications.Common.Builders;
+using Cineverse.Notifications.Common.Options;
 using Cineverse.Notifications.Services.Notification;
+using Cineverse.Notifications.Services.Notification.Extensions;
 using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace Cineverse.Application.MediatR.Requests.Bookings.CreateBooking;
 
@@ -16,8 +19,9 @@ public class CreateBookingHandler(
     IBookingRepository bookingRepository,
     IHallRepository hallRepository,
     IScreeningRepository screeningRepository,
-    //INotificationService notificationService,
-    IUserContext userContext
+    INotificationService notificationService,
+    IUserContext userContext,
+    IOptions<NotificationLinksOptions> notificationLinksOptions
 ) : IRequestHandler<CreateBookingRequest, bool>
 {
     public async Task<bool> Handle(CreateBookingRequest request, CancellationToken cancellationToken)
@@ -29,7 +33,8 @@ public class CreateBookingHandler(
         var screening = await screeningRepository.FindByIdOrThrowAsync(request.ScreeningId, cancellationToken);
         
         if (await bookingRepository.ExistsAsync(
-                x => x.SeatIds.Any(s => Enumerable.Contains(request.SeatsIds, s)),
+                x => x.ScreeningId == request.ScreeningId &&
+                x.SeatIds.Any(s => request.SeatsIds.Contains(s)),
                 cancellationToken
                 )
         ) throw new ApiRequestException("Some of the provided seats are already booked.", HttpStatusCode.Conflict);
@@ -53,23 +58,17 @@ public class CreateBookingHandler(
         await bookingRepository.InsertOneAsync(booking, cancellationToken);
 
         // Send email notification
-        /*var notification = new MessageBuilder
-        {
-            Title = "Your booking has been created",
-            FullName = userContext.UserName,
-            Message =
-                $"Your booking has been created<br>" +
-                $"Number of tickets: {request.SeatsIds.Length}<br>" +
-                $"<b>Total tickets price: {booking.TotalPrice}$</b><br>"+
-                $"<br>We are waiting for you on <b>{screening.Date} | {screening.StartTime}</b>",
-            ActionUrl = $"https://www.bookings.com/bookings/{booking.Id}",
-            ActionText = "to view booking details"
-        };
-        await notificationService.SendEmailNotification(
+        var actionUrl = notificationLinksOptions.Value.BaseUrl + notificationLinksOptions.Value.BookingDetailsPath.Replace("id", booking.Id);
+        
+        await notificationService.SendBookingEmailAsync(
             userContext.Email,
-            "Your booking has been created",
-            notification
-        );*/
+            userContext.UserName,
+            booking.SeatIds.Length,
+            booking.TotalPrice,
+            screening.Date,
+            screening.StartTime,
+            actionUrl
+        );
 
         return true;
     }

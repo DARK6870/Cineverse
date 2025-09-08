@@ -4,5 +4,5 @@ namespace Cineverse.Notifications.Services.Notification;
 
 public interface INotificationService
 {
-    Task SendEmailNotification(string emailTo, string subject, MessageBuilder message);
+    Task SendEmailNotificationAsync(string emailTo, string subject, MessageBuilder message);
 }

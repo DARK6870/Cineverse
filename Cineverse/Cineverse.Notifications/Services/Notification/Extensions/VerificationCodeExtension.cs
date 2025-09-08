@@ -15,17 +15,15 @@ public static class VerificationCodeExtension
         var notification = new MessageBuilder()
             .AppendTitle("Email Confirmation Code")
             .AppendGreeting(fullName)
-            .AppendParagraph("Please complete your account setup to explore our website without restrictions")
+            .AppendParagraphStart()
+            .AppendText("Please complete your account setup to explore our website without restrictions")
             .AppendLineBreak()
             .AppendLineBreak()
-            .AppendMessage("Your verification code is ")
-            .AppendBold(verificationCode.ToString())
+            .AppendText("Your verification code is ").AppendBold(verificationCode.ToString())
             .AppendLineBreak()
             .AppendSmall("The code will be valid for 2 minutes")
-            .AppendLineBreak()
-            .AppendLineBreak()
             .AppendAction(actionUrl, "to confirm your email");
         
-        await notificationService.SendEmailNotification(emailTo, "Email Confirmation Code", notification);
+        await notificationService.SendEmailNotificationAsync(emailTo, "Email Confirmation Code", notification);
     }
 }

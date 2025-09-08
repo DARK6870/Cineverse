@@ -21,6 +21,16 @@ public class RefreshTokenService(
                 x.IpAddress == ipAddress
             );
     }
+    
+    public async Task<RefreshTokenEntity?> GetRefreshTokenAsync(string refreshToken, string ipAddress)
+    {
+        return await refreshTokenRepository
+            .AsQueryable()
+            .FirstOrDefaultAsync(x => 
+                x.Token == refreshToken && 
+                x.IpAddress == ipAddress
+            );
+    }
 
     public async Task<RefreshTokenEntity> CreateOrUpdateTokenAsync(string userId, string ipAddress)
     {

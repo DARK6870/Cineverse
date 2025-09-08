@@ -11,6 +11,8 @@ ARG BUILD_CONFIGURATION=Release
 COPY ["Cineverse.Api/Cineverse.Api.csproj", "Cineverse.Api/"]
 COPY ["Cineverse.Application/Cineverse.Application.csproj", "Cineverse.Application/"]
 COPY ["Cineverse.Infrastructure/Cineverse.Infrastructure.csproj", "Cineverse.Infrastructure/"]
+COPY ["Cineverse.Domain/Cineverse.Domain.csproj", "Cineverse.Domain/"]
+COPY ["Cineverse.Identity/Cineverse.Identity.csproj", "Cineverse.Identity/"]
 COPY ["Cineverse.Mongo/Cineverse.Mongo.csproj", "Cineverse.Mongo/"]
 COPY ["Cineverse.Mongo.Migrations/Cineverse.Mongo.Migrations.csproj", "Cineverse.Mongo.Migrations/"]
 COPY ["Cineverse.Notifications/Cineverse.Notifications.csproj", "Cineverse.Notifications/"]
@@ -23,15 +25,15 @@ COPY . .
 
 WORKDIR "/src/Cineverse.Api"
 
-RUN dotnet publish "./Cineverse.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Cineverse.Api.csproj" -c $BUILD_CONFIGURATION -o /cineverse/publish /p:UseAppHost=false
 
 # ---------------- Final stage ----------------
 FROM base AS final
-WORKDIR /app
+WORKDIR /cineverse
 
-COPY --from=build /app/publish .
-COPY NotificationTemplates /app/NotificationTemplates
+COPY --from=build /cineverse/publish .
+COPY NotificationTemplates /cineverse/NotificationTemplates
 
-RUN ls -la /app
+RUN ls -la /cineverse
 
 ENTRYPOINT ["dotnet", "Cineverse.Api.dll"]

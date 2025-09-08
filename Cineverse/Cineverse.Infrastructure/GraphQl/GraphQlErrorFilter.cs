@@ -29,6 +29,9 @@ public class GraphQlErrorFilter(
             case ValidationException validationException:
                 HandleValidationException(errorBuilder, validationException);
                 break;
+            case EntityNotFoundException entityNotFoundException:
+                HandleEntityNotFoundException(errorBuilder, entityNotFoundException);
+                break;
             default:
                 logger.LogError("Unhandled error occured, error: {@error}", error.Exception);
                 break;
