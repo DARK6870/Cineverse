@@ -1,7 +1,6 @@
 using Cineverse.Api.GraphQl;
 using Cineverse.Api.GraphQl.Middlewares.StatusCodeMiddleware;
 using Cineverse.Application;
-using Cineverse.Domain.Common.Exceptions;
 using Cineverse.Identity;
 using Cineverse.Identity.Middlewares;
 using Cineverse.Infrastructure;
@@ -9,15 +8,13 @@ using Cineverse.Infrastructure.Cors;
 using Cineverse.Infrastructure.Logging;
 using Cineverse.Mongo;
 using Cineverse.Mongo.Migrations;
-using Cineverse.Mongo.Schemas.Entities;
 using Cineverse.Notifications;
 
-// TODO: add telemetry
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 // ====== Configure logger ======
-builder.AddSerilogLogging();
+builder.AddSerilogLoggingWithOpenTelemetry(configuration);
 
 
 // ====== Configure services ======

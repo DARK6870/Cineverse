@@ -1,24 +1,27 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Cineverse.Infrastructure.Telemetry;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 
 namespace Cineverse.Infrastructure.Logging;
 
-public static class SerilogExtensions
+public static class SerilogExtension
 {
     private const string LoggerConfigurationFileName = "logsettings.json";
 
-    public static WebApplicationBuilder AddSerilogLogging(
-        this WebApplicationBuilder builder
+    public static WebApplicationBuilder AddSerilogLoggingWithOpenTelemetry(
+        this WebApplicationBuilder builder,
+        IConfiguration configuration
     )
     {
-        var configuration = new ConfigurationBuilder()
+        var cfg = new ConfigurationBuilder()
             .AddJsonFile(LoggerConfigurationFileName, optional: false, reloadOnChange: true)
             .Build();
 
         Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
+            .ReadFrom.Configuration(cfg)
             .Enrich.FromLogContext()
+            .AddOpenTelemetry(configuration)
             .CreateLogger();
 
         builder.Host.UseSerilog();
