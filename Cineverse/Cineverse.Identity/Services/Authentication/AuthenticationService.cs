@@ -83,8 +83,8 @@ public class AuthenticationService(
 
     public async Task<AuthenticationResponse> GenerateAccessTokenAsync(string refreshToken)
     {
-        var token = await refreshTokenService.GetActiveTokenAsync(
-            userContext.UserId,
+        var token = await refreshTokenService.GetRefreshTokenAsync(
+            refreshToken,
             userContext.IpAddress
         ) ??  throw new ApiRequestException("Invalid request, no active sessions found", HttpStatusCode.BadRequest);
 
