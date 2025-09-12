@@ -1,13 +1,15 @@
 ﻿import { gql } from 'apollo-angular';
+import { QueryOptions } from '@apollo/client';
 
-export const GET_MOVIES_QUERY = gql`
-query getMovies($ids: [String]!) {
+export const getMoviesByIdsQuery = (ids: string[]) : QueryOptions => ({
+  query: gql`
+  query getMovies($ids: [String]!) {
   movies(
     take: 250,
     order: {dateCreated: DESC },
     where: { id: { in: $ids } }
     )
-    {
+  {
     items {
       id
       title
@@ -19,6 +21,11 @@ query getMovies($ids: [String]!) {
       duration
       dateCreated
     }
+   }
   }
-}
-`
+`,
+  variables: {ids : ids},
+  context: {
+    allowAnonymous: true
+  }
+});

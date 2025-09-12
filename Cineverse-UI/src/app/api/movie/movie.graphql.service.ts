@@ -1,8 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
-import { GET_MOVIES_QUERY } from './movie.operations';
-import { Movie } from '../../utils/types/api/movie';
+import { Movie } from './movie.graphql.types';
+import { getMoviesByIdsQuery } from './movie.graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +11,10 @@ import { Movie } from '../../utils/types/api/movie';
 export class MovieGraphqlService {
   constructor(private apollo: Apollo) {}
 
-  public getMovies(ids: string[]): Observable<Movie[]> {
-    return this.apollo.watchQuery({
-      query: GET_MOVIES_QUERY,
-      variables: {
-        ids: ids
-      },
-      context: {
-        allowAnonymous: true
-      }
-    }).valueChanges.pipe(
+  public getMoviesByIds(ids: string[]): Observable<Movie[]> {
+    return this.apollo.watchQuery(
+      getMoviesByIdsQuery(ids)
+    ).valueChanges.pipe(
       map((result: any) => result.data.movies.items)
     );
   }

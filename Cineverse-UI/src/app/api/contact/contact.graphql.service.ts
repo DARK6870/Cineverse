@@ -1,7 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
-import { CREATE_CONTACT } from './contact.operations';
+import { CreateContactRequestInput } from './contact.graphql.types';
+import {createContactRequestMutation} from './contact.graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +11,9 @@ import { CREATE_CONTACT } from './contact.operations';
 export class ContactGraphqlService {
   constructor(private apollo: Apollo) {}
 
-  public createContactRequest(request: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    subject: string;
-    description: string;
-  }): Observable<any> {
-    return this.apollo.mutate({
-      mutation: CREATE_CONTACT,
-      variables: { request },
-      context: {
-        allowAnonymous: true
-      }
-    });
+  public createContactRequest(request: CreateContactRequestInput): Observable<any> {
+    return this.apollo.mutate(
+      createContactRequestMutation(request)
+    );
   }
 }

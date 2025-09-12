@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { getErrorMessage } from '../../../../utils/helpers/validation.helper';
 import { AuthenticationService } from '../../../../services/authentication/authentication.service';
 import { RouterLink } from '@angular/router';
+import { passwordMatchValidator } from '../../../../utils/validators/password-match.validator';
+import { RegisterRequestInput } from '../../../../api/authentication/authentication.graphql.types';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +38,7 @@ export class Register implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-    })
+    }, {validators: passwordMatchValidator});
   }
 
   ngOnInit() {
@@ -57,11 +59,10 @@ export class Register implements OnInit {
     this.formSubmitted = true;
 
     if (this.registerForm.valid) {
-      const request = {
+      const request : RegisterRequestInput = {
         firstName: this.registerForm.value.firstName,
         lastName: this.registerForm.value.lastName,
         email: this.registerForm.value.email,
-        // TODO: validate if password are the same
         password: this.registerForm.value.password,
         confirmPassword: this.registerForm.value.confirmPassword
       };

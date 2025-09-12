@@ -11,6 +11,7 @@ export function getErrorMessage(control: AbstractControl | null): string | null 
     minlength: (err) => `Minimum length is ${err.requiredLength} characters`,
     maxlength: (err) => `Maximum length is ${err.requiredLength} characters`,
     pattern: () => `Invalid format`,
+    passwordMismatch: () => `Passwords do not match`
   };
 
   for (const errorName in control.errors) {

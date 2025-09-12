@@ -5,7 +5,6 @@
   description: string;
   posterUrl: string;
   trailerUrl: string;
-  rating?: number;
-  releaseDate?: string;
+  releaseDate: string;
   duration?: string;
 }
