@@ -1,11 +1,11 @@
 ﻿import { Injectable } from '@angular/core';
-import { JwtPayload, UserStatus } from '../../utils/types/jwt-payload';
+import { JwtPayload } from '../../utils/types/jwt-payload';
 import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({ providedIn: 'root' })
 export class JwtClaimsService {
 
-  private constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   private decodeTokenPayload(token: string): any {
     const payloadBase64 = token.split('.')[1];

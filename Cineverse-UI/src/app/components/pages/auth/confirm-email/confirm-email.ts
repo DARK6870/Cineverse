@@ -76,7 +76,6 @@ export class ConfirmEmail implements OnInit {
   async onSubmit() {
     this.confirmEmailForm.markAllAsTouched();
     this.formSubmitted = true;
-    const accessToken = await this.authService.getOrGenerateAccessTokenAsync();
 
     if (this.confirmEmailForm.valid) {
       const code: number = Number(this.confirmEmailForm.value.verificationCode);
@@ -96,8 +95,6 @@ export class ConfirmEmail implements OnInit {
   async resendVerificationCode() {
     if (!this.canResend)
       return;
-
-    const accessToken = await this.authService.getOrGenerateAccessTokenAsync();
 
     // Resend verification code
     this.authenticationService.resendEmailVerificationCode().subscribe({
