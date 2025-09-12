@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { getErrorMessage } from '../../../../utils/helpers/validation.helper';
 import { RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../../../services/authentication/authentication.service';
+import { LoginRequestInput } from '../../../../api/authentication/authentication.graphql.types';
 
 @Component({
   selector: 'app-login',
@@ -54,13 +55,11 @@ export class Login implements OnInit {
     this.formSubmitted = true;
 
     if (this.loginForm.valid) {
-      // Create request
-      const request = {
+      const request : LoginRequestInput = {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password
       }
 
-      // Login user
       this.authenticationService.loginUser(request);
     }
   }

@@ -4,12 +4,12 @@ import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { ScreeningGraphqlService } from '../../../api/screening/screening.graphql.service';
 import { MovieGraphqlService } from '../../../api/movie/movie.graphql.service';
-import { Movie } from '../../../utils/types/api/movie';
 import { LoadingService } from '../../../services/loading/loading.service';
 import { RouterLink } from '@angular/router';
-import { Screening } from '../../../utils/types/api/screening';
 import { switchMap } from 'rxjs';
+import { Movie } from '../../../api/movie/movie.graphql.types';
 
+// TODO: create card component
 @Component({
   selector: 'app-home',
   imports: [
@@ -24,7 +24,6 @@ import { switchMap } from 'rxjs';
 })
 export class Home implements OnInit {
   movies = signal<Movie[]>([]);
-  screenings = signal<Screening[]>([]);
   comingSoonMovies = signal<Movie[]>([]);
 
   constructor(
@@ -39,27 +38,14 @@ export class Home implements OnInit {
     const twoWeeksLater = new Date();
     twoWeeksLater.setDate(today.getDate() + 14);
 
-    this.screeningService.getScreenings().pipe(
+    this.screeningService.getScreeningMovieIds().pipe(
       switchMap(screeningsResult => {
-        this.screenings.set(screeningsResult);
-
-        const movieIds = [...new Set(this.screenings().map(screening => screening.movieId))];
-        return this.movieService.getMovies(movieIds);
+        return this.movieService.getMoviesByIds(screeningsResult);
       })
     ).subscribe({
       next: (moviesResult) => {
-        const comingSoon = moviesResult.filter(movie => {
-          const movieScreenings = this.screenings().filter(screening =>
-            screening.movieId === movie.id
-          );
+        const comingSoon = moviesResult.filter(movie => new Date(movie.releaseDate) > twoWeeksLater);
 
-          if (movieScreenings.length === 0) return false;
-
-          const nearestScreeningDate = movieScreenings
-            .map(screening => new Date(screening.date))[0];
-
-          return nearestScreeningDate >= twoWeeksLater;
-        });
         this.comingSoonMovies.set(comingSoon);
         const comingSoonIds = new Set(comingSoon.map(m => m.id));
 

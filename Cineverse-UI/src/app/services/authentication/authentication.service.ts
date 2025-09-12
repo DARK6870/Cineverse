@@ -1,10 +1,10 @@
 ﻿import { Injectable } from '@angular/core';
 import { AuthenticationGraphqlService } from '../../api/authentication/authentication.graphql.service';
-import { AuthenticationResponse } from '../../utils/types/api/authentication';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { firstValueFrom } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
+import { AuthenticationResponse } from '../../api/authentication/authentication.graphql.types';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
