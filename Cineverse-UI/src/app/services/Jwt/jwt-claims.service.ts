@@ -1,0 +1,32 @@
+﻿import { Injectable } from '@angular/core';
+import { JwtPayload, UserStatus } from '../../utils/types/jwt-payload';
+import { AuthenticationService } from '../authentication/authentication.service';
+
+@Injectable({ providedIn: 'root' })
+export class JwtClaimsService {
+
+  private constructor(private authenticationService: AuthenticationService) {}
+
+  private decodeTokenPayload(token: string): any {
+    const payloadBase64 = token.split('.')[1];
+    const payloadJson = decodeURIComponent(
+      atob(payloadBase64)
+        .split('')
+        .map(c => '%' + c.charCodeAt(0).toString(16).padStart(2, '0'))
+        .join('')
+    );
+    return JSON.parse(payloadJson);
+  }
+
+  public async decodeTokenAsync(): Promise<JwtPayload> {
+    const accessToken = await this.authenticationService.getOrGenerateAccessTokenAsync();
+    const decoded = this.decodeTokenPayload(accessToken);
+    return {
+      userId: decoded.user_id,
+      fullName: decoded.unique_name,
+      email: decoded.email,
+      role: decoded.role,
+      userStatus: decoded.user_status,
+    };
+  }
+}

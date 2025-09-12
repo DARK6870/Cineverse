@@ -7,10 +7,6 @@ html {
   scroll-behavior: smooth;
 }
 
-.menu-text{
-  padding-top: 100px;
-}
-
 body{
   margin: 0;
   background-color: #f4f4f4;
@@ -63,7 +59,7 @@ body{
   .main-container{
     padding: 15px;
   }
-  
+
   .cineverse-logo{
     width: 200px;
   }

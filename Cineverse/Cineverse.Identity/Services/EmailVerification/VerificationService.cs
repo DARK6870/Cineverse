@@ -44,7 +44,9 @@ internal class VerificationService(
 
     private async Task SendVerificationEmailAsync(string email, string fullName, int verificationCode)
     {
-        var confirmEmailUrl = notificationLinksOptions.Value.BaseUrl + notificationLinksOptions.Value.ConfirmEmailPath;
+        // TODO: maybe change this
+        var confirmEmailUrl = notificationLinksOptions.Value.BaseUrl +
+                              notificationLinksOptions.Value.ConfirmEmailPath.Replace("code", verificationCode.ToString());
 
         await notificationService.SendVerificationEmailAsync(
             email,

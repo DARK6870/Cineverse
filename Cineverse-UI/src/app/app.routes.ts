@@ -1,14 +1,15 @@
 import { Routes } from '@angular/router';
-import { Home } from './components/home/home';
-import { AboutUs } from './components/about-us/about-us';
-import { Contact } from './components/contact/contact';
-import { Login } from './components/account/login/login';
-import { Register } from './components/account/register/register';
-import { Account } from './components/account/account/account';
-import { Movies } from './components/movie/movies/movies';
-import { Movie } from './components/movie/movie/movie';
-import { ConfirmEmail } from './components/account/confirm-email/confirm-email';
-import { Logout } from './components/account/logout/logout';
+import { Home } from './components/pages/home/home';
+import { AboutUs } from './components/pages/about-us/about-us';
+import { Contact } from './components/pages/contact/contact';
+import { Login } from './components/pages/auth/login/login';
+import { Register } from './components/pages/auth/register/register';
+import { Account } from './components/pages/account/account';
+import { Movies } from './components/pages/movies/movies';
+import { Movie } from './components/pages/movies/movie-details/movie';
+import { ConfirmEmail } from './components/pages/auth/confirm-email/confirm-email';
+import { Logout } from './components/pages/auth/logout/logout';
+import { Booking } from './components/pages/booking/booking';
 
 export const routes: Routes = [
   {
@@ -47,7 +48,7 @@ export const routes: Routes = [
     title: 'Movies'
   },
   {
-    path: 'movie/:movieId',
+    path: 'movies-details/:movieId',
     component: Movie,
     title: 'Movie Details'
   },
@@ -60,5 +61,10 @@ export const routes: Routes = [
     path: 'logout',
     component: Logout,
     title: 'Logout'
+  },
+  {
+    path: 'booking/:bookingId',
+    component: Booking,
+    title: 'Booking Details'
   }
 ];

@@ -4,15 +4,15 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideApollo } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
-import { InMemoryCache } from '@apollo/client/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { providePrimeNG } from 'primeng/config';
 import MyPreset from '../mypreset';
-import { errorInterceptor } from './common/interceptors/error.interceptor';
-import {MessageService} from 'primeng/api';
+import { errorInterceptor } from './utils/interceptors/error.interceptor';
+import { MessageService } from 'primeng/api';
 import { CookieService } from 'ngx-cookie-service';
+import { createApolloClient } from './apollo/apollo.config';
+import { AuthLink } from './apollo/auth.link';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -30,16 +30,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([errorInterceptor])), provideApollo(() => {
-      const httpLink = inject(HttpLink);
-
-      return {
-        // TODO: add routing
-        link: httpLink.create({
-          uri: 'cineverse-api',
-        }),
-        cache: new InMemoryCache(),
-      };
-    })
-  ],
+    provideHttpClient(withInterceptors([errorInterceptor])),
+    provideApollo(() => createApolloClient(inject(AuthLink)))
+  ]
 };

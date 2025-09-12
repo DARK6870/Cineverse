@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  overflow: hidden;
+}
+
+.main-container{
+  min-width: 400px;
+  max-width: 650px;
+}
+
+.card{
+  min-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .card{
+    min-width: 90%;
+  }
+}
