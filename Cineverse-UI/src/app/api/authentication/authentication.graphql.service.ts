@@ -24,28 +24,28 @@ export class AuthenticationGraphqlService {
 
   public loginUser(request: LoginRequestInput): Observable<AuthenticationResponse>
   {
-    return this.apollo.mutate<{authenticationResponse: AuthenticationResponse}>(
+    return this.apollo.mutate<{login: AuthenticationResponse}>(
       loginUserMutation(request)
     ).pipe(
       map(result => {
         if (!result.data)
           throw new Error('No data retrieved via login mutation');
 
-        return result.data.authenticationResponse;
+        return result.data.login;
       }
     ));
   }
 
   public registerUser(request: RegisterRequestInput) : Observable<AuthenticationResponse>
   {
-    return this.apollo.mutate<{authenticationResponse: AuthenticationResponse}>(
+    return this.apollo.mutate<{register: AuthenticationResponse}>(
       registerUserMutation(request)
     ).pipe(
       map(result => {
         if (!result.data)
           throw new Error('No data retrieved via register mutation');
 
-        return result.data.authenticationResponse;
+        return result.data.register;
       })
     );
   }
