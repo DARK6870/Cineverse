@@ -9,7 +9,7 @@ import { Message } from 'primeng/message';
 import { InputOtp } from 'primeng/inputotp';
 import { AuthenticationService } from '../../../../services/authentication/authentication.service';
 import { UserStatus } from '../../../../utils/types/jwt-payload';
-import { JwtClaimsService } from '../../../../services/jwt/jwt-claims.service';
+import { JwtClaimsService } from '../../../../services/jwt-claims/jwt-claims.service';
 
 @Component({
   selector: 'app-confirm-email',
