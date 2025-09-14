@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
-import { JwtClaimsService } from '../../../services/jwt/jwt-claims.service';
 
 @Component({
   selector: 'app-account',
@@ -12,8 +11,7 @@ import { JwtClaimsService } from '../../../services/jwt/jwt-claims.service';
 export class Account implements OnInit{
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private jwtClaimService: JwtClaimsService
+    private authenticationService: AuthenticationService
   ) {
   }
 

@@ -8,8 +8,8 @@ import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { Message } from 'primeng/message';
 import { InputOtp } from 'primeng/inputotp';
 import { AuthenticationService } from '../../../../services/authentication/authentication.service';
-import { JwtClaimsService } from '../../../../services/jwt/jwt-claims.service';
 import { UserStatus } from '../../../../utils/types/jwt-payload';
+import { JwtClaimsService } from '../../../../services/jwt/jwt-claims.service';
 
 @Component({
   selector: 'app-confirm-email',
