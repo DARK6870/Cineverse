@@ -1,15 +1,21 @@
-﻿import { ApolloClient, InMemoryCache, createHttpLink, from } from '@apollo/client/core';
+﻿import { InMemoryCache, createHttpLink, from } from '@apollo/client/core';
 import { onError } from '@apollo/client/link/error';
 import { AuthLink } from './auth.link';
+import { ToastService } from '../services/toast/toast.service';
+import { inject } from '@angular/core';
 
 export function createApolloClient(authLink: AuthLink) {
+  const toastService = inject(ToastService);
+
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
-      graphQLErrors.forEach(({ message, locations, path }) => {
-        console.error(`GraphQL Error: ${message}`, locations, path);
+      graphQLErrors.forEach(({ message }) => {
+        toastService.error(message);
+        console.error(message);
       });
     }
-    if (networkError) {
+    else if (networkError) {
+      toastService.error('Network Error');
       console.error('Network Error:', networkError);
     }
   });

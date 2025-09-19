@@ -8,8 +8,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { providePrimeNG } from 'primeng/config';
 import MyPreset from '../mypreset';
-import { errorInterceptor } from './utils/interceptors/error.interceptor';
-import { MessageService } from 'primeng/api';
 import { CookieService } from 'ngx-cookie-service';
 import { createApolloClient } from './apollo/apollo.config';
 import { AuthLink } from './apollo/auth.link';
@@ -25,12 +23,11 @@ export const appConfig: ApplicationConfig = {
         }
       }
     }),
-    MessageService,
     CookieService,
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([errorInterceptor])),
+    provideHttpClient(),
     provideApollo(() => createApolloClient(inject(AuthLink)))
   ]
 };

@@ -4,7 +4,7 @@ export const getActiveScreeningMovieIdsQuery = ({
   query: gql`
   query getScreenings($currentDate: LocalDate!) {
     screenings(
-    take: 25,
+    take: 250,
     where: { date: { gt: $currentDate } },
     order: { date: ASC }
   )

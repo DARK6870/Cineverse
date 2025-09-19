@@ -1,10 +1,10 @@
 ﻿import { Injectable } from '@angular/core';
 import { AuthenticationGraphqlService } from '../../api/authentication/authentication.graphql.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { firstValueFrom } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 import { AuthenticationResponse } from '../../api/authentication/authentication.graphql.types';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -14,7 +14,7 @@ export class AuthenticationService {
     private tokenStorageService: TokenStorageService,
     private router: Router,
     private route: ActivatedRoute,
-    private messageService: MessageService
+    private toastService: ToastService
   ) {
   }
 
@@ -33,7 +33,7 @@ export class AuthenticationService {
           const callbackUrl = this.route.snapshot.queryParamMap.get('callbackUrl') || '/';
 
           this.router.navigate([callbackUrl]).then(() => {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Successfully logged in' });
+            this.toastService.success('Successfully logged in');
           })
         }})
   }
@@ -54,7 +54,7 @@ export class AuthenticationService {
           this.tokenStorageService.saveRefreshToken(loginResponse.refreshToken);
 
           this.router.navigate(['/confirm-email/true']).then(() => {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Account created successfully' });
+            this.toastService.success('Account created successfully');
           });
         }
       })
@@ -68,7 +68,7 @@ export class AuthenticationService {
           this.tokenStorageService.deleteTokens();
 
           this.router.navigate(['/login']).then(() => {
-            this.messageService.add({ severity: 'info', summary: 'Logout', detail: 'You have been logged out' });
+            this.toastService.info('You have been logged out');
           });
         }
       })
@@ -83,7 +83,7 @@ export class AuthenticationService {
         ['/login'],
         { queryParams: {callbackUrl} }
       ).then(() => {
-        this.messageService.add({severity: 'info', summary: 'Authorization required', detail: 'Please login into your account'});
+        this.toastService.info('Please login into your account');
       });
       throw new Error('Authorization required');
     }
@@ -120,7 +120,7 @@ export class AuthenticationService {
 
     if (refreshToken) {
       this.router.navigate(['/account']).then(() => {
-        this.messageService.add({severity: 'info', summary: 'Already authorized', detail: 'You are already authorized', life: 4000000});
+        this.toastService.info('You are already authorized');
       });
 
       return false;

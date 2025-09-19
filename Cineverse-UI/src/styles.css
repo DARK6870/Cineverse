@@ -45,12 +45,6 @@ body{
   margin-bottom: 1rem;
 }
 
-.custom-toast {
-  transform: scale(0.85) translateX(7%);
-  transform-origin: top right;
-  margin: 0.5rem;
-}
-
 .cineverse-logo{
   width: 250px;
 }

@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
-import { JwtPayload } from '../../utils/types/jwt-payload';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { JwtPayload } from '../../utils/models/jwt-payload.model';
 
 @Injectable({ providedIn: 'root' })
 export class JwtClaimsService {

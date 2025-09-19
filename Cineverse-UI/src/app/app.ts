@@ -1,10 +1,10 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { Header } from './components/shared/header/header';
-import { Footer } from './components/shared/footer/footer';
+import { Header } from './components/header/header';
+import { Footer } from './components/footer/footer';
 import { filter } from 'rxjs';
-import { Toast } from 'primeng/toast';
-import { LoadingOverlay } from './components/shared/loading-overlay/loading-overlay';
+import { LoadingOverlay } from './components/loading-overlay/loading-overlay';
+import { ToastContainer } from './components/toast/toast-container/toast-container';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +12,8 @@ import { LoadingOverlay } from './components/shared/loading-overlay/loading-over
     RouterOutlet,
     Header,
     Footer,
-    Toast,
-    LoadingOverlay
+    LoadingOverlay,
+    ToastContainer
   ],
   templateUrl: 'app.html',
   styleUrl: 'app.css'
