@@ -15,7 +15,6 @@ export function createApolloClient(authLink: AuthLink) {
       });
     }
     else if (networkError) {
-      toastService.error('Network Error');
       console.error('Network Error:', networkError);
     }
   });
