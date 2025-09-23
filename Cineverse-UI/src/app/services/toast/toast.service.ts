@@ -3,6 +3,7 @@ import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
+  private _queue : Toast[] = [];
   private _toasts = signal<Toast[]>([]);
   public toasts$ = this._toasts;
 
@@ -14,8 +15,19 @@ export class ToastService {
       type
     };
 
-    this._toasts.update(list => [...list, toast]);
-    setTimeout(() => this.remove(id), 3000);
+    this._queue.push(toast);
+    if (this._toasts().length === 0) {
+      this.displayNext();
+    }
+  }
+
+  private displayNext() {
+    if (this._queue.length === 0) return;
+
+    const toast = this._queue.shift()!;
+    this._toasts.set([toast]);
+
+    setTimeout(() => this.remove(toast.id), 3000);
   }
 
   success(message: string) {
@@ -40,7 +52,8 @@ export class ToastService {
     );
 
     setTimeout(() => {
-      this._toasts.update(list => list.filter(t => t.id !== id));
+      this._toasts.set([]);
+      this.displayNext();
     }, 300);
   }
 }
