@@ -1,4 +1,5 @@
 ﻿using Cineverse.Api.GraphQl.Base;
+using Cineverse.Application.MediatR.Requests.Movies.GetMovieById;
 using Cineverse.Application.MediatR.Requests.Movies.GetMovies;
 using Cineverse.Infrastructure.Common.Constants;
 using Cineverse.Mongo.Schemas.Entities;
@@ -22,5 +23,14 @@ public class MovieQuery
     )
     {
         return mediator.Send(new GetMoviesRequest(), cancellationToken);
+    }
+
+    public async Task<MovieEntity?> GetMovieById(
+        [Service] IMediator mediator,
+        string id,
+        CancellationToken cancellationToken
+    )
+    {
+        return await mediator.Send(new GetMovieByIdRequest(id), cancellationToken);
     }
 }

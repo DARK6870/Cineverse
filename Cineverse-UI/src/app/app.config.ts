@@ -11,9 +11,18 @@ import MyPreset from '../mypreset';
 import { CookieService } from 'ngx-cookie-service';
 import { createApolloClient } from './apollo/apollo.config';
 import { AuthLink } from './apollo/auth.link';
+import { CLIPBOARD_OPTIONS, ClipboardButtonComponent, provideMarkdown } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideMarkdown({
+      clipboardOptions: {
+        provide: CLIPBOARD_OPTIONS,
+        useValue: {
+          buttonComponent: ClipboardButtonComponent,
+        },
+      },
+    }),
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {

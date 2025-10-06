@@ -34,6 +34,7 @@
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "ngx-cookie-service": "^20.1.0",
+    "ngx-markdown": "^20.1.0",
     "primeicons": "^7.0.0",
     "primeng": "^20.0.1",
     "rxjs": "~7.8.0",

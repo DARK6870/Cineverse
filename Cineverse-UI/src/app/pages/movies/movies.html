@@ -11,10 +11,8 @@
     </div>
 
     <!-- Filtering / Search -->
-    <div class="flex items-center gap-1 mt-2 mb-2">
-      <h2 class="text-2xl font-bold mb-6 text-gray-800">Now showing</h2>
-
-      <div class="search ml-auto">
+    <div class="flex items-center gap-1 mt-2 mb-5">
+      <div class="search">
         <p-iconfield>
           <p-inputicon class="pi pi-search" />
           <input type="text" pInputText placeholder="Search" />
@@ -41,8 +39,8 @@
             />
           </div>
           <div class="p-3 flex flex-col flex-1">
-            <h3 class="font-bold text-lg mb-1">{{ movie.title }}</h3>
-            <p class="text-gray-600 text-sm mb-2">
+            <h3 class="font-bold text-lg">{{ movie.title }}</h3>
+            <p class="text-gray-600 text-sm mb">
               Genre: <strong>{{ movie.genre }}</strong>
             </p>
             <div class="mt-auto">

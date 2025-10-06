@@ -4,7 +4,7 @@
 }
 
 .poster-container{
-  height: 425px;
+  height: 400px;
 }
 
 .movie-card {
@@ -26,7 +26,7 @@
 
 @media (max-width: 768px) {
   .poster-container{
-    height: 305px;
+    height: 270px;
   }
 }
 

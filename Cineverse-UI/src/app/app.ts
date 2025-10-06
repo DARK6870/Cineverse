@@ -13,7 +13,7 @@ import { ToastContainer } from './components/toast/toast-container/toast-contain
     Header,
     Footer,
     LoadingOverlay,
-    ToastContainer
+    ToastContainer,
   ],
   templateUrl: 'app.html',
   styleUrl: 'app.css'

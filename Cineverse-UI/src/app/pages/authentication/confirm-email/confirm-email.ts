@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationGraphqlService } from '../../../api/authentication/authentication.graphql.service';
@@ -9,7 +9,8 @@ import { InputOtp } from 'primeng/inputotp';
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { JwtClaimsService } from '../../../services/jwt-claims/jwt-claims.service';
 import { UserStatus } from '../../../utils/models/jwt-payload.model';
-import {ToastService} from '../../../services/toast/toast.service';
+import { ToastService} from '../../../services/toast/toast.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-confirm-email',
@@ -43,6 +44,7 @@ export class ConfirmEmail implements OnInit {
     private toastService: ToastService,
     private cdr: ChangeDetectorRef,
     private jwtClaimsService: JwtClaimsService,
+    private destroyRef: DestroyRef
   ) {
     this.confirmEmailForm = fb.group({
       verificationCode: ['', [Validators.required, Validators.minLength(5)]],
@@ -50,27 +52,29 @@ export class ConfirmEmail implements OnInit {
   }
 
   async ngOnInit() {
+    this.authService.requireRefreshToken();
+
     if ((await this.jwtClaimsService.decodeTokenAsync()).userStatus != UserStatus.PendingEmailConfirmation) {
       this.router.navigate(['/account']).then(() => {
         this.toastService.warning('Email already confirmed');
       });
     }
 
-    this.route.queryParamMap.subscribe(params => {
-      const sent = params.get('sent');
-      const verificationCode = params.get('verificationCode');
+    this.route.queryParamMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(params => {
+        const sent = params.get('sent');
+        const verificationCode = params.get('verificationCode');
 
-      if (sent === 'true') {
-        this.startCountDown();
-      }
+        if (sent === 'true') {
+          this.startCountDown();
+        }
 
-      if (verificationCode) {
-        this.confirmEmailForm.patchValue({ verificationCode });
-        this.onSubmit();
-      }
-    });
-
-    this.authService.requireRefreshToken();
+        if (verificationCode) {
+          this.confirmEmailForm.patchValue({ verificationCode });
+          this.onSubmit();
+        }
+      });
   }
 
   async onSubmit() {

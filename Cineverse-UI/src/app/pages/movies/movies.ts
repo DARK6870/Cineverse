@@ -4,12 +4,13 @@ import { Movie } from '../../api/movie/movie.graphql.types';
 import { firstValueFrom } from 'rxjs';
 import { ScreeningGraphqlService } from '../../api/screening/screening.graphql.service';
 import { LoadingService } from '../../services/loading/loading.service';
-import {Button} from 'primeng/button';
-import {RouterLink} from '@angular/router';
-import {InputText} from 'primeng/inputtext';
-import {InputIcon} from 'primeng/inputicon';
-import {IconField} from 'primeng/iconfield';
+import { Button } from 'primeng/button';
+import { RouterLink } from '@angular/router';
+import { InputText } from 'primeng/inputtext';
+import { InputIcon } from 'primeng/inputicon';
+import { IconField } from 'primeng/iconfield';
 
+// TODO: create a card component
 @Component({
   selector: 'app-movies',
   imports: [

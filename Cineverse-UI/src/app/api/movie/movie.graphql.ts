@@ -29,3 +29,25 @@ export const getMoviesByIdsQuery = (ids: string[]) : QueryOptions => ({
     allowAnonymous: true
   }
 });
+
+export const getMovieByIdQuery = (id : string) : QueryOptions => ({
+  query: gql`
+  query getMovieById($id: String!){
+  movieById(id: $id){
+      id
+      title
+      genre
+      description
+      posterUrl
+      trailerUrl
+      releaseDate
+      duration
+      dateCreated
+  }
+}
+`,
+  variables: {id : id},
+  context: {
+    allowAnonymous: true
+  }
+})

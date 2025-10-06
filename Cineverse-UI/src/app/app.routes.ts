@@ -6,7 +6,7 @@ import { Login } from './pages/authentication/login/login';
 import { Register } from './pages/authentication/register/register';
 import { Account } from './pages/account/account';
 import { Movies } from './pages/movies/movies';
-import { Movie } from './pages/movies/movie-details/movie';
+import { MovieDetails } from './pages/movies/movie-details/movie-details';
 import { ConfirmEmail } from './pages/authentication/confirm-email/confirm-email';
 import { Logout } from './pages/authentication/logout/logout';
 import { Booking } from './pages/booking/booking';
@@ -49,7 +49,7 @@ export const routes: Routes = [
   },
   {
     path: 'movies-details/:movieId',
-    component: Movie,
+    component: MovieDetails,
     title: 'Movie Details'
   },
   {
