@@ -72,11 +72,18 @@
       @for (screening of screenings(); track screening.id)
       {
         <div class="feature text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-          <h3 class="font-bold text-gray-800 mb-2">{{ movie()?.title }}</h3>
+          <h3 class="text-xl font-bold text-gray-800">{{ movie()?.title }}</h3>
           <p class="text-gray-700">
-            {{ getDayName(screening.date) }}
-            {{ screening.startTime.slice(0, -3) }} -  {{ screening.endTime.slice(0, -3) }}
+            {{ getDayName(screening.date) }} <br>
+            <small>{{ screening.startTime.slice(0, -3) }} -  {{ screening.endTime.slice(0, -3) }}</small>
           </p>
+          <p-button
+            severity="primary"
+            label="Buy Ticket"
+            icon="pi pi-ticket"
+            styleClass="p-button-sm w-full mt-2"
+            [routerLink]=""
+          ></p-button>
         </div>
       }
     </div>

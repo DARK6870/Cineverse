@@ -1,7 +1,7 @@
 import { Component, DestroyRef, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MovieGraphqlService } from '../../../api/movie/movie.graphql.service';
-import {firstValueFrom, lastValueFrom} from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { Movie } from '../../../api/movie/movie.graphql.types';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -9,11 +9,15 @@ import { ToastService } from '../../../services/toast/toast.service';
 import { MarkdownComponent } from 'ngx-markdown';
 import { Screening } from '../../../api/screening/screening.graphql.types';
 import { ScreeningGraphqlService } from '../../../api/screening/screening.graphql.service';
+import { LoadingService } from '../../../services/loading/loading.service';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-movies-details',
   imports: [
-    MarkdownComponent
+    MarkdownComponent,
+    Button,
+    RouterLink
   ],
   templateUrl: 'movie-details.html',
   styleUrl: 'movie-details.css'
@@ -30,11 +34,14 @@ export class MovieDetails implements OnInit {
     private screeningGraphqlService: ScreeningGraphqlService,
     private destroyRef: DestroyRef,
     private sanitizer: DomSanitizer,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private loadingService: LoadingService
   ) {
 
   }
     async ngOnInit() {
+    this.loadingService.show();
+
       this.route.paramMap
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(async paramMap => {
@@ -62,8 +69,10 @@ export class MovieDetails implements OnInit {
 
           this.movie.set(movie);
           this.screenings.set(screenings);
-        });
-    }
+
+          this.loadingService.hide();
+      });
+  }
 
   getDayName(dateString: string): string {
     const date = new Date(dateString);

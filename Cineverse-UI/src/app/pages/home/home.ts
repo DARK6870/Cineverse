@@ -8,7 +8,6 @@ import { LoadingService } from '../../services/loading/loading.service';
 import { RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Movie } from '../../api/movie/movie.graphql.types';
-import { ToastService } from '../../services/toast/toast.service';
 
 // TODO: create card component
 @Component({
