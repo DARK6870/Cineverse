@@ -1,7 +1,11 @@
 ﻿import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
-import {getActiveScreeningMovieIdsQuery, getActiveScreeningsByMovieIdQuery} from './screening.graphql';
+import {
+  getActiveScreeningMovieIdsQuery,
+  getActiveScreeningsByMovieIdQuery,
+  getScreeningByIdQuery
+} from './screening.graphql';
 import { Screening } from './screening.graphql.types';
 
 @Injectable({providedIn: 'root'})
@@ -23,4 +27,12 @@ export class ScreeningGraphqlService {
       map((result => result.data.screenings.items))
     );
   };
+
+  public getScreeningById(id: string): Observable<Screening> {
+    return this.apollo.watchQuery<{ screeningById: Screening }>(
+      getScreeningByIdQuery(id)
+    ).valueChanges.pipe(
+      map((result => result.data.screeningById))
+    )
+  }
 }

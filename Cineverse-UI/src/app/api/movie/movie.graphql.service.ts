@@ -19,6 +19,7 @@ export class MovieGraphqlService {
     );
   }
 
+  // TODO: Change to watchQuery< { type } >
   public getMovieById(id: string): Observable<Movie> {
     return this.apollo.watchQuery(
       getMovieByIdQuery(id)

@@ -62,6 +62,7 @@ export class MovieDetails implements OnInit {
             <string>this.sanitizer.bypassSecurityTrustResourceUrl(movie.trailerUrl)
           );
 
+          // TODO: Get Screening for next 7 days
           // Get Screenings
           const screenings = await firstValueFrom(
             this.screeningGraphqlService.getActiveScreeningsForMovie(movieId)
@@ -77,5 +78,11 @@ export class MovieDetails implements OnInit {
   getDayName(dateString: string): string {
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, { weekday: 'long' });
+  }
+
+  getFriendlyDate(dateString: string): string {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long' };
+    return date.toLocaleDateString('en-GB', options);
   }
 }

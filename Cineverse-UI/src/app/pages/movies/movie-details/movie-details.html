@@ -12,7 +12,7 @@
     </div>
 
     <!-- Movie Details -->
-    <div class="bg-gray-50 rounded-2xl p-6 flex flex-col md:flex-row gap-6 md:gap-10 mb-8 shadow-sm items-start">
+    <div class="bg-gray-50 rounded-2xl p-6 flex flex-col md:flex-row gap-6 md:gap-10 mb-8 shadow-sm items-center">
       <!-- Poster -->
       <div class="flex-shrink-0 poster-container relative rounded-xl overflow-hidden flex justify-center">
         <img
@@ -68,21 +68,24 @@
     </div>
 
     <!-- Screenings -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-5 mb-5">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-5 mb-5">
       @for (screening of screenings(); track screening.id)
       {
         <div class="feature text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
           <h3 class="text-xl font-bold text-gray-800">{{ movie()?.title }}</h3>
           <p class="text-gray-700">
-            {{ getDayName(screening.date) }} <br>
-            <small>{{ screening.startTime.slice(0, -3) }} -  {{ screening.endTime.slice(0, -3) }}</small>
+            {{ getDayName(screening.date) }}, {{ getFriendlyDate(screening.date) }} <br>
+
+            <span class="mt-2 mb-2 inline-block bg-gray-600 text-gray-100 text-xs font-medium px-2 py-1 rounded-full">
+              <b>{{ screening.startTime.slice(0, -3) }} - {{ screening.endTime.slice(0, -3) }}</b>
+            </span>
           </p>
           <p-button
             severity="primary"
             label="Buy Ticket"
             icon="pi pi-ticket"
             styleClass="p-button-sm w-full mt-2"
-            [routerLink]=""
+            [routerLink]="'/book/' + screening.id"
           ></p-button>
         </div>
       }

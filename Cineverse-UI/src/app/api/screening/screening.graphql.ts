@@ -28,7 +28,7 @@ export const getActiveScreeningMovieIdsQuery = ({
 export const getActiveScreeningsByMovieIdQuery = (id : string) : QueryOptions => ({
   query: gql`
 query getScreenings($movieId: String!, $currentDate: LocalDate!) {
-  screenings(take: 250, where: {
+  screenings(take: 25, where: {
     movieId: { eq: $movieId },
     date: { gt: $currentDate }
     }) {
@@ -49,6 +49,30 @@ query getScreenings($movieId: String!, $currentDate: LocalDate!) {
   variables: {
     movieId: id,
     currentDate: new Date().toISOString().split('T')[0]
+  },
+  context: {
+    allowAnonymous: true
+  }
+});
+
+
+export const getScreeningByIdQuery = (id: string) : QueryOptions => ({
+  query: gql`
+query getScreeningById($id: String!) {
+  screeningById(id: $id) {
+    id
+    movieId
+    hallId
+    date
+    startTime
+    endTime
+    ticketPrice
+    dateCreated
+  }
+}
+`,
+  variables: {
+    id: id
   },
   context: {
     allowAnonymous: true
