@@ -62,7 +62,6 @@ export class MovieDetails implements OnInit {
             <string>this.sanitizer.bypassSecurityTrustResourceUrl(movie.trailerUrl)
           );
 
-          // TODO: Get Screening for next 7 days
           // Get Screenings
           const screenings = await firstValueFrom(
             this.screeningGraphqlService.getActiveScreeningsForMovie(movieId)

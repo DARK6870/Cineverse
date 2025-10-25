@@ -3,10 +3,10 @@ import { QueryOptions } from '@apollo/client';
 
 export const getActiveScreeningMovieIdsQuery = ({
   query: gql`
-  query getScreenings($currentDate: LocalDate!) {
+  query getScreenings($currentDate: LocalDate!, $endDate: LocalDate!) {
     screenings(
     take: 250,
-    where: { date: { gt: $currentDate } },
+    where: { date: { gt: $currentDate, , lt: $endDate } },
     order: { date: ASC }
   )
   {
@@ -18,7 +18,8 @@ export const getActiveScreeningMovieIdsQuery = ({
   }
   `,
   variables: {
-    currentDate: new Date().toISOString().split('T')[0]
+    currentDate: new Date().toISOString().split('T')[0],
+    endDate: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0]
   },
   context: {
     allowAnonymous: true
@@ -27,10 +28,10 @@ export const getActiveScreeningMovieIdsQuery = ({
 
 export const getActiveScreeningsByMovieIdQuery = (id : string) : QueryOptions => ({
   query: gql`
-query getScreenings($movieId: String!, $currentDate: LocalDate!) {
+query getScreenings($movieId: String!, $currentDate: LocalDate!, $endDate: LocalDate!) {
   screenings(take: 25, where: {
     movieId: { eq: $movieId },
-    date: { gt: $currentDate }
+    date: { gt: $currentDate, lt: $endDate }
     }) {
     totalCount
     items {
@@ -48,7 +49,8 @@ query getScreenings($movieId: String!, $currentDate: LocalDate!) {
 `,
   variables: {
     movieId: id,
-    currentDate: new Date().toISOString().split('T')[0]
+    currentDate: new Date().toISOString().split('T')[0],
+    endDate: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0]
   },
   context: {
     allowAnonymous: true

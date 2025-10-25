@@ -35,7 +35,6 @@ export class Movies implements OnInit {
   async ngOnInit(){
     this.loadingService.show();
 
-    // TODO: get screenings only for this week
     const screeningMovieIds = await firstValueFrom(
       this.screeningGraphqlService.getScreeningMovieIds()
     );
