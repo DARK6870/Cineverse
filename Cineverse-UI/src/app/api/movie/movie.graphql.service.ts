@@ -4,27 +4,24 @@ import { map, Observable } from 'rxjs';
 import { Movie } from './movie.graphql.types';
 import { getMovieByIdQuery, getMoviesByIdsQuery } from './movie.graphql';
 
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable({ providedIn: 'root'})
 export class MovieGraphqlService {
+
   constructor(private apollo: Apollo) {}
 
   public getMoviesByIds(ids: string[]): Observable<Movie[]> {
-    return this.apollo.watchQuery(
+    return this.apollo.watchQuery<{ movies : { items: Movie[] } }>(
       getMoviesByIdsQuery(ids)
     ).valueChanges.pipe(
-      map((result: any) => result.data.movies.items)
+      map(result => result.data.movies.items)
     );
   }
 
-  // TODO: Change to watchQuery< { type } >
   public getMovieById(id: string): Observable<Movie> {
-    return this.apollo.watchQuery(
+    return this.apollo.watchQuery<{ movieById: Movie }>(
       getMovieByIdQuery(id)
     ).valueChanges.pipe(
-      map((result: any) => result.data.movieById)
+      map(result => result.data.movieById)
     );
   }
 }

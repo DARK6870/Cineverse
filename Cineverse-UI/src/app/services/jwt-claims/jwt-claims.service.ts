@@ -7,17 +7,6 @@ export class JwtClaimsService {
 
   constructor(private authenticationService: AuthenticationService) {}
 
-  private decodeTokenPayload(token: string): any {
-    const payloadBase64 = token.split('.')[1];
-    const payloadJson = decodeURIComponent(
-      atob(payloadBase64)
-        .split('')
-        .map(c => '%' + c.charCodeAt(0).toString(16).padStart(2, '0'))
-        .join('')
-    );
-    return JSON.parse(payloadJson);
-  }
-
   public async decodeTokenAsync(): Promise<JwtPayload> {
     const accessToken = await this.authenticationService.getOrGenerateAccessTokenAsync();
     const decoded = this.decodeTokenPayload(accessToken);
@@ -28,5 +17,16 @@ export class JwtClaimsService {
       role: decoded.role,
       userStatus: decoded.user_status,
     };
+  }
+
+  private decodeTokenPayload(token: string): any {
+    const payloadBase64 = token.split('.')[1];
+    const payloadJson = decodeURIComponent(
+      atob(payloadBase64)
+        .split('')
+        .map(c => '%' + c.charCodeAt(0).toString(16).padStart(2, '0'))
+        .join('')
+    );
+    return JSON.parse(payloadJson);
   }
 }

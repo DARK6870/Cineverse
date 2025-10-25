@@ -23,7 +23,7 @@ import { RegisterRequestInput } from '../../../api/authentication/authentication
   styleUrl: 'register.css'
 })
 
-export class Register implements OnInit {
+export class Register {
   registerForm: FormGroup;
   formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
@@ -39,10 +39,6 @@ export class Register implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
     }, {validators: passwordMatchValidator});
-  }
-
-  ngOnInit() {
-    this.authenticationService.ensureUserNotAuthorized();
   }
 
   getErrorMessageByName(controlName: string) : string | null {

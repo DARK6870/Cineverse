@@ -74,6 +74,10 @@ export class AuthenticationService {
       })
   }
 
+  public isAuthenticated(): boolean {
+    return !!this.tokenStorageService.getRefreshToken();
+  }
+
   public requireRefreshToken(): string {
     const refreshToken = this.tokenStorageService.getRefreshToken();
 
@@ -98,10 +102,10 @@ export class AuthenticationService {
     if (cookieAccessToken)
       return cookieAccessToken;
 
-    return await this.regenerateAccessTokenAsync();
+    return await this.generateAccessTokenAsync();
   }
 
-  public async regenerateAccessTokenAsync(): Promise<string> {
+  public async generateAccessTokenAsync(): Promise<string> {
     const refreshToken = this.requireRefreshToken();
 
     const loginResponse = await firstValueFrom(
@@ -113,19 +117,5 @@ export class AuthenticationService {
 
     this.tokenStorageService.saveAccessToken(loginResponse.accessToken);
     return loginResponse.accessToken;
-  }
-
-  public ensureUserNotAuthorized(): boolean{
-    const refreshToken = this.tokenStorageService.getRefreshToken();
-
-    if (refreshToken) {
-      this.router.navigate(['/account']).then(() => {
-        this.toastService.info('You are already authorized');
-      });
-
-      return false;
-    }
-
-    return true;
   }
 }

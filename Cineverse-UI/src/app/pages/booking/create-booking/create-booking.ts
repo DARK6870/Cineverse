@@ -1,12 +1,13 @@
-import {Component, DestroyRef, OnInit, signal} from '@angular/core';
+import { Component, DestroyRef, OnInit, signal } from '@angular/core';
 import { ScreeningGraphqlService } from '../../../api/screening/screening.graphql.service';
 import { LoadingService } from '../../../services/loading/loading.service';
 import { Screening } from '../../../api/screening/screening.graphql.types';
 import { firstValueFrom } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ToastService } from '../../../services/toast/toast.service';
-import { AuthenticationService } from '../../../services/authentication/authentication.service';
+import { JwtClaimsService } from '../../../services/jwt-claims/jwt-claims.service';
+import { UserStatus } from '../../../utils/models/jwt-payload.model';
 
 @Component({
   selector: 'app-create-booking',
@@ -23,13 +24,19 @@ export class CreateBooking implements OnInit {
     private route: ActivatedRoute,
     private destroyRef: DestroyRef,
     private toastService: ToastService,
-    private authenticationService: AuthenticationService
+    private jwtClaimsService: JwtClaimsService,
+    private router: Router
   ) {
   }
 
   async ngOnInit() {
+    if ((await this.jwtClaimsService.decodeTokenAsync()).userStatus != UserStatus.Normal)
+    {
+      this.router.navigate(['/account']).then(() => {
+        this.toastService.warning('Please confirm your email');
+      });
+    }
     this.loadingService.show();
-    this.authenticationService.requireRefreshToken();
 
     this.route.paramMap
       .pipe(takeUntilDestroyed(this.destroyRef))

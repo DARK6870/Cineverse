@@ -52,8 +52,6 @@ export class ConfirmEmail implements OnInit {
   }
 
   async ngOnInit() {
-    this.authService.requireRefreshToken();
-
     if ((await this.jwtClaimsService.decodeTokenAsync()).userStatus != UserStatus.PendingEmailConfirmation) {
       this.router.navigate(['/account']).then(() => {
         this.toastService.warning('Email already confirmed');
@@ -86,7 +84,7 @@ export class ConfirmEmail implements OnInit {
 
       this.authenticationService.confirmEmail(code).subscribe({
         next: () => {
-          this.authService.regenerateAccessTokenAsync();
+          this.authService.generateAccessTokenAsync();
 
           this.router.navigate(['/']).then(() => {
             this.toastService.success('Email confirmed successfully');

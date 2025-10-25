@@ -63,14 +63,14 @@ export class AuthenticationGraphqlService {
   }
 
   public generateAccessToken(refreshToken: string) : Observable<AuthenticationResponse> {
-    return this.apollo.mutate<{authenticationResponse: AuthenticationResponse}>(
+    return this.apollo.mutate<{generateAccessToken: AuthenticationResponse}>(
       generateAccessTokenMutation(refreshToken)
     ).pipe(
       map(result => {
         if (!result.data)
           throw new Error('No data retrieved via generateAccessToken mutation');
 
-        return result.data.authenticationResponse;
+        return result.data.generateAccessToken;
       })
     );
   }

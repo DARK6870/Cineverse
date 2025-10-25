@@ -15,5 +15,4 @@ export class Logout implements OnInit {
     async ngOnInit() {
         await this.authenticationService.logoutUserAsync();
     }
-
 }

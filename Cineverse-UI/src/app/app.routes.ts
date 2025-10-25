@@ -11,6 +11,11 @@ import { ConfirmEmail } from './pages/authentication/confirm-email/confirm-email
 import { Logout } from './pages/authentication/logout/logout';
 import { Booking } from './pages/booking/booking';
 import { CreateBooking } from './pages/booking/create-booking/create-booking';
+import { ChangePassword } from './pages/authentication/change-password/change-password';
+import { PersonalInformation } from './pages/authentication/personal-information/personal-information';
+import { MyBookings } from './pages/booking/my-bookings/my-bookings';
+import { AuthenticationGuard } from './utils/guards/authentication.guard';
+import { NotAuthorizedGuard } from './utils/guards/not-authorized.guard';
 
 export const routes: Routes = [
   {
@@ -31,12 +36,14 @@ export const routes: Routes = [
   {
     path: 'login',
     component: Login,
-    title: 'Login'
+    title: 'Login',
+    canActivate: [NotAuthorizedGuard]
   },
   {
     path: 'register',
     component: Register,
-    title: 'Create an account'
+    title: 'Create an account',
+    canActivate: [NotAuthorizedGuard]
   },
   {
     path: 'account',
@@ -61,16 +68,37 @@ export const routes: Routes = [
   {
     path: 'logout',
     component: Logout,
-    title: 'Logout'
+    title: 'Logout',
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'booking/:bookingId',
     component: Booking,
-    title: 'Booking Details'
+    title: 'Booking Details',
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'book/:screeningId',
     component: CreateBooking,
-    title: 'Create Booking'
+    title: 'Create Booking',
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'change-password',
+    component: ChangePassword,
+    title: 'Change Password',
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'personal-information',
+    component: PersonalInformation,
+    title: 'Personal Information',
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'my-bookings',
+    component: MyBookings,
+    title: 'My Bookings',
+    canActivate: [AuthenticationGuard]
   }
 ];

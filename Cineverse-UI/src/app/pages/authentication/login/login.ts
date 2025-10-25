@@ -22,7 +22,7 @@ import { LoginRequestInput } from '../../../api/authentication/authentication.gr
   styleUrl: 'login.css'
 })
 
-export class Login implements OnInit {
+export class Login {
   loginForm : FormGroup;
   formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
@@ -35,10 +35,6 @@ export class Login implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
-  }
-
-  ngOnInit() {
-    this.authenticationService.ensureUserNotAuthorized();
   }
 
   getErrorMessageByName(controlName: string): string | null {
