@@ -2,7 +2,7 @@
 
 namespace Cineverse.Identity.Services.TokenManagament;
 
-public interface ITokenManagamentService
+public interface ITokenManagementService
 {
     string GenerateJwtToken(UserEntity user);
 }

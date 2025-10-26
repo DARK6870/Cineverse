@@ -2,6 +2,7 @@
 using Cineverse.Identity.Services.Authentication;
 using Cineverse.Identity.Services.EmailVerification;
 using Cineverse.Identity.Services.RefreshToken;
+using Cineverse.Identity.Services.RestorePassword;
 using Cineverse.Identity.Services.TokenManagament;
 using Cineverse.Identity.Services.UserContext;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +21,8 @@ public static class Configuration
             .AddAuth(configuration)
             .AddSingleton<IRefreshTokenService, RefreshTokenService>()
             .AddSingleton<IVerificationService, VerificationService>()
-            .AddSingleton<ITokenManagamentService, TokenManagamentService>()
+            .AddSingleton<IRestorePasswordService, RestorePasswordService>()
+            .AddSingleton<ITokenManagementService, TokenManagementService>()
             .AddScoped<IAuthenticationService, AuthenticationService>()
             .AddScoped<IUserContext, UserContext>();
 

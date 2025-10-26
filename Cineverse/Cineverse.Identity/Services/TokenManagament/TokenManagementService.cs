@@ -8,9 +8,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Cineverse.Identity.Services.TokenManagament;
 
-internal class TokenManagamentService(
+internal class TokenManagementService(
     AuthenticationOptions authenticationOptions
-) : ITokenManagamentService
+) : ITokenManagementService
 {
     private readonly JwtOptions _jwtOptions = authenticationOptions.JwtOptions;
 

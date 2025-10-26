@@ -29,5 +29,14 @@ public class AuthenticationMutationType : ObjectTypeExtension<AuthenticationMuta
         
         descriptor.Field(x => x.GenerateAccessToken(null!, null!, CancellationToken.None))
             .AllowAnonymous();
+        
+        descriptor.Field(x => x.ChangePassword(null!, null!, CancellationToken.None))
+            .Authorize();
+        
+        descriptor.Field(x => x.SendRestorePasswordEmail(null!, null!, CancellationToken.None))
+            .AllowAnonymous();
+        
+        descriptor.Field(x => x.RestorePassword(null!, null!, CancellationToken.None))
+            .AllowAnonymous();
     }
 }

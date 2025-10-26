@@ -20,6 +20,8 @@ public interface IGenericRepository<T> where T : IEntity
 
     Task DeleteOneAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default);
     
+    Task DeleteManyAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default);
+    
     Task ReplaceOneAsync(T entity, CancellationToken cancellationToken = default);
     
     Task<bool> ExistsAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default);

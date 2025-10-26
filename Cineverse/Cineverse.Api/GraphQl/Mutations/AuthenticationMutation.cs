@@ -1,13 +1,13 @@
 ﻿using Cineverse.Api.GraphQl.Base;
+using Cineverse.Application.MediatR.Requests.Authentication.ChangePassword;
 using Cineverse.Application.MediatR.Requests.Authentication.ConfirmEmail;
 using Cineverse.Application.MediatR.Requests.Authentication.DeleteRefreshToken;
 using Cineverse.Application.MediatR.Requests.Authentication.GenerateAccessToken;
 using Cineverse.Application.MediatR.Requests.Authentication.GenerateEmailVerificationCode;
 using Cineverse.Application.MediatR.Requests.Authentication.Login;
 using Cineverse.Application.MediatR.Requests.Authentication.Register;
-using Cineverse.Domain.Common.Exceptions;
+using Cineverse.Application.MediatR.Requests.Authentication.RestorePassword;
 using Cineverse.Infrastructure.Common.Models;
-using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;
 using HotChocolate.Types;
 using MediatR;
@@ -68,5 +68,32 @@ public class AuthenticationMutation
     )
     {
         return await mediator.Send(new DeleteRefreshTokenRequest(), cancellationToken);
+    }
+
+    public async Task<bool> ChangePassword(
+        [Service] IMediator mediator,
+        ChangePasswordRequest request,
+        CancellationToken cancellationToken
+    )
+    {
+        return await mediator.Send(request, cancellationToken);
+    }
+
+    public async Task<bool> SendRestorePasswordEmail(
+        [Service] IMediator mediator,
+        string email,
+        CancellationToken cancellationToken
+    )
+    {
+        return await mediator.Send(new SendRestorePasswordEmailRequest(email), cancellationToken);
+    }
+
+    public async Task<bool> RestorePassword(
+        [Service] IMediator mediator,
+        RestorePasswordRequest request,
+        CancellationToken cancellationToken
+    )
+    {
+        return await mediator.Send(request, cancellationToken);
     }
 }

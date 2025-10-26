@@ -27,7 +27,8 @@ public static class BookingExtension
             .AppendLineBreak()
             .AppendLineBreak()
             .AppendText("We are waiting for you on ").AppendBold($"{screeningDate} | {screeningTime}")
-            .AppendAction(actionUrl, "to view booking details");
+            .AppendAction(actionUrl, "to view booking details")
+            ;
         
         await notificationService.SendEmailNotificationAsync(emailTo, "Ticket Booking", notification);
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
@@ -50,7 +50,7 @@ export class Register {
     return control?.invalid && (control.touched || this.formSubmitted);
   }
 
-  onSubmit(){
+  protected onSubmit(){
     this.registerForm.markAllAsTouched();
     this.formSubmitted = true;
 

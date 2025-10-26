@@ -17,7 +17,7 @@ public class GenerateEmailVerificationCodeHandler(
         if (userContext.UserStatus is not UserStatus.PendingEmailConfirmation)
             throw new ApiRequestException("Email already confirmed", HttpStatusCode.Conflict);
         
-        await verificationService.GenerateVerificationCodeAsync(userContext.Email, userContext.UserName);
+        await verificationService.GenerateAndSendVerificationCodeAsync(userContext.Email, userContext.UserName);
         
         return true;
     }

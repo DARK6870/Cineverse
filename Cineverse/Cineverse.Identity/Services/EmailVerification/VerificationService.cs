@@ -15,7 +15,7 @@ internal class VerificationService(
     IOptions<NotificationLinksOptions> notificationLinksOptions
 ) : IVerificationService
 {
-    public async Task<int> GenerateVerificationCodeAsync(string email, string fullName)
+    public async Task<int> GenerateAndSendVerificationCodeAsync(string email, string fullName)
     {
         if (cache.TryGetValue<int>(CacheConstants.VerificationCodeCacheKey(email), out var _))
             throw new ApiRequestException("You already received verification code, try again later", HttpStatusCode.BadRequest);
@@ -30,7 +30,14 @@ internal class VerificationService(
             TimeSpan.FromMinutes(CacheConstants.VerificationCodeCacheLifetimeMinutes)
         );
 
-        await SendVerificationEmailAsync(email, fullName, verificationCode);
+        var actionUrl = notificationLinksOptions.Value.BuildBookingDetailsUrl(email);
+        await notificationService.SendVerificationEmailAsync(
+            email,
+            fullName,
+            verificationCode,
+            actionUrl
+        );
+        
         return verificationCode;
     }
 
@@ -40,19 +47,5 @@ internal class VerificationService(
             return Task.FromResult(false);
 
         return Task.FromResult(verificationCode == cachedCode);
-    }
-
-    private async Task SendVerificationEmailAsync(string email, string fullName, int verificationCode)
-    {
-        // TODO: maybe change this
-        var confirmEmailUrl = notificationLinksOptions.Value.BaseUrl +
-                              notificationLinksOptions.Value.ConfirmEmailPath.Replace("code", verificationCode.ToString());
-
-        await notificationService.SendVerificationEmailAsync(
-            email,
-            fullName,
-            verificationCode,
-            confirmEmailUrl
-        );
     }
 }

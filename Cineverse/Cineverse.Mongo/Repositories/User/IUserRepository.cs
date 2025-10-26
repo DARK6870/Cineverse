@@ -11,4 +11,6 @@ public interface IUserRepository : IGenericRepository<UserEntity>
     Task CreateUserAsync(UserEntity user, string password);
     
     Task<bool> UpdateUserStatusAsync(string userId, UserStatus status);
+
+    Task<bool> UpdateUserPasswordAsync(string userId, string password);
 }

@@ -22,7 +22,8 @@ public static class VerificationCodeExtension
             .AppendText("Your verification code is ").AppendBold(verificationCode.ToString())
             .AppendLineBreak()
             .AppendSmall("The code will be valid for 2 minutes")
-            .AppendAction(actionUrl, "to confirm your email");
+            .AppendAction(actionUrl, "to confirm your email")
+            ;
         
         await notificationService.SendEmailNotificationAsync(emailTo, "Email Confirmation Code", notification);
     }

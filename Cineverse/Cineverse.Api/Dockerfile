@@ -34,6 +34,4 @@ WORKDIR /cineverse
 COPY --from=build /cineverse/publish .
 COPY NotificationTemplates /cineverse/NotificationTemplates
 
-RUN ls -la /cineverse
-
 ENTRYPOINT ["dotnet", "Cineverse.Api.dll"]

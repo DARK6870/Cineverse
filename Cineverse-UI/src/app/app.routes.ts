@@ -16,6 +16,8 @@ import { PersonalInformation } from './pages/authentication/personal-information
 import { MyBookings } from './pages/booking/my-bookings/my-bookings';
 import { AuthenticationGuard } from './utils/guards/authentication.guard';
 import { NotAuthorizedGuard } from './utils/guards/not-authorized.guard';
+import { RestorePasswordRequest } from './pages/authentication/restore-password/restore-password-request/restore-password-request';
+import { RestorePasswordConfirm } from './pages/authentication/restore-password/restore-password-confirm/restore-password-confirm';
 
 export const routes: Routes = [
   {
@@ -100,5 +102,18 @@ export const routes: Routes = [
     component: MyBookings,
     title: 'My Bookings',
     canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'restore-password',
+    component: RestorePasswordRequest,
+    title: 'Restore Password',
+    canActivate: [NotAuthorizedGuard],
+    pathMatch: 'full'
+  },
+  {
+    path: 'restore-password/:email/:code',
+    component: RestorePasswordConfirm,
+    title: 'Restore Password',
+    canActivate: [NotAuthorizedGuard]
   }
 ];

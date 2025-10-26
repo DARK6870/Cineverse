@@ -3,7 +3,10 @@ import { AuthenticationGraphqlService } from '../../api/authentication/authentic
 import { Router, ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
-import { AuthenticationResponse } from '../../api/authentication/authentication.graphql.types';
+import {
+  AuthenticationResponse, ChangePasswordRequestInput,
+  RestorePasswordRequestInput
+} from '../../api/authentication/authentication.graphql.types';
 import { ToastService } from '../toast/toast.service';
 
 @Injectable({ providedIn: 'root' })
@@ -117,5 +120,21 @@ export class AuthenticationService {
 
     this.tokenStorageService.saveAccessToken(loginResponse.accessToken);
     return loginResponse.accessToken;
+  }
+
+  public async restorePasswordAsync(request: RestorePasswordRequestInput) : Promise<void> {
+    await firstValueFrom(
+      this.authenticationGraphQlService.restorePassword(request)
+    );
+
+    this.tokenStorageService.deleteTokens();
+  }
+
+  public async changePasswordAsync(request: ChangePasswordRequestInput) : Promise<void> {
+    await firstValueFrom(
+      this.authenticationGraphQlService.changePassword(request)
+    );
+
+    this.tokenStorageService.deleteTokens();
   }
 }

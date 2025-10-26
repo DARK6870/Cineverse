@@ -2,17 +2,18 @@
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 import {
-  AuthenticationResponse,
+  AuthenticationResponse, ChangePasswordRequestInput,
   LoginRequestInput,
-  RegisterRequestInput
+  RegisterRequestInput, RestorePasswordRequestInput
 } from './authentication.graphql.types';
 import {
+  changePasswordMutation,
   confirmEmailMutation,
   deleteRefreshTokenMutation,
   generateAccessTokenMutation,
   loginUserMutation,
   registerUserMutation,
-  resendEmailVerificationCodeMutation
+  resendEmailVerificationCodeMutation, restorePasswordMutation, sendRestorePasswordEmailMutation
 } from './authentication.graphql';
 
 @Injectable({
@@ -80,4 +81,24 @@ export class AuthenticationGraphqlService {
       deleteRefreshTokenMutation
     );
   }
+
+  public changePassword(request: ChangePasswordRequestInput) : Observable<any> {
+    return this.apollo.mutate(
+      changePasswordMutation(request)
+    );
+  }
+
+  public sendRestorePasswordEmail(email: string) : Observable<any> {
+    return this.apollo.mutate(
+      sendRestorePasswordEmailMutation(email)
+    );
+  }
+
+  public restorePassword(request: RestorePasswordRequestInput) : Observable<any> {
+    return this.apollo.mutate(
+      restorePasswordMutation(request)
+    );
+  }
 }
+
+// TODO: Add Invalid request, no active sessions found handler

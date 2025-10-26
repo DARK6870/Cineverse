@@ -38,4 +38,16 @@ public class UserRepository(
         
         return result.ModifiedCount > 0;
     }
+
+    public async Task<bool> UpdateUserPasswordAsync(string userId, string password)
+    {
+        var passwordHash = HashHelper.ComputeHash(password);
+        
+        var result = await Collection.UpdateOneAsync(
+            x => x.Id == userId,
+            Update.Set(x => x.PasswordHash, passwordHash)
+        );
+        
+        return result.ModifiedCount > 0;
+    }
 }

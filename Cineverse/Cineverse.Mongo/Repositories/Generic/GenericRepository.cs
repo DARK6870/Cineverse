@@ -75,6 +75,11 @@ public class GenericRepository<T>(
         await Collection.DeleteOneAsync(filter, cancellationToken: cancellationToken);
     }
 
+    public async Task DeleteManyAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+    {
+        await Collection.DeleteManyAsync(filter, cancellationToken);
+    }
+
     public async Task ReplaceOneAsync(
         T entity,
         CancellationToken cancellationToken = default

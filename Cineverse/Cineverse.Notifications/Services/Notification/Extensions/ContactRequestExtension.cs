@@ -33,7 +33,8 @@ public static class ContactRequestExtension
             .AppendLineBreak()
             .AppendSmall("Please review this request and respond to the user as soon as possible")
             .AppendLineBreak()
-            .AppendParagraphEnd();
+            .AppendParagraphEnd()
+            ;
         
         await notificationService.SendEmailNotificationAsync(emailTo, "Contact Request", notification);
     }

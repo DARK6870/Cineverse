@@ -13,7 +13,7 @@ namespace Cineverse.Identity.Services.Authentication;
 
 public class AuthenticationService(
     IUserRepository userRepository,
-    ITokenManagamentService tokenManagamentService,
+    ITokenManagementService tokenManagementService,
     IRefreshTokenService refreshTokenService,
     IVerificationService verificationService,
     IUserContext userContext
@@ -38,14 +38,14 @@ public class AuthenticationService(
         };
         await userRepository.CreateUserAsync(user, password);
 
-        await verificationService.GenerateVerificationCodeAsync(email, $"{firstName} {lastName}");
+        await verificationService.GenerateAndSendVerificationCodeAsync(email, $"{firstName} {lastName}");
 
         var refreshTokenEntity = await refreshTokenService.CreateOrUpdateTokenAsync(
             user.Id,
             userContext.IpAddress
         );
         
-        var accessToken = tokenManagamentService.GenerateJwtToken(user);
+        var accessToken = tokenManagementService.GenerateJwtToken(user);
         
         return new AuthenticationResponse(refreshTokenEntity.Token, accessToken);
     }
@@ -76,7 +76,7 @@ public class AuthenticationService(
             userContext.IpAddress
         );
         
-        var accessToken = tokenManagamentService.GenerateJwtToken(user);
+        var accessToken = tokenManagementService.GenerateJwtToken(user);
 
         return new AuthenticationResponse(refreshTokenEntity.Token, accessToken);
     }
@@ -86,16 +86,11 @@ public class AuthenticationService(
         var token = await refreshTokenService.GetRefreshTokenAsync(
             refreshToken,
             userContext.IpAddress
-        ) ??  throw new ApiRequestException("Invalid request, no active sessions found", HttpStatusCode.BadRequest);
+        ) ??  throw new ApiRequestException("No active sessions found", HttpStatusCode.BadRequest);
 
         var user = await userRepository.FindByIdOrThrowAsync(token.UserId);
-        var accessToken = tokenManagamentService.GenerateJwtToken(user);
+        var accessToken = tokenManagementService.GenerateJwtToken(user);
         
         return new AuthenticationResponse(refreshToken, accessToken);
-    }
-
-    public Task GenerateVerificationCodeAsync(string email, string fullName)
-    {
-        return verificationService.GenerateVerificationCodeAsync(email, fullName);
     }
 }

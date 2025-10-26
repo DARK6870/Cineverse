@@ -1,6 +1,11 @@
 ﻿import { MutationOptions } from '@apollo/client';
 import { gql } from 'apollo-angular';
-import {LoginRequestInput, RegisterRequestInput} from './authentication.graphql.types';
+import {
+  ChangePasswordRequestInput,
+  LoginRequestInput,
+  RegisterRequestInput,
+  RestorePasswordRequestInput
+} from './authentication.graphql.types';
 
 export const loginUserMutation = (request: LoginRequestInput) : MutationOptions => ({
   mutation: gql`
@@ -84,4 +89,43 @@ export const deleteRefreshTokenMutation = ({
   deleteRefreshToken
 }
 `
+});
+
+export const changePasswordMutation = (request: ChangePasswordRequestInput) : MutationOptions => ({
+  mutation: gql`
+  mutation changePassword($request: ChangePasswordRequestInput!){
+    changePassword(request: $request)
+}
+`,
+  variables: {
+    request: request
+  }
+});
+
+export const sendRestorePasswordEmailMutation = (email: string) : MutationOptions => ({
+  mutation: gql`
+  mutation sendRestorePasswordEmail($email: String!){
+  sendRestorePasswordEmail(email: $email)
+}
+`,
+  variables: {
+    email: email
+  },
+  context: {
+    allowAnonymous: true
+  }
+});
+
+export const restorePasswordMutation = (request: RestorePasswordRequestInput) : MutationOptions => ({
+  mutation: gql`
+  mutation restorePassword($request: RestorePasswordRequestInput!){
+  restorePassword(request: $request)
+}
+`,
+  variables: {
+    request: request
+  },
+  context: {
+    allowAnonymous: true
+  }
 });

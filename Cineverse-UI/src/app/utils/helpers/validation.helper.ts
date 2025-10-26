@@ -1,4 +1,4 @@
-﻿import {AbstractControl} from '@angular/forms';
+﻿import { AbstractControl } from '@angular/forms';
 
 export function getErrorMessage(control: AbstractControl | null): string | null {
   if (!control || !control.errors) return null;

@@ -58,7 +58,7 @@ public class CreateBookingHandler(
         await bookingRepository.InsertOneAsync(booking, cancellationToken);
 
         // Send email notification
-        var actionUrl = notificationLinksOptions.Value.BaseUrl + notificationLinksOptions.Value.BookingDetailsPath.Replace("id", booking.Id);
+        var actionUrl = notificationLinksOptions.Value.BuildBookingDetailsUrl(booking.Id);
         
         await notificationService.SendBookingEmailAsync(
             userContext.Email,
