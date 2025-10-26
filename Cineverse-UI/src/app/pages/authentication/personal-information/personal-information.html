@@ -1,5 +1,63 @@
-<div class="page-container">
-  <div class="main-container">
+<div class="page-container p-4 sm:p-8">
+  <div class="main-container mx-auto">
+    <div class="card p-8 shadow-xl rounded-2xl bg-white">
 
+      <div class="flex justify-center mb-2">
+        <img class="cineverse-logo" src="/icons/logo.svg" alt="Cineverse Logo">
+      </div>
+
+      <h1 class="text-2xl font-bold mb-10 text-center">Update Personal Information</h1>
+
+      <form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()" class="mt-3 flex flex-col gap-6">
+
+        <!-- FirstName -->
+        <div class="flex flex-col gap-1">
+          <label for="firstName" class="font-medium flex items-center gap-2">
+            <i class="pi pi-user"></i>
+            First Name
+          </label>
+
+          <input
+            pInputText
+            id="firstName"
+            placeholder="Enter your first name"
+            formControlName="firstName"
+            [invalid]="isInvalid('firstName')"
+          />
+          @if (getErrorMessageByName('firstName')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('firstName') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- LastName -->
+        <div class="flex flex-col gap-1">
+          <label for="lastName" class="font-medium flex items-center gap-2">
+            <i class="pi pi-user"></i>
+            Last Name
+          </label>
+
+          <input
+            pInputText
+            id="lastName"
+            placeholder="Enter your last name"
+            formControlName="lastName"
+            [invalid]="isInvalid('lastName')"
+          />
+          @if (getErrorMessageByName('lastName')) {
+            <p-message severity="error" size="small" variant="simple">
+              {{ getErrorMessageByName('lastName') }}
+            </p-message>
+          }
+        </div>
+
+        <!-- Submit -->
+        <button pButton severity="contrast" type="submit" class="mt-4">
+          <span pButtonLabel>Save Changes</span>
+        </button>
+
+      </form>
+    </div>
   </div>
 </div>

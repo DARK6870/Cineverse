@@ -13,4 +13,6 @@ public interface IUserRepository : IGenericRepository<UserEntity>
     Task<bool> UpdateUserStatusAsync(string userId, UserStatus status);
 
     Task<bool> UpdateUserPasswordAsync(string userId, string password);
+
+    Task<bool> UpdateUserPersonalInformationAsync(string userId, string firstName, string lastName);
 }

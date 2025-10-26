@@ -72,6 +72,7 @@ public static class GraphQlSetup
             .AddTypeExtension<HallMutationType>()
             .AddTypeExtension<BookingMutationType>()
             .AddTypeExtension<SupportMutationType>()
+            .AddTypeExtension<UserMutationType>()
             ;
         
         return requestExecutorBuilder;

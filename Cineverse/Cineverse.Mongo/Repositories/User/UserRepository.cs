@@ -50,4 +50,16 @@ public class UserRepository(
         
         return result.ModifiedCount > 0;
     }
+
+    public async Task<bool> UpdateUserPersonalInformationAsync(string userId, string firstName, string lastName)
+    {
+        var result = await Collection.UpdateOneAsync(
+            x => x.Id == userId,
+            Update
+                .Set(x => x.FirstName, firstName)
+                .Set(x => x.LastName, lastName)
+        );
+        
+        return result.ModifiedCount > 0;
+    }
 }

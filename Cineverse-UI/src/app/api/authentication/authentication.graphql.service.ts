@@ -16,10 +16,7 @@ import {
   resendEmailVerificationCodeMutation, restorePasswordMutation, sendRestorePasswordEmailMutation
 } from './authentication.graphql';
 
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable({ providedIn: 'root' })
 export class AuthenticationGraphqlService {
   constructor(private apollo: Apollo) {}
 

@@ -57,6 +57,7 @@ export class RestorePasswordRequest {
       );
 
       this.sent.set(true);
+      this.restorePasswordForm.reset();
       this.toastService.success('Restore email message has been sent to your email');
     }
   }
