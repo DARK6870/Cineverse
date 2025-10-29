@@ -86,7 +86,7 @@ public class AuthenticationService(
         var token = await refreshTokenService.GetRefreshTokenAsync(
             refreshToken,
             userContext.IpAddress
-        ) ??  throw new ApiRequestException("No active sessions found", HttpStatusCode.BadRequest);
+        ) ??  throw new ApiRequestException("No active sessions found", HttpStatusCode.Unauthorized);
 
         var user = await userRepository.FindByIdOrThrowAsync(token.UserId);
         var accessToken = tokenManagementService.GenerateJwtToken(user);

@@ -111,15 +111,26 @@ export class AuthenticationService {
   public async generateAccessTokenAsync(): Promise<string> {
     const refreshToken = this.requireRefreshToken();
 
-    const loginResponse = await firstValueFrom(
-      this.authenticationGraphQlService.generateAccessToken(refreshToken)
-    );
+    try {
+      const loginResponse = await firstValueFrom(
+        this.authenticationGraphQlService.generateAccessToken(refreshToken)
+      );
 
-    if (!loginResponse.success)
-      throw new Error(loginResponse.message);
+      if (!loginResponse.success)
+        throw new Error(loginResponse.message);
 
-    this.tokenStorageService.saveAccessToken(loginResponse.accessToken);
-    return loginResponse.accessToken;
+      this.tokenStorageService.saveAccessToken(loginResponse.accessToken);
+      return loginResponse.accessToken;
+    }
+    catch (error: any)
+    {
+      if (error.networkError?.statusCode === 401) {
+        this.tokenStorageService.deleteTokens();
+        this.requireRefreshToken();
+      }
+
+      throw error;
+    }
   }
 
   public async restorePasswordAsync(request: RestorePasswordRequestInput) : Promise<void> {
