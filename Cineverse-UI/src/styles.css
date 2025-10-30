@@ -49,6 +49,14 @@ body{
   width: 250px;
 }
 
+.p-confirmdialog .p-dialog-footer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+
 @media (max-width: 768px) {
   .main-container{
     padding: 15px;

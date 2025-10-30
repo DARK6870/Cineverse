@@ -97,5 +97,3 @@ export class AuthenticationGraphqlService {
     );
   }
 }
-
-// TODO: Add Invalid request, no active sessions found handler

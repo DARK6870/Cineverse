@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { createApolloClient } from './apollo/apollo.config';
 import { AuthLink } from './apollo/auth.link';
 import { CLIPBOARD_OPTIONS, ClipboardButtonComponent, provideMarkdown } from 'ngx-markdown';
+import {ConfirmationService} from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,6 +34,7 @@ export const appConfig: ApplicationConfig = {
       }
     }),
     CookieService,
+    ConfirmationService,
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),

@@ -10,6 +10,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from '../../../../services/toast/toast.service';
 import { AuthenticationService } from '../../../../services/authentication/authentication.service';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 
 
 @Component({
@@ -20,7 +22,8 @@ import { AuthenticationService } from '../../../../services/authentication/authe
         FormsModule,
         InputText,
         Message,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ConfirmDialog
     ],
   templateUrl: 'restore-password-confirm.html',
   styleUrl: 'restore-password-confirm.css'
@@ -39,7 +42,8 @@ export class RestorePasswordConfirm implements OnInit {
     private destroyRef: DestroyRef,
     private toastService: ToastService,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private confirmationService: ConfirmationService
   ) {
     this.restorePasswordForm = this.fb.group({
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
@@ -77,19 +81,31 @@ export class RestorePasswordConfirm implements OnInit {
     this.formSubmitted = true;
 
     if (this.restorePasswordForm.valid) {
-
-      const request : RestorePasswordRequestInput = {
-        email: this.email!,
-        code: this.code!,
-        password: this.restorePasswordForm.value.password,
-        confirmPassword: this.restorePasswordForm.value.confirmPassword
-      };
-
-      await this.authenticationService.restorePasswordAsync(request);
-
-      this.router.navigate(['/login']).then(() => {
-        this.toastService.success('Password reset successfully');
+      this.confirmationService.confirm({
+        message: 'Are you sure that you want to proceed?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        acceptLabel: 'Save Changes',
+        rejectLabel: 'Cancel',
+        acceptButtonStyleClass: 'p-button-primary',
+        rejectButtonStyleClass: 'p-button-secondary',
+        accept: () => this.submitForm(),
       });
     }
+  }
+
+  private async submitForm(){
+    const request : RestorePasswordRequestInput = {
+      email: this.email!,
+      code: this.code!,
+      password: this.restorePasswordForm.value.password,
+      confirmPassword: this.restorePasswordForm.value.confirmPassword
+    };
+
+    await this.authenticationService.restorePasswordAsync(request);
+
+    this.router.navigate(['/login']).then(() => {
+      this.toastService.success('Password reset successfully');
+    });
   }
 }

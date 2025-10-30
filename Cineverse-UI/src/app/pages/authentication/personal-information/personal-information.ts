@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
@@ -11,7 +11,8 @@ import { UserGraphqlService } from '../../../api/user/user.graphql.service';
 import { UpdatePersonalInformationRequestInput } from '../../../api/user/user.graphql.types';
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
 import { JwtClaimsService } from '../../../services/jwt-claims/jwt-claims.service';
-import { JwtPayload} from '../../../utils/models/jwt-payload.model';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-personal-information',
@@ -21,7 +22,8 @@ import { JwtPayload} from '../../../utils/models/jwt-payload.model';
     FormsModule,
     InputText,
     Message,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConfirmDialog,
   ],
   templateUrl: 'personal-information.html',
   styleUrl: 'personal-information.css'
@@ -37,7 +39,8 @@ export class PersonalInformation implements OnInit {
     private router: Router,
     private userGraphqlService: UserGraphqlService,
     private authenticationService: AuthenticationService,
-    private jwtClaimsService: JwtClaimsService
+    private jwtClaimsService: JwtClaimsService,
+    private confirmationService: ConfirmationService
     ) {
     this.personalInfoForm = fb.group({
       firstName: ['', Validators.required],
@@ -68,20 +71,33 @@ export class PersonalInformation implements OnInit {
     this.personalInfoForm.markAllAsTouched();
 
     if (this.personalInfoForm.valid) {
-      const request : UpdatePersonalInformationRequestInput = {
-        firstName: this.personalInfoForm.value.firstName,
-        lastName: this.personalInfoForm.value.lastName
-      };
-
-      await firstValueFrom(
-        this.userGraphqlService.updatePersonalInformation(request)
-      );
-
-      await this.authenticationService.generateAccessTokenAsync(); // Generate a new token
-      this.router.navigate(['/account']).then(() => {
-        this.toastService.success('Information updated successfully');
+      this.confirmationService.confirm({
+        message: 'Are you sure that you want to proceed?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        acceptLabel: 'Save Changes',
+        rejectLabel: 'Cancel',
+        acceptButtonStyleClass: 'p-button-primary',
+        rejectButtonStyleClass: 'p-button-secondary',
+        accept: () => this.submitForm(),
       });
     }
   }
+
+  private async submitForm()
+  {
+    const request : UpdatePersonalInformationRequestInput = {
+      firstName: this.personalInfoForm.value.firstName,
+      lastName: this.personalInfoForm.value.lastName
+    };
+
+    await firstValueFrom(
+      this.userGraphqlService.updatePersonalInformation(request)
+    );
+
+    await this.authenticationService.generateAccessTokenAsync(); // Generate a new token
+    this.router.navigate(['/account']).then(() => {
+      this.toastService.success('Information updated successfully');
+    });
+  }
 }
-// TODO: Add confirmation for update actions
