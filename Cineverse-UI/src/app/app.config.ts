@@ -9,8 +9,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import MyPreset from '../mypreset';
 import { CookieService } from 'ngx-cookie-service';
-import { createApolloClient } from './apollo/apollo.config';
-import { AuthLink } from './apollo/auth.link';
+import { createApolloClient } from './core/apollo/apollo.config';
+import { AuthLink } from './core/apollo/auth.link';
 import { CLIPBOARD_OPTIONS, ClipboardButtonComponent, provideMarkdown } from 'ngx-markdown';
 import {ConfirmationService} from 'primeng/api';
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { Header } from './components/header/header';
-import { Footer } from './components/footer/footer';
+import { Header } from './layout/header/header';
+import { Footer } from './layout/footer/footer';
 import { filter } from 'rxjs';
-import { LoadingOverlay } from './components/loading-overlay/loading-overlay';
-import { ToastContainer } from './components/toast/toast-container/toast-container';
+import { LoadingOverlay } from './shared/components/loading-overlay/loading-overlay';
+import { ToastContainer } from './shared/components/toast/toast-container/toast-container';
 
 @Component({
   selector: 'app-root',

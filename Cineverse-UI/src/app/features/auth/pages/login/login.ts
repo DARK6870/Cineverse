@@ -1,0 +1,62 @@
+import { Component, OnInit } from '@angular/core';
+import { ButtonDirective, ButtonLabel } from 'primeng/button';
+import { InputText } from 'primeng/inputtext';
+import { Message } from 'primeng/message';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { getErrorMessage } from '../../../../shared/helpers/validation.helper';
+import { RouterLink } from '@angular/router';
+import { AuthenticationService } from '../../../../core/services/authentication.service';
+import { LoginRequestInput } from '../../api/auth.graphql.types';
+
+@Component({
+  selector: 'app-login',
+  imports: [
+    ButtonDirective,
+    ButtonLabel,
+    InputText,
+    Message,
+    ReactiveFormsModule,
+    RouterLink,
+  ],
+  templateUrl: 'login.html',
+  styleUrl: 'login.css'
+})
+
+export class Login {
+  loginForm : FormGroup;
+  formSubmitted = false;
+  protected readonly getErrorMessage = getErrorMessage;
+
+  constructor(
+    private authenticationService: AuthenticationService,
+    private fb: FormBuilder
+  ) {
+    this.loginForm  = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
+
+  getErrorMessageByName(controlName: string): string | null {
+    return this.getErrorMessage(this.loginForm.get(controlName));
+  }
+
+  isInvalid(controlName: string) {
+    const control = this.loginForm.get(controlName);
+    return control?.invalid && (control.touched || this.formSubmitted);
+  }
+
+  onSubmit(){
+    this.loginForm.markAllAsTouched();
+    this.formSubmitted = true;
+
+    if (this.loginForm.valid) {
+      const request : LoginRequestInput = {
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password
+      }
+
+      this.authenticationService.loginUser(request);
+    }
+  }
+}

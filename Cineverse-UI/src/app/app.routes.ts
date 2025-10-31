@@ -1,23 +1,23 @@
 import { Routes } from '@angular/router';
-import { Home } from './pages/home/home';
-import { AboutUs } from './pages/about-us/about-us';
-import { Contact } from './pages/contact/contact';
-import { Login } from './pages/authentication/login/login';
-import { Register } from './pages/authentication/register/register';
-import { Account } from './pages/account/account';
-import { Movies } from './pages/movies/movies';
-import { MovieDetails } from './pages/movies/movie-details/movie-details';
-import { ConfirmEmail } from './pages/authentication/confirm-email/confirm-email';
-import { Logout } from './pages/authentication/logout/logout';
-import { Booking } from './pages/booking/booking';
-import { CreateBooking } from './pages/booking/create-booking/create-booking';
-import { ChangePassword } from './pages/authentication/change-password/change-password';
-import { PersonalInformation } from './pages/authentication/personal-information/personal-information';
-import { MyBookings } from './pages/booking/my-bookings/my-bookings';
-import { AuthenticationGuard } from './utils/guards/authentication.guard';
-import { NotAuthorizedGuard } from './utils/guards/not-authorized.guard';
-import { RestorePasswordRequest } from './pages/authentication/restore-password/restore-password-request/restore-password-request';
-import { RestorePasswordConfirm } from './pages/authentication/restore-password/restore-password-confirm/restore-password-confirm';
+import { Home } from './features/home/pages/home/home';
+import { About } from './features/about/pages/about/about';
+import { Contact } from './features/contact/pages/contact/contact';
+import { Login } from './features/auth/pages/login/login';
+import { Register } from './features/auth/pages/register/register';
+import { Account } from './features/profile/pages/profile/account';
+import { Movies } from './features/movie/pages/movies/movies';
+import { MovieDetails } from './features/movie/pages/movie-details/movie-details';
+import { ConfirmEmail } from './features/auth/pages/confirm-email/confirm-email';
+import { Logout } from './features/auth/pages/logout/logout';
+import { Booking } from './features/booking/pages/booking/booking';
+import { CreateBooking } from './features/booking/pages/create-booking/create-booking';
+import { ChangePassword } from './features/auth/pages/change-password/change-password';
+import { PersonalInformation } from './features/auth/pages/personal-information/personal-information';
+import { MyBookings } from './features/booking/pages/my-bookings/my-bookings';
+import { AuthenticationGuard } from './core/guards/authentication.guard';
+import { NotAuthorizedGuard } from './core/guards/not-authorized.guard';
+import { RestorePasswordRequest } from './features/auth/pages/restore-password/restore-password-request/restore-password-request';
+import { RestorePasswordConfirm } from './features/auth/pages/restore-password/restore-password-confirm/restore-password-confirm';
 
 export const routes: Routes = [
   {
@@ -26,8 +26,8 @@ export const routes: Routes = [
     title: 'Cineverse - Home'
   },
   {
-    path: 'about-us',
-    component: AboutUs,
+    path: 'about',
+    component: About,
     title: 'About Us'
   },
   {
@@ -44,11 +44,11 @@ export const routes: Routes = [
   {
     path: 'register',
     component: Register,
-    title: 'Create an account',
+    title: 'Create an profile',
     canActivate: [NotAuthorizedGuard]
   },
   {
-    path: 'account',
+    path: 'profile',
     component: Account,
     title: 'Account'
   },
