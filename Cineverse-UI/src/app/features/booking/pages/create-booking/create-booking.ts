@@ -12,6 +12,7 @@ import { UserStatus } from '../../../../shared/models/jwt-payload.model';
 @Component({
   selector: 'app-create-booking',
   imports: [],
+  standalone: true,
   templateUrl: 'create-booking.html',
   styleUrl: 'create-booking.css'
 })
@@ -20,7 +21,6 @@ export class CreateBooking implements OnInit {
 
   constructor(
     private screeningGraphQlService: ScreeningGraphqlService,
-    private loadingService: LoadingService,
     private route: ActivatedRoute,
     private destroyRef: DestroyRef,
     private toastService: ToastService,
@@ -32,12 +32,10 @@ export class CreateBooking implements OnInit {
   async ngOnInit() {
     if ((await this.jwtClaimsService.decodeTokenAsync()).userStatus != UserStatus.Normal)
     {
-      this.router.navigate(['/account']).then(() => {
+      this.router.navigate(['/profile']).then(() => {
         this.toastService.warning('Please confirm your email');
       });
     }
-    this.loadingService.show();
-
     this.route.paramMap
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(async paramMap => {
@@ -54,7 +52,6 @@ export class CreateBooking implements OnInit {
         }
 
         this.screening.set(screening);
-        this.loadingService.hide();
       })
   }
 }

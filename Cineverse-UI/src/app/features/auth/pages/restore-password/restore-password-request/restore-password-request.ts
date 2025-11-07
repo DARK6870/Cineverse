@@ -18,6 +18,7 @@ import { firstValueFrom } from 'rxjs';
     Message,
     ReactiveFormsModule
   ],
+  standalone: true,
   templateUrl: 'restore-password-request.html',
   styleUrl: 'restore-password-request.css'
 })

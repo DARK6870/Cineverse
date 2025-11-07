@@ -9,11 +9,12 @@ import {JwtPayload, UserStatus} from '../../../../shared/models/jwt-payload.mode
   imports: [
     RouterLink
   ],
-  templateUrl: 'account.html',
-  styleUrl: 'account.css'
+  standalone: true,
+  templateUrl: 'profile.html',
+  styleUrl: 'profile.css'
 })
 
-export class Account implements OnInit{
+export class Profile implements OnInit{
   userData =  signal<JwtPayload | null>(null);
 
   constructor(

@@ -9,7 +9,6 @@ import { ToastService } from '../../../../core/services/toast.service';
 import { MarkdownComponent } from 'ngx-markdown';
 import { Screening } from '../../../screening/api/screening.graphql.types';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
-import { LoadingService } from '../../../../core/services/loading.service';
 import { Button } from 'primeng/button';
 
 @Component({
@@ -19,6 +18,7 @@ import { Button } from 'primeng/button';
     Button,
     RouterLink
   ],
+  standalone: true,
   templateUrl: 'movie-details.html',
   styleUrl: 'movie-details.css'
 })
@@ -35,13 +35,10 @@ export class MovieDetails implements OnInit {
     private destroyRef: DestroyRef,
     private sanitizer: DomSanitizer,
     private toastService: ToastService,
-    private loadingService: LoadingService
   ) {
 
   }
     async ngOnInit() {
-    this.loadingService.show();
-
       this.route.paramMap
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(async paramMap => {
@@ -69,8 +66,6 @@ export class MovieDetails implements OnInit {
 
           this.movie.set(movie);
           this.screenings.set(screenings);
-
-          this.loadingService.hide();
       });
   }
 

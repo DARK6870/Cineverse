@@ -27,33 +27,9 @@
     </div>
 
     <!-- Movies -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-20">
       @for (movie of movies(); track movie.id) {
-        <div class="movie-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-          <div class="poster-container w-full overflow-hidden">
-            <img
-              [src]="movie.posterUrl"
-              [alt]="movie.title + ' poster'"
-              loading="lazy"
-              class="h-full w-full object-cover"
-            />
-          </div>
-          <div class="p-3 flex flex-col flex-1">
-            <h3 class="font-bold text-lg">{{ movie.title }}</h3>
-            <p class="text-gray-600 text-sm mb">
-              Genre: <strong>{{ movie.genre }}</strong>
-            </p>
-            <div class="mt-auto">
-              <p-button
-                severity="contrast"
-                label="Buy Ticket"
-                icon="pi pi-ticket"
-                styleClass="p-button-sm w-full mt-2"
-                [routerLink]="'/movies-details/' + movie.id"
-              ></p-button>
-            </div>
-          </div>
-        </div>
+        <app-movie-card [movie]='movie' [isShowingNow]=true></app-movie-card>
       }
     </div>
 

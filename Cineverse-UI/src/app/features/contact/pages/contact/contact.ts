@@ -23,6 +23,7 @@ import { ToastService } from '../../../../core/services/toast.service';
     Message,
     Select,
   ],
+  standalone: true,
   templateUrl: 'contact.html',
   styleUrl: 'contact.css'
 })

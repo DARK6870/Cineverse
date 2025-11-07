@@ -18,6 +18,7 @@ import { LoginRequestInput } from '../../api/auth.graphql.types';
     ReactiveFormsModule,
     RouterLink,
   ],
+  standalone: true,
   templateUrl: 'login.html',
   styleUrl: 'login.css'
 })

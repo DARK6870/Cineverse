@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../../../core/services/authentication.
 @Component({
   selector: 'app-logout',
   imports: [],
+  standalone: true,
   templateUrl: 'logout.html',
   styleUrl: 'logout.css'
 })

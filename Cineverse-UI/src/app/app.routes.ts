@@ -4,7 +4,7 @@ import { About } from './features/about/pages/about/about';
 import { Contact } from './features/contact/pages/contact/contact';
 import { Login } from './features/auth/pages/login/login';
 import { Register } from './features/auth/pages/register/register';
-import { Account } from './features/profile/pages/profile/account';
+import { Profile } from './features/profile/pages/profile/profile';
 import { Movies } from './features/movie/pages/movies/movies';
 import { MovieDetails } from './features/movie/pages/movie-details/movie-details';
 import { ConfirmEmail } from './features/auth/pages/confirm-email/confirm-email';
@@ -49,8 +49,8 @@ export const routes: Routes = [
   },
   {
     path: 'profile',
-    component: Account,
-    title: 'Account'
+    component: Profile,
+    title: 'Profile'
   },
   {
     path: 'movies',

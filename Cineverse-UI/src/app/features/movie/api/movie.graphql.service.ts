@@ -2,7 +2,7 @@
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 import { Movie } from './movie.graphql.types';
-import { getMovieByIdQuery, getMoviesByIdsQuery } from './movie.graphql';
+import {getComingSoonMovies, getMovieByIdQuery, getMoviesByIdsQuery} from './movie.graphql';
 
 @Injectable({ providedIn: 'root'})
 export class MovieGraphqlService {
@@ -10,18 +10,23 @@ export class MovieGraphqlService {
   constructor(private apollo: Apollo) {}
 
   public getMoviesByIds(ids: string[]): Observable<Movie[]> {
-    return this.apollo.watchQuery<{ movies : { items: Movie[] } }>(
-      getMoviesByIdsQuery(ids)
-    ).valueChanges.pipe(
-      map(result => result.data.movies.items)
-    );
+    return this.apollo.query<{ movies : { items: Movie[] } }>({
+      ...getMoviesByIdsQuery(ids),
+      fetchPolicy: 'network-only'
+    }).pipe(map(res => res.data.movies.items));
+  }
+
+  public getComingSoonMovies(): Observable<Movie[]> {
+    return this.apollo.query<{ movies : { items: Movie[] } }>({
+      ...getComingSoonMovies,
+      fetchPolicy: 'network-only'
+    }).pipe(map(res => res.data.movies.items));
   }
 
   public getMovieById(id: string): Observable<Movie> {
-    return this.apollo.watchQuery<{ movieById: Movie }>(
-      getMovieByIdQuery(id)
-    ).valueChanges.pipe(
-      map(result => result.data.movieById)
-    );
+    return this.apollo.query<{ movieById: Movie }>({
+      ...getMovieByIdQuery(id),
+      fetchPolicy: 'cache-first'
+    }).pipe(map(res => res.data.movieById));
   }
 }

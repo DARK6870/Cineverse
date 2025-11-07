@@ -3,15 +3,6 @@
   overflow: hidden;
 }
 
-.poster-container{
-  height: 400px;
-}
-
-.movie-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  will-change: transform;
-}
-
 @media (min-width: 1000px) {
   .movie-card:hover {
     transform: scale(0.95);

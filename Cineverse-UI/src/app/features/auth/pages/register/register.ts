@@ -19,6 +19,7 @@ import { RegisterRequestInput } from '../../api/auth.graphql.types';
     ReactiveFormsModule,
     RouterLink,
   ],
+  standalone: true,
   templateUrl: 'register.html',
   styleUrl: 'register.css'
 })

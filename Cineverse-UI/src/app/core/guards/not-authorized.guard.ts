@@ -18,7 +18,7 @@ export class NotAuthorizedGuard implements CanActivate {
     if (!this.authenticationService.isAuthenticated()) {
       return true;
     } else {
-      this.router.navigate(['/account']).then(() => {
+      this.router.navigate(['/profile']).then(() => {
         this.toastService.info('You are already authorized');
       });
 

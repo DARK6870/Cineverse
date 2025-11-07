@@ -1,22 +1,26 @@
-﻿import { Injectable, NgZone } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+﻿import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService {
-  private _loading = new BehaviorSubject<boolean>(false);
-  readonly loading$ = this._loading.asObservable();
+  private _activeRequests = 0;
+  readonly isLoading = signal(false);
 
-  constructor(private zone: NgZone) {}
-
-  show() {
-    this.zone.run(() => {
-      queueMicrotask(() => this._loading.next(true));
-    });
+  public show(): void {
+    console.log(this._activeRequests)
+    this._activeRequests++;
+    this.isLoading.set(true);
   }
 
-  hide() {
-    this.zone.run(() => {
-      queueMicrotask(() => this._loading.next(false));
-    });
+  public hide(): void {
+    if (this._activeRequests <= 1) {
+      this.reset();
+    }
+
+    this._activeRequests--;
+  }
+
+  public reset(){
+    this._activeRequests = 0;
+    this.isLoading.set(false);
   }
 }

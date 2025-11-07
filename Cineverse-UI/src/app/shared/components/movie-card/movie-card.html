@@ -1,0 +1,33 @@
+<div class="movie-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col transition hover:shadow-lg">
+  <div class="poster-container w-full aspect-[2/3] overflow-hidden">
+    <img
+      [src]="movie.posterUrl"
+      [alt]="movie.title + ' poster'"
+      loading="lazy"
+      class="h-full w-full object-cover"
+    />
+  </div>
+
+  <div class="p-3 flex flex-col flex-1">
+    <h3 class="font-bold text-lg line-clamp-1">{{ movie.title }}</h3>
+    <p class="text-gray-600 text-sm mb-2">
+      Genre: <strong>{{ movie.genre }}</strong>
+    </p>
+
+    @if (isShowingNow) {
+      <div class="mt-auto">
+        <p-button
+          severity="contrast"
+          label="Buy Ticket"
+          icon="pi pi-ticket"
+          styleClass="p-button-sm w-full mt-2"
+          [routerLink]="'/movies-details/' + movie.id"
+        />
+      </div>
+    } @else {
+      <p class="text-gray-600 text-sm mt-auto">
+        Coming {{ formattedReleaseDate }}
+      </p>
+    }
+  </div>
+</div>

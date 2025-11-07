@@ -57,7 +57,7 @@ export class AuthenticationService {
           this.tokenStorageService.saveRefreshToken(loginResponse.refreshToken);
 
           this.router.navigate(['/confirm-email/true']).then(() => {
-            this.toastService.success('Account created successfully');
+            this.toastService.success('Profile created successfully');
           });
         }
       })

@@ -12,6 +12,7 @@ import { Screening } from './screening.graphql.types';
 export class ScreeningGraphqlService {
   constructor(private apollo: Apollo) {}
 
+  // TODO: Change to query...
   public getScreeningMovieIds() : Observable<string[]>{
     return this.apollo.watchQuery<{ screenings: { items: { movieId: string}[] } }>(
       getActiveScreeningMovieIdsQuery

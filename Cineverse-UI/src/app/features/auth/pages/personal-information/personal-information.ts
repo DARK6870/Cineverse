@@ -25,6 +25,7 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
     ReactiveFormsModule,
     ConfirmDialog,
   ],
+  standalone: true,
   templateUrl: 'personal-information.html',
   styleUrl: 'personal-information.css'
 })
@@ -96,7 +97,7 @@ export class PersonalInformation implements OnInit {
     );
 
     await this.authenticationService.generateAccessTokenAsync(); // Generate a new token
-    this.router.navigate(['/account']).then(() => {
+    this.router.navigate(['/profile']).then(() => {
       this.toastService.success('Information updated successfully');
     });
   }

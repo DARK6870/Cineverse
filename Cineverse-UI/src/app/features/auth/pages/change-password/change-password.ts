@@ -26,6 +26,7 @@ import { ConfirmationService } from 'primeng/api';
         ReactiveFormsModule,
         ConfirmDialog
     ],
+  standalone: true,
   templateUrl: 'change-password.html',
   styleUrl: 'change-password.css'
 })

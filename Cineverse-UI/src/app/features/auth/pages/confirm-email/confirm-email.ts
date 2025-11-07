@@ -22,6 +22,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     ReactiveFormsModule,
     InputOtp,
   ],
+  standalone: true,
   templateUrl: 'confirm-email.html',
   styleUrl: 'confirm-email.css'
 })
@@ -53,7 +54,7 @@ export class ConfirmEmail implements OnInit {
 
   async ngOnInit() {
     if ((await this.jwtClaimsService.decodeTokenAsync()).userStatus != UserStatus.PendingEmailConfirmation) {
-      this.router.navigate(['/account']).then(() => {
+      this.router.navigate(['/profile']).then(() => {
         this.toastService.warning('Email already confirmed');
       });
     }

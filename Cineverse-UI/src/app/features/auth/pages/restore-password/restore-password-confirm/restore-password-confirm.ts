@@ -25,6 +25,7 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
         ReactiveFormsModule,
         ConfirmDialog
     ],
+  standalone: true,
   templateUrl: 'restore-password-confirm.html',
   styleUrl: 'restore-password-confirm.css'
 })

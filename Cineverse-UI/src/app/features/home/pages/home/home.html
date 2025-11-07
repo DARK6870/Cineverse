@@ -51,22 +51,7 @@
       >
         @for (movie of movies(); track movie.id) {
           <swiper-slide>
-            <div class="movie-card bg-white rounded-lg shadow-md overflow-hidden mb-2">
-              <div class="poster-container">
-                <img [src]="movie.posterUrl" [alt]="movie.title + ' poster'" loading="lazy" />
-              </div>
-              <div class="p-3">
-                <h3 class="font-bold text-lg mb-1">{{ movie.title }}</h3>
-                <p class="text-gray-600 text-sm mb-2">Genre: <strong>{{ movie.genre }}</strong></p>
-                <p-button
-                  severity="contrast"
-                  label="Buy Ticket"
-                  icon="pi pi-ticket"
-                  styleClass="p-button-sm w-full mt-2"
-                  [routerLink]="'/movies-details/' + movie.id"
-                ></p-button>
-              </div>
-            </div>
+            <app-movie-card [movie]='movie' [isShowingNow]=true></app-movie-card>
           </swiper-slide>
         }
       </swiper-container>
@@ -82,6 +67,8 @@
 
 
     <!-- Coming soon -->
+    @if (comingSoonMovies().length > 0)
+    {
     <div class="current-movies mb-8">
       <h2 class="text-2xl font-bold mb-4">Coming soon</h2>
 
@@ -98,21 +85,13 @@
       >
         @for (movie of comingSoonMovies(); track movie.id) {
           <swiper-slide>
-            <div class="movie-card bg-white rounded-lg shadow-md overflow-hidden mb-2">
-              <div class="poster-container">
-                <img [src]="movie.posterUrl" [alt]="movie.title + ' poster'" loading="lazy" />
-              </div>
-              <div class="p-3">
-                <h3 class="font-bold text-lg">{{ movie.title }}</h3>
-                <p class="text-gray-600 text-sm mb-2">Genre: <strong>{{ movie.genre }}</strong></p>
-                <p class="text-gray-600 text-sm">{{ movie.releaseDate }}</p>
-              </div>
-            </div>
+            <app-movie-card [movie]='movie' [isShowingNow]=false></app-movie-card>
           </swiper-slide>
         }
       </swiper-container>
 
     </div>
+    }
 
     <!-- About cinema section -->
     <div class="about rounded-lg p-0 mb-8">
