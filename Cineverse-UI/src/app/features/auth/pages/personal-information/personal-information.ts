@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
@@ -30,24 +30,21 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
   styleUrl: 'personal-information.css'
 })
 export class PersonalInformation implements OnInit {
-  personalInfoForm: FormGroup;
+  private formBuilder = inject(FormBuilder);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
+  private userGraphqlService = inject(UserGraphqlService);
+  private authenticationService = inject(AuthenticationService);
+  private jwtClaimsService = inject(JwtClaimsService);
+  private confirmationService = inject(ConfirmationService);
+
+  personalInfoForm: FormGroup = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+  });
+
   formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
-
-  constructor(
-    private fb: FormBuilder,
-    private toastService: ToastService,
-    private router: Router,
-    private userGraphqlService: UserGraphqlService,
-    private authenticationService: AuthenticationService,
-    private jwtClaimsService: JwtClaimsService,
-    private confirmationService: ConfirmationService
-    ) {
-    this.personalInfoForm = fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-    })
-  }
 
   async ngOnInit() {
     const decodedToken = await this.jwtClaimsService.decodeTokenAsync();

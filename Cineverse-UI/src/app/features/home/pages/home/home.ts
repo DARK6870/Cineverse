@@ -1,4 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
@@ -10,42 +16,37 @@ import { MovieCard } from '../../../../shared/components/movie-card/movie-card';
 
 @Component({
   selector: 'app-home',
-  imports: [
-    RatingModule,
-    FormsModule,
-    RouterLink,
-    MovieCard,
-  ],
+  imports: [RatingModule, FormsModule, RouterLink, MovieCard],
   standalone: true,
   templateUrl: 'home.html',
   styleUrl: 'home.css',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class Home implements OnInit {
+  private screeningService = inject(ScreeningGraphqlService);
+  private movieService = inject(MovieGraphqlService);
+
   movies = signal<Movie[]>([]);
   comingSoonMovies = signal<Movie[]>([]);
-
-  constructor(
-    private screeningService: ScreeningGraphqlService,
-    private movieService: MovieGraphqlService,
-  ) {
-
-  }
 
   async ngOnInit() {
     const today = new Date();
     const twoWeeksLater = new Date();
     twoWeeksLater.setDate(today.getDate() + 14);
 
-    const movies$ = this.screeningService.getScreeningMovieIds().pipe(
-      switchMap(ids => this.movieService.getMoviesByIds(ids))
-    );
+    const movies$ = this.screeningService
+      .getScreeningMovieIds()
+      .pipe(switchMap((ids) => this.movieService.getMoviesByIds(ids)));
 
-    const comingSoon = await firstValueFrom(this.movieService.getComingSoonMovies());
+    const comingSoon = await firstValueFrom(
+      this.movieService.getComingSoonMovies(),
+    );
     this.comingSoonMovies.set(comingSoon);
 
-    const comingSoonIds = new Set(comingSoon.map(m => m.id));
+    const comingSoonIds = new Set(comingSoon.map((m) => m.id));
     const movies = await firstValueFrom(movies$);
-    this.movies.set((await firstValueFrom(movies$)).filter(m => !comingSoonIds.has(m.id)));
+    this.movies.set(
+      (await firstValueFrom(movies$)).filter((m) => !comingSoonIds.has(m.id)),
+    );
   }
 }

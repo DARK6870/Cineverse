@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,25 +28,22 @@ import { ToastService } from '../../../../core/services/toast.service';
   styleUrl: 'contact.css'
 })
 export class Contact {
-  supportForm : FormGroup;
+  private contactService = inject(ContactGraphqlService);
+  private formBuilder = inject(FormBuilder);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
+
+  supportForm : FormGroup = this.formBuilder.group({
+    department: ['', Validators.required],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    subject: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(50)]],
+    description: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(300)]],
+  });
+
   formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
-
-  constructor(
-    private contactService: ContactGraphqlService,
-    private fb: FormBuilder,
-    private toastService: ToastService,
-    private router: Router
-  ) {
-    this.supportForm  = this.fb.group({
-      department: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      subject: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(50)]],
-      description: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(300)]],
-    });
-  }
 
   getErrorMessageByName(controlName: string): string | null {
     return this.getErrorMessage(this.supportForm.get(controlName));

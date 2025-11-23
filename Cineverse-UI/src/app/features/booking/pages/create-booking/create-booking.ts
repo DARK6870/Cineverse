@@ -1,6 +1,5 @@
-import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
-import { LoadingService } from '../../../../core/services/loading.service';
 import { Screening } from '../../../screening/api/screening.graphql.types';
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,17 +16,15 @@ import { UserStatus } from '../../../../shared/models/jwt-payload.model';
   styleUrl: 'create-booking.css'
 })
 export class CreateBooking implements OnInit {
-  screening = signal<Screening | null>(null);
+  private screeningGraphQlService = inject(ScreeningGraphqlService);
+  private route = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef);
+  private toastService = inject(ToastService);
+  private jwtClaimsService = inject(JwtClaimsService);
+  private router = inject(Router);
 
-  constructor(
-    private screeningGraphQlService: ScreeningGraphqlService,
-    private route: ActivatedRoute,
-    private destroyRef: DestroyRef,
-    private toastService: ToastService,
-    private jwtClaimsService: JwtClaimsService,
-    private router: Router
-  ) {
-  }
+
+  screening = signal<Screening | null>(null);
 
   async ngOnInit() {
     if ((await this.jwtClaimsService.decodeTokenAsync()).userStatus != UserStatus.Normal)

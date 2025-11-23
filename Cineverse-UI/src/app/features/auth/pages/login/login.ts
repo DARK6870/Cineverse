@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
@@ -24,19 +24,16 @@ import { LoginRequestInput } from '../../api/auth.graphql.types';
 })
 
 export class Login {
-  loginForm : FormGroup;
+  private formBuilder = inject(FormBuilder);
+  private authenticationService = inject(AuthenticationService);
+
+  loginForm : FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]]
+  });
+
   formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
-
-  constructor(
-    private authenticationService: AuthenticationService,
-    private fb: FormBuilder
-  ) {
-    this.loginForm  = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
-    });
-  }
 
   getErrorMessageByName(controlName: string): string | null {
     return this.getErrorMessage(this.loginForm.get(controlName));

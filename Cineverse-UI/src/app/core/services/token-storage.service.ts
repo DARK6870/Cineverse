@@ -1,15 +1,15 @@
-﻿import { Injectable } from '@angular/core';
-import {CookieService} from 'ngx-cookie-service';
+﻿import { inject, Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import {
   ACCESS_TOKEN_KEY,
   ACCESS_TOKEN_LIFETIME_MINUTES,
-  REFRESH_TOKEN_KEY, REFRESH_TOKEN_LIFETIME_DAYS
+  REFRESH_TOKEN_KEY,
+  REFRESH_TOKEN_LIFETIME_DAYS,
 } from '../../shared/constants/cookie-constants';
 
 @Injectable({ providedIn: 'root' })
 export class TokenStorageService {
-  constructor(private cookieService: CookieService) {
-  }
+  private cookieService = inject(CookieService);
 
   public getAccessToken(): string {
     return this.cookieService.get(ACCESS_TOKEN_KEY);
@@ -30,7 +30,7 @@ export class TokenStorageService {
       '/',
       '',
       false,
-      'Strict'
+      'Strict',
     );
   }
 
@@ -42,7 +42,7 @@ export class TokenStorageService {
       '/',
       '',
       false,
-      'Strict'
+      'Strict',
     );
   }
 

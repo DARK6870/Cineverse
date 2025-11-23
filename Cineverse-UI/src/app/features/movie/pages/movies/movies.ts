@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { MovieGraphqlService } from '../../api/movie.graphql.service';
 import { Movie } from '../../api/movie.graphql.types';
 import { firstValueFrom } from 'rxjs';
@@ -23,12 +23,10 @@ import { MovieCard } from '../../../../shared/components/movie-card/movie-card';
   styleUrl: 'movies.css'
 })
 export class Movies implements OnInit {
-  movies = signal<Movie[]>([]);
+  private movieGraphqlService = inject(MovieGraphqlService);
+  private screeningGraphqlService = inject(ScreeningGraphqlService);
 
-  constructor(
-    private movieGraphqlService: MovieGraphqlService,
-    private screeningGraphqlService: ScreeningGraphqlService,
-  ) { }
+  movies = signal<Movie[]>([]);
 
   async ngOnInit(){
     const screeningMovieIds = await firstValueFrom(

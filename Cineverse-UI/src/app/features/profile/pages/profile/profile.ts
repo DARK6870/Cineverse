@@ -1,27 +1,22 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { AuthenticationService } from '../../../../core/services/authentication.service';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { JwtClaimsService } from '../../../../core/services/jwt-claims.service';
-import {JwtPayload, UserStatus} from '../../../../shared/models/jwt-payload.model';
+import {
+  JwtPayload,
+  UserStatus,
+} from '../../../../shared/models/jwt-payload.model';
 
 @Component({
   selector: 'app-profile',
-  imports: [
-    RouterLink
-  ],
+  imports: [RouterLink],
   standalone: true,
   templateUrl: 'profile.html',
-  styleUrl: 'profile.css'
+  styleUrl: 'profile.css',
 })
+export class Profile implements OnInit {
+  private jwtClaimsService = inject(JwtClaimsService);
 
-export class Profile implements OnInit{
-  userData =  signal<JwtPayload | null>(null);
-
-  constructor(
-    private authenticationService: AuthenticationService,
-    private jwtClaimsService: JwtClaimsService
-  ) {
-  }
+  userData = signal<JwtPayload | null>(null);
 
   async ngOnInit() {
     this.userData.set(await this.jwtClaimsService.decodeTokenAsync());

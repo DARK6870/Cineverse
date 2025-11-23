@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { LoadingService } from '../../../core/services/loading.service';
   styleUrl: 'loading-overlay.css'
 })
 export class LoadingOverlay {
-  constructor(public loadingService: LoadingService) {}
+  public loadingService = inject(LoadingService);
 }
 
 // TODO: fix fonts

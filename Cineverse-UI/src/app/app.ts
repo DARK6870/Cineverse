@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Header } from './layout/header/header';
 import { Footer } from './layout/footer/footer';
@@ -19,7 +19,7 @@ import { ToastContainer } from './shared/components/toast/toast-container/toast-
   styleUrl: 'app.css'
 })
 export class App implements OnInit {
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   ngOnInit() {
     this.router.events.pipe(

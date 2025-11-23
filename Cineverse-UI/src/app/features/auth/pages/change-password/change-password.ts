@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from "primeng/button";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { InputText } from "primeng/inputtext";
@@ -13,7 +13,6 @@ import {
 } from '../../api/auth.graphql.types';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-
 
 @Component({
   selector: 'app-change-password',
@@ -31,24 +30,21 @@ import { ConfirmationService } from 'primeng/api';
   styleUrl: 'change-password.css'
 })
 export class ChangePassword {
-  changePasswordForm: FormGroup;
-  formSubmitted = false;
-  protected readonly getErrorMessage = getErrorMessage;
+  private formBuilder= inject(FormBuilder);
+  private toastService = inject(ToastService)
+  private authenticationService = inject(AuthenticationService)
+  private router = inject(Router);
+  private confirmationService = inject(ConfirmationService);
 
-  constructor(
-    private fb: FormBuilder,
-    private toastService: ToastService,
-    private authenticationService: AuthenticationService,
-    private router: Router,
-    private confirmationService: ConfirmationService
-  ) {
-    this.changePasswordForm = fb.group({
+  changePasswordForm: FormGroup = this.formBuilder.group({
       currentPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
     }, {validators: passwordMatchValidator}
-    );
-  }
+  );
+
+  formSubmitted = false;
+  protected readonly getErrorMessage = getErrorMessage;
 
   getErrorMessageByName(controlName: string) : string | null {
     return this.getErrorMessage(this.changePasswordForm.get(controlName));

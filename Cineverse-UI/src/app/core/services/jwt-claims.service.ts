@@ -1,11 +1,11 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { inject, Injectable } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 import { JwtPayload } from '../../shared/models/jwt-payload.model';
 
 @Injectable({ providedIn: 'root' })
 export class JwtClaimsService {
 
-  constructor(private authenticationService: AuthenticationService) {}
+  private authenticationService = inject(AuthenticationService);
 
   public async decodeTokenAsync(): Promise<JwtPayload> {
     const accessToken = await this.authenticationService.getOrGenerateAccessTokenAsync();

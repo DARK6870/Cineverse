@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
@@ -25,22 +25,19 @@ import { RegisterRequestInput } from '../../api/auth.graphql.types';
 })
 
 export class Register {
-  registerForm: FormGroup;
+  private authenticationService = inject(AuthenticationService);
+  private formBuilder = inject(FormBuilder);
+
+  registerForm: FormGroup = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+  }, {validators: passwordMatchValidator});
+
   formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
-
-  constructor(
-    private authenticationService: AuthenticationService,
-    private fb: FormBuilder
-  ) {
-    this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-    }, {validators: passwordMatchValidator});
-  }
 
   getErrorMessageByName(controlName: string) : string | null {
     return this.getErrorMessage(this.registerForm.get(controlName));

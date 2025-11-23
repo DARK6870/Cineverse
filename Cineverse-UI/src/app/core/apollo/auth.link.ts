@@ -1,5 +1,5 @@
 ﻿import { setContext } from '@apollo/client/link/context';
-import { Injectable, Injector } from '@angular/core';
+import { inject, Injectable, Injector } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 
 interface ApolloContext {
@@ -9,7 +9,7 @@ interface ApolloContext {
 
 @Injectable({ providedIn: 'root' })
 export class AuthLink {
-  constructor(private injector: Injector) {}
+  private injector = inject(Injector);
 
   create() {
     return setContext(async (operation, context: ApolloContext) => {

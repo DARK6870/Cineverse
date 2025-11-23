@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 import {
@@ -10,7 +10,7 @@ import { Screening } from './screening.graphql.types';
 
 @Injectable({providedIn: 'root'})
 export class ScreeningGraphqlService {
-  constructor(private apollo: Apollo) {}
+  private apollo = inject(Apollo);
 
   // TODO: Change to query...
   public getScreeningMovieIds() : Observable<string[]>{

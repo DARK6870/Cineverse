@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from "primeng/button";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { InputText } from "primeng/inputtext";
@@ -30,28 +30,25 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
   styleUrl: 'restore-password-confirm.css'
 })
 export class RestorePasswordConfirm implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
+  private authenticationService = inject(AuthenticationService);
+  private confirmationService = inject(ConfirmationService);
+
   email: string | null = null;
   code: string | null = null;
 
-  restorePasswordForm: FormGroup;
-  formSubmitted = false;
-  protected readonly getErrorMessage = getErrorMessage;
-
-  constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private destroyRef: DestroyRef,
-    private toastService: ToastService,
-    private router: Router,
-    private authenticationService: AuthenticationService,
-    private confirmationService: ConfirmationService
-  ) {
-    this.restorePasswordForm = this.fb.group({
+  restorePasswordForm: FormGroup = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
     }, {validators: passwordMatchValidator}
-    );
-  }
+  );
+
+  formSubmitted = false;
+  protected readonly getErrorMessage = getErrorMessage;
 
   ngOnInit(): void {
     this.route.paramMap

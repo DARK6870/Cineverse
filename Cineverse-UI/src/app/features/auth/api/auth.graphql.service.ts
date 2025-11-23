@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 import {
@@ -18,7 +18,7 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class AuthGraphqlService {
-  constructor(private apollo: Apollo) {}
+  private apollo = inject(Apollo);
 
   public loginUser(request: LoginRequestInput): Observable<AuthenticationResponse>
   {

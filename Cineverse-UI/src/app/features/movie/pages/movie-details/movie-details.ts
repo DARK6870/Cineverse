@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MovieGraphqlService } from '../../api/movie.graphql.service';
 import { firstValueFrom } from 'rxjs';
@@ -13,59 +13,54 @@ import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-movies-details',
-  imports: [
-    MarkdownComponent,
-    Button,
-    RouterLink
-  ],
+  imports: [MarkdownComponent, Button, RouterLink],
   standalone: true,
   templateUrl: 'movie-details.html',
-  styleUrl: 'movie-details.css'
+  styleUrl: 'movie-details.css',
 })
 export class MovieDetails implements OnInit {
+  private route = inject(ActivatedRoute);
+  private movieGraphqlService = inject(MovieGraphqlService);
+  private screeningGraphqlService = inject(ScreeningGraphqlService);
+  private destroyRef = inject(DestroyRef);
+  private sanitizer = inject(DomSanitizer);
+  private toastService = inject(ToastService);
+
   movie = signal<Movie | null>(null);
-  safeTrailerUrl = signal<string>("");
+  safeTrailerUrl = signal<string>('');
 
   screenings = signal<Screening[] | null>(null);
 
-  constructor(
-    private route: ActivatedRoute,
-    private movieGraphqlService: MovieGraphqlService,
-    private screeningGraphqlService: ScreeningGraphqlService,
-    private destroyRef: DestroyRef,
-    private sanitizer: DomSanitizer,
-    private toastService: ToastService,
-  ) {
+  async ngOnInit() {
+    this.route.paramMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(async (paramMap) => {
+        const movieId = paramMap.get('movieId');
+        if (!movieId) return;
 
-  }
-    async ngOnInit() {
-      this.route.paramMap
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe(async paramMap => {
-          const movieId = paramMap.get('movieId');
-          if (!movieId) return;
+        // Get Movie
+        const movie = await firstValueFrom(
+          this.movieGraphqlService.getMovieById(movieId),
+        );
 
-          // Get Movie
-          const movie = await firstValueFrom(
-            this.movieGraphqlService.getMovieById(movieId)
-          );
+        if (movie === null) {
+          this.toastService.error('Movie was not found');
+          return;
+        }
 
-          if (movie === null){
-            this.toastService.error('Movie was not found');
-            return;
-          }
+        this.safeTrailerUrl.set(
+          <string>(
+            this.sanitizer.bypassSecurityTrustResourceUrl(movie.trailerUrl)
+          ),
+        );
 
-          this.safeTrailerUrl.set(
-            <string>this.sanitizer.bypassSecurityTrustResourceUrl(movie.trailerUrl)
-          );
+        // Get Screenings
+        const screenings = await firstValueFrom(
+          this.screeningGraphqlService.getActiveScreeningsForMovie(movieId),
+        );
 
-          // Get Screenings
-          const screenings = await firstValueFrom(
-            this.screeningGraphqlService.getActiveScreeningsForMovie(movieId)
-          );
-
-          this.movie.set(movie);
-          this.screenings.set(screenings);
+        this.movie.set(movie);
+        this.screenings.set(screenings);
       });
   }
 
@@ -76,7 +71,10 @@ export class MovieDetails implements OnInit {
 
   getFriendlyDate(dateString: string): string {
     const date = new Date(dateString);
-    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long' };
+    const options: Intl.DateTimeFormatOptions = {
+      day: 'numeric',
+      month: 'long',
+    };
     return date.toLocaleDateString('en-GB', options);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
@@ -23,20 +23,18 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: 'restore-password-request.css'
 })
 export class RestorePasswordRequest {
-  restorePasswordForm: FormGroup;
+  private formBuilder = inject(FormBuilder);
+  private toastService = inject(ToastService);
+  private authenticationGraphqlService = inject(AuthGraphqlService);
+
+  restorePasswordForm: FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]]
+  });
+
   formSubmitted = false;
   sent = signal<boolean>(false);
   protected readonly getErrorMessage = getErrorMessage;
 
-  constructor(
-    private fb: FormBuilder,
-    private toastService: ToastService,
-    private authenticationGraphqlService: AuthGraphqlService
-  ) {
-    this.restorePasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]]
-    })
-  }
 
   getErrorMessageByName(controlName: string) : string | null {
     return this.getErrorMessage(this.restorePasswordForm.get(controlName));

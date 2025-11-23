@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, DestroyRef, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthGraphqlService } from '../../api/auth.graphql.service';
@@ -28,7 +34,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 
 export class ConfirmEmail implements OnInit {
-  protected confirmEmailForm: FormGroup;
+  private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private authenticationService = inject(AuthGraphqlService);
+  private authService = inject(AuthenticationService);
+  private toastService = inject(ToastService);
+  private cdr = inject(ChangeDetectorRef);
+  private jwtClaimsService = inject(JwtClaimsService);
+  private destroyRef = inject(DestroyRef);
+
   private formSubmitted = false;
   protected readonly getErrorMessage = getErrorMessage;
 
@@ -36,21 +51,10 @@ export class ConfirmEmail implements OnInit {
   protected countDown = 0;
   private timer? : ReturnType<typeof setInterval>;
 
-  constructor(
-    fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private authenticationService: AuthGraphqlService,
-    private authService: AuthenticationService,
-    private toastService: ToastService,
-    private cdr: ChangeDetectorRef,
-    private jwtClaimsService: JwtClaimsService,
-    private destroyRef: DestroyRef
-  ) {
-    this.confirmEmailForm = fb.group({
-      verificationCode: ['', [Validators.required, Validators.minLength(5)]],
-    })
-  }
+  protected confirmEmailForm : FormGroup = this.formBuilder.group({
+    verificationCode: ['', [Validators.required, Validators.minLength(5)]],
+  });
+
 
   async ngOnInit() {
     if ((await this.jwtClaimsService.decodeTokenAsync()).userStatus != UserStatus.PendingEmailConfirmation) {

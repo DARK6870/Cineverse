@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { inject, Injectable } from '@angular/core';
 import { AuthGraphqlService } from '../../features/auth/api/auth.graphql.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
@@ -11,15 +11,12 @@ import { ToastService } from './toast.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+  private authenticationGraphQlService = inject(AuthGraphqlService);
+  private tokenStorageService = inject(TokenStorageService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private toastService = inject(ToastService);
 
-  constructor(
-    private authenticationGraphQlService: AuthGraphqlService,
-    private tokenStorageService: TokenStorageService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private toastService: ToastService
-  ) {
-  }
 
   public loginUser(request: {
     email: string;
