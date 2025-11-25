@@ -2,7 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessC
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { provideApollo } from 'apollo-angular';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { createApolloClient } from './core/apollo/apollo.config';
 import { AuthLink } from './core/apollo/auth.link';
 import { CLIPBOARD_OPTIONS, ClipboardButtonComponent, provideMarkdown } from 'ngx-markdown';
-import {ConfirmationService} from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [

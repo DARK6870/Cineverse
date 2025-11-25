@@ -3,4 +3,3 @@
 - Fix logo sizing
 - Add search, filters on /movies page
 - Create custom confirm action service
-- Create /about page
