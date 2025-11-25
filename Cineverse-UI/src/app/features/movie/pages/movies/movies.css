@@ -3,6 +3,25 @@
   overflow: hidden;
 }
 
+@keyframes fadeIn {
+  0%   { opacity: 0; transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 250ms ease-out forwards;
+}
+
+@keyframes fadeOut {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.97); }
+}
+
+.animate-fade-out {
+  animation: fadeOut 250ms ease-in forwards;
+}
+
+
 @media (min-width: 1000px) {
   .movie-card:hover {
     transform: scale(0.95);

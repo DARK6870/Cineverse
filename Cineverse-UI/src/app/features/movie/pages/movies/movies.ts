@@ -3,24 +3,15 @@ import { MovieGraphqlService } from '../../api/movie.graphql.service';
 import { Movie } from '../../api/movie.graphql.types';
 import { firstValueFrom } from 'rxjs';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
-import { Button } from 'primeng/button';
-import { InputText } from 'primeng/inputtext';
-import { InputIcon } from 'primeng/inputicon';
-import { IconField } from 'primeng/iconfield';
 import { MovieCard } from '../../../../shared/components/movie-card/movie-card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-movies',
-  imports: [
-    Button,
-    InputText,
-    InputIcon,
-    IconField,
-    MovieCard
-  ],
+  imports: [MovieCard, ReactiveFormsModule],
   standalone: true,
   templateUrl: 'movies.html',
-  styleUrl: 'movies.css'
+  styleUrl: 'movies.css',
 })
 export class Movies implements OnInit {
   private movieGraphqlService = inject(MovieGraphqlService);
@@ -28,13 +19,13 @@ export class Movies implements OnInit {
 
   movies = signal<Movie[]>([]);
 
-  async ngOnInit(){
+  async ngOnInit() {
     const screeningMovieIds = await firstValueFrom(
-      this.screeningGraphqlService.getScreeningMovieIds()
+      this.screeningGraphqlService.getScreeningMovieIds(),
     );
 
     const data = await firstValueFrom(
-      this.movieGraphqlService.getMoviesByIds(screeningMovieIds)
+      this.movieGraphqlService.getMoviesByIds(screeningMovieIds),
     );
     this.movies.set(data);
   }
