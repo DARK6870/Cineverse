@@ -1,4 +1,5 @@
 ﻿using Cineverse.Api.GraphQl.Base;
+using Cineverse.Application.MediatR.Requests.Bookings.GetBookedSeats;
 using Cineverse.Application.MediatR.Requests.Bookings.GetBookingById;
 using Cineverse.Application.MediatR.Requests.Bookings.GetBookings;
 using Cineverse.Infrastructure.Common.Constants;
@@ -32,5 +33,14 @@ public class BookingQuery
     )
     {
         return await mediator.Send(new GetBookingByIdRequest(id), cancellationToken);
+    }
+
+    public async Task<List<string>> GetBookedSeats(
+        [Service] IMediator mediator,
+        string screeningId,
+        CancellationToken cancellationToken
+    )
+    {
+        return await mediator.Send(new GetBookedSeatsRequest(screeningId), cancellationToken);
     }
 }

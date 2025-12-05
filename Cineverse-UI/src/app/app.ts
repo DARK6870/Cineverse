@@ -5,6 +5,7 @@ import { Footer } from './layout/footer/footer';
 import { filter } from 'rxjs';
 import { LoadingOverlay } from './shared/components/loading-overlay/loading-overlay';
 import { ToastContainer } from './shared/components/toast/toast-container/toast-container';
+import { BlockingOverlay } from './shared/components/blocking-overlay/blocking-overlay';
 
 @Component({
   selector: 'app-root',
@@ -14,18 +15,19 @@ import { ToastContainer } from './shared/components/toast/toast-container/toast-
     Footer,
     LoadingOverlay,
     ToastContainer,
+    BlockingOverlay,
   ],
   templateUrl: 'app.html',
-  styleUrl: 'app.css'
+  styleUrl: 'app.css',
 })
 export class App implements OnInit {
   private router = inject(Router);
 
   ngOnInit() {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      window.scrollTo(0, 0);
-    });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        window.scrollTo(0, 0);
+      });
   }
 }

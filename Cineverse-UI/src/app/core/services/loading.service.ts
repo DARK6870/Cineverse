@@ -6,7 +6,6 @@ export class LoadingService {
   readonly isLoading = signal(false);
 
   public show(): void {
-    console.log(this._activeRequests)
     this._activeRequests++;
     this.isLoading.set(true);
   }

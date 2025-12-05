@@ -1,0 +1,67 @@
+<div class="flex justify-between gap-10 w-full">
+
+  <!-- Left: Seat Matrix -->
+  <div class="flex flex-col gap-4 flex-1">
+
+    @for (row of seatMatrix(); track row) {
+      <div class="flex items-center gap-3">
+        <div class="text-gray-600 w-6 font-medium">
+          {{ row.row }}
+        </div>
+
+        <div class="flex gap-2 flex-1">
+          @for (seat of row.seats; track seat) {
+            <button
+              (click)="toggleSeat(seat.seatId)"
+              [disabled]="bookedSeatsIds.includes(seat.seatId)"
+              class="w-10 h-10 flex items-center rounded-lg text-sm font-semibold border transition hover:bg-gray-300"
+
+              [class.bg-red-200]="bookedSeatsIds.includes(seat.seatId)"
+              [class.cursor-not-allowed]="bookedSeatsIds.includes(seat.seatId)"
+              [class.border-red-400]="bookedSeatsIds.includes(seat.seatId)"
+
+              [class.bg-gray-600]="!bookedSeatsIds.includes(seat.seatId) && selectedSeats.has(seat.seatId)"
+              [class.border-gray-600]="!bookedSeatsIds.includes(seat.seatId) && selectedSeats.has(seat.seatId)"
+
+              [class.border-gray-300]="!bookedSeatsIds.includes(seat.seatId) && !selectedSeats.has(seat.seatId)"
+              [class.hover:bg-gray-300]="!bookedSeatsIds.includes(seat.seatId)"
+            ></button>
+          }
+        </div>
+
+      </div>
+    }
+
+  </div>
+
+  <!-- RIGHT: Sidebar -->
+  <div class="flex flex-col p-6 w-72 shrink-0">
+
+    <h2 class="text-xl font-bold mb-3">Your Seats</h2>
+
+    @if (selectedSeats.size === 0) {
+      <div class="text-gray-500">
+        No seats selected
+      </div>
+    }
+
+    @if (selectedSeats.size > 0) {
+      <div class="flex flex-col gap-2">
+
+        @for (id of selectedSeats; track id) {
+          <div>{{ id }}</div>
+        }
+
+        <div class="mt-3 text-lg font-bold">
+          Total: {{ selectedSeats.size * ticketPrice }} $
+        </div>
+
+        <p-button (onClick)="onConfirmClick()" severity="primary" styleClass="p-button-sm w-full mt-2">
+          Continue
+        </p-button>
+      </div>
+    }
+
+  </div>
+
+</div>

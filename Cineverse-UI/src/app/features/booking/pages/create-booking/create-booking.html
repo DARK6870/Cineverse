@@ -1,3 +1,24 @@
 <div class="page-container">
+  <div class="main-container mx-auto">
 
+    <app-movie-details-card [movie]="movie()!"/>
+
+    <!-- Hall Details And Seats Selector -->
+    <div class="bg-gray-50 rounded-2xl p-6 gap-6 md:gap-10 mb-8 shadow-sm">
+
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-10">
+        {{ hall()?.name }}
+      </h1>
+
+      @if (hall()) {
+        <app-seat-selector
+          [hall]="hall()!"
+          [bookedSeatsIds]="bookedSeats()!"
+          [ticketPrice]="screening()!.ticketPrice"
+          (confirm)="handleConfirm($event)"
+        />
+      }
+    </div>
+
+  </div>
 </div>

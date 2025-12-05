@@ -4,10 +4,12 @@ import { AuthLink } from './auth.link';
 import { ToastService } from '../services/toast.service';
 import { LoadingService } from '../services/loading.service';
 import { inject } from '@angular/core';
+import { BlockActionsService } from '../services/block-actions.service';
 
 export function createApolloClient(authLink: AuthLink) {
   const toastService = inject(ToastService);
   const loadingService = inject(LoadingService);
+  const blockActionsService = inject(BlockActionsService);
 
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
@@ -26,24 +28,45 @@ export function createApolloClient(authLink: AuthLink) {
         def.kind === 'OperationDefinition' && def.operation === 'query'
     );
 
-    if (isQuery) loadingService.show();
+    if (isQuery){
+      loadingService.show();
+    }
+    else {
+      blockActionsService.block();
+    }
+
 
     return new Observable(observer => {
       const sub = forward(operation).subscribe({
         next: result => observer.next(result),
         error: error => {
-          if (isQuery) loadingService.hide();
+          if (isQuery){
+            loadingService.hide();
+          }
+          else {
+            blockActionsService.unblock();
+          }
           observer.error(error);
         },
         complete: () => {
-          if (isQuery) loadingService.hide();
+          if (isQuery){
+            loadingService.hide();
+          }
+          else {
+            blockActionsService.unblock();
+          }
           observer.complete();
         },
       });
 
       return () => {
         sub.unsubscribe();
-        if (isQuery) loadingService.hide();
+        if (isQuery){
+          loadingService.hide();
+        }
+        else {
+          blockActionsService.unblock();
+        }
       };
     });
   });
