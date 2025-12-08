@@ -2,11 +2,18 @@ import {
   Component,
   computed,
   EventEmitter,
+  inject,
   Input,
-  Output,
+  OnInit,
+  Output, signal,
 } from '@angular/core';
 import { Hall, Seat } from '../../../features/hall/api/hall.graphql.types';
 import { Button } from 'primeng/button';
+import { Screening } from '../../../features/screening/api/screening.graphql.types';
+import { BookingGraphqlService } from '../../../features/booking/api/booking.graphql.service';
+import { firstValueFrom } from 'rxjs';
+import { formatDate } from '../../utils/date-utils'
+import { Booking } from '../../../features/booking/api/booking.graphql.types';
 
 @Component({
   selector: 'app-seat-selector',
@@ -14,14 +21,32 @@ import { Button } from 'primeng/button';
   templateUrl: 'seat-selector.html',
   styleUrl: 'seat-selector.css',
 })
-export class SeatSelector {
-  @Input() hall!: Hall;
-  @Input() bookedSeatsIds!: string[];
-  @Input() ticketPrice!: number;
+export class SeatSelector implements OnInit {
+  private bookingGraphQlService = inject(BookingGraphqlService);
+  protected readonly formatDate = formatDate;
 
+  @Input() hall!: Hall;
+  @Input() screening!: Screening;
+  @Input() booking: Booking | null = null;
   @Output() confirm = new EventEmitter<string[]>();
 
+  bookedSeats = signal<string[]>([]);
   selectedSeats = new Set<string>();
+
+  async ngOnInit() {
+    if (this.booking) {
+      this.bookedSeats.set(this.booking.seatIds);
+      this.selectedSeats = new Set(this.booking.seatIds);
+    }
+    else
+    {
+      const bookedSeats = await firstValueFrom(
+        this.bookingGraphQlService.getBookedSeats(this.screening.id),
+      );
+      this.bookedSeats.set(bookedSeats);
+    }
+  }
+
 
   seatMatrix = computed(() => {
     if (!this.hall || !this.hall.seats) return [];
@@ -45,7 +70,7 @@ export class SeatSelector {
   }
 
   toggleSeat(id: string) {
-    if (this.bookedSeatsIds.includes(id)) {
+    if (this.bookedSeats().includes(id)) {
       return;
     }
 

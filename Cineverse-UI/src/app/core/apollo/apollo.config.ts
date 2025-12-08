@@ -28,45 +28,32 @@ export function createApolloClient(authLink: AuthLink) {
         def.kind === 'OperationDefinition' && def.operation === 'query'
     );
 
-    if (isQuery){
-      loadingService.show();
-    }
-    else {
-      blockActionsService.block();
-    }
+    // TODO: change
+    if (isQuery) loadingService.show();
+    else blockActionsService.block();
+
+    const finish = () => {
+      if (isQuery) loadingService.hide();
+      else blockActionsService.unblock();
+    };
 
 
     return new Observable(observer => {
       const sub = forward(operation).subscribe({
         next: result => observer.next(result),
         error: error => {
-          if (isQuery){
-            loadingService.hide();
-          }
-          else {
-            blockActionsService.unblock();
-          }
+          finish();
           observer.error(error);
         },
         complete: () => {
-          if (isQuery){
-            loadingService.hide();
-          }
-          else {
-            blockActionsService.unblock();
-          }
+          finish();
           observer.complete();
         },
       });
 
       return () => {
         sub.unsubscribe();
-        if (isQuery){
-          loadingService.hide();
-        }
-        else {
-          blockActionsService.unblock();
-        }
+        finish();
       };
     });
   });

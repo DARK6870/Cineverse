@@ -24,6 +24,7 @@ import { CreateBookingRequestInput } from '../../api/booking.graphql.types';
   styleUrl: 'create-booking.css',
 })
 export class CreateBooking implements OnInit {
+  // ----- inject ----- //
   private screeningGraphQlService = inject(ScreeningGraphqlService);
   private movieGraphQlService = inject(MovieGraphqlService);
   private hallGraphQlService = inject(HallGraphqlService);
@@ -33,11 +34,15 @@ export class CreateBooking implements OnInit {
   private jwtClaimsService = inject(JwtClaimsService);
   private router = inject(Router);
 
+  // ----- field ----- //
+  protected readonly formatDate = formatDate;
+
   screening = signal<Screening | null>(null);
   movie = signal<Movie | null>(null);
   hall = signal<Hall | null>(null);
   bookedSeats = signal<string[] | null>(null);
 
+  // ----- OnInit ----- //
   async ngOnInit() {
     if (
       (await this.jwtClaimsService.decodeTokenAsync()).userStatus !=
@@ -74,8 +79,6 @@ export class CreateBooking implements OnInit {
     this.hall.set(hall);
     this.bookedSeats.set(bookedSeats);
   }
-
-  protected readonly formatDate = formatDate;
 
   protected async handleConfirm($event: string[]) {
     const request: CreateBookingRequestInput = {
