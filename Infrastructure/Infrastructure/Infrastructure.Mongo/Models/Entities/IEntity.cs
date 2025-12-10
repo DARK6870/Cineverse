@@ -1,4 +1,4 @@
-﻿namespace Cineverse.Mongo.Schemas.Base;
+﻿namespace Infrastructure.Mongo.Models.Entities;
 
 public interface IEntity
 {

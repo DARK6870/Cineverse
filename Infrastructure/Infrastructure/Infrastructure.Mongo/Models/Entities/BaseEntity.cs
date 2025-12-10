@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Cineverse.Mongo.Schemas.Base;
+namespace Infrastructure.Mongo.Models.Entities;
 
 public class BaseEntity : IEntity
 {

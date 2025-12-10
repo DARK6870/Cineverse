@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="31d5039c-572c-49ab-9de7-1e73255cfbc2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Configuration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/BookingsCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/BookingsCollectionIndexesMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/MoviesCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/MoviesCollectionIndexesMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/RefreshTokensCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/RefreshTokensCollectionIndexesMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/ScreeningsCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/ScreeningsCollectionIndexesMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/UsersCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/UsersCollectionIndexesMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Cineverse.Mongo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Cineverse.Mongo.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Common/Attributes/MongoCollectionAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Configuration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Booking/BookingRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Booking/BookingRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Booking/IBookingRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Booking/IBookingRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Hall/HallRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Hall/HallRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Hall/IHallRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Hall/IHallRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Migration/IMigrationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Migration/IMigrationRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Migration/MigrationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Migration/MigrationRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Movie/IMovieRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Movie/IMovieRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Movie/MovieRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Movie/MovieRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/RefreshToken/IRefreshTokenRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/RefreshToken/IRefreshTokenRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/RefreshToken/RefreshTokenRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/RefreshToken/RefreshTokenRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Screening/IScreeningRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Screening/IScreeningRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Screening/ScreeningRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Screening/ScreeningRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/User/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/User/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/User/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/User/UserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/BookingEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/BookingEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/HallEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/HallEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/MigrationEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/MigrationEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/MovieEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/MovieEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/RefreshTokenEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/RefreshTokenEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/ScreeningEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/ScreeningEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/UserEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/UserEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Directory.Packages.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Directory.Packages.props" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;DARK6870&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DARK6870/Cineverse&quot;,
+    &quot;accountId&quot;: &quot;99fbcb68-caec-4ba8-a244-1917705f3a61&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b046c966f166d12263bfa9a0f88fb04f7245ea1851c5e95fec02b96632d2df1/IMongoCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Logging/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Attributes/MongoCollectionAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Exceptions/EntityNotFoundException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Implementations/GenericRepository.Delete.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Implementations/GenericRepository.Exists.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Implementations/GenericRepository.Insert.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Implementations/GenericRepository.Replace.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Interfaces/Queries/IDeleteRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Interfaces/Queries/IExistsRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Interfaces/Queries/IFindRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Interfaces/Queries/IInsertRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Interfaces/Queries/IReplaceRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.MongoMigration/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Telemetry/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/Middlewares/UserContextMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/UserContext/IUserContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/UserContext/UserContext.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="36c9LSBwd997Eby1Gb7rG4EVX3L" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;microservice-migration&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="31d5039c-572c-49ab-9de7-1e73255cfbc2" name="Changes" comment="" />
+      <created>1765294937654</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765294937654</updated>
+      <workItem from="1765294938495" duration="1035000" />
+      <workItem from="1765296360841" duration="4906000" />
+      <workItem from="1765384424726" duration="7444000" />
+    </task>
+    <task id="LOCAL-00001" summary="Base project setup">
+      <option name="closed" value="true" />
+      <created>1765297364081</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1765297364081</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Base project setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Base project setup" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
