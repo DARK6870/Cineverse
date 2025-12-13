@@ -1,10 +1,9 @@
-﻿using Cineverse.Mongo.Migrations.Core;
-using Cineverse.Mongo.Repositories.Generic;
-using Cineverse.Mongo.Repositories.Migration;
+﻿using Infrastructure.Mongo.Migrations.Repositories.Migration;
+using Infrastructure.Mongo.Migrations.Runner;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Cineverse.Mongo.Migrations;
+namespace Infrastructure.Mongo.Migrations;
 
 public static class Configuration
 {
@@ -12,12 +11,13 @@ public static class Configuration
         this IServiceCollection services
     )
     {
+        services.AddSingleton<IMigrationRepository, MigrationRepository>();
         services.AddTransient<MongoMigrationRunner>();
         
         return services;
     }
     
-    public static Task ExecuteMigrations(
+    public static Task ExecuteMigrationsAsync(
         this IApplicationBuilder app
     )
     {

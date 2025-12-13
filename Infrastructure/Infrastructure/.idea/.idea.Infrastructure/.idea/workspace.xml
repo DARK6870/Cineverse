@@ -8,7 +8,10 @@
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.Development.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Configuration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Domain/Common/Exceptions/EntityNotFoundException.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/GraphQl/GraphQlErrorFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/GraphQl/GraphQlErrorFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Cineverse.Mongo.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Cineverse.Mongo.Migrations.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Core/MongoMigrationRunner.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/BookingsCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/BookingsCollectionIndexesMigration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/MoviesCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/MoviesCollectionIndexesMigration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/RefreshTokensCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/RefreshTokensCollectionIndexesMigration.cs" afterDir="false" />
@@ -21,8 +24,7 @@
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Booking/IBookingRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Booking/IBookingRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Hall/HallRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Hall/HallRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Hall/IHallRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Hall/IHallRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Migration/IMigrationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Migration/IMigrationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Migration/MigrationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Migration/MigrationRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Migration/IMigrationRepository.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Movie/IMovieRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Movie/IMovieRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Movie/MovieRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/Movie/MovieRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/RefreshToken/IRefreshTokenRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/RefreshToken/IRefreshTokenRepository.cs" afterDir="false" />
@@ -62,7 +64,14 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b046c966f166d12263bfa9a0f88fb04f7245ea1851c5e95fec02b96632d2df1/IMongoCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.HealthCheck/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Logging/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Core/MongoMigration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Entities/MigrationEntity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Repositories/Migration/IMigrationRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Repositories/Migration/MigrationRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Runner/MongoMigrationRunner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Attributes/MongoCollectionAttribute.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Exceptions/EntityNotFoundException.cs" root0="FORCE_HIGHLIGHTING" />
@@ -75,7 +84,6 @@
     <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Interfaces/Queries/IFindRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Interfaces/Queries/IInsertRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Mongo/Repositories/Interfaces/Queries/IReplaceRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Infrastructure.MongoMigration/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Telemetry/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/Middlewares/UserContextMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
@@ -119,7 +127,8 @@
       <updated>1765294937654</updated>
       <workItem from="1765294938495" duration="1035000" />
       <workItem from="1765296360841" duration="4906000" />
-      <workItem from="1765384424726" duration="7444000" />
+      <workItem from="1765384424726" duration="11597000" />
+      <workItem from="1765578447241" duration="4715000" />
     </task>
     <task id="LOCAL-00001" summary="Base project setup">
       <option name="closed" value="true" />

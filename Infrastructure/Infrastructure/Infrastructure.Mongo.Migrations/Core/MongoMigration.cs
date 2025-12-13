@@ -1,4 +1,4 @@
-﻿namespace Cineverse.Mongo.Migrations.Core;
+﻿namespace Infrastructure.Mongo.Migrations.Core;
 
 public abstract class MongoMigration(string description)
 {
