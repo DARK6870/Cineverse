@@ -1,7 +1,7 @@
 ﻿using Cineverse.Mongo.Common.Helpers;
-using Cineverse.Mongo.Repositories.Generic;
 using Cineverse.Mongo.Schemas.Entities;
 using Cineverse.Mongo.Schemas.Enums;
+using Infrastructure.Mongo.Repositories.Implementations;
 using MongoDB.Driver;
 using static MongoDB.Driver.Builders<Cineverse.Mongo.Schemas.Entities.UserEntity>;
 

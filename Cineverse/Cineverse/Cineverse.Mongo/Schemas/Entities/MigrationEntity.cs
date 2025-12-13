@@ -1,5 +1,5 @@
-﻿using Cineverse.Mongo.Common.Attributes;
-using Cineverse.Mongo.Schemas.Base;
+﻿using Infrastructure.Mongo.Attributes;
+using Infrastructure.Mongo.Models.Entities;
 
 namespace Cineverse.Mongo.Schemas.Entities;
 

@@ -1,6 +1,6 @@
-﻿using Cineverse.Mongo.Common.Attributes;
-using Cineverse.Mongo.Migrations.Core;
-using Cineverse.Mongo.Schemas.Entities;
+﻿using Cineverse.Mongo.Schemas.Entities;
+using Infrastructure.Mongo.Attributes;
+using Infrastructure.Mongo.Migrations.Core;
 using MongoDB.Driver;
 using static MongoDB.Driver.Builders<Cineverse.Mongo.Schemas.Entities.MovieEntity>;
 

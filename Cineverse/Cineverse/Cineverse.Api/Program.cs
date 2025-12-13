@@ -1,3 +1,4 @@
+using System.Reflection;
 using Cineverse.Api.GraphQl;
 using Cineverse.Api.GraphQl.Middlewares.StatusCodeMiddleware;
 using Cineverse.Application;
@@ -7,8 +8,10 @@ using Cineverse.Infrastructure;
 using Cineverse.Infrastructure.Cors;
 using Cineverse.Infrastructure.Logging;
 using Cineverse.Mongo;
-using Cineverse.Mongo.Migrations;
 using Cineverse.Notifications;
+using Infrastructure.Mongo;
+using Infrastructure.Mongo.Migrations;
+using Microsoft.Extensions.DependencyModel;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -20,7 +23,7 @@ builder.AddSerilogLoggingWithOpenTelemetry(configuration);
 // ====== Configure services ======
 builder.Services
     .AddCorsPolicy(configuration, builder.Environment)
-    .AddMongoDb(configuration)
+    .AddMongoDatabase(configuration)
     .AddMongoRepositories()
     .AddMongoMigrations()
     .AddIdentityServices(configuration)
@@ -51,6 +54,6 @@ app.MapCineverseGraphQl();
 
 
 // ====== Execute Migrations ======
-await app.ExecuteMigrations();
+await app.ExecuteMigrationsAsync();
 
 app.Run();
