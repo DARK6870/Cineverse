@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
         <PackageId>Cineverse.Infrastructure.Mongo.Migrations</PackageId>
-        <Version>1.0.0-rc-5</Version>
+        <Version>1.0.1</Version>
         <Authors>Cineverse Team</Authors>
         <Company>Cineverse</Company>
         <Description>Infrastructure mongo migrations package</Description>
@@ -14,13 +14,12 @@
 
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageOutputPath>..\nuget-packages</PackageOutputPath>
-        <RootNamespace>Infrastructure.Mongo.Migrations</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Cineverse.Infrastructure.Mongo" Version="1.0.0-rc-1" />
+      <PackageReference Include="Cineverse.Infrastructure.Mongo" Version="1.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
-      <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="10.0.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="10.0.1" />
     </ItemGroup>
 
 </Project>

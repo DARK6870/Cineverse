@@ -1,9 +1,9 @@
-﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Requests.Screenings.CreateScreening;
+﻿using Cineverse.Application.MediatR.Requests.Screenings.CreateScreening;
 using Cineverse.Application.MediatR.Requests.Screenings.DeleteScreening;
 using Cineverse.Application.MediatR.Requests.Screenings.UpdateScreening;
 using HotChocolate;
 using HotChocolate.Types;
+using Infrastructure.WebApi.GraphQl.Base;
 using MediatR;
 
 namespace Cineverse.Api.GraphQl.Mutations;

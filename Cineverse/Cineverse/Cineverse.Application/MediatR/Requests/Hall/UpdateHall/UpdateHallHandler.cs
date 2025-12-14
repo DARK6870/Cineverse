@@ -1,8 +1,5 @@
-﻿using System.Net;
-using Cineverse.Domain.Common.Exceptions;
-using Cineverse.Mongo.Repositories.Hall;
+﻿using Cineverse.Mongo.Repositories.Hall;
 using Cineverse.Mongo.Schemas.Entities;
-using Cineverse.Mongo.Schemas.Models;
 using MediatR;
 
 namespace Cineverse.Application.MediatR.Requests.Hall.UpdateHall;

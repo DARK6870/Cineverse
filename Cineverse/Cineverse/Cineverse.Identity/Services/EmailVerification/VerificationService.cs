@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿/*using System.Net;
 using Cineverse.Domain.Common.Exceptions;
 using Cineverse.Identity.Common.Constants;
 using Cineverse.Notifications.Common.Options;
@@ -48,4 +48,4 @@ internal class VerificationService(
 
         return Task.FromResult(verificationCode == cachedCode);
     }
-}
+}*/

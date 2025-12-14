@@ -1,7 +1,7 @@
-﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Requests.Users.UpdatePersonalInformation;
+﻿using Cineverse.Application.MediatR.Requests.Users.UpdatePersonalInformation;
 using HotChocolate;
 using HotChocolate.Types;
+using Infrastructure.WebApi.GraphQl.Base;
 using MediatR;
 
 namespace Cineverse.Api.GraphQl.Mutations;

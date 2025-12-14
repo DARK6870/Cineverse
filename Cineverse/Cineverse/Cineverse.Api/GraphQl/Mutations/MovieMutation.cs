@@ -1,9 +1,9 @@
-﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Requests.Movies.CreateMovie;
+﻿using Cineverse.Application.MediatR.Requests.Movies.CreateMovie;
 using Cineverse.Application.MediatR.Requests.Movies.DeleteMovie;
 using Cineverse.Application.MediatR.Requests.Movies.UpdateMovie;
 using HotChocolate;
 using HotChocolate.Types;
+using Infrastructure.WebApi.GraphQl.Base;
 using MediatR;
 
 namespace Cineverse.Api.GraphQl.Mutations;

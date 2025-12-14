@@ -1,9 +1,9 @@
-﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Requests.Hall.CreateHall;
+﻿using Cineverse.Application.MediatR.Requests.Hall.CreateHall;
 using Cineverse.Application.MediatR.Requests.Hall.DeleteHall;
 using Cineverse.Application.MediatR.Requests.Hall.UpdateHall;
 using HotChocolate;
 using HotChocolate.Types;
+using Infrastructure.WebApi.GraphQl.Base;
 using MediatR;
 
 namespace Cineverse.Api.GraphQl.Mutations;

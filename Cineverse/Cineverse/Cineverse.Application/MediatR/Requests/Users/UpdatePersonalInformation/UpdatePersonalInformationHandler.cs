@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿/*using System.Net;
 using Cineverse.Domain.Common.Exceptions;
 using Cineverse.Identity.Services.UserContext;
 using Cineverse.Mongo.Repositories.User;
@@ -22,4 +22,4 @@ public class UpdatePersonalInformationHandler(
             request.LastName
         );
     }
-}
+}*/

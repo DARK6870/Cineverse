@@ -16,8 +16,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Serilog.Enrichers.ClientInfo" />
-      <PackageReference Include="Serilog.Sinks.Console" />
+      <PackageReference Include="Cineverse.Infrastructure.Logging" />
+      <PackageReference Include="Cineverse.Infrastructure.WebApi" />
     </ItemGroup>
 
 </Project>

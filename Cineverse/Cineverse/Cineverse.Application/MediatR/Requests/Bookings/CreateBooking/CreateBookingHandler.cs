@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿/*using System.Net;
 using Cineverse.Domain.Common.Exceptions;
 using Cineverse.Identity.Services.UserContext;
 using Cineverse.Mongo.Repositories.Booking;
@@ -72,4 +72,4 @@ public class CreateBookingHandler(
 
         return true;
     }
-}
+}*/

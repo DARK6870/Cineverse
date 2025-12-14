@@ -1,6 +1,5 @@
-﻿using Cineverse.Api.GraphQl.Mutations;
-using Cineverse.Identity;
-using Cineverse.Identity.Authentication;
+﻿using Auth.Authentication;
+using Cineverse.Api.GraphQl.Mutations;
 using HotChocolate.Types;
 
 namespace Cineverse.Api.GraphQl.Types.MutationTypes;

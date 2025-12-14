@@ -1,6 +1,4 @@
-﻿using Cineverse.Mongo.Repositories.User;
-using Cineverse.Mongo.Schemas.Entities;
-using MediatR;
+﻿/*using MediatR;
 
 namespace Cineverse.Application.MediatR.Requests.Users.GetUsers;
 
@@ -12,4 +10,4 @@ public class GetUsersHandler(
     {
         return Task.FromResult(userRepository.AsQueryable());
     }
-}
+}*/

@@ -1,5 +1,5 @@
-﻿using Cineverse.Api.GraphQl.Queries;
-using Cineverse.Identity.Authentication;
+﻿using Auth.Authentication;
+using Cineverse.Api.GraphQl.Queries;
 using HotChocolate.Types;
 
 namespace Cineverse.Api.GraphQl.Types.QueryTypes;

@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+      <PackageReference Include="Cineverse.Infrastructure.Mongo.Migrations" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\IdentityService.Mongo\IdentityService.Mongo.csproj" />
+    </ItemGroup>
+</Project>

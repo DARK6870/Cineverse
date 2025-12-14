@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿/*using System.Net;
 using Cineverse.Domain.Common.Exceptions;
 using Cineverse.Identity.Services.EmailVerification;
 using Cineverse.Identity.Services.UserContext;
@@ -21,4 +21,4 @@ public class GenerateEmailVerificationCodeHandler(
         
         return true;
     }
-}
+}*/

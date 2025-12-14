@@ -1,4 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿/*using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Cineverse.Identity.Common.Constants;
@@ -48,4 +48,4 @@ internal class TokenManagementService(
             new Claim(ClaimTypes.Role, user.Role.ToString())
         ];
     }
-}
+}*/

@@ -1,4 +1,4 @@
-﻿using Cineverse.Mongo.Schemas.Entities;
+﻿/*using Cineverse.Mongo.Schemas.Entities;
 
 namespace Cineverse.Identity.Services.RefreshToken;
 
@@ -15,4 +15,4 @@ public interface IRefreshTokenService
     Task RevokeTokenAsync(string refreshToken);
     
     string GenerateRefreshToken();
-}
+}*/

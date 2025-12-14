@@ -3,5 +3,17 @@
     <PropertyGroup>
         <RootNamespace>IdentityService.Api</RootNamespace>
     </PropertyGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\IdentityService.Application\IdentityService.Application.csproj" />
+      <ProjectReference Include="..\IdentityService.Mongo.Migrations\IdentityService.Mongo.Migrations.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="Asp.Versioning.Mvc" />
+      <PackageReference Include="Cineverse.Infrastructure.Logging" />
+      <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+      <PackageReference Include="Scalar.AspNetCore" />
+    </ItemGroup>
 
 </Project>

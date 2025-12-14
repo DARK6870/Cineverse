@@ -4,7 +4,4 @@
     <PackageReference Include="Cineverse.Infrastructure.Mongo.Migrations" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cineverse.Domain\Cineverse.Domain.csproj" />
-  </ItemGroup>
 </Project>

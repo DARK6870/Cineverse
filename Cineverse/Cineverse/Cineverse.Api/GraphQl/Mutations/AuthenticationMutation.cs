@@ -1,5 +1,4 @@
-﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Requests.Authentication.ChangePassword;
+﻿using Cineverse.Application.MediatR.Requests.Authentication.ChangePassword;
 using Cineverse.Application.MediatR.Requests.Authentication.ConfirmEmail;
 using Cineverse.Application.MediatR.Requests.Authentication.DeleteRefreshToken;
 using Cineverse.Application.MediatR.Requests.Authentication.GenerateAccessToken;
@@ -10,6 +9,7 @@ using Cineverse.Application.MediatR.Requests.Authentication.RestorePassword;
 using Cineverse.Infrastructure.Common.Models;
 using HotChocolate;
 using HotChocolate.Types;
+using Infrastructure.WebApi.GraphQl.Base;
 using MediatR;
 
 namespace Cineverse.Api.GraphQl.Mutations;

@@ -1,8 +1,5 @@
-﻿using System.Net;
-using Cineverse.Domain.Common.Exceptions;
+﻿/*using System.Net;
 using Cineverse.Identity.Services.UserContext;
-using Cineverse.Mongo.Repositories.RefreshToken;
-using Cineverse.Mongo.Repositories.User;
 using Cineverse.Notifications.Common.Options;
 using Cineverse.Notifications.Services.Notification;
 using Cineverse.Notifications.Services.Notification.Extensions;
@@ -39,4 +36,4 @@ public class ChangePasswordHandler(
 
         return result;
     }
-}
+}*/

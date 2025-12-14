@@ -1,4 +1,5 @@
-﻿using Infrastructure.Mongo.Models.Options;
+﻿using Infrastructure.Mongo.Conventions;
+using Infrastructure.Mongo.Models.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -14,11 +15,16 @@ public static class Configuration
         IConfiguration configuration
     )
     {
+        // register default mongo conventions pack
+        MongoConventions.Register();
+        
+        // get mongo settings
         var mongoSettings = configuration.GetSection(nameof(MongoOptions)).Get<MongoOptions>()
                             ?? throw new ArgumentNullException(nameof(MongoOptions));
         
         services.AddSingleton(mongoSettings);
 
+        // add mongo client
         services.AddSingleton<IMongoClient>(serviceProvider => 
         {
             var logger = serviceProvider.GetService<ILogger<MongoClient>>();
@@ -26,6 +32,7 @@ public static class Configuration
 
             if (mongoSettings.LogDatabaseQueries && logger != null)
             {
+                // add mongo query logging
                 settings.ClusterConfigurator = cb =>
                 {
                     cb.Subscribe<CommandStartedEvent>(e =>
@@ -47,6 +54,7 @@ public static class Configuration
             return new MongoClient(settings);
         });
 
+        // add mongo database
         services.AddSingleton<IMongoDatabase>(sp => 
         {
             var client = sp.GetRequiredService<IMongoClient>();

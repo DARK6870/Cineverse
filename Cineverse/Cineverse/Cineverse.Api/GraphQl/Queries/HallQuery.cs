@@ -1,11 +1,11 @@
-﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Requests.Hall.GetHallById;
+﻿using Cineverse.Application.MediatR.Requests.Hall.GetHallById;
 using Cineverse.Application.MediatR.Requests.Hall.GetHalls;
-using Cineverse.Infrastructure.Common.Constants;
 using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;
 using HotChocolate.Data;
 using HotChocolate.Types;
+using Infrastructure.WebApi.GraphQl.Base;
+using Infrastructure.WebApi.GraphQl.Constants;
 using MediatR;
 
 namespace Cineverse.Api.GraphQl.Queries;

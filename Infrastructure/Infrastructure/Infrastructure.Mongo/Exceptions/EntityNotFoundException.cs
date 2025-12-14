@@ -1,6 +1,10 @@
-﻿namespace Infrastructure.Mongo.Exceptions;
+﻿using System.Net;
+using Infrastructure.Common.Exceptions.Base;
 
-public class EntityNotFoundException(Type entityType) : Exception
+namespace Infrastructure.Mongo.Exceptions;
+
+public class EntityNotFoundException(Type entityType) 
+    : BaseException($"{entityType.Name.Replace("Entity", "")} was not found", HttpStatusCode.NotFound)
 {
-    public string ErrorMessage => $"{ entityType.Name.Replace("Entity", "") } was not found";
+    public Type EntityType { get; } = entityType;
 }

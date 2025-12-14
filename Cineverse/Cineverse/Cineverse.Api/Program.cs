@@ -1,32 +1,26 @@
-using System.Reflection;
-using Cineverse.Api.GraphQl;
-using Cineverse.Api.GraphQl.Middlewares.StatusCodeMiddleware;
-using Cineverse.Application;
-using Cineverse.Identity;
-using Cineverse.Identity.Middlewares;
-using Cineverse.Infrastructure;
-using Cineverse.Infrastructure.Cors;
-using Cineverse.Infrastructure.Logging;
-using Cineverse.Mongo;
-using Cineverse.Notifications;
-using Infrastructure.Mongo;
+using Auth.Authentication;
+using Infrastructure.Logging;
 using Infrastructure.Mongo.Migrations;
-using Microsoft.Extensions.DependencyModel;
+using Infrastructure.WebApi.Cors;
+using Infrastructure.WebApi.Cors.CorsPolicies;
+using Infrastructure.WebApi.GraphQl;
+using Infrastructure.WebApi.UserContext;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-// ====== Configure logger ======
-builder.AddSerilogLoggingWithOpenTelemetry(configuration);
+// ------ Configure logger ------ //
+builder.AddInfrastructureLogging();
 
 
-// ====== Configure services ======
+// ------ Configure services ------ //
 builder.Services
-    .AddCorsPolicy(configuration, builder.Environment)
+    .AddCorsPolicy(configuration)
     .AddMongoDatabase(configuration)
     .AddMongoRepositories()
     .AddMongoMigrations()
-    .AddIdentityServices(configuration)
+    .AddAuth(configuration)
+    .AddUserContext()
     .AddApplicationServices()
     .AddNotificationService(configuration)
     .AddInfrastructureServices()
@@ -38,22 +32,21 @@ builder.Services
     ;
 
 
-// ====== Configure WebApplication ======
+// ------ Configure WebApplication ------ //
 var app = builder.Build();
 
-app.UseCors(CorsConfiguration.CorsPolicy);
+app.UseCors(nameof(DefaultCorsPolicy));
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseMiddleware<UserContextMiddleware>();
-app.UseMiddleware<GraphQlStatusCodeMiddleware>();
+app.UseUserContextMiddleware();
+app.UseGraphQlStatusCodeMiddleware();
 
-app.MapCineverseGraphQl();
+app.MapGraphQlApi();
 
 
-
-// ====== Execute Migrations ======
+// ------ Execute Migrations ------ //
 await app.ExecuteMigrationsAsync();
 
 app.Run();

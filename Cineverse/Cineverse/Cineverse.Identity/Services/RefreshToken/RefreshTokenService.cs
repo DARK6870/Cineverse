@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography;
+﻿/*using System.Security.Cryptography;
 using Cineverse.Identity.Services.UserContext;
 using Cineverse.Mongo.Repositories.RefreshToken;
 using Cineverse.Mongo.Schemas.Entities;
@@ -72,4 +72,4 @@ public class RefreshTokenService(
         
         return Convert.ToBase64String(randomBytes);
     }
-}
+}*/

@@ -8,11 +8,11 @@ public static class Configuration
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
+        
+        // TODO: change
         // Register Mediator
-        services.AddMediatR(
-            cfg => cfg.RegisterServicesFromAssembly(typeof(Configuration).Assembly)
-        )
-        .AddScoped<IMediator, Mediator>();
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Configuration).Assembly)
+        );
         
         // Register validators
         services.AddValidatorsFromAssembly(typeof(Configuration).Assembly);

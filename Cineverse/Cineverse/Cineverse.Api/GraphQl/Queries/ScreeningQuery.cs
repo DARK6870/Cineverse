@@ -1,11 +1,11 @@
-﻿using Cineverse.Api.GraphQl.Base;
-using Cineverse.Application.MediatR.Requests.Screenings.GetScreeningById;
+﻿using Cineverse.Application.MediatR.Requests.Screenings.GetScreeningById;
 using Cineverse.Application.MediatR.Requests.Screenings.GetScreenings;
-using Cineverse.Infrastructure.Common.Constants;
+using Infrastructure.WebApi.GraphQl.Constants;
 using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;
 using HotChocolate.Data;
 using HotChocolate.Types;
+using Infrastructure.WebApi.GraphQl.Base;
 using MediatR;
 
 namespace Cineverse.Api.GraphQl.Queries;
