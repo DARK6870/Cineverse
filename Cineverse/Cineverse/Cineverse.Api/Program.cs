@@ -1,5 +1,10 @@
 using Auth.Authentication;
+using Cineverse.Application;
+using Cineverse.Mongo;
+using Cineverse.Notifications;
+using Infrastructure.Common.MediatR;
 using Infrastructure.Logging;
+using Infrastructure.Mongo;
 using Infrastructure.Mongo.Migrations;
 using Infrastructure.WebApi.Cors;
 using Infrastructure.WebApi.Cors.CorsPolicies;
@@ -15,6 +20,7 @@ builder.AddInfrastructureLogging();
 
 // ------ Configure services ------ //
 builder.Services
+    .AddHttpContextAccessor()
     .AddCorsPolicy(configuration)
     .AddMongoDatabase(configuration)
     .AddMongoRepositories()
@@ -23,7 +29,6 @@ builder.Services
     .AddUserContext()
     .AddApplicationServices()
     .AddNotificationService(configuration)
-    .AddInfrastructureServices()
     .AddPipelineBehaviours()
     .AddGraphQLServer()
     .ConfigureGraphQl()

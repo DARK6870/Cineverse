@@ -5,109 +5,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31d5039c-572c-49ab-9de7-1e73255cfbc2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Models/Options/AuthenticationOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/push-to-feed.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Controllers/AuthenticationController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Controllers/Base/BaseController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Helpers/HashHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/global.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/.idea/.idea.Cineverse/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/.idea/.idea.Cineverse/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Cineverse.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Cineverse.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Base/BaseGraphQlMutation.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Base/BaseGraphQlQuery.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/GraphQlSetup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Middlewares/StatusCodeMiddleware/Models/ErrorResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/AuthenticationMutation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/AuthenticationMutation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/BookingMutation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/BookingMutation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/HallMutation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/HallMutation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/MovieMutation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/MovieMutation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/ScreeningMutation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/ScreeningMutation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/SupportMutation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/SupportMutation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/UserMutation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/UserMutation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Queries/BookingQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Queries/BookingQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Queries/HallQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Queries/HallQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Queries/MovieQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Queries/MovieQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Queries/ScreeningQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Queries/ScreeningQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/AuthenticationMutationType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/AuthenticationMutationType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/BookingMutationType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/BookingMutationType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/HallMutationType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/HallMutationType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/MovieMutationType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/MovieMutationType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/ScreeningMutationType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/ScreeningMutationType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/SupportMutationType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/SupportMutationType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/UserMutationType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/UserMutationType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/QueryTypes/BookingQueryType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/QueryTypes/BookingQueryType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/QueryTypes/HallQueryType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/QueryTypes/HallQueryType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/QueryTypes/MovieQueryType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/QueryTypes/MovieQueryType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/QueryTypes/ScreeningQueryType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/QueryTypes/ScreeningQueryType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/AuthenticationMutation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Mutations/UserMutation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/AuthenticationMutationType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/GraphQl/Types/MutationTypes/UserMutationType.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.Development.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/Configuration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/ChangePassword/ChangePasswordHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/ChangePassword/ChangePasswordHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/DeleteRefreshToken/DeleteRefreshTokenHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/DeleteRefreshToken/DeleteRefreshTokenHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/GenerateEmailVerificationCode/GenerateEmailVerificationCodeHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/GenerateEmailVerificationCode/GenerateEmailVerificationCodeHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Bookings/CreateBooking/CreateBookingHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Bookings/CreateBooking/CreateBookingHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Bookings/GetBookingById/GetBookingByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Bookings/GetBookingById/GetBookingByIdHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Hall/UpdateHall/UpdateHallHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Hall/UpdateHall/UpdateHallHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Users/GetUsers/GetUsersHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Users/GetUsers/GetUsersHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Users/GetUsers/GetUsersRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Users/GetUsers/GetUsersRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Users/UpdatePersonalInformation/UpdatePersonalInformationHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Users/UpdatePersonalInformation/UpdatePersonalInformationHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Domain/Cineverse.Domain.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Domain/Common/Exceptions/ApiRequestException.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Authentication/AuthenticationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Authentication/AuthenticationExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Authentication/AuthenticationPolicies.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Authentication/AuthenticationPolicies.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Authentication/AuthenticationSetup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Authentication/AuthenticationSetup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Common/Models/Options/AuthenticationOptions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Common/Models/Options/JwtOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Models/Options/JwtOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Configuration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Middlewares/UserContextMiddleware.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/Authentication/AuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/Authentication/AuthenticationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/EmailVerification/VerificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/EmailVerification/VerificationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RefreshToken/IRefreshTokenService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RefreshToken/IRefreshTokenService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RefreshToken/RefreshTokenService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RefreshToken/RefreshTokenService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RestorePassword/RestorePasswordService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RestorePassword/RestorePasswordService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/TokenManagament/ITokenManagementService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/TokenManagament/ITokenManagementService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/TokenManagament/TokenManagementService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/TokenManagament/TokenManagementService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/UserContext/IUserContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/UserContext/UserContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Cineverse.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Cineverse.Infrastructure.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Common/Behaviours/LoggingBehavior.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Common/Behaviours/ValidationBehavior.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Common/Configurations/JsonSerializerConfiguration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Common/Constants/GraphQlConstants.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Common/Options/TelemetryOptions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Configuration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Cors/Models/Options/CorsOptions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/GraphQl/ApplicationNamingConvention.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Logging/SerilogExtension.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Telemetry/TelemetryExtension.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/RefreshTokensCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo.Migrations/Migrations/RefreshTokensCollectionIndexesMigration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo.Migrations/Migrations/UsersCollectionIndexesMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo.Migrations/Migrations/UsersCollectionIndexesMigration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Cineverse.Mongo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Cineverse.Mongo.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Configuration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/RefreshToken/IRefreshTokenRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/RefreshToken/IRefreshTokenRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/RefreshToken/RefreshTokenRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/RefreshToken/RefreshTokenRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/User/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/User/IUserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Repositories/User/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/User/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/RefreshTokenEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Entities/RefreshTokenEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/UserEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Entities/UserEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Enums/Role.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Enums/Role.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Enums/UserStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Enums/UserStatus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/logsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/Cineverse.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/Cineverse.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/FluentValidation/Authentication/ChangePasswordRequestValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/FluentValidation/Authentication/LoginRequestValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/FluentValidation/Authentication/RegisterRequestValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/FluentValidation/Authentication/RestorePasswordRequestValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/FluentValidation/Authentication/SendRestorePasswordEmailRequestValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/ChangePassword/ChangePasswordHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/ChangePassword/ChangePasswordRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/ConfirmEmail/ConfirmEmailHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/ConfirmEmail/ConfirmEmailRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/DeleteRefreshToken/DeleteRefreshTokenHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/DeleteRefreshToken/DeleteRefreshTokenRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/GenerateAccessToken/GenerateAccessTokenHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/GenerateAccessToken/GenerateAccessTokenRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/GenerateEmailVerificationCode/GenerateEmailVerificationCodeHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/GenerateEmailVerificationCode/GenerateVerificationCodeRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/Login/LoginHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/Login/LoginRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/Register/RegisterHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/Register/RegisterRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/RestorePassword/RestorePasswordHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/RestorePassword/RestorePasswordRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/RestorePassword/SendRestorePasswordEmailHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Authentication/RestorePassword/SendRestorePasswordEmailRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Cineverse.Identity.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Common/Constants/CacheConstants.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Common/Constants/JwtClaims.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Common/Models/Responses/LoginResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Configuration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/Authentication/AuthenticationService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/Authentication/IAuthenticationService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/EmailVerification/IVerificationService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/EmailVerification/VerificationService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RefreshToken/IRefreshTokenService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RefreshToken/RefreshTokenService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RestorePassword/IRestorePasswordService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/RestorePassword/RestorePasswordService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/TokenManagament/ITokenManagementService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Identity/Services/TokenManagament/TokenManagementService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Cineverse.Infrastructure.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Infrastructure/Configuration.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Directory.Build.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Directory.Packages.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Directory.Packages.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/global.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/global.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/.idea/.idea.IdentityService/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/.idea/.idea.IdentityService/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Directory.Build.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/Directory.Packages.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Directory.Packages.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/IdentityService.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/IdentityService.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/IdentityService.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/IdentityService.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Infrastructure/Configuration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Infrastructure/IdentityService.Infrastructure.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Configuration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/IdentityService.Mongo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/IdentityService.Mongo.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Auth.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Auth.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Infrastructure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Infrastructure/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Logging/Infrastructure.Logging.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Logging/Infrastructure.Logging.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Logging/push-to-feed.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Logging/push-to-feed.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Infrastructure.Mongo.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Infrastructure.Mongo.Migrations.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Mongo.Migrations/push-to-feed.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Mongo.Migrations/push-to-feed.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Mongo/Infrastructure.Mongo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Mongo/Infrastructure.Mongo.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Mongo/push-to-feed.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Mongo/push-to-feed.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/Infrastructure.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/Infrastructure.WebApi.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,8 +95,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/778fb2a77c583aba81cd924cab24341d5ed9974f3ce0c95bda5161d2e38059/DiagnosticListener.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8d12911f9f1bd4a8e5dd65c3ee161c7897f1a387f3ea80c9b6c4a22bae62/ExceptionHandlerMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b046c966f166d12263bfa9a0f88fb04f7245ea1851c5e95fec02b96632d2df1/IMongoCollection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/Pet-Projects/Cineverse/Cineverse/Cineverse/Cineverse.Mongo/Repositories/Movie/MovieRepository.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Pet-Projects/Cineverse/Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/MovieEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Common/Exceptions/Base/BaseException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Common/Helpers/HashHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.Common/Json/Configuration/JsonSerializerConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
@@ -209,6 +166,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -224,6 +182,8 @@
       <workItem from="1765296360841" duration="4906000" />
       <workItem from="1765384424726" duration="11597000" />
       <workItem from="1765578447241" duration="29647000" />
+      <workItem from="1765734052989" duration="472000" />
+      <workItem from="1765741940706" duration="2335000" />
     </task>
     <task id="LOCAL-00001" summary="Base project setup">
       <option name="closed" value="true" />
@@ -233,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765297364081</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Test commit #1">
+      <option name="closed" value="true" />
+      <created>1765734280993</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1765734280993</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,9 +210,13 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Base project setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Base project setup" />
+    <MESSAGE value="Test commit #1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test commit #1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

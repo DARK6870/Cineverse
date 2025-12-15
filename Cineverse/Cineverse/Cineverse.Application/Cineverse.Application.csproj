@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
-      <ProjectReference Include="..\Cineverse.Infrastructure\Cineverse.Infrastructure.csproj" />
       <ProjectReference Include="..\Cineverse.Mongo\Cineverse.Mongo.csproj" />
     </ItemGroup>
 

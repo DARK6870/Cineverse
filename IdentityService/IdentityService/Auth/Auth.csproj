@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
 
         <PackageId>Cineverse.Auth</PackageId>
-        <Version>1.0.0-rc-1</Version>
+        <Version>1.0.0</Version>
         <Authors>Cineverse Team</Authors>
         <Company>Cineverse</Company>
         <Description>Auth package</Description>
