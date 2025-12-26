@@ -13,7 +13,7 @@ public static class Configuration
         services
             .AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>))
             .AddSingleton<IUserRepository, UserRepository>()
-            .AddSingleton<RefreshTokenRepository, RefreshTokenRepository>()
+            .AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>()
             ;
 
         return services;

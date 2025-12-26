@@ -13,7 +13,7 @@ public class RefreshTokenEntity : BaseEntity
     
     public required string IpAddress { get; set; }
     
-    public required string Token { get; set; }
+    public required string TokenHash { get; set; }
     
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     

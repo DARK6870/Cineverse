@@ -1,5 +1,5 @@
-﻿using IdentityService.Mongo.Schemas.Entities;
-using IdentityService.Mongo.Schemas.Enums;
+﻿using Auth.Models.Enums;
+using IdentityService.Mongo.Schemas.Entities;
 using Infrastructure.Mongo.Repositories.Interfaces.Generic;
 
 namespace IdentityService.Mongo.Repositories.User;

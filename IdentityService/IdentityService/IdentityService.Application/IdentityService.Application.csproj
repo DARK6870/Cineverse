@@ -4,9 +4,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FluentValidation\" />
-    <Folder Include="MediatR\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Cineverse.Auth" />
+    <PackageReference Include="Cineverse.Infrastructure.Context" />
+    <PackageReference Include="Cineverse.Infrastructure.MediatR" />
+    <PackageReference Include="Cineverse.Infrastructure.WebApi" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
     <PackageReference Include="MediatR" />
   </ItemGroup>
 </Project>

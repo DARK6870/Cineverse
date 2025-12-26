@@ -1,4 +1,4 @@
-﻿using IdentityService.Mongo.Schemas.Enums;
+﻿using Auth.Models.Enums;
 using Infrastructure.Mongo.Attributes;
 using Infrastructure.Mongo.Models.Entities;
 

@@ -10,10 +10,12 @@
     </ItemGroup>
     
     <ItemGroup>
-      <PackageReference Include="Asp.Versioning.Mvc" />
       <PackageReference Include="Cineverse.Infrastructure.Logging" />
-      <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
-      <PackageReference Include="Scalar.AspNetCore" />
+      <PackageReference Include="Cineverse.Infrastructure.WebApi" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Rest\" />
     </ItemGroup>
 
 </Project>

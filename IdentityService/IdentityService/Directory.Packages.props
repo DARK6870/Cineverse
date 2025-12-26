@@ -3,13 +3,17 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Asp.Versioning.Mvc" Version="8.1.0" />
-    <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.0-rc-9" />
-    <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.1-rc1" />
-    <PackageVersion Include="Cineverse.Infrastructure.Mongo.Migrations" Version="1.0.0" />
+    <PackageVersion Include="Cineverse.Auth" Version="1.0.2" />
+    <PackageVersion Include="Cineverse.Auth.Models" Version="1.0.0" />
+    <PackageVersion Include="Cineverse.Infrastructure.Context" Version="1.0.0" />
+    <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.1" />
+    <PackageVersion Include="Cineverse.Infrastructure.MediatR" Version="1.0.0-rc-1" />
+    <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.3-rc-1" />
+    <PackageVersion Include="Cineverse.Infrastructure.Mongo.Migrations" Version="1.0.3-rc-1" />
+    <PackageVersion Include="Cineverse.Infrastructure.WebApi" Version="1.0.2-rc-3" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
     <PackageVersion Include="MediatR" Version="14.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.1" />
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
     <PackageVersion Include="MongoDB.Analyzer" Version="2.0.0" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.11.6" />
   </ItemGroup>

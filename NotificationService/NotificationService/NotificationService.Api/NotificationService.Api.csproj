@@ -3,5 +3,14 @@
     <PropertyGroup>
         <RootNamespace>NotificationService.Api</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Cineverse.Infrastructure.Common" />
+      <PackageReference Include="Cineverse.Infrastructure.Logging" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NotificationService.Application\NotificationService.Application.csproj" />
+    </ItemGroup>
     
 </Project>

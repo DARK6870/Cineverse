@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
+﻿using System.Reflection;
 using Auth.Authentication;
 using HotChocolate.AspNetCore;
 using HotChocolate.Execution.Configuration;
@@ -60,7 +59,7 @@ public static class GraphQlExtensions
             .GetGraphQlExtensions<BaseGraphQlMutation>();
 
         requestExecutorBuilder
-            .AddQueryType<BaseGraphQlMutation>()
+            .AddMutationType<BaseGraphQlMutation>()
             .AddTypes(mutationExtensions);
 
         return requestExecutorBuilder;

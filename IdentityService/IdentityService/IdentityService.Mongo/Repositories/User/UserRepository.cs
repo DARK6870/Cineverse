@@ -1,7 +1,7 @@
-﻿using IdentityService.Mongo.Helpers;
+﻿using Auth.Models.Enums;
 using IdentityService.Mongo.Schemas.Entities;
-using IdentityService.Mongo.Schemas.Enums;
 using Infrastructure.Mongo.Repositories.Implementations;
+using Infrastructure.Primitives.Helpers;
 using MongoDB.Driver;
 using static MongoDB.Driver.Builders<IdentityService.Mongo.Schemas.Entities.UserEntity>;
 
@@ -13,7 +13,7 @@ public class UserRepository(
 {
     public async Task<UserEntity?> GetUserByCredentialsAsync(string email, string password)
     {
-        var passwordHash = HashHelper.ComputeHash(password);
+        var passwordHash = HashHelper.ComputeSha256(password);
 
         return await Collection.Find(
             x => x.Email == email &&
@@ -23,7 +23,7 @@ public class UserRepository(
 
     public async Task CreateUserAsync(UserEntity user, string password)
     {
-        var passwordHash = HashHelper.ComputeHash(password);
+        var passwordHash = HashHelper.ComputeSha256(password);
 
         user.PasswordHash = passwordHash;
         await Collection.InsertOneAsync(user);
@@ -41,7 +41,7 @@ public class UserRepository(
 
     public async Task<bool> UpdateUserPasswordAsync(string userId, string password)
     {
-        var passwordHash = HashHelper.ComputeHash(password);
+        var passwordHash = HashHelper.ComputeSha256(password);
         
         var result = await Collection.UpdateOneAsync(
             x => x.Id == userId,

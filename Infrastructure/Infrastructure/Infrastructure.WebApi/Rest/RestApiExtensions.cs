@@ -10,9 +10,12 @@ public static class RestApiExtensions
 {
     public static IServiceCollection AddRestApi(this IServiceCollection services)
     {
-        services
-            .AddOpenApi()
-            .AddControllers();
+        // add rest api
+        services.AddOpenApi();
+        services.AddControllers();
+
+        // add lower-case routing
+        services.AddRouting(options => { options.LowercaseUrls = true; });
 
         return services;
     }

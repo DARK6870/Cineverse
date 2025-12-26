@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <PackageId>Cineverse.NotificationService.Client</PackageId>
+        <Version>1.0.0-rc-1</Version>
+        <Authors>Cineverse Team</Authors>
+        <Company>Cineverse</Company>
+        <Description>NotificationService client package</Description>
+        <RepositoryUrl>https://github.com/DARK6870/Cineverse</RepositoryUrl>
+
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageOutputPath>..\nuget-packages</PackageOutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Cineverse.Infrastructure.Kafka" />
+    </ItemGroup>
+
+</Project>

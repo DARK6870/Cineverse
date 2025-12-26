@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Infrastructure.Primitives.Json.Configuration;
+namespace Infrastructure.Common.Json.Configuration;
 
 public static class JsonSerializerConfiguration
 {

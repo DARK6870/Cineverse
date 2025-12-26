@@ -3,5 +3,5 @@
 public static class HeaderConstants
 {
     public const string ProducedBy = "produced-by";
-    public const string TypeOfMessage = "type-of-message";
+    public const string MessageType = "message-type";
 }
