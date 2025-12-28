@@ -1,6 +1,6 @@
 ﻿using IdentityService.Mongo.Schemas.Entities;
+using Infrastructure.Common.Helpers;
 using Infrastructure.Mongo.Repositories.Implementations;
-using Infrastructure.Primitives.Helpers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 

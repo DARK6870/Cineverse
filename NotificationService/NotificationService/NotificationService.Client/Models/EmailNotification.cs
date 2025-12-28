@@ -2,9 +2,9 @@
 
 public class EmailNotification
 {
-    public required string EmailTo { get; set; }
+    public required string EmailTo { get; init; }
  
-    public required string Subject { get; set; }
+    public required string Subject { get; init; }
     
-    public required string Content { get; set; }
+    public required string Content { get; init; }
 }

@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
 
         <PackageId>Cineverse.Infrastructure.Kafka</PackageId>
-        <Version>1.0.0-rc-5</Version>
+        <Version>1.0.0-rc-7</Version>
         <Authors>Cineverse Team</Authors>
         <Company>Cineverse</Company>
         <Description>Infrastructure kafka package</Description>

@@ -1,7 +1,7 @@
 ﻿using Auth.Models.Enums;
 using IdentityService.Mongo.Schemas.Entities;
+using Infrastructure.Common.Helpers;
 using Infrastructure.Mongo.Repositories.Implementations;
-using Infrastructure.Primitives.Helpers;
 using MongoDB.Driver;
 using static MongoDB.Driver.Builders<IdentityService.Mongo.Schemas.Entities.UserEntity>;
 

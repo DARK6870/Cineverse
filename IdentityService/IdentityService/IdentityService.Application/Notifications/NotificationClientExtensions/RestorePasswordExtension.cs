@@ -1,11 +1,12 @@
-﻿using Cineverse.Notifications.Common.Builders;
+﻿using NotificationService.Client.Builders;
+using NotificationService.Client.Services;
 
-namespace Cineverse.Notifications.Services.Notification.Extensions;
+namespace IdentityService.Application.Notifications.NotificationClientExtensions;
 
 public static class RestorePasswordExtension
 {
     public static async Task SendRestorePasswordEmailAsync(
-        this INotificationService notificationService,
+        this INotificationServiceClient notificationServiceClient,
         string emailTo,
         string fullName,
         string actionUrl
@@ -25,8 +26,7 @@ public static class RestorePasswordExtension
             .AppendParagraphEnd()
             .AppendAction(actionUrl, "to restore your password")
             ;
-        ;
         
-        await notificationService.SendEmailNotificationAsync(emailTo, "Restore Password", notification);
+        await notificationServiceClient.SendEmailNotificationAsync(emailTo, "Restore Password", notification);
     }
 }

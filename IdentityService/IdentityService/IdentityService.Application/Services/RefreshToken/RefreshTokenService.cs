@@ -1,7 +1,7 @@
 ﻿using IdentityService.Application.Helpers;
 using IdentityService.Mongo.Repositories.RefreshToken;
 using IdentityService.Mongo.Schemas.Entities;
-using Infrastructure.Primitives.Helpers;
+using Infrastructure.Common.Helpers;
 
 namespace IdentityService.Application.Services.RefreshToken;
 

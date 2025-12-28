@@ -1,4 +1,4 @@
-﻿namespace NotificationService.Application.Models.Options;
+﻿namespace NotificationService.Client.Models.Options;
 
 public class NotificationLinksOptions
 {
@@ -6,10 +6,8 @@ public class NotificationLinksOptions
     public required string ConfirmEmailPath { get; init; }
     public required string BookingDetailsPath { get; init; }
     public required string ProfilePath { get; init; }
-    
     public required string RestorePasswordPath { get; init; }
-
-
+    
     public string BuildConfirmEmailUrl(int verificationCode)
     {
         return BaseUrl + ConfirmEmailPath.Replace("code", verificationCode.ToString());

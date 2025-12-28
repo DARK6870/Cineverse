@@ -1,13 +1,11 @@
 ﻿using Confluent.Kafka;
 using Infrastructure.Kafka.Consumer;
 using Infrastructure.Kafka.Consumer.Extensions;
+using Infrastructure.Kafka.Extensions;
 using Infrastructure.Kafka.Models.Metadata;
-using Infrastructure.Kafka.Producer;
-using Infrastructure.Kafka.Producer.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NotificationService.Application.Helpers;
 using NotificationService.Application.Kafka.Settings;
 using NotificationService.Application.Services.Notification;
 using NotificationService.Client.Models;

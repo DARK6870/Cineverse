@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Cineverse.Infrastructure.Common" Version="1.0.1-rc-2" />
-    <PackageVersion Include="Cineverse.Infrastructure.Kafka" Version="1.0.0-rc-5" />
+    <PackageVersion Include="Cineverse.Infrastructure.Kafka" Version="1.0.0-rc-6" />
     <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.1" />
     <PackageVersion Include="Cineverse.Infrastructure.MediatR" Version="1.0.0-rc-1" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />

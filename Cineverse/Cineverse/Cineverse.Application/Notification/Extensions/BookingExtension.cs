@@ -1,11 +1,12 @@
-﻿using Cineverse.Notifications.Common.Builders;
+﻿using NotificationService.Client.Builders;
+using NotificationService.Client.Services;
 
-namespace Cineverse.Notifications.Services.Notification.Extensions;
+namespace Cineverse.Application.Notification.Extensions;
 
 public static class BookingExtension
 {
     public static async Task SendBookingEmailAsync(
-        this INotificationService notificationService,
+        this INotificationServiceClient notificationServiceClient,
         string emailTo,
         string fullName,
         int numberOfTickets,
@@ -30,6 +31,6 @@ public static class BookingExtension
             .AppendAction(actionUrl, "to view booking details")
             ;
         
-        await notificationService.SendEmailNotificationAsync(emailTo, "Ticket Booking", notification);
+        await notificationServiceClient.SendEmailNotificationAsync(emailTo, "Ticket Booking", notification);
     }
 }

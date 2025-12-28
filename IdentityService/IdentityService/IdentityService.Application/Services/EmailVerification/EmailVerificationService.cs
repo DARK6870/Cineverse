@@ -1,14 +1,24 @@
 ﻿using System.Net;
+using Auth.Models.Enums;
 using IdentityService.Application.Constants;
 using IdentityService.Application.Helpers;
+using IdentityService.Application.Notifications.NotificationClientExtensions;
+using IdentityService.Mongo.Repositories.User;
+using Infrastructure.Context.UserContext;
 using Infrastructure.WebApi.Exceptions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
+using NotificationService.Client.Models.Options;
+using NotificationService.Client.Services;
 
 namespace IdentityService.Application.Services.EmailVerification;
 
 public class EmailVerificationService(
-    IMemoryCache cache
-    //INotificationService notificationService,
+    IUserRepository userRepository,
+    IUserContext userContext,
+    IMemoryCache cache,
+    INotificationServiceClient notificationServiceClient,
+    IOptions<NotificationLinksOptions> notificationLinksOptions
 ) : IEmailVerificationService
 {
     public async Task<int> GenerateAndSendVerificationCodeAsync(string email, string fullName)
@@ -23,16 +33,15 @@ public class EmailVerificationService(
             verificationCode,
             TimeSpan.FromMinutes(CacheConstants.VerificationCodeCacheLifetimeMinutes)
         );
-
-        // TODO: send notification
-        /*var actionUrl = notificationLinksOptions.Value.BuildBookingDetailsUrl(email);
-        await notificationService.SendVerificationEmailAsync(
+        
+        var actionUrl = notificationLinksOptions.Value.BuildBookingDetailsUrl(email);
+        await notificationServiceClient.SendVerificationEmailAsync(
             email,
             fullName,
             verificationCode,
             actionUrl
-        );*/
-        await Task.Delay(1);
+        );
+        
         return verificationCode;
     }
 
@@ -42,5 +51,18 @@ public class EmailVerificationService(
             return Task.FromResult(false);
 
         return Task.FromResult(verificationCode == cachedCode);
+    }
+    
+    public async Task ConfirmEmailAsync(int verificationCode)
+    {
+        var user = await userRepository.FindByIdOrThrowAsync(userContext.UserId);
+
+        if (user.Status is not UserStatus.PendingEmailConfirmation)
+            throw new ApiRequestException("Email already confirmed", HttpStatusCode.Conflict);
+
+        if (!await ValidateVerificationCodeAsync(user.Email, verificationCode))
+            throw new ApiRequestException("Verification code invalid or expired, please try again", HttpStatusCode.BadRequest);
+
+        await userRepository.UpdateUserStatusAsync(user.Id, UserStatus.Normal);
     }
 }

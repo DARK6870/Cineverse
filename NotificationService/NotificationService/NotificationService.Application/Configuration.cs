@@ -9,6 +9,7 @@ using NotificationService.Application.Kafka.Settings;
 using NotificationService.Application.Models.Options;
 using NotificationService.Application.Services.Notification;
 using NotificationService.Client.Kafka.Settings;
+using NotificationService.Client.Models.Options;
 
 namespace NotificationService.Application;
 

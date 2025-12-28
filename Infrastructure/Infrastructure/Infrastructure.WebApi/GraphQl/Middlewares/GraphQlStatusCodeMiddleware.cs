@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using Infrastructure.Primitives.Json.Configuration;
+using Infrastructure.Common.Json.Configuration;
 using Infrastructure.WebApi.GraphQl.Constants;
 using Infrastructure.WebApi.GraphQl.Models;
 using Microsoft.AspNetCore.Http;

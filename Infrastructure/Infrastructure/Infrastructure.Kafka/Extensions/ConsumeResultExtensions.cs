@@ -1,13 +1,29 @@
 ﻿using System.Text;
 using System.Text.Json;
 using Confluent.Kafka;
+using Infrastructure.Common.Json.Configuration;
 using Infrastructure.Kafka.Constants;
 using Infrastructure.Kafka.Models.Metadata;
 
 namespace Infrastructure.Kafka.Extensions;
 
-internal static class ConsumeResultExtensions
+public static class ConsumeResultExtensions
 {
+    /// <summary>
+    /// Get deserialized message
+    /// </summary>
+    /// <param name="consumeResult"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    public static T GetMessageValue<T>(this ConsumeResult<string?, string> consumeResult)
+    {
+        var message = JsonSerializer.Deserialize<T>(consumeResult.Message.Value, JsonSerializerConfiguration.JsonSerializerOptions)
+                      ?? throw new Exception("Unable to deserialize the message");
+        
+        return message;
+    }
+    
     internal static InfrastructureMessageMetadata GetInfrastructureMetadata<TKey, TValue>(
         this ConsumeResult<TKey, TValue> consumeResult
     )

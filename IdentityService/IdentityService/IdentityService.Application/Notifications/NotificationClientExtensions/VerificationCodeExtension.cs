@@ -1,11 +1,12 @@
-﻿using Cineverse.Notifications.Common.Builders;
+﻿using NotificationService.Client.Builders;
+using NotificationService.Client.Services;
 
-namespace Cineverse.Notifications.Services.Notification.Extensions;
+namespace IdentityService.Application.Notifications.NotificationClientExtensions;
 
 public static class VerificationCodeExtension
 {
     public static async Task SendVerificationEmailAsync(
-        this INotificationService notificationService,
+        this INotificationServiceClient notificationServiceClient,
         string emailTo,
         string fullName,
         int verificationCode,
@@ -25,6 +26,6 @@ public static class VerificationCodeExtension
             .AppendAction(actionUrl, "to confirm your email")
             ;
         
-        await notificationService.SendEmailNotificationAsync(emailTo, "Email Confirmation Code", notification);
+        await notificationServiceClient.SendEmailNotificationAsync(emailTo, "Email Confirmation Code", notification);
     }
 }

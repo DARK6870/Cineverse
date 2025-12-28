@@ -4,18 +4,18 @@ namespace NotificationService.Client.Builders;
 
 public class MessageBuilder
 {
-    private readonly StringBuilder _stringBuilder = new();
+    private readonly StringBuilder _content = new();
 
     public MessageBuilder AppendTitle(string title)
     {
-        _stringBuilder.Append($"<h2>{title}</h2>");
+        _content.Append($"<h2>{title}</h2>");
         return this;
     }
 
     public MessageBuilder AppendGreeting(string fullName)
     {
         AppendParagraphStart();
-        _stringBuilder.Append($"Hello, <strong>{fullName}</strong>!");
+        _content.Append($"Hello, <strong>{fullName}</strong>!");
         AppendParagraphEnd();
         
         return this;
@@ -35,48 +35,48 @@ public class MessageBuilder
 
     public MessageBuilder AppendLineBreak()
     {
-        _stringBuilder.Append("<br>");
+        _content.Append("<br>");
         return this;
     }
     
     public MessageBuilder AppendText(string text)
     {
-        _stringBuilder.Append(text);
+        _content.Append(text);
         return this;
     }
 
     public MessageBuilder AppendParagraphStart()
     {
-        _stringBuilder.Append("<p>");
+        _content.Append("<p>");
         return this;
     }
     
     public MessageBuilder AppendParagraphEnd()
     {
-        _stringBuilder.Append("</p>");
+        _content.Append("</p>");
         return this;
     }
     
     public MessageBuilder AppendSmall(string text)
     {
-        _stringBuilder.Append($"<small>{text}</small>");
+        _content.Append($"<small>{text}</small>");
         return this;
     }
     
     public MessageBuilder AppendBold(string text)
     {
-        _stringBuilder.Append($"<b>{text}</b>");
+        _content.Append($"<b>{text}</b>");
         return this;
     }
 
     public string Build()
     {
-        return _stringBuilder.ToString();
+        return _content.ToString();
     }
 
     public MessageBuilder Clear()
     {
-        _stringBuilder.Clear();
+        _content.Clear();
         return this;
     }
 }

@@ -10,6 +10,7 @@
     </ItemGroup>
     
     <ItemGroup>
+      <PackageReference Include="Cineverse.Infrastructure.Common" />
       <PackageReference Include="Cineverse.Infrastructure.Logging" />
       <PackageReference Include="Cineverse.Infrastructure.WebApi" />
     </ItemGroup>

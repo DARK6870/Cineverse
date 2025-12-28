@@ -1,14 +1,14 @@
-﻿/*using System.Net;
+﻿using System.Net;
 using Auth.Models.Enums;
-using IdentityService.Application.MediatR.Requests.Authentication.GenerateEmailVerificationCode;
+using IdentityService.Application.Services.EmailVerification;
+using Infrastructure.Context.UserContext;
 using Infrastructure.WebApi.Exceptions;
-using Infrastructure.WebApi.UserContext.UserContext;
 using MediatR;
 
-namespace Cineverse.Application.MediatR.Requests.Authentication.GenerateEmailVerificationCode;
+namespace IdentityService.Application.MediatR.Requests.Authentication.GenerateEmailVerificationCode;
 
 public class GenerateEmailVerificationCodeHandler(
-    IVerificationService verificationService,
+    IEmailVerificationService emailVerificationService,
     IUserContext userContext
 ) : IRequestHandler<GenerateVerificationCodeRequest, bool>
 {
@@ -17,8 +17,8 @@ public class GenerateEmailVerificationCodeHandler(
         if (userContext.UserStatus is not UserStatus.PendingEmailConfirmation)
             throw new ApiRequestException("Email already confirmed", HttpStatusCode.Conflict);
         
-        await verificationService.GenerateAndSendVerificationCodeAsync(userContext.Email, userContext.UserName);
+        await emailVerificationService.GenerateAndSendVerificationCodeAsync(userContext.Email, userContext.UserName);
         
         return true;
     }
-}*/
+}

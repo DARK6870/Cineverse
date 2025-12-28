@@ -1,6 +1,4 @@
-﻿using IdentityService.Mongo.Schemas.Entities;
-
-namespace IdentityService.Application.Services.RefreshToken;
+﻿namespace IdentityService.Application.Services.RefreshToken;
 
 public interface IRefreshTokenService
 {

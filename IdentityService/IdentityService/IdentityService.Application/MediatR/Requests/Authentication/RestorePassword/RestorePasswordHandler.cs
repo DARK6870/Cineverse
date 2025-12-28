@@ -1,4 +1,5 @@
-﻿/*using MediatR;
+﻿using IdentityService.Application.Services.Password;
+using MediatR;
 
 namespace IdentityService.Application.MediatR.Requests.Authentication.RestorePassword;
 
@@ -10,4 +11,4 @@ public class RestorePasswordHandler(
     {
         return await restorePasswordService.RestorePasswordByCode(request.Email, request.Code, request.Password);
     }
-}*/
+}

@@ -1,11 +1,12 @@
-﻿using Cineverse.Notifications.Common.Builders;
+﻿using NotificationService.Client.Builders;
+using NotificationService.Client.Services;
 
-namespace Cineverse.Notifications.Services.Notification.Extensions;
+namespace IdentityService.Application.Notifications.NotificationClientExtensions;
 
 public static class PasswordChangedExtension
 {
     public static async Task SendPasswordChangedEmailAsync(
-        this INotificationService notificationService,
+        this INotificationServiceClient notificationServiceClient,
         string emailTo,
         string fullName,
         string actionUrl
@@ -24,6 +25,6 @@ public static class PasswordChangedExtension
             .AppendAction(actionUrl, "to open your profile");
             ;
         
-        await notificationService.SendEmailNotificationAsync(emailTo, "Password Changed", notification);
+        await notificationServiceClient.SendEmailNotificationAsync(emailTo, "Password Changed", notification);
     }
 }

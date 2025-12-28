@@ -1,30 +1,26 @@
 ﻿using Cineverse.Application.Common.Extensions;
-using Cineverse.Application.Common.Models.Enums;
-using Cineverse.Notifications.Common.Options;
-using Cineverse.Notifications.Services.Notification;
-using Cineverse.Notifications.Services.Notification.Extensions;
+using Cineverse.Application.Notification.Extensions;
 using MediatR;
-using Microsoft.Extensions.Options;
+using NotificationService.Client.Services;
 
 namespace Cineverse.Application.MediatR.Requests.Contact.CreateContact;
 
 public class CreateContactHandler(
-    INotificationService notificationService,
-    IOptions<EmailOptions> emailOptions
+    INotificationServiceClient notificationServiceClient
 ) : IRequestHandler<CreateContactRequest, bool>
 {
     public async Task<bool> Handle(CreateContactRequest request, CancellationToken cancellationToken)
     {
-        var emailTo = request.Department switch
+        /*var emailTo = request.Department switch
         {
             Department.Marketing => emailOptions.Value.MarketingDepartmentEmail,
             Department.Collaboration => emailOptions.Value.CollaborationDepartmentEmail,
             Department.CustomerService => emailOptions.Value.SupportDepartmentEmail,
             _ => emailOptions.Value.ItSupportDepartmentEmail
-        };
+        };*/
 
-        await notificationService.SendContactRequestEmailAsync(
-            emailTo,
+        await notificationServiceClient.SendContactRequestEmailAsync(
+            "emailTo",
             request.Department.GetDescription(),
             request.FirstName + " " + request.LastName,
             request.Email,

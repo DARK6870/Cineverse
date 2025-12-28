@@ -1,11 +1,12 @@
-﻿using Cineverse.Notifications.Common.Builders;
+﻿using NotificationService.Client.Builders;
+using NotificationService.Client.Services;
 
-namespace Cineverse.Notifications.Services.Notification.Extensions;
+namespace Cineverse.Application.Notification.Extensions;
 
 public static class ContactRequestExtension
 {
     public static async Task SendContactRequestEmailAsync(
-        this INotificationService notificationService,
+        this INotificationServiceClient notificationServiceClient,
         string emailTo,
         string department,
         string fullName,
@@ -36,6 +37,6 @@ public static class ContactRequestExtension
             .AppendParagraphEnd()
             ;
         
-        await notificationService.SendEmailNotificationAsync(emailTo, "Contact Request", notification);
+        await notificationServiceClient.SendEmailNotificationAsync(emailTo, "Contact Request", notification);
     }
 }

@@ -1,8 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <Folder Include="MediatR\" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Cineverse.Infrastructure.Common" />
     <PackageReference Include="Cineverse.Infrastructure.Kafka" />
     <PackageReference Include="Cineverse.Infrastructure.MediatR" />

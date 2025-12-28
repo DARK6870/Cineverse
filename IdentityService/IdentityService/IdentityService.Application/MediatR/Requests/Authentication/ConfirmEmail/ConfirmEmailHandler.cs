@@ -1,16 +1,15 @@
-﻿/*using MediatR;
-using Microsoft.AspNetCore.Authentication;
+﻿using IdentityService.Application.Services.EmailVerification;
+using MediatR;
 
 namespace IdentityService.Application.MediatR.Requests.Authentication.ConfirmEmail;
 
 public class ConfirmEmailHandler(
-    IAuthenticationService authenticationService
+    IEmailVerificationService emailVerificationService
 ) : IRequestHandler<ConfirmEmailRequest, bool>
 {
     public async Task<bool> Handle(ConfirmEmailRequest request, CancellationToken cancellationToken)
     {
-        await authenticationService.ConfirmUserEmailAsync(request.VerificationCode);
-
+        await emailVerificationService.ConfirmEmailAsync(request.VerificationCode);
         return true;
     }
-}*/
+}

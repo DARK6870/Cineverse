@@ -1,22 +1,20 @@
 using Auth.Authentication;
 using Cineverse.Application;
 using Cineverse.Mongo;
-using Cineverse.Notifications;
-using Infrastructure.Common.MediatR;
+using Infrastructure.Context;
 using Infrastructure.Logging;
+using Infrastructure.MediatR;
 using Infrastructure.Mongo;
 using Infrastructure.Mongo.Migrations;
 using Infrastructure.WebApi.Cors;
-using Infrastructure.WebApi.Cors.CorsPolicies;
 using Infrastructure.WebApi.GraphQl;
-using Infrastructure.WebApi.UserContext;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+var assembly = typeof(Program).Assembly;
 
 // ------ Configure logger ------ //
 builder.AddInfrastructureLogging();
-
 
 // ------ Configure services ------ //
 builder.Services
@@ -27,29 +25,25 @@ builder.Services
     .AddMongoMigrations()
     .AddAuth(configuration)
     .AddUserContext()
-    .AddApplicationServices()
-    .AddNotificationService(configuration)
+    .AddApplicationServices(configuration)
     .AddPipelineBehaviours()
     .AddGraphQLServer()
     .ConfigureGraphQl()
-    .AddGraphQlQueries()
-    .AddGraphQlMutations()
+    .AddGraphQlQueriesFromAssembly(assembly)
+    .AddGraphQlMutationsFromAssembly(assembly)
     ;
-
 
 // ------ Configure WebApplication ------ //
 var app = builder.Build();
 
-app.UseCors(nameof(DefaultCorsPolicy));
-
+app.UseCorsPolicy();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseUserContextMiddleware();
-app.UseGraphQlStatusCodeMiddleware();
-
 app.MapGraphQlApi();
 
+app.UseUserContextMiddleware();
+app.UseGraphQlStatusCodeMiddleware();
 
 // ------ Execute Migrations ------ //
 await app.ExecuteMigrationsAsync();

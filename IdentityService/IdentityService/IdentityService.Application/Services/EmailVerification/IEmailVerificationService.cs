@@ -17,4 +17,11 @@ public interface IEmailVerificationService
     /// <param name="verificationCode"></param>
     /// <returns></returns>
     Task<bool> ValidateVerificationCodeAsync(string email, int verificationCode);
+
+    /// <summary>
+    /// Verify email
+    /// </summary>
+    /// <param name="verificationCode"></param>
+    /// <returns></returns>
+    Task ConfirmEmailAsync(int verificationCode);
 }

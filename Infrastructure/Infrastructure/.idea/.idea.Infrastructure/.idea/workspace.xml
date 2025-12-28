@@ -5,141 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31d5039c-572c-49ab-9de7-1e73255cfbc2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth.Models/Responses/AuthenticationResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth.Models/push-to-feed.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Constants/JwtClaimTypes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/GraphQl/Mutations/EmailVerificationMutation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/GraphQl/Mutations/PasswordMutation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/GraphQl/Mutations/UserMutation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/GraphQl/Queries/TestQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/GraphQl/Types/MutationTypes/EmailVerificationMutationType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/GraphQl/Types/MutationTypes/PasswordMutationType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/GraphQl/Types/MutationTypes/UserMutationType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/GraphQl/Types/QueryTypes/TestQueryType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Rest/Controllers/Account/AccountController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Rest/Controllers/Token/TokenController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Constants/CacheConstants.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Helpers/EmailVerificationHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Helpers/RefreshTokenHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/ChangePassword/ChangePasswordHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/ChangePassword/ChangePasswordRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/ConfirmEmail/ConfirmEmailHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/ConfirmEmail/ConfirmEmailRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/DeleteRefreshToken/DeleteRefreshTokenHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/DeleteRefreshToken/DeleteRefreshTokenRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/GenerateAccessToken/GenerateAccessTokenHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/GenerateAccessToken/GenerateAccessTokenRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/GenerateEmailVerificationCode/GenerateEmailVerificationCodeHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/GenerateEmailVerificationCode/GenerateVerificationCodeRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/Login/LoginHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/Login/LoginRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/Register/RegisterHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/Register/RegisterRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/RestorePassword/RestorePasswordHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/RestorePassword/RestorePasswordRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/RestorePassword/SendRestorePasswordEmailHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/RestorePassword/SendRestorePasswordEmailRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Users/UpdatePersonalInformation/UpdatePersonalInformationHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Users/UpdatePersonalInformation/UpdatePersonalInformationRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/EmailVerification/EmailVerificationService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/EmailVerification/IEmailVerificationService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/RefreshToken/IRefreshTokenService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/RefreshToken/RefreshTokenService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/Token/ITokenService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/Token/TokenService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Infrastructure/.idea/dictionaries/project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Context/Middlewares/UserContextMiddleware.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Context/push-to-feed.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Configuration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Consumer/Extensions/ConsumerDependencyInjectionExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Consumer/Extensions/ConsumerExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Consumer/IKafkaConsumer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Consumer/KafkaConsumer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Exceptions/ConsumerException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Exceptions/ProducerException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Extensions/ConsumeResultExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Extensions/HeaderExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Models/Metadata/InfrastructureMessageMetadata.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Models/Metadata/ProducedByComponent.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Models/Settings/ProducerSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Producer/Extensions/ProducerDependencyInjectionExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Producer/Extensions/ProducerExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Producer/IKafkaProducer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Producer/KafkaProducer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure.MediatR/push-to-feed.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Helpers/KafkaHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Kafka/Consumers/EmailNotificationsConsumer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Kafka/Settings/EmailNotificationsConsumerSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Kafka/Settings/EmailNotificationsProducerSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Models/EmailNotification.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Services/INotificationServiceClient.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Services/NotificationServiceClient.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/push-to-feed.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Notifications/Common/Builders/MessageBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Builders/MessageBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Notifications/Common/Helpers/NotificationTemplateHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Helpers/NotificationTemplateHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Notifications/Common/Options/EmailOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Models/Options/EmailOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Notifications/Common/Options/NotificationLinksOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Models/Options/NotificationLinksOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Notifications/Common/Options/SmtpOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Models/Options/SmtpOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Notifications/Services/Notification/INotificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Services/Notification/INotificationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Notifications/Services/Notification/NotificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Services/Notification/NotificationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/.idea/.idea.IdentityService/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/.idea/.idea.IdentityService/.idea/dictionaries/project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Auth.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Auth.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Authentication/AuthenticationPolicies.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/Authentication/AuthenticationPolicies.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/push-to-feed.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth/push-to-feed.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/FluentValidation/Authentication/ChangePasswordRequestValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/FluentValidation/Authentication/LoginRequestValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/FluentValidation/Authentication/RegisterRequestValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/FluentValidation/Authentication/RestorePasswordRequestValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/FluentValidation/Authentication/SendRestorePasswordEmailRequestValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Notifications/NotificationClientExtensions/PasswordChangedExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Notifications/NotificationClientExtensions/RestorePasswordExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Notifications/NotificationClientExtensions/VerificationCodeExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/Password/IRestorePasswordService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/Password/RestorePasswordService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Models/Enums/ActionType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/NotificationTemplates/Notification.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/Directory.Packages.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Directory.Packages.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Controllers/AuthenticationController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Controllers/Base/BaseController.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/IdentityService.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/IdentityService.Api.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Configuration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/IdentityService.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/IdentityService.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Configuration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Helpers/HashHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/ChangePassword/ChangePasswordHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/ChangePassword/ChangePasswordHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/ConfirmEmail/ConfirmEmailHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/ConfirmEmail/ConfirmEmailHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/GenerateEmailVerificationCode/GenerateEmailVerificationCodeHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/GenerateEmailVerificationCode/GenerateEmailVerificationCodeHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/RestorePassword/RestorePasswordHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/RestorePassword/RestorePasswordHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/RestorePassword/SendRestorePasswordEmailHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/MediatR/Requests/Authentication/RestorePassword/SendRestorePasswordEmailHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/EmailVerification/EmailVerificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/EmailVerification/EmailVerificationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/RefreshToken/RefreshTokenService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Application/Services/RefreshToken/RefreshTokenService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/IdentityService.Mongo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/IdentityService.Mongo.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/RefreshToken/IRefreshTokenRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/RefreshToken/IRefreshTokenRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/RefreshToken/RefreshTokenRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/RefreshToken/RefreshTokenRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/User/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/User/IUserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/User/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Repositories/User/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Entities/RefreshTokenEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Entities/RefreshTokenEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Entities/UserEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Entities/UserEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Enums/Role.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth.Models/Enums/Role.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Mongo/Schemas/Enums/UserStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/Auth.Models/Enums/UserStatus.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Infrastructure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Infrastructure/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Common/Helpers/HashHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Common/Helpers/HashHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Common/Infrastructure.Common.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Common/Infrastructure.Common.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Common/Json/Configuration/JsonSerializerConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Common/Json/Configuration/JsonSerializerConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Common/MediatR/Behaviours/LoggingBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.MediatR/Behaviours/LoggingBehavior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Common/MediatR/Behaviours/ValidationBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.MediatR/Behaviours/ValidationBehavior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Common/MediatR/MediatRExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Kafka/Constants/HeaderConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Constants/HeaderConstants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Kafka/Extensions/ConsumeResultExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Extensions/ConsumeResultExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure.Kafka/Infrastructure.Kafka.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Infrastructure.Kafka.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Kafka/Models/Options/KafkaOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Models/Options/KafkaOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Kafka/Models/Settings/KafkaConsumerSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Models/Settings/ConsumerSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Kafka/Models/Settings/KafkaProducerSettings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Infrastructure.Mongo.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Mongo.Migrations/Infrastructure.Mongo.Migrations.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure.Mongo/Infrastructure.Mongo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Mongo/Infrastructure.Mongo.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/ErrorFilters/GraphQlErrorFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/ErrorFilters/GraphQlErrorFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/Extensions/GraphQlTypeExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/Extensions/GraphQlTypeExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/GraphQlExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/GraphQlExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/Middlewares/GraphQlStatusCodeMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/Middlewares/GraphQlStatusCodeMiddleware.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/Infrastructure.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/Infrastructure.WebApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/Rest/RestApiExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/Rest/RestApiExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/UserContext/Middlewares/UserContextMiddleware.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/UserContext/UserContext/IUserContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Context/UserContext/IUserContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/UserContext/UserContext/UserContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Context/UserContext/UserContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/UserContext/UserContextExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/push-to-feed.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/push-to-feed.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/Directory.Build.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/Directory.Packages.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/Directory.Packages.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Api/NotificationService.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Api/NotificationService.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Api/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Api/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Configuration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Helpers/KafkaHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Helpers/NotificationTemplateHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Helpers/NotificationTemplateHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Kafka/Consumers/EmailNotificationsConsumer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Kafka/Consumers/EmailNotificationsConsumer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/Models/Options/NotificationLinksOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Models/Options/NotificationLinksOptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/NotificationService.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Application/NotificationService.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Infrastructure/Configuration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Infrastructure/NotificationService.Infrastructure.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Mongo/Configuration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Mongo/NotificationService.Mongo.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Builders/MessageBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Builders/MessageBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Configuration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Models/EmailNotification.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/Models/EmailNotification.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/NotificationService.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Client/NotificationService.Client.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +144,6 @@
     <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/Constants/GraphQlConstants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/ErrorFilters/GraphQlErrorFilter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/Extensions/GraphQlTypeExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/Pet-Projects/Cineverse/Infrastructure/Infrastructure/Infrastructure.WebApi/GraphQl/GraphQlExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/GraphQlExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/Models/ErrorResponse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/NamingConventions/ApplicationNamingConvention.cs" root0="FORCE_HIGHLIGHTING" />
@@ -283,7 +196,10 @@
       <workItem from="1765907884963" duration="23550000" />
       <workItem from="1766415071285" duration="3292000" />
       <workItem from="1766428458017" duration="4232000" />
-      <workItem from="1766687503023" duration="10354000" />
+      <workItem from="1766687503023" duration="14390000" />
+      <workItem from="1766943008863" duration="103000" />
+      <workItem from="1766948679456" duration="1005000" />
+      <workItem from="1766952794995" duration="338000" />
     </task>
     <task id="LOCAL-00001" summary="Base project setup">
       <option name="closed" value="true" />
@@ -301,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765734280993</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Save changes 26/12/25">
+      <option name="closed" value="true" />
+      <created>1766753695182</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1766753695182</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,7 +240,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Base project setup" />
     <MESSAGE value="Test commit #1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test commit #1" />
+    <MESSAGE value="Save changes 26/12/25" />
+    <option name="LAST_COMMIT_MESSAGE" value="Save changes 26/12/25" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

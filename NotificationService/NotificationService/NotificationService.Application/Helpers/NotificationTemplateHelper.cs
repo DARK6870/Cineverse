@@ -2,7 +2,7 @@
 
 internal static class NotificationTemplateHelper
 {
-    private const string TargetFolderName = "cineverse";
+    private const string TargetFolderName = "NotificationService";
     private const string TemplatesFolderName = "NotificationTemplates";
     private const string TemplateFileName = "Notification.html";
     private const string ContentKey = "{Content}";

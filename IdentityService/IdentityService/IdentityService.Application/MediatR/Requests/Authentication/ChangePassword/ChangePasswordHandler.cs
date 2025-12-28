@@ -1,17 +1,22 @@
 ﻿using System.Net;
+using IdentityService.Application.Notifications.NotificationClientExtensions;
 using IdentityService.Mongo.Repositories.RefreshToken;
 using IdentityService.Mongo.Repositories.User;
 using Infrastructure.Context.UserContext;
 using Infrastructure.WebApi.Exceptions;
 using MediatR;
+using Microsoft.Extensions.Options;
+using NotificationService.Client.Models.Options;
+using NotificationService.Client.Services;
+
 namespace IdentityService.Application.MediatR.Requests.Authentication.ChangePassword;
 
 public class ChangePasswordHandler(
     IUserRepository userRepository,
     IRefreshTokenRepository refreshTokenRepository,
-    //INotificationService notificationService,
-    IUserContext userContext
-    //IOptions<NotificationLinksOptions> notificationLinksOptions
+    INotificationServiceClient notificationServiceClient,
+    IUserContext userContext,
+    IOptions<NotificationLinksOptions> notificationLinksOptions
 ) : IRequestHandler<ChangePasswordRequest, bool>
 {
     public async Task<bool> Handle(ChangePasswordRequest request, CancellationToken cancellationToken)
@@ -22,13 +27,12 @@ public class ChangePasswordHandler(
         var result = await userRepository.UpdateUserPasswordAsync(user.Id, request.NewPassword);
         if (result)
         {
-            // TODO: Add notifications
-            /*var actionUrl = notificationLinksOptions.Value.BuildProfileUrl();
-            await notificationService.SendPasswordChangedEmailAsync(
+            var actionUrl = notificationLinksOptions.Value.BuildProfileUrl();
+            await notificationServiceClient.SendPasswordChangedEmailAsync(
                 userContext.Email,
                 userContext.UserName,
                 actionUrl
-            );*/
+            );
             
             await refreshTokenRepository.DeleteManyAsync(x => x.UserId == user.Id, cancellationToken);
         }

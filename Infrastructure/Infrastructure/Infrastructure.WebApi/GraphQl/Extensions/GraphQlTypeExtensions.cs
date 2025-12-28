@@ -13,7 +13,7 @@ internal static class GraphQlTypeExtensions
                             .FirstOrDefault()?
                             .CustomAttributes
                             .Any(attr => attr.ConstructorArguments
-                                .Any(arg => arg.Value is string and nameof(T))
+                                .Any(arg => arg.Value is string value && value == typeof(T).Name)
                             ) == true
             )
             .ToArray();

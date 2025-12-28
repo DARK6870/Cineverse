@@ -41,10 +41,12 @@ public static class GraphQlExtensions
         return requestExecutorBuilder;
     }
 
-    public static IRequestExecutorBuilder AddGraphQlQueries(this IRequestExecutorBuilder requestExecutorBuilder)
+    public static IRequestExecutorBuilder AddGraphQlQueriesFromAssembly(
+        this IRequestExecutorBuilder requestExecutorBuilder,
+        Assembly assembly
+    )
     {
-        var queryExtensions = Assembly.GetExecutingAssembly()
-            .GetGraphQlExtensions<BaseGraphQlQuery>();
+        var queryExtensions = assembly.GetGraphQlExtensions<BaseGraphQlQuery>();
 
         requestExecutorBuilder
             .AddQueryType<BaseGraphQlQuery>()
@@ -52,11 +54,13 @@ public static class GraphQlExtensions
 
         return requestExecutorBuilder;
     }
-    
-    public static IRequestExecutorBuilder AddGraphQlMutations(this IRequestExecutorBuilder requestExecutorBuilder)
+
+    public static IRequestExecutorBuilder AddGraphQlMutationsFromAssembly(
+        this IRequestExecutorBuilder requestExecutorBuilder,
+        Assembly assembly
+    )
     {
-        var mutationExtensions = Assembly.GetExecutingAssembly()
-            .GetGraphQlExtensions<BaseGraphQlMutation>();
+        var mutationExtensions = assembly.GetGraphQlExtensions<BaseGraphQlMutation>();
 
         requestExecutorBuilder
             .AddMutationType<BaseGraphQlMutation>()
