@@ -1,6 +1,6 @@
-﻿namespace NotificationService.Application.Models.Options;
+﻿namespace Cineverse.Application.Common.Models.Options;
 
-public class EmailOptions
+public class DepartmentEmailOptions
 {
     public required string SupportDepartmentEmail { get; init; }
     

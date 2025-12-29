@@ -1,5 +1,4 @@
-﻿using Cineverse.Application.Common.Models;
-using Cineverse.Application.Common.Models.Enums;
+﻿using Cineverse.Application.Common.Models.Enums;
 using MediatR;
 
 namespace Cineverse.Application.MediatR.Requests.Contact.CreateContact;

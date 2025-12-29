@@ -11,23 +11,7 @@
     <PackageVersion Include="Cineverse.Infrastructure.Mongo.Migrations" Version="1.0.3-rc-1" />
     <PackageVersion Include="Cineverse.Infrastructure.WebApi" Version="2.0.0-rc-1" />
     <PackageVersion Include="Cineverse.NotificationService.Client" Version="1.0.0-rc-3" />
-    <PackageVersion Include="FluentValidation" Version="12.1.1" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.1" />
-    <PackageVersion Include="HotChocolate.AspNetCore.Authorization" Version="15.1.10" />
-    <PackageVersion Include="HotChocolate.AspNetCore" Version="15.1.10" />
-    <PackageVersion Include="HotChocolate.Data" Version="15.1.10" />
-    <PackageVersion Include="HotChocolate.Data.MongoDb" Version="15.1.10" />
-    <PackageVersion Include="HotChocolate.Types" Version="15.1.10" />
-    <PackageVersion Include="MediatR" Version="14.0.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.18" />
-    <PackageVersion Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Options" Version="9.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0" />
     <PackageVersion Include="MongoDB.Analyzer" Version="2.0.0" />
   </ItemGroup>
 </Project>

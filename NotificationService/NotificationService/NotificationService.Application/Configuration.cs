@@ -23,7 +23,6 @@ public static class Configuration
         // configuration
         services
             .Configure<SmtpOptions>(configuration.GetSection(nameof(SmtpOptions)))
-            .Configure<EmailOptions>(configuration.GetSection(nameof(EmailOptions)))
             .Configure<NotificationLinksOptions>(configuration.GetSection(nameof(NotificationLinksOptions)));
         
         // services

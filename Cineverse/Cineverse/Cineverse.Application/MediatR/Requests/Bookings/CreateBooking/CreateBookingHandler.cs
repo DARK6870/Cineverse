@@ -1,17 +1,16 @@
-﻿/*using System.Net;
-using Cineverse.Domain.Common.Exceptions;
-using Cineverse.Identity.Services.UserContext;
+﻿using System.Net;
+using Auth.Models.Enums;
+using Cineverse.Application.Notification.Extensions;
 using Cineverse.Mongo.Repositories.Booking;
 using Cineverse.Mongo.Repositories.Hall;
 using Cineverse.Mongo.Repositories.Screening;
 using Cineverse.Mongo.Schemas.Entities;
-using Cineverse.Mongo.Schemas.Enums;
-using Cineverse.Notifications.Common.Builders;
-using Cineverse.Notifications.Common.Options;
-using Cineverse.Notifications.Services.Notification;
-using Cineverse.Notifications.Services.Notification.Extensions;
+using Infrastructure.Context.UserContext;
+using Infrastructure.WebApi.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Options;
+using NotificationService.Client.Models.Options;
+using NotificationService.Client.Services;
 
 namespace Cineverse.Application.MediatR.Requests.Bookings.CreateBooking;
 
@@ -19,7 +18,7 @@ public class CreateBookingHandler(
     IBookingRepository bookingRepository,
     IHallRepository hallRepository,
     IScreeningRepository screeningRepository,
-    INotificationService notificationService,
+    INotificationServiceClient notificationServiceClient,
     IUserContext userContext,
     IOptions<NotificationLinksOptions> notificationLinksOptions
 ) : IRequestHandler<CreateBookingRequest, bool>
@@ -47,7 +46,7 @@ public class CreateBookingHandler(
            )
         ) throw new ApiRequestException("Some of the provided seat IDs do not exist in the selected hall", HttpStatusCode.BadRequest);
 
-        // Create booking
+        // create booking
         var booking = new BookingEntity
         {
             ScreeningId = request.ScreeningId,
@@ -57,10 +56,10 @@ public class CreateBookingHandler(
         };
         await bookingRepository.InsertOneAsync(booking, cancellationToken);
 
-        // Send email notification
+        // send email notification
         var actionUrl = notificationLinksOptions.Value.BuildBookingDetailsUrl(booking.Id);
         
-        await notificationService.SendBookingEmailAsync(
+        await notificationServiceClient.SendBookingEmailAsync(
             userContext.Email,
             userContext.UserName,
             booking.SeatIds.Length,
@@ -72,4 +71,4 @@ public class CreateBookingHandler(
 
         return true;
     }
-}*/
+}
