@@ -1,6 +1,6 @@
 ﻿const PROXY_CONFIG = {
   "/cineverse-api": {
-    "target": "http://localhost:7404",
+    "target": "http://localhost:7400  ",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {

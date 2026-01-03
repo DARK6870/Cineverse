@@ -27,7 +27,7 @@ export class TokenStorageService {
       ACCESS_TOKEN_KEY,
       accessToken,
       expires,
-      '/cineverse',
+      '/',
       '',
       false,
       'Strict',
@@ -39,7 +39,7 @@ export class TokenStorageService {
       REFRESH_TOKEN_KEY,
       refreshToken,
       REFRESH_TOKEN_LIFETIME_DAYS,
-      '/cineverse',
+      '/',
       '',
       false,
       'Strict',
@@ -47,11 +47,11 @@ export class TokenStorageService {
   }
 
   public deleteAccessToken() {
-    this.cookieService.delete(ACCESS_TOKEN_KEY, '/cineverse');
+    this.cookieService.delete(ACCESS_TOKEN_KEY, '/');
   }
 
   public deleteRefreshToken() {
-    this.cookieService.delete(REFRESH_TOKEN_KEY, '/cineverse');
+    this.cookieService.delete(REFRESH_TOKEN_KEY, '/');
   }
 
   public deleteTokens() {
