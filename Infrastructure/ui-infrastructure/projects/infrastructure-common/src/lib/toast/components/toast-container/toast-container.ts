@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { ToastItem } from '../toast-item/toast-item';
-import { ToastService } from '../../../../core/services/toast.service';
 import { CommonModule } from '@angular/common';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
-  selector: 'app-toast-container',
+  selector: 'lib-toast-container',
   imports: [
     ToastItem,
     CommonModule

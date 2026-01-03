@@ -1,14 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { BlockActionsService } from '../../../core/services/block-actions.service';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { BlockActionsService } from '../../services/block-actions.service';
 
 @Component({
-  selector: 'app-blocking-overlay',
+  selector: 'lib-blocking-overlay',
   imports: [],
   templateUrl: 'blocking-overlay.html',
-  styleUrl: 'blocking-overlay.css',
   standalone: true,
-  animations: [
+  /*animations: [
     trigger('fade', [
       transition(':enter', [
         style({ opacity: 0 }),
@@ -18,7 +16,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
         animate('200ms ease-in', style({ opacity: 0 }))
       ])
     ])
-  ]
+  ]*/
 
 })
 export class BlockingOverlay {

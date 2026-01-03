@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import {Toast} from '../../../models/toast.model';
-import {NgClass, NgSwitch} from '@angular/common';
+import { NgClass } from '@angular/common';
+import { Toast } from '../../models/toast.model';
 
 @Component({
-  selector: 'app-toast',
+  selector: 'lib-toast',
   imports: [
     NgClass
   ],

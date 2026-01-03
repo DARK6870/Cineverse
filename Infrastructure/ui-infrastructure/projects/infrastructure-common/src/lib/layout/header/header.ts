@@ -1,9 +1,9 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterLink} from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
+  selector: 'lib-header',
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: 'header.html',

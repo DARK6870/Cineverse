@@ -1,0 +1,11 @@
+:root {
+  color-scheme: light!important;
+  
+  --cv-primary-dark: #000000;
+  --cv-light: #e6e6e6;
+  --cv-gray: #c7c7c7;
+  --cv-accent: #677C77;
+
+  --font-title: 'Oswald', sans-serif;
+  --font-text: 'Nunito Sans', sans-serif;
+}
