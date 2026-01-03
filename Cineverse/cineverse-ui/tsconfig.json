@@ -14,8 +14,6 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
-    "allowSyntheticDefaultImports": true,
-    "lib": ["ES2020", "DOM", "ESNext.AsyncIterable"],
     "forceConsistentCasingInFileNames": true
   },
   "angularCompilerOptions": {
