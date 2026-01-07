@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  color-scheme: light!important;
+
+  --cv-primary-dark: #000000;
+  --cv-light: #e6e6e6;
+  --cv-gray: #c7c7c7;
+  --cv-accent: #677C77;
+
+  --font-title: 'Oswald', sans-serif;
+  --font-text: 'Nunito Sans', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body{
+  margin: 0;
+  background-color: #f2f2f2;
+}
+
+*{
+  font-family: var(--font-text), serif;
+}
+
+h1, h2, .title {
+  font-family: var(--font-title), serif;
+}

@@ -6,6 +6,9 @@
     "strict": true,
     "noImplicitOverride": true,
     "paths": {
+      "infrastructure-auth": [
+        "./dist/infrastructure-auth"
+      ],
       "infrastructure-common": [
         "./dist/infrastructure-common"
       ],
@@ -60,6 +63,12 @@
     },
     {
       "path": "./projects/infrastructure-common/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/infrastructure-auth/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/infrastructure-auth/tsconfig.spec.json"
     }
   ]
 }

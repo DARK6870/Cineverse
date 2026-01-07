@@ -1,0 +1,5 @@
+<div class="toast-container">
+  @for (toast of toastService.toasts$(); track toast.id) {
+    <cineverse-toast [toast]="toast"></cineverse-toast>
+  }
+</div>

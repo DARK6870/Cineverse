@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'lib-header',
+  selector: 'cineverse-header',
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: 'header.html',

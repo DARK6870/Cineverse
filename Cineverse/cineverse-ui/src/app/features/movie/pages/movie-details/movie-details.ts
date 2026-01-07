@@ -4,11 +4,11 @@ import { MovieGraphqlService } from '../../api/movie.graphql.service';
 import { firstValueFrom } from 'rxjs';
 import { Movie } from '../../api/movie.graphql.types';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ToastService } from '../../../../core/services/toast.service';
 import { Screening } from '../../../screening/api/screening.graphql.types';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
 import { Button } from 'primeng/button';
 import { MovieDetailsCard } from '../../../../shared/components/movie-details-card/movie-details-card';
+import { ToastService } from 'infrastructure-common';
 
 @Component({
   selector: 'app-movies-details',

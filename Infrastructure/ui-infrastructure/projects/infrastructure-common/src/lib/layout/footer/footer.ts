@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-footer',
+  selector: 'cineverse-footer',
   imports: [],
   templateUrl: './footer.html',
   styleUrl: './footer.css',

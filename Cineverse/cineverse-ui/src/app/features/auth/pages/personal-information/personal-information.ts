@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
 import { getErrorMessage } from '../../../../shared/helpers/validation.helper';
-import { ToastService } from '../../../../core/services/toast.service';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { UserGraphqlService } from '../../../profile/api/user.graphql.service';
@@ -13,6 +12,7 @@ import { AuthenticationService } from '../../../../core/services/authentication.
 import { JwtClaimsService } from '../../../../core/services/jwt-claims.service';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
+import { ToastService } from 'infrastructure-common';
 
 @Component({
   selector: 'app-personal-information',

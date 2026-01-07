@@ -5,7 +5,6 @@ import { InputText } from "primeng/inputtext";
 import { Message } from "primeng/message";
 import { getErrorMessage } from '../../../../shared/helpers/validation.helper';
 import { passwordMatchValidator } from '../../../../shared/validators/password-match.validator';
-import { ToastService } from '../../../../core/services/toast.service';
 import { AuthenticationService } from '../../../../core/services/authentication.service';
 import { Router } from '@angular/router';
 import {
@@ -13,6 +12,7 @@ import {
 } from '../../api/auth.graphql.types';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { ToastService } from 'infrastructure-common';
 
 @Component({
   selector: 'app-change-password',

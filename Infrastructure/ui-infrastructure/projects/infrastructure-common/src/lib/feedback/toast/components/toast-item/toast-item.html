@@ -1,0 +1,34 @@
+<div class="toast" [ngClass]="[toast.type, toast.hiding ? 'hide' : '']">
+  <div class="toast-icon" style="margin-right: 8px; display: inline-flex; align-items: center;">
+    @switch (toast.type) {
+      @case ('error') {
+        <svg width="20" height="20" viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="24" fill="#E53935"/>
+          <path d="M14 14L34 34M34 14L14 34" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      }
+      @case ('info') {
+        <svg width="20" height="20" viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="24" fill="#1E88E5"/>
+          <circle cx="24" cy="14" r="3" fill="white"/>
+          <rect x="21" y="20" width="6" height="16" rx="2" fill="white"/>
+        </svg>
+      }
+      @case ('success') {
+        <svg width="20" height="20" viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="24" fill="#43A047"/>
+          <path d="M14 24L20 30L34 16" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      }
+      @case ('warning') {
+        <svg width="20" height="20" viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="24" fill="#FB8C00"/>
+          <path d="M24 12V28" stroke="white" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="24" cy="35" r="2.5" fill="white"/>
+        </svg>
+      }
+    }
+  </div>
+
+  <span>{{ toast.message }}</span>
+</div>

@@ -8,10 +8,10 @@ import { getErrorMessage } from '../../../../../shared/helpers/validation.helper
 import { RestorePasswordRequestInput } from '../../../api/auth.graphql.types';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastService } from '../../../../../core/services/toast.service';
 import { AuthenticationService } from '../../../../../core/services/authentication.service';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
+import { ToastService } from 'infrastructure-common';
 
 
 @Component({

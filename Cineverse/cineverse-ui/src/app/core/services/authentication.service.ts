@@ -2,12 +2,12 @@
 import { AuthGraphqlService } from '../../features/auth/api/auth.graphql.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { TokenStorageService } from './token-storage.service';
 import {
   AuthenticationResponse, ChangePasswordRequestInput,
   RestorePasswordRequestInput
 } from '../../features/auth/api/auth.graphql.types';
-import { ToastService } from './toast.service';
+import { ToastService } from 'infrastructure-common';
+import { TokenStorageService } from '@cineverse/infrastructure-auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {

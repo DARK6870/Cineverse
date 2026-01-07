@@ -4,9 +4,9 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
 import { getErrorMessage } from '../../../../../shared/helpers/validation.helper';
-import { ToastService } from '../../../../../core/services/toast.service';
 import { AuthGraphqlService } from '../../../api/auth.graphql.service';
 import { firstValueFrom } from 'rxjs';
+import { ToastService } from 'infrastructure-common';
 
 @Component({
   selector: 'app-restore-password-request',

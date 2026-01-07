@@ -3,7 +3,6 @@ import { ScreeningGraphqlService } from '../../../screening/api/screening.graphq
 import { Screening } from '../../../screening/api/screening.graphql.types';
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastService } from '../../../../core/services/toast.service';
 import { JwtClaimsService } from '../../../../core/services/jwt-claims.service';
 import { UserStatus } from '../../../../shared/models/jwt-payload.model';
 import { Movie } from '../../../movie/api/movie.graphql.types';
@@ -15,6 +14,7 @@ import { HallGraphqlService } from '../../../hall/api/hall.graphql.service';
 import { SeatSelector } from '../../../../shared/components/seat-selector/seat-selector';
 import { BookingGraphqlService } from '../../api/booking.graphql.service';
 import { CreateBookingRequestInput } from '../../api/booking.graphql.types';
+import { ToastService } from 'infrastructure-common';
 
 @Component({
   selector: 'app-create-booking',

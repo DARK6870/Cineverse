@@ -10,7 +10,7 @@ import { Select } from 'primeng/select';
 import { getErrorMessage } from '../../../../shared/helpers/validation.helper';
 import { departmentOptions } from '../../../../shared/constants/department-options';
 import { Router } from '@angular/router';
-import { ToastService } from '../../../../core/services/toast.service';
+import { ToastService } from 'infrastructure-common';
 
 @Component({
   selector: 'app-contact',

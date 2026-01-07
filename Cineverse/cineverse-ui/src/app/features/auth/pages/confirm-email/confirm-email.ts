@@ -15,8 +15,8 @@ import { InputOtp } from 'primeng/inputotp';
 import { AuthenticationService } from '../../../../core/services/authentication.service';
 import { JwtClaimsService } from '../../../../core/services/jwt-claims.service';
 import { UserStatus } from '../../../../shared/models/jwt-payload.model';
-import { ToastService} from '../../../../core/services/toast.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ToastService } from 'infrastructure-common';
 
 @Component({
   selector: 'app-confirm-email',
