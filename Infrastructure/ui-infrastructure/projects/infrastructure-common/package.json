@@ -1,6 +1,6 @@
 {
   "name": "@cineverse/infrastructure-common",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "peerDependencies": {
     "@angular/common": "^21.0.6",
     "@angular/core": "^21.0.6",

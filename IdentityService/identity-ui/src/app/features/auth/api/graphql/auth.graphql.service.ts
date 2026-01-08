@@ -1,6 +1,6 @@
 ﻿import { inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import {
   ChangePasswordRequestInput,
   RestorePasswordRequestInput
@@ -17,33 +17,33 @@ import {
 export class AuthGraphqlService {
   private apollo = inject(Apollo);
 
-  public confirmEmail(code: number) : Observable<any> {
-    return this.apollo.mutate(
-      confirmEmailMutation(code)
+  public async confirmEmailAsync(code: number) {
+    return firstValueFrom(
+      this.apollo.mutate(confirmEmailMutation(code))
     );
   }
 
-  public resendEmailVerificationCode() : Observable<any> {
-    return this.apollo.mutate(
-      resendEmailVerificationCodeMutation
+  public async resendEmailVerificationCodeAsync() {
+    return await firstValueFrom(
+      this.apollo.mutate(resendEmailVerificationCodeMutation)
     );
   }
 
-  public changePassword(request: ChangePasswordRequestInput) : Observable<any> {
-    return this.apollo.mutate(
-      changePasswordMutation(request)
+  public async changePasswordAsync(request: ChangePasswordRequestInput) {
+    return await firstValueFrom(
+      this.apollo.mutate(changePasswordMutation(request))
     );
   }
 
-  public sendRestorePasswordEmail(email: string) : Observable<any> {
-    return this.apollo.mutate(
-      sendRestorePasswordEmailMutation(email)
+  public async sendRestorePasswordEmailAsync(email: string) {
+    return await firstValueFrom(
+      this.apollo.mutate(sendRestorePasswordEmailMutation(email))
     );
   }
 
-  public restorePassword(request: RestorePasswordRequestInput) : Observable<any> {
-    return this.apollo.mutate(
-      restorePasswordMutation(request)
+  public async restorePasswordAsync(request: RestorePasswordRequestInput) {
+    return await firstValueFrom(
+      this.apollo.mutate(restorePasswordMutation(request))
     );
   }
 }

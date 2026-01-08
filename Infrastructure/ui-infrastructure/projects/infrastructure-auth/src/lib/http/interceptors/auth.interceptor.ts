@@ -1,10 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { inject, Injector } from '@angular/core';
 import { from, switchMap } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const authenticationService = inject(AuthenticationService);
+  const injector = inject(Injector);
 
   const allowAnonymous = req.headers.has('X-Allow-Anonymous');
 
@@ -13,6 +13,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       headers: req.headers.delete('X-Allow-Anonymous')
     }));
   }
+
+  const authenticationService = injector.get(AuthenticationService);
 
   return from(authenticationService.getOrGenerateAccessTokenAsync()).pipe(
     switchMap(token => {

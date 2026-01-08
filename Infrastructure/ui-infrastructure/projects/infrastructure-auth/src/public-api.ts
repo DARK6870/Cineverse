@@ -16,3 +16,6 @@ export * from './lib/guards/not-authorized.guard';
 // services
 export * from './lib/services/authentication/authentication.service';
 export * from './lib/services/tokenStorage/token-storage.service';
+
+// shared
+export * from './lib/shared/models/user-data';

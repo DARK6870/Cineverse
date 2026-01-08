@@ -1,13 +1,13 @@
 {
   "name": "@cineverse/infrastructure-auth",
-  "version": "0.0.5",
+  "version": "0.0.11",
   "peerDependencies": {
     "@angular/common": "^21.0.0",
     "@angular/core": "^21.0.0",
     "ngx-cookie-service": "^21.1.0"
   },
   "dependencies": {
-    "@cineverse/infrastructure-common": "file:../../dist/infrastructure-common/cineverse-infrastructure-common-0.0.17.tgz",
+    "@cineverse/infrastructure-common": "file:../../dist/infrastructure-common/cineverse-infrastructure-common-0.0.19.tgz",
     "tslib": "^2.3.0"
   },
   "sideEffects": false

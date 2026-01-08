@@ -1,13 +1,15 @@
 ﻿import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
-import { AuthGraphqlService } from './api/auth.graphql.service';
+import { AuthApiService } from './api/auth.api.service';
 import { TokenStorageService } from '../tokenStorage/token-storage.service';
 import { ToastService } from '@cineverse/infrastructure-common';
+import { UserData } from '../../shared/models/user-data';
+import { decodeTokenPayload } from '../../shared/helpers/jwt.helper';
+import {GenerateAccessTokenRequest} from './api/auth.api.types';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  private authenticationGraphQlService = inject(AuthGraphqlService);
+  private authApiService = inject(AuthApiService);
   private tokenStorageService = inject(TokenStorageService);
   private router = inject(Router);
   private toastService = inject(ToastService);
@@ -45,11 +47,12 @@ export class AuthenticationService {
 
   public async generateAccessTokenAsync(): Promise<string> {
     const refreshToken = this.requireRefreshToken();
+    const request : GenerateAccessTokenRequest = {
+      refreshToken: refreshToken,
+    };
 
     try {
-      const loginResponse = await firstValueFrom(
-        this.authenticationGraphQlService.generateAccessToken(refreshToken)
-      );
+      const loginResponse = await this.authApiService.generateAccessToken(request);
 
       if (!loginResponse.success)
         throw new Error(loginResponse.message);
@@ -66,5 +69,17 @@ export class AuthenticationService {
 
       throw error;
     }
+  }
+
+  public async getUserDataAsync(): Promise<UserData> {
+    const accessToken = await this.getOrGenerateAccessTokenAsync();
+    const decoded = decodeTokenPayload(accessToken);
+    return {
+      userId: decoded.user_id,
+      fullName: decoded.unique_name,
+      email: decoded.email,
+      role: decoded.role,
+      userStatus: decoded.user_status,
+    };
   }
 }
