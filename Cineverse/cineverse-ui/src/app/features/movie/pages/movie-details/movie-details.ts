@@ -8,7 +8,7 @@ import { Screening } from '../../../screening/api/screening.graphql.types';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
 import { Button } from 'primeng/button';
 import { MovieDetailsCard } from '../../../../shared/components/movie-details-card/movie-details-card';
-import { ToastService } from 'infrastructure-common';
+import { ToastService } from '@cineverse/infrastructure-common';
 
 @Component({
   selector: 'app-movies-details',

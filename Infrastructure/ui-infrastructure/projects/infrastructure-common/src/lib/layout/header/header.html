@@ -2,7 +2,7 @@
   <header>
     <nav>
       <div class="logo-wrapper">
-        <a routerLink="/" class="logo">
+        <a (click)="navigate('/')" class="logo">
           CINEVERSE
         </a>
       </div>
@@ -10,11 +10,11 @@
         <i class="pi pi-bars fa-2x"></i>
       </div>
       <ul [class.showing]="isMenuOpen">
-        <li><a routerLink="/" (click)="closeMenu()">Home</a></li>
-        <li><a routerLink="/movies" (click)="closeMenu()">Movies</a></li>
-        <li><a routerLink="/contact" (click)="closeMenu()">Contact</a></li>
-        <li><a routerLink="/about" (click)="closeMenu()">About</a></li>
-        <li><a routerLink="/profile" (click)="closeMenu()">Profile</a></li>
+        <li><a (click)="navigate('/')">Home</a></li>
+        <li><a (click)="navigate('/movies')">Movies</a></li>
+        <li><a (click)="navigate('/contact')">Contact</a></li>
+        <li><a (click)="navigate('/about')">About</a></li>
+        <li><a (click)="navigate('/identity/profile')">Profile</a></li>
       </ul>
     </nav>
   </header>

@@ -5,11 +5,11 @@
       <div class="footer-column">
         <h3 class="footer-title">Quick Links</h3>
         <ul class="footer-links">
-          <li><a routerLink="/"><i class="pi pi-chevron-right"></i> Home</a></li>
-          <li><a routerLink="/movies"><i class="pi pi-chevron-right"></i> Movies</a></li>
-          <li><a routerLink="/contact"><i class="pi pi-chevron-right"></i> Contact Us</a></li>
-          <li><a routerLink="/about"><i class="pi pi-chevron-right"></i> About</a></li>
-          <li><a routerLink="/profile"><i class="pi pi-chevron-right"></i> Profile</a></li>
+          <li><a (click)="navigate('/')"><i class="pi pi-chevron-right"></i> Home</a></li>
+          <li><a (click)="navigate('/movies')"><i class="pi pi-chevron-right"></i> Movies</a></li>
+          <li><a (click)="navigate('/contact')"><i class="pi pi-chevron-right"></i> Contact Us</a></li>
+          <li><a (click)="navigate('/about')"><i class="pi pi-chevron-right"></i> About</a></li>
+          <li><a (click)="navigate('/profile')"><i class="pi pi-chevron-right"></i> Profile</a></li>
         </ul>
       </div>
 

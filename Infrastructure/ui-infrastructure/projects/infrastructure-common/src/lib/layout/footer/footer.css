@@ -146,6 +146,10 @@
   transition: color 0.3s;
 }
 
+a {
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;

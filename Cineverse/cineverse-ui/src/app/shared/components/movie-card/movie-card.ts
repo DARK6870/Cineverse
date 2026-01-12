@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
 import { Movie } from '../../../features/movie/api/movie.graphql.types';
-import { formatDate } from '../../utils/date-utils'
+import { formatDate } from '@cineverse/infrastructure-common'
 
 @Component({
   selector: 'app-movie-card',

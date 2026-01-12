@@ -3,18 +3,18 @@ import { ScreeningGraphqlService } from '../../../screening/api/screening.graphq
 import { Screening } from '../../../screening/api/screening.graphql.types';
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JwtClaimsService } from '../../../../core/services/jwt-claims.service';
 import { UserStatus } from '../../../../shared/models/jwt-payload.model';
 import { Movie } from '../../../movie/api/movie.graphql.types';
 import { MovieGraphqlService } from '../../../movie/api/movie.graphql.service';
 import { MovieDetailsCard } from '../../../../shared/components/movie-details-card/movie-details-card';
-import { formatDate } from '../../../../shared/utils/date-utils';
 import { Hall } from '../../../hall/api/hall.graphql.types';
 import { HallGraphqlService } from '../../../hall/api/hall.graphql.service';
 import { SeatSelector } from '../../../../shared/components/seat-selector/seat-selector';
 import { BookingGraphqlService } from '../../api/booking.graphql.service';
 import { CreateBookingRequestInput } from '../../api/booking.graphql.types';
-import { ToastService } from 'infrastructure-common';
+import { AuthenticationService } from '@cineverse/infrastructure-auth';
+import { ToastService } from '@cineverse/infrastructure-common';
+import { formatDate } from '@cineverse/infrastructure-common';
 
 @Component({
   selector: 'app-create-booking',
@@ -31,7 +31,7 @@ export class CreateBooking implements OnInit {
   private bookingGraphQlService = inject(BookingGraphqlService);
   private route = inject(ActivatedRoute);
   private toastService = inject(ToastService);
-  private jwtClaimsService = inject(JwtClaimsService);
+  private authenticationService = inject(AuthenticationService);
   private router = inject(Router);
 
   // ----- field ----- //
@@ -44,10 +44,7 @@ export class CreateBooking implements OnInit {
 
   // ----- OnInit ----- //
   async ngOnInit() {
-    if (
-      (await this.jwtClaimsService.decodeTokenAsync()).userStatus !=
-      UserStatus.Normal
-    ) {
+    if ((await this.authenticationService.getUserDataAsync()).userStatus != UserStatus.Normal) {
       this.router.navigate(['/profile']).then(() => {
         this.toastService.warning('Please confirm your email');
       });

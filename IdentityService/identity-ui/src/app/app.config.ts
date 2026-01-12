@@ -8,13 +8,15 @@ import { authInterceptor, AuthLink } from '@cineverse/infrastructure-auth';
 import { provideApollo } from 'apollo-angular';
 import { createApolloClient } from './apollo/apollo.config';
 import { ConfirmationService } from 'primeng/api';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withInterceptors([errorInterceptor, loadingInterceptor, authInterceptor])),
+    provideHttpClient(withInterceptors([loadingInterceptor, authInterceptor, errorInterceptor])),
     provideApollo(() => createApolloClient(inject(AuthLink))),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
+    provideAnimationsAsync(),
     providePrimeNG({
       theme: {
         preset: PrimeNgPreset,

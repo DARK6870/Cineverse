@@ -1,5 +1,5 @@
 ﻿import { InMemoryCache, createHttpLink, from } from '@apollo/client/core';
-import { createErrorLink, createLoadingLink } from 'infrastructure-common';
+import { createErrorLink, createLoadingLink } from '@cineverse/infrastructure-common';
 import { AuthLink } from '@cineverse/infrastructure-auth';
 
 export function createApolloClient(authLink: AuthLink) {

@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { JwtClaimsService } from '../../../../core/services/jwt-claims.service';
 import {
   JwtPayload,
   UserStatus,
 } from '../../../../shared/models/jwt-payload.model';
+import { AuthenticationService } from '@cineverse/infrastructure-auth';
 
 @Component({
   selector: 'app-profile',
@@ -14,12 +14,12 @@ import {
   styleUrl: 'profile.css',
 })
 export class Profile implements OnInit {
-  private jwtClaimsService = inject(JwtClaimsService);
+  private authenticationService = inject(AuthenticationService);
 
   userData = signal<JwtPayload | null>(null);
 
   async ngOnInit() {
-    this.userData.set(await this.jwtClaimsService.decodeTokenAsync());
+    this.userData.set(await this.authenticationService.getUserDataAsync());
   }
 
   protected readonly UserStatus = UserStatus;

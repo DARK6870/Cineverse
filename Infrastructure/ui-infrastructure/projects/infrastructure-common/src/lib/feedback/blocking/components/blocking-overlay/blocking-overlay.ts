@@ -1,23 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { BlockActionsService } from '../../services/block-actions.service';
 
 @Component({
   selector: 'cineverse-blocking-overlay',
   imports: [],
   templateUrl: 'blocking-overlay.html',
-  standalone: true,
-  /*animations: [
-    trigger('fade', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('200ms ease-out', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-in', style({ opacity: 0 }))
-      ])
-    ])
-  ]*/
-
+  styleUrl: 'blocking-overlay.css',
+  standalone: true
 })
 export class BlockingOverlay {
   protected service = inject(BlockActionsService);

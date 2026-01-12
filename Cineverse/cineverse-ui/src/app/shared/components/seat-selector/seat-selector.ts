@@ -12,7 +12,7 @@ import { Button } from 'primeng/button';
 import { Screening } from '../../../features/screening/api/screening.graphql.types';
 import { BookingGraphqlService } from '../../../features/booking/api/booking.graphql.service';
 import { firstValueFrom } from 'rxjs';
-import { formatDate } from '../../utils/date-utils'
+import { formatDate } from '@cineverse/infrastructure-common';
 import { Booking } from '../../../features/booking/api/booking.graphql.types';
 
 @Component({

@@ -68,4 +68,8 @@ export const routes: Routes = [
     title: 'Personal Information',
     canActivate: [authenticationGuard]
   },
+  {
+    path: '**',
+    redirectTo: 'profile'
+  }
 ];

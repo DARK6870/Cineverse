@@ -1,17 +1,17 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cineverse-header',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: 'header.html',
   styleUrls: ['header.css']
 })
 
-// TODO: add icons for mobile
 export class Header {
+  private router = inject(Router);
   isMenuOpen = false;
 
   toggleMenu(event: Event) {
@@ -29,5 +29,19 @@ export class Header {
       !(event.target as Element).closest('.menu-icon')) {
       this.isMenuOpen = false;
     }
+  }
+
+  protected navigate(path: string) {
+    const currentPath = window.location.pathname;
+    const isOnIdentity = currentPath.startsWith('/identity');
+    const targetIsIdentity = path.startsWith('/identity');
+
+    if (isOnIdentity !== targetIsIdentity) {
+      window.location.href = path;
+    } else {
+      this.router.navigate([path]).then();
+    }
+
+    this.closeMenu();
   }
 }

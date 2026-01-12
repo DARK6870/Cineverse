@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { Movie } from '../../../features/movie/api/movie.graphql.types';
-import { formatDate } from '../../utils/date-utils'
+import { formatDate } from '@cineverse/infrastructure-common'
 import { MarkdownComponent } from 'ngx-markdown';
 import { DomSanitizer } from '@angular/platform-browser';
 
