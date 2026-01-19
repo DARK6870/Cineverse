@@ -52,5 +52,9 @@ export const routes: Routes = [
     component: MyBookings,
     title: 'My Bookings',
     canActivate: [authenticationGuard]
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];

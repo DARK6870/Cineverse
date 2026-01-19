@@ -27,5 +27,7 @@ export * from './lib/layout/header/header';
 export * from './lib/layout/footer/footer';
 
 // shared
-export * from './lib/shared/utils/date-utils';
+export * from './lib/shared/utils/date.utils';
+export * from './lib/shared/utils/router.utils';
 export * from './lib/shared/helpers/validation.helper';
+export * from './lib/shared/helpers/router.helper';

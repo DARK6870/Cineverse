@@ -12,6 +12,7 @@ export * from './lib/http/helpers/http-header.helper';
 // guards
 export * from './lib/guards/authentication.guard';
 export * from './lib/guards/not-authorized.guard';
+export * from './lib/guards/user-status.guard';
 
 // services
 export * from './lib/services/authentication/authentication.service';

@@ -3,8 +3,8 @@ import { ButtonDirective, ButtonLabel } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { getValidationError, ToastService } from '@cineverse/infrastructure-common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { getValidationError } from '@cineverse/infrastructure-common';
 import { AuthApiService } from '../../api/rest/auth.api.service';
 import { LoginRequest } from '../../api/rest/auth.api.types';
 import { TokenStorageService } from '@cineverse/infrastructure-auth';
@@ -28,9 +28,7 @@ export class Login {
   protected readonly getErrorMessage = getValidationError;
   private formBuilder = inject(FormBuilder);
   private authApiService = inject(AuthApiService);
-  private router = inject(Router);
   private route = inject(ActivatedRoute);
-  private toastService = inject(ToastService);
   private tokenStorageService = inject(TokenStorageService);
 
   loginForm : FormGroup = this.formBuilder.group({
@@ -69,10 +67,6 @@ export class Login {
     this.tokenStorageService.saveRefreshToken(loginResponse.refreshToken);
     this.tokenStorageService.saveAccessToken(loginResponse.accessToken);
 
-    const callbackUrl = this.route.snapshot.queryParamMap.get('callbackUrl') || '/';
-
-    this.router.navigate([callbackUrl]).then(() => {
-      this.toastService.success('Successfully logged in');
-    })
+    window.location.href = this.route.snapshot.queryParamMap.get('callbackUrl') || '/';
   }
 }

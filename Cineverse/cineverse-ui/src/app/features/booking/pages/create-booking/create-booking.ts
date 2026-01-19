@@ -3,7 +3,6 @@ import { ScreeningGraphqlService } from '../../../screening/api/screening.graphq
 import { Screening } from '../../../screening/api/screening.graphql.types';
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserStatus } from '../../../../shared/models/jwt-payload.model';
 import { Movie } from '../../../movie/api/movie.graphql.types';
 import { MovieGraphqlService } from '../../../movie/api/movie.graphql.service';
 import { MovieDetailsCard } from '../../../../shared/components/movie-details-card/movie-details-card';
@@ -12,7 +11,10 @@ import { HallGraphqlService } from '../../../hall/api/hall.graphql.service';
 import { SeatSelector } from '../../../../shared/components/seat-selector/seat-selector';
 import { BookingGraphqlService } from '../../api/booking.graphql.service';
 import { CreateBookingRequestInput } from '../../api/booking.graphql.types';
-import { AuthenticationService } from '@cineverse/infrastructure-auth';
+import {
+  AuthenticationService,
+  UserStatus,
+} from '@cineverse/infrastructure-auth';
 import { ToastService } from '@cineverse/infrastructure-common';
 import { formatDate } from '@cineverse/infrastructure-common';
 
@@ -24,7 +26,6 @@ import { formatDate } from '@cineverse/infrastructure-common';
   styleUrl: 'create-booking.css',
 })
 export class CreateBooking implements OnInit {
-  // ----- inject ----- //
   private screeningGraphQlService = inject(ScreeningGraphqlService);
   private movieGraphQlService = inject(MovieGraphqlService);
   private hallGraphQlService = inject(HallGraphqlService);
@@ -34,7 +35,6 @@ export class CreateBooking implements OnInit {
   private authenticationService = inject(AuthenticationService);
   private router = inject(Router);
 
-  // ----- field ----- //
   protected readonly formatDate = formatDate;
 
   screening = signal<Screening | null>(null);
@@ -42,8 +42,8 @@ export class CreateBooking implements OnInit {
   hall = signal<Hall | null>(null);
   bookedSeats = signal<string[] | null>(null);
 
-  // ----- OnInit ----- //
   async ngOnInit() {
+    // TODO: //////////////
     if ((await this.authenticationService.getUserDataAsync()).userStatus != UserStatus.Normal) {
       this.router.navigate(['/profile']).then(() => {
         this.toastService.warning('Please confirm your email');

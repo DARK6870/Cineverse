@@ -1,18 +1,18 @@
 ﻿import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthApiService } from './api/auth.api.service';
 import { TokenStorageService } from '../tokenStorage/token-storage.service';
-import { ToastService } from '@cineverse/infrastructure-common';
+import { identityBasePath, RouterHelper } from '@cineverse/infrastructure-common';
 import { UserData } from '../../shared/models/user-data';
 import { decodeTokenPayload } from '../../shared/helpers/jwt.helper';
-import {GenerateAccessTokenRequest} from './api/auth.api.types';
+import { GenerateAccessTokenRequest } from './api/auth.api.types';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private authApiService = inject(AuthApiService);
   private tokenStorageService = inject(TokenStorageService);
+  private routerHelper = inject(RouterHelper);
   private router = inject(Router);
-  private toastService = inject(ToastService);
 
   public isAuthenticated(): boolean {
     return !!this.tokenStorageService.getRefreshToken();
@@ -22,13 +22,12 @@ export class AuthenticationService {
     const refreshToken = this.tokenStorageService.getRefreshToken();
 
     if (!refreshToken) {
-      const callbackUrl = this.router.url;
-      this.router.navigate(
-        ['/login'],
-        { queryParams: {callbackUrl} }
-      ).then(() => {
-        this.toastService.info('Please login into your profile');
+      this.routerHelper.navigate(`${identityBasePath}/login`, {
+        queryParams: {
+          callbackUrl: this.router.url
+        }
       });
+
       throw new Error('Authorization required');
     }
 

@@ -7,10 +7,9 @@ import { Textarea } from 'primeng/textarea';
 import { ContactGraphqlService } from '../../api/contact.graphql.service'
 import { Message } from 'primeng/message';
 import { Select } from 'primeng/select';
-import { getErrorMessage } from '../../../../shared/helpers/validation.helper';
 import { departmentOptions } from '../../../../shared/constants/department-options';
 import { Router } from '@angular/router';
-import { ToastService } from '@cineverse/infrastructure-common';
+import { getValidationError, ToastService } from '@cineverse/infrastructure-common';
 
 @Component({
   selector: 'app-contact',
@@ -43,7 +42,7 @@ export class Contact {
   });
 
   formSubmitted = false;
-  protected readonly getErrorMessage = getErrorMessage;
+  protected readonly getErrorMessage = getValidationError;
 
   getErrorMessageByName(controlName: string): string | null {
     return this.getErrorMessage(this.supportForm.get(controlName));

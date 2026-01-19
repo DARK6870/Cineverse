@@ -1,10 +1,10 @@
-﻿import { CanActivateFn, Router } from '@angular/router';
+﻿import { CanActivateFn } from '@angular/router';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { inject } from '@angular/core';
-import { ToastService } from '@cineverse/infrastructure-common';
+import { RouterHelper, ToastService, identityBasePath } from '@cineverse/infrastructure-common';
 
 export const notAuthorizedGuard : CanActivateFn = () => {
-  const router = inject(Router);
+  const routerHelper = inject(RouterHelper);
   const authenticationService = inject(AuthenticationService);
   const toastService = inject(ToastService);
 
@@ -12,6 +12,8 @@ export const notAuthorizedGuard : CanActivateFn = () => {
     return true;
   } else {
     toastService.info('You are already authorized');
-    return router.createUrlTree(['/profile']);
+    routerHelper.navigate(`${identityBasePath}/profile`);
+
+    return false;
   }
 };

@@ -1,6 +1,6 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { RouterHelper } from '../../shared/helpers/router.helper';
 
 @Component({
   selector: 'cineverse-header',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 
 export class Header {
-  private router = inject(Router);
+  private routerHelper = inject(RouterHelper);
   isMenuOpen = false;
 
   toggleMenu(event: Event) {
@@ -32,16 +32,7 @@ export class Header {
   }
 
   protected navigate(path: string) {
-    const currentPath = window.location.pathname;
-    const isOnIdentity = currentPath.startsWith('/identity');
-    const targetIsIdentity = path.startsWith('/identity');
-
-    if (isOnIdentity !== targetIsIdentity) {
-      window.location.href = path;
-    } else {
-      this.router.navigate([path]).then();
-    }
-
+    this.routerHelper.navigate(path);
     this.closeMenu();
   }
 }

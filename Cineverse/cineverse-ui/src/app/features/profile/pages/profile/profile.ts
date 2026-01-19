@@ -1,10 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {
-  JwtPayload,
-  UserStatus,
-} from '../../../../shared/models/jwt-payload.model';
-import { AuthenticationService } from '@cineverse/infrastructure-auth';
+import { AuthenticationService, UserData, UserStatus } from '@cineverse/infrastructure-auth';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +12,7 @@ import { AuthenticationService } from '@cineverse/infrastructure-auth';
 export class Profile implements OnInit {
   private authenticationService = inject(AuthenticationService);
 
-  userData = signal<JwtPayload | null>(null);
+  userData = signal<UserData | null>(null);
 
   async ngOnInit() {
     this.userData.set(await this.authenticationService.getUserDataAsync());
