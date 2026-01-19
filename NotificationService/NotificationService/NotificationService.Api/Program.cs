@@ -1,3 +1,4 @@
+using Hangfire;
 using Infrastructure.Logging;
 using Infrastructure.MediatR;
 using NotificationService.Application;
@@ -12,9 +13,13 @@ builder.Services
     .AddApplicationServices(configuration)
     .AddPipelineBehaviours()
     .AddKafkaConsumers(configuration)
+    .AddHangfireWithRedis(configuration)
     ;
 
 // ------ Configure WebApplication ------ //
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+    app.UseHangfireDashboard();
 
 app.Run();
