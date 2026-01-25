@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Cineverse.Infrastructure.Mongo" Version="1.0.3-rc-1" />
+      <PackageReference Include="Cineverse.Infrastructure.Mongo" Version="1.0.3-rc-3" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="10.0.1" />
     </ItemGroup>

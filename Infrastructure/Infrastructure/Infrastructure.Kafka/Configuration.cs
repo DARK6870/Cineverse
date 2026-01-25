@@ -1,4 +1,4 @@
-﻿using Infrastructure.Kafka.Models.Options;
+﻿using Infrastructure.Kafka.Models.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,8 +18,8 @@ public static class Configuration
         IConfiguration configuration
     )
     {
-        var kafkaSettings = configuration.GetSection(nameof(KafkaOptions)).Get<KafkaOptions>()
-                            ?? throw new ArgumentNullException(nameof(KafkaOptions));
+        var kafkaSettings = configuration.GetSection(nameof(KafkaSettings)).Get<KafkaSettings>()
+                            ?? throw new ArgumentNullException(nameof(KafkaSettings));
         
         services.AddSingleton(kafkaSettings);
         

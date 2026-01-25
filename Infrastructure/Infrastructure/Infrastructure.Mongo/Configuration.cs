@@ -1,5 +1,5 @@
 ﻿using Infrastructure.Mongo.Conventions;
-using Infrastructure.Mongo.Models.Options;
+using Infrastructure.Mongo.Models.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -19,8 +19,8 @@ public static class Configuration
         MongoConventions.Register();
         
         // get mongo settings
-        var mongoSettings = configuration.GetSection(nameof(MongoOptions)).Get<MongoOptions>()
-                            ?? throw new ArgumentNullException(nameof(MongoOptions));
+        var mongoSettings = configuration.GetSection(nameof(MongoSettings)).Get<MongoSettings>()
+                            ?? throw new ArgumentNullException(nameof(MongoSettings));
         
         services.AddSingleton(mongoSettings);
 

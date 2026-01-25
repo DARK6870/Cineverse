@@ -1,6 +1,6 @@
-﻿namespace Infrastructure.Mongo.Models.Options;
+﻿namespace Infrastructure.Mongo.Models.Settings;
 
-public class MongoOptions
+public class MongoSettings
 {
     public required string ConnectionString { get; init; }
     

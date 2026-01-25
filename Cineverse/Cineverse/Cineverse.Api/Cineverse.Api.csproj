@@ -20,4 +20,12 @@
       <PackageReference Include="Cineverse.Infrastructure.WebApi" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="GraphQl\Booking\" />
+      <Folder Include="GraphQl\Hall\" />
+      <Folder Include="GraphQl\Movie\" />
+      <Folder Include="GraphQl\Screening\" />
+      <Folder Include="GraphQl\Support\" />
+    </ItemGroup>
+
 </Project>

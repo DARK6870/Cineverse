@@ -1,5 +1,4 @@
 ﻿using Infrastructure.Kafka.Exceptions;
-using Infrastructure.Kafka.Models.Options;
 using Infrastructure.Kafka.Models.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,13 +38,13 @@ public static class ProducerDependencyInjectionExtensions
         services.AddSingleton<IKafkaProducer, KafkaProducer>(provider =>
         {
             var logger = provider.GetRequiredService<ILogger<KafkaProducer>>();
-            var kafkaOptions = provider.GetRequiredService<KafkaOptions>();
+            var kafkaSettings = provider.GetRequiredService<KafkaSettings>();
 
-            producerSettings.ProducerConfig.BootstrapServers = kafkaOptions.BootstrapServers;
-            producerSettings.ProducerConfig.SecurityProtocol = kafkaOptions.SecurityProtocol;
-            producerSettings.ProducerConfig.SaslMechanism = kafkaOptions.SaslMechanism;
-            producerSettings.ProducerConfig.SaslUsername = kafkaOptions.Username;
-            producerSettings.ProducerConfig.SaslPassword = kafkaOptions.Password;
+            producerSettings.ProducerConfig.BootstrapServers = kafkaSettings.BootstrapServers;
+            producerSettings.ProducerConfig.SecurityProtocol = kafkaSettings.SecurityProtocol;
+            producerSettings.ProducerConfig.SaslMechanism = kafkaSettings.SaslMechanism;
+            producerSettings.ProducerConfig.SaslUsername = kafkaSettings.Username;
+            producerSettings.ProducerConfig.SaslPassword = kafkaSettings.Password;
 
             return new KafkaProducer(logger, producerSettings);
         });

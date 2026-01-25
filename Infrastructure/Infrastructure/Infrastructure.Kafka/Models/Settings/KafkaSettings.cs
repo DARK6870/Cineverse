@@ -1,8 +1,8 @@
 ﻿using Confluent.Kafka;
 
-namespace Infrastructure.Kafka.Models.Options;
+namespace Infrastructure.Kafka.Models.Settings;
 
-public class KafkaOptions
+public class KafkaSettings
 {
     public required string BootstrapServers { get; init; }
     public required string ConsumerGroup { get; init; }

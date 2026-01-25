@@ -1,5 +1,4 @@
 ﻿using Infrastructure.Kafka.Exceptions;
-using Infrastructure.Kafka.Models.Options;
 using Infrastructure.Kafka.Models.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,14 +36,14 @@ public static class ConsumerDependencyInjectionExtensions
         services.AddSingleton<IKafkaConsumer, KafkaConsumer>(provider =>
         {
             var logger = provider.GetRequiredService<ILogger<KafkaConsumer>>();
-            var kafkaOptions = provider.GetRequiredService<KafkaOptions>();
+            var kafkaSettings = provider.GetRequiredService<KafkaSettings>();
             
-            consumerSettings.ConsumerConfig.GroupId = kafkaOptions.ConsumerGroup;
-            consumerSettings.ConsumerConfig.BootstrapServers = kafkaOptions.BootstrapServers;
-            consumerSettings.ConsumerConfig.SecurityProtocol = kafkaOptions.SecurityProtocol;
-            consumerSettings.ConsumerConfig.SaslMechanism = kafkaOptions.SaslMechanism;
-            consumerSettings.ConsumerConfig.SaslUsername = kafkaOptions.Username;
-            consumerSettings.ConsumerConfig.SaslPassword = kafkaOptions.Password;
+            consumerSettings.ConsumerConfig.GroupId = kafkaSettings.ConsumerGroup;
+            consumerSettings.ConsumerConfig.BootstrapServers = kafkaSettings.BootstrapServers;
+            consumerSettings.ConsumerConfig.SecurityProtocol = kafkaSettings.SecurityProtocol;
+            consumerSettings.ConsumerConfig.SaslMechanism = kafkaSettings.SaslMechanism;
+            consumerSettings.ConsumerConfig.SaslUsername = kafkaSettings.Username;
+            consumerSettings.ConsumerConfig.SaslPassword = kafkaSettings.Password;
             
             return new KafkaConsumer(logger, consumerSettings);
         });

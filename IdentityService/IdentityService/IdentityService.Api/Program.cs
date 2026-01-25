@@ -2,6 +2,7 @@ using Auth.Authentication;
 using IdentityService.Application;
 using IdentityService.Mongo;
 using Infrastructure.Context;
+using Infrastructure.HealthCheck;
 using Infrastructure.Logging;
 using Infrastructure.MediatR;
 using Infrastructure.Mongo;
@@ -28,6 +29,11 @@ builder.Services
     .AddMongoMigrations()
     .AddApplicationServices(configuration)
     .AddPipelineBehaviours()
+    .AddInfrastructureHealthChecks(options =>
+    {
+        options.IncludeMongoDb = true;
+        options.IncludeKafka = true;
+    })
     .AddGraphQLServer()
     .ConfigureGraphQl()
     .AddGraphQlQueriesFromAssembly(assembly)
@@ -52,9 +58,9 @@ app.MapGraphQlApi();
 app.UseGraphQlStatusCodeMiddleware();
 app.UseRestApiExceptionHandlerMiddleware();
 
+app.MapHealthCheck();
+
 // ------ Execute Migrations ------ //
 await app.ExecuteMigrationsAsync();
 
 app.Run();
-
-// TODO: add fluent validation

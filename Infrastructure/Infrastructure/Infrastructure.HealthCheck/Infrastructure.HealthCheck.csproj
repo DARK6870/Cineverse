@@ -4,6 +4,31 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <PackageId>Cineverse.Infrastructure.HealthCheck</PackageId>
+        <Version>1.0.1-rc-5</Version>
+        <Authors>Cineverse Team</Authors>
+        <Company>Cineverse</Company>
+        <Description>Infrastructure health check package</Description>
+        <RepositoryUrl>https://github.com/DARK6870/Cineverse</RepositoryUrl>
+
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageOutputPath>..\nuget-packages</PackageOutputPath>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AspNetCore.HealthChecks.Hangfire" Version="9.0.0" />
+      <PackageReference Include="AspNetCore.HealthChecks.Kafka" Version="9.0.0" />
+      <PackageReference Include="AspNetCore.HealthChecks.MongoDb" Version="9.0.0" />
+      <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="9.0.0" />
+      <PackageReference Include="AspNetCore.HealthChecks.UI" Version="9.0.0" />
+      <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
+      <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="9.0.0" />
+      <PackageReference Include="Cineverse.Infrastructure.Kafka" Version="1.0.0-rc-8" />
+      <PackageReference Include="Cineverse.Infrastructure.Mongo" Version="1.0.3-rc-3" />
+      <PackageReference Include="KubernetesClient" Version="18.0.13" />
+      <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.2" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    </ItemGroup>
 
 </Project>

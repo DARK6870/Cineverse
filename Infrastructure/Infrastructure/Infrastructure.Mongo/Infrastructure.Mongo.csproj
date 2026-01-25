@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         
         <PackageId>Cineverse.Infrastructure.Mongo</PackageId>
-        <Version>1.0.3-rc-2</Version>
+        <Version>1.0.3-rc-3</Version>
         <Authors>Cineverse Team</Authors>
         <Company>Cineverse</Company>
         <Description>Infrastructure mongo package</Description>
@@ -24,7 +24,7 @@
       <PackageReference Include="Cineverse.Infrastructure.Common" Version="1.0.1-rc-2" />
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.1" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.1" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.2" />
       <PackageReference Include="MongoDB.Driver" Version="3.5.2" />
     </ItemGroup>
 
