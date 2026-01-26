@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.WebApi.Cors.Options;
+﻿namespace ApiGateway.Options;
 
 public class CorsOptions
 {

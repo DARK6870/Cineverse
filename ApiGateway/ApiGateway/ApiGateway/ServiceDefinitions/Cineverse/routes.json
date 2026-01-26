@@ -1,0 +1,30 @@
+{
+  "ReverseProxy": {
+    "Routes": {
+      "cineverse-health": {
+        "ClusterId": "cineverse-cluster",
+        "Order": 1,
+        "Match": {
+          "Path": "/api/cineverse/health"
+        },
+        "Transforms": [
+          {
+            "PathPattern": "/health"
+          }
+        ]
+      },
+      "cineverse-all": {
+        "ClusterId": "cineverse-cluster",
+        "Order": 100,
+        "Match": {
+          "Path": "/api/cineverse/{**catch-all}"
+        },
+        "Transforms": [
+          {
+            "PathPattern": "/{**catch-all}"
+          }
+        ]
+      }
+    }
+  }
+}

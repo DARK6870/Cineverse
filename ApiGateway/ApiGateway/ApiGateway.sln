@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{6538D522-34A7-4429-9887-382E6791902F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{192211B9-EA97-44D1-9E70-87CBC3424DA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6538D522-34A7-4429-9887-382E6791902F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6538D522-34A7-4429-9887-382E6791902F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6538D522-34A7-4429-9887-382E6791902F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6538D522-34A7-4429-9887-382E6791902F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6538D522-34A7-4429-9887-382E6791902F} = {192211B9-EA97-44D1-9E70-87CBC3424DA0}
+	EndGlobalSection
+EndGlobal

@@ -1,12 +1,9 @@
-﻿using Infrastructure.WebApi.Cors.CorsPolicies;
-using Infrastructure.WebApi.Cors.Options;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using ApiGateway.Cors;
+using ApiGateway.Options;
 
-namespace Infrastructure.WebApi.Cors;
+namespace ApiGateway.Extensions;
 
-public static class CorsExtensions
+public static class CorsDependencyInjectionExtensions
 {
     public static IServiceCollection AddCorsPolicy(
         this IServiceCollection services,

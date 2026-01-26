@@ -7,7 +7,6 @@ using Infrastructure.Logging;
 using Infrastructure.MediatR;
 using Infrastructure.Mongo;
 using Infrastructure.Mongo.Migrations;
-using Infrastructure.WebApi.Cors;
 using Infrastructure.WebApi.GraphQl;
 using Infrastructure.WebApi.Rest;
 
@@ -20,7 +19,6 @@ builder.AddInfrastructureLogging();
 // ------ Configure services ------ //
 builder.Services
     .AddRestApi()
-    .AddCorsPolicy(configuration)
     .AddAuth(configuration)
     .AddUserContext()
     .AddMemoryCache()
@@ -46,7 +44,6 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
     app.MapScalar();
 
-app.UseCorsPolicy();
 app.UseAuthentication();
 app.UseAuthorization();
 
