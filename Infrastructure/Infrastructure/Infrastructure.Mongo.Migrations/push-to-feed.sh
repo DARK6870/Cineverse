@@ -1,1 +1,1 @@
-dotnet nuget push ./nuget-packages/Cineverse.Infrastructure.Mongo.Migrations.1.0.2.nupkg --api-key <API_KEY> --source https://api.nuget.org/v3/index.json
+dotnet nuget push ./nuget-packages/Cineverse.Infrastructure.Mongo.Migrations.1.0.3.nupkg --api-key <API_KEY> --source https://api.nuget.org/v3/index.json

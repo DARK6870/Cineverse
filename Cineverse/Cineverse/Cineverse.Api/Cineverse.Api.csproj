@@ -5,12 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Cineverse.Application\Cineverse.Application.csproj" />
       <ProjectReference Include="..\Cineverse.Mongo.Migrations\Cineverse.Mongo.Migrations.csproj" />
     </ItemGroup>
@@ -18,14 +12,6 @@
     <ItemGroup>
       <PackageReference Include="Cineverse.Infrastructure.Logging" />
       <PackageReference Include="Cineverse.Infrastructure.WebApi" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="GraphQl\Booking\" />
-      <Folder Include="GraphQl\Hall\" />
-      <Folder Include="GraphQl\Movie\" />
-      <Folder Include="GraphQl\Screening\" />
-      <Folder Include="GraphQl\Support\" />
     </ItemGroup>
 
 </Project>

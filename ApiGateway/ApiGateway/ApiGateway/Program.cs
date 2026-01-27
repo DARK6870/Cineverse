@@ -1,9 +1,15 @@
 using ApiGateway.Extensions;
 using Auth.Authentication;
 using Infrastructure.HealthCheck;
+using Infrastructure.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+
+builder.AddInfrastructureLogging();
+
+configuration.AddGatewayConfiguration(builder.Environment.EnvironmentName);
+configuration.ValidateGatewayConfiguration();
 
 builder
     .Services

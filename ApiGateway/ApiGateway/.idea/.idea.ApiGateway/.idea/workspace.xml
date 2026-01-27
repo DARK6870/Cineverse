@@ -10,24 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0da71349-1655-4d21-8cdc-096d5c835658" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ApiGateway/Cors/DefaultCorsPolicy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ApiGateway/Extensions/ConfigurationExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ApiGateway/Extensions/RateLimitDependencyInjectionExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ApiGateway/Extensions/ReverseProxyDependencyInjection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ApiGateway/Options/FixedWindowOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ApiGateway/Options/RateLimitOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ApiGateway/Options/SlidingWindowOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ApiGateway/ServiceDefinitions/Cineverse/cluster.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ApiGateway/ServiceDefinitions/Cineverse/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Infrastructure/Infrastructure/.idea/.idea.Infrastructure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Infrastructure/Infrastructure/.idea/.idea.Infrastructure/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Infrastructure/Infrastructure/Infrastructure.WebApi/Cors/CorsExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/Extensions/CorsDependencyInjectionExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Infrastructure/Infrastructure/Infrastructure.WebApi/Cors/CorsPolicies/DefaultCorsPolicy.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Infrastructure/Infrastructure/Infrastructure.WebApi/Cors/Options/CorsOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/Options/CorsOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Infrastructure/Infrastructure/Infrastructure.WebApi/Infrastructure.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../Infrastructure/Infrastructure/Infrastructure.WebApi/Infrastructure.WebApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../NotificationService/NotificationService/NotificationService.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../package-lock.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/ServiceDefinitions/Identity/cluster.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/ServiceDefinitions/Identity/routes.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Infrastructure/Infrastructure/.idea/.idea.Infrastructure/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ApiGateway/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ApiGateway/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateway/ApiGateway.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/ApiGateway.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateway/Extensions/ConfigurationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/Extensions/ConfigurationExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateway/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApiGateway/ServiceDefinitions/Cineverse/cluster.json" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/ServiceDefinitions/Cineverse/cluster.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,19 +27,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "DARK6870"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;DARK6870&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/DARK6870/Cineverse",
-    "accountId": "99fbcb68-caec-4ba8-a244-1917705f3a61"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DARK6870/Cineverse&quot;,
+    &quot;accountId&quot;: &quot;99fbcb68-caec-4ba8-a244-1917705f3a61&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a3061bacfd19477e8d77fd89a5e6a88112908/30/49ffded4/IHostEnvironment.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bf3f51607a3e4e76b5b91640cd7409195c430/13/8595a157/ReverseProxyServiceCollectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/da5e5e599ab24ba1b0b53fc78b17e7ef4400/3c/04ad330c/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/396cbb643b42a549918325d44594c760fccf8eff8a2d6aa5e84a2167fb1456ed/FixedWindowRateLimiterOptions.cs" root0="FORCE_HIGHLIGHTING" />
@@ -59,34 +50,39 @@
     <setting file="file://$PROJECT_DIR$/ApiGateway/Options/FixedWindowOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ApiGateway/Options/RateLimitOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ApiGateway/Options/SlidingWindowOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Pet-Projects/Cineverse/IdentityService/IdentityService/IdentityService.Api/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../IdentityService/IdentityService/IdentityService.Api/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Pet-Projects/Cineverse/IdentityService/IdentityService/IdentityService.Api/appsettings.json" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="38oAOyjJbGl4zZKfcyGx6B5BnIv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "microservice-migration",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.ApiGateway: Hosting.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;microservice-migration&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.ApiGateway: http">
+}</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.ApiGateway: Hosting">
     <configuration name="ApiGateway: Hosting" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ApiGateway/ApiGateway.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
@@ -143,16 +139,28 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1769455523246</updated>
-      <workItem from="1769455524486" duration="2786000" />
+      <workItem from="1769455524486" duration="3282000" />
     </task>
+    <task id="LOCAL-00001" summary="save changes 26/01/26">
+      <option name="closed" value="true" />
+      <created>1769458396540</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1769458396540</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="save changes 26/01/26" />
+    <option name="LAST_COMMIT_MESSAGE" value="save changes 26/01/26" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

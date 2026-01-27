@@ -1,0 +1,53 @@
+{
+  "ReverseProxy": {
+    "Clusters": {
+      "orders-cluster": {
+        "LoadBalancingPolicy": "PowerOfTwoChoices",
+        "SessionAffinity": {
+          "Enabled": false,
+          "Policy": "Cookie",
+          "AffinityKeyName": ".Yarp.SessionAffinity"
+        },
+        "HealthCheck": {
+          "Active": {
+            "Enabled": true,
+            "Interval": "00:00:10",
+            "Timeout": "00:00:05",
+            "Policy": "ConsecutiveFailures",
+            "Path": "/health"
+          },
+          "Passive": {
+            "Enabled": true,
+            "Policy": "TransportFailureRate",
+            "ReactivationPeriod": "00:01:00"
+          }
+        },
+        "HttpClient": {
+          "DangerousAcceptAnyServerCertificate": false,
+          "MaxConnectionsPerServer": 100,
+          "EnableMultipleHttp2Connections": true
+        },
+        "HttpRequest": {
+          "ActivityTimeout": "00:01:00",
+          "Version": "2",
+          "VersionPolicy": "RequestVersionOrLower"
+        },
+        "Destinations": {
+          "primary": {
+            "Address": "http://orders-service:80",
+            "Health": "http://orders-service:80/health",
+            "Metadata": {
+              "Region": "eu-west-1",
+              "Weight": "100"
+            }
+          }
+        },
+        "Metadata": {
+          "Service": "Orders",
+          "Team": "OrdersTeam",
+          "Slack": "#orders-team"
+        }
+      }
+    }
+  }
+}

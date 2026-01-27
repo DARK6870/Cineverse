@@ -1,8 +1,8 @@
 {
   "ReverseProxy": {
     "Clusters": {
-      "orders-cluster": {
-        "LoadBalancingPolicy": "RoundRobin",
+      "cineverse-cluster": {
+        "LoadBalancingPolicy": "PowerOfTwoChoices",
         "SessionAffinity": {
           "Enabled": false,
           "Policy": "Cookie",

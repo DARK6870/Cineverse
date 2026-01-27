@@ -7,10 +7,6 @@ public static class ConfigurationExtensions
         string environment)
     {
         var serviceDefinitionsPath = GetServiceDefinitionsRootPath();
-        
-        if (!Directory.Exists(serviceDefinitionsPath))
-            throw new DirectoryNotFoundException($"Services definitions directory not found: {serviceDefinitionsPath}");
-
         var serviceDirs = Directory.GetDirectories(serviceDefinitionsPath);
 
         foreach (var serviceDir in serviceDirs)
@@ -80,7 +76,8 @@ public static class ConfigurationExtensions
     
     private static string GetServiceDefinitionsRootPath()
     {
-        const string targetFolderName = "ServiceDefinitions";
+        const string targetFolderName = "ApiGateway";
+        const string serviceDefinitionsFolderName = "ServiceDefinitions";
         
         var directory = new DirectoryInfo(AppContext.BaseDirectory);
 
@@ -89,7 +86,11 @@ public static class ConfigurationExtensions
 
         if (directory == null)
             throw new DirectoryNotFoundException("Could not find the target folder");
+        
+        var serviceDefinitionsPath = Path.Combine(directory.FullName, serviceDefinitionsFolderName);
+        if (!Directory.Exists(serviceDefinitionsPath))
+            throw new DirectoryNotFoundException($"Service definitionsPath folder not found at path: {serviceDefinitionsPath}");
 
-        return directory.FullName;
+        return serviceDefinitionsPath;
     }
 }
