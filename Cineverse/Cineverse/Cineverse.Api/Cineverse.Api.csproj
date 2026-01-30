@@ -2,6 +2,7 @@
 
     <PropertyGroup>
       <RootNamespace>Cineverse.Api</RootNamespace>
+      <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>

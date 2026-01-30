@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.Kafka.Models.Metadata;
 
-public class ProducedByComponent
+public class ProducedBy
 {
     public required string Name { get; init; }
     

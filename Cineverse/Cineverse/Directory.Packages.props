@@ -5,12 +5,12 @@
   <ItemGroup>
     <PackageVersion Include="Cineverse.Auth" Version="1.0.2" />
     <PackageVersion Include="Cineverse.Infrastructure.Context" Version="1.0.0" />
-    <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.1" />
-    <PackageVersion Include="Cineverse.Infrastructure.MediatR" Version="1.0.0-rc-1" />
-    <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.3-rc-3" />
-    <PackageVersion Include="Cineverse.Infrastructure.Mongo.Migrations" Version="1.0.3-rc-1" />
-    <PackageVersion Include="Cineverse.Infrastructure.WebApi" Version="2.0.0-rc-1" />
-    <PackageVersion Include="Cineverse.NotificationService.Client" Version="1.0.0-rc-3" />
+    <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.2" />
+    <PackageVersion Include="Cineverse.Infrastructure.MediatR" Version="1.0.0" />
+    <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.3" />
+    <PackageVersion Include="Cineverse.Infrastructure.Mongo.Migrations" Version="1.0.3" />
+    <PackageVersion Include="Cineverse.Infrastructure.WebApi" Version="2.0.0" />
+    <PackageVersion Include="Cineverse.NotificationService.Client" Version="1.0.0" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.1" />
     <PackageVersion Include="MongoDB.Analyzer" Version="2.0.0" />
   </ItemGroup>

@@ -1,13 +1,17 @@
 ﻿using System.Reflection;
+using Infrastructure.Logging.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Serilog;
+using Serilog.Sinks.OpenTelemetry;
 
 namespace Infrastructure.Logging;
 
 public static class Configuration
 {
     private const string EmbeddedConfigResourceName = "logsettings.json";
+    private const string ServiceNameAttribute = "service.name";
+    private const string ApiKeyHeader = "X-Seq-ApiKey";
     
     public static WebApplicationBuilder AddInfrastructureLogging(
         this WebApplicationBuilder builder,
@@ -21,9 +25,9 @@ public static class Configuration
             .Enrich.FromLogContext();
 
         configureLogger?.Invoke(loggerConfiguration);
+        loggerConfiguration.AddTelemetry(builder.Configuration);
 
         Log.Logger = loggerConfiguration.CreateLogger();
-
         builder.Host.UseSerilog();
 
         return builder;
@@ -35,9 +39,7 @@ public static class Configuration
     )
     {
         if (!File.Exists(configFilePath))
-        {
             throw new FileNotFoundException($"Log configuration file not found: {configFilePath}");
-        }
 
         var cfg = new ConfigurationBuilder()
             .AddJsonFile(configFilePath, optional: false, reloadOnChange: true)
@@ -76,5 +78,34 @@ public static class Configuration
         return new ConfigurationBuilder()
             .AddJsonStream(stream)
             .Build();
+    }
+
+    private static void AddTelemetry(
+        this LoggerConfiguration loggerConfiguration,
+        IConfiguration configuration
+    )
+    {
+        var telemetrySettings = configuration
+            .GetSection(nameof(TelemetrySettings))
+            .Get<TelemetrySettings>();
+
+        if (telemetrySettings is null || !telemetrySettings.IsEnabled)
+            return;
+        
+        loggerConfiguration.WriteTo.OpenTelemetry(options =>
+        {
+            options.Endpoint = telemetrySettings.Endpoint;
+            options.Protocol = OtlpProtocol.HttpProtobuf;
+            
+            options.Headers = new Dictionary<string, string>
+            {
+                [ApiKeyHeader] = telemetrySettings.ApiKey!,
+            };
+            
+            options.ResourceAttributes = new Dictionary<string, object>
+            {
+                [ServiceNameAttribute] = Assembly.GetExecutingAssembly().GetName().Name ?? "Unknown"
+            };
+        });
     }
 }

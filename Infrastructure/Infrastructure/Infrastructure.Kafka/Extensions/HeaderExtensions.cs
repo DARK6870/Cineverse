@@ -31,7 +31,7 @@ internal static class HeaderExtensions
             Encoding.UTF8.GetBytes(typeof(T).FullName!)
         );
 
-        var producedBy = new ProducedByComponent
+        var producedBy = new ProducedBy
         {
             Name = ServiceName,
             Version = ServiceVersion

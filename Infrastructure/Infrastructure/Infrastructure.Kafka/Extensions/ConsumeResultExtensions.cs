@@ -33,7 +33,7 @@ public static class ConsumeResultExtensions
 
         var headers = consumeResult.Message.Headers;
 
-        var producedBy = GetRequiredJsonHeader<ProducedByComponent>(
+        var producedBy = GetRequiredJsonHeader<ProducedBy>(
             headers,
             HeaderConstants.ProducedBy
         );

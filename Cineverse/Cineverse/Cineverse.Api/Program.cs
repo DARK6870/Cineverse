@@ -6,7 +6,6 @@ using Infrastructure.Logging;
 using Infrastructure.MediatR;
 using Infrastructure.Mongo;
 using Infrastructure.Mongo.Migrations;
-using Infrastructure.WebApi.Cors;
 using Infrastructure.WebApi.GraphQl;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +18,6 @@ builder.AddInfrastructureLogging();
 // ------ Configure services ------ //
 builder.Services
     .AddHttpContextAccessor()
-    .AddCorsPolicy(configuration)
     .AddMongoDatabase(configuration)
     .AddMongoRepositories()
     .AddMongoMigrations()
@@ -36,7 +34,6 @@ builder.Services
 // ------ Configure WebApplication ------ //
 var app = builder.Build();
 
-app.UseCorsPolicy();
 app.UseAuthentication();
 app.UseAuthorization();
 

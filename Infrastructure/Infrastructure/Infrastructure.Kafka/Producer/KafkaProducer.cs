@@ -10,7 +10,6 @@ namespace Infrastructure.Kafka.Producer;
 
 public class KafkaProducer : IKafkaProducer
 {
-    // TODO: add retry options
     private readonly ILogger<KafkaProducer> _logger;
     private readonly IProducer<string?, string> _producer;
     
@@ -22,8 +21,6 @@ public class KafkaProducer : IKafkaProducer
         ProducerSettings settings
     )
     {
-        var producerConfig = settings.ProducerConfig;
-        
         _logger = logger;
 
         Identifier = settings.Identifier;
