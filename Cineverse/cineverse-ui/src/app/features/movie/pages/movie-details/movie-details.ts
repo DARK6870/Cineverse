@@ -1,7 +1,6 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MovieGraphqlService } from '../../api/movie.graphql.service';
-import { firstValueFrom } from 'rxjs';
 import { Movie } from '../../api/movie.graphql.types';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Screening } from '../../../screening/api/screening.graphql.types';
@@ -35,18 +34,9 @@ export class MovieDetails implements OnInit {
         const movieId = paramMap.get('movieId');
         if (!movieId) return;
 
-        const movie = await firstValueFrom(
-          this.movieGraphqlService.getMovieById(movieId),
-        );
+        const movie = await this.movieGraphqlService.getMovieById(movieId);
 
-        if (movie === null) {
-          this.toastService.error('Movie was not found');
-          return;
-        }
-
-        const screenings = await firstValueFrom(
-          this.screeningGraphqlService.getActiveScreeningsForMovie(movieId),
-        );
+        const screenings = await this.screeningGraphqlService.getActiveScreeningsForMovie(movieId);
 
         if (!movie || !screenings) {
           this.toastService.error('Movie was not found');

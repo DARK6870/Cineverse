@@ -1,6 +1,6 @@
 ﻿import { inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { map, Observable } from 'rxjs';
+import { firstValueFrom, map, pipe } from 'rxjs';
 import {
   getActiveScreeningMovieIdsQuery,
   getActiveScreeningsByMovieIdQuery,
@@ -8,32 +8,37 @@ import {
 } from './screening.graphql';
 import { Screening } from './screening.graphql.types';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ScreeningGraphqlService {
   private apollo = inject(Apollo);
 
-  // TODO: Change to query...
-  public getScreeningMovieIds() : Observable<string[]>{
-    return this.apollo.watchQuery<{ screenings: { items: { movieId: string}[] } }>(
-      getActiveScreeningMovieIdsQuery
-    ).valueChanges.pipe(
-      map((result => result.data.screenings.items.map(item => item.movieId)))
+  public getScreeningMovieIds(): Promise<string[]> {
+    return firstValueFrom(
+      this.apollo
+        .query<{ screenings: { items: { movieId: string }[] } }>({
+          ...getActiveScreeningMovieIdsQuery,
+        })
+        .pipe(map((res) => res.data.screenings.items.map((i) => i.movieId)))
     );
   }
 
-  public getActiveScreeningsForMovie(id: string): Observable<Screening[]>{
-    return this.apollo.watchQuery<{ screenings: { items: Screening[] } }>(
-      getActiveScreeningsByMovieIdQuery(id)
-    ).valueChanges.pipe(
-      map((result => result.data.screenings.items))
+  public getActiveScreeningsForMovie(id: string): Promise<Screening[]> {
+    return firstValueFrom(
+      this.apollo
+        .query<{ screenings: { items: Screening[] } }>({
+          ...getActiveScreeningsByMovieIdQuery(id),
+        })
+        .pipe(map((res) => res.data.screenings.items))
     );
-  };
+  }
 
-  public getScreeningById(id: string): Observable<Screening> {
-    return this.apollo.watchQuery<{ screeningById: Screening }>(
-      getScreeningByIdQuery(id)
-    ).valueChanges.pipe(
-      map((result => result.data.screeningById))
-    )
+  public getScreeningById(id: string): Promise<Screening> {
+    return firstValueFrom(
+      this.apollo
+        .query<{ screeningById: Screening }>({
+          ...getScreeningByIdQuery(id),
+        })
+        .pipe(map((result) => result.data.screeningById)),
+    );
   }
 }

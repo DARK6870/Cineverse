@@ -18,7 +18,7 @@ public class GetBookingByIdHandler(
         var booking = await bookingRepository.FindByIdAsync(request.Id, cancellationToken);
         
         if (userContext.Role == Role.User && booking?.UserId != userContext.UserId)
-            throw new ApiRequestException("Access denied", HttpStatusCode.Forbidden);
+            throw new ApiRequestException("You don't have permissions to get this booking", HttpStatusCode.Forbidden);
         
         return booking;
     }

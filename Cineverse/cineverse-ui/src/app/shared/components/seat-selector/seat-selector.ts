@@ -40,9 +40,7 @@ export class SeatSelector implements OnInit {
     }
     else
     {
-      const bookedSeats = await firstValueFrom(
-        this.bookingGraphQlService.getBookedSeats(this.screening.id),
-      );
+      const bookedSeats = await this.bookingGraphQlService.getBookedSeats(this.screening.id);
       this.bookedSeats.set(bookedSeats);
     }
   }

@@ -48,7 +48,7 @@ export class Contact {
     return this.getErrorMessage(this.supportForm.get(controlName));
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.supportForm.markAllAsTouched();
     this.formSubmitted = true;
     if (this.supportForm.valid) {
@@ -62,12 +62,10 @@ export class Contact {
         description: this.supportForm.value.description
       };
 
-      this.contactService.createContactRequest(request).subscribe({
-        next: () => {
-          this.toastService.success('Ticket created successfully');
-          this.router.navigate(['/']).then();
-        }
-      });
+      await this.contactService.createContactRequest(request);
+
+      this.toastService.success('Ticket created successfully');
+      this.router.navigate(['/']).then();
     }
   }
 

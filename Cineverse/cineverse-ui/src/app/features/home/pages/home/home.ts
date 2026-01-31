@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
 import { MovieGraphqlService } from '../../../movie/api/movie.graphql.service';
 import { RouterLink } from '@angular/router';
-import { firstValueFrom, switchMap } from 'rxjs';
 import { Movie } from '../../../movie/api/movie.graphql.types';
 import { MovieCard } from '../../../../shared/components/movie-card/movie-card';
 
@@ -30,23 +29,14 @@ export class Home implements OnInit {
   comingSoonMovies = signal<Movie[]>([]);
 
   async ngOnInit() {
-    const today = new Date();
-    const twoWeeksLater = new Date();
-    twoWeeksLater.setDate(today.getDate() + 14);
-
-    const movies$ = this.screeningService
-      .getScreeningMovieIds()
-      .pipe(switchMap((ids) => this.movieService.getMoviesByIds(ids)));
-
-    const comingSoon = await firstValueFrom(
-      this.movieService.getComingSoonMovies(),
-    );
+    const comingSoon = await this.movieService.getComingSoonMovies();
     this.comingSoonMovies.set(comingSoon);
 
     const comingSoonIds = new Set(comingSoon.map((m) => m.id));
-    const movies = await firstValueFrom(movies$);
-    this.movies.set(
-      (await firstValueFrom(movies$)).filter((m) => !comingSoonIds.has(m.id)),
-    );
+
+    const ids = await this.screeningService.getScreeningMovieIds();
+    const movies = await this.movieService.getMoviesByIds(ids);
+
+    this.movies.set(movies.filter((m) => !comingSoonIds.has(m.id)));
   }
 }

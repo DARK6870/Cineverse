@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-using Infrastructure.Mongo.Attributes;
-using Infrastructure.Mongo.Exceptions;
+﻿using Infrastructure.Mongo.Attributes;
 using Infrastructure.Mongo.Models.Entities;
 using Infrastructure.Mongo.Repositories.Interfaces.Generic;
 using MongoDB.Driver;

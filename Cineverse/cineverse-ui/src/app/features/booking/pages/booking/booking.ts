@@ -2,7 +2,6 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { MovieDetailsCard } from "../../../../shared/components/movie-details-card/movie-details-card";
 import { SeatSelector } from "../../../../shared/components/seat-selector/seat-selector";
 import { MovieGraphqlService } from '../../../movie/api/movie.graphql.service';
-import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { BookingGraphqlService } from '../../api/booking.graphql.service';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
@@ -34,21 +33,10 @@ export class Booking implements OnInit {
   async ngOnInit() {
     const bookingId : string = this.activatedRoute.snapshot.params['bookingId'];
 
-    const booking = await firstValueFrom(
-      this.bookingApiService.getBookingById(bookingId)
-    );
-
-    const screening = await firstValueFrom(
-      this.screeningApiService.getScreeningById(booking.screeningId)
-    );
-
-    const hall = await firstValueFrom(
-      this.hallApiService.getHallById(screening.hallId)
-    );
-
-    const movie = await firstValueFrom(
-      this.movieApiService.getMovieById(screening.movieId)
-    );
+    const booking = await this.bookingApiService.getBookingById(bookingId);
+    const screening = await this.screeningApiService.getScreeningById(booking.screeningId);
+    const hall = await this.hallApiService.getHallById(screening.hallId);
+    const movie = await this.movieApiService.getMovieById(screening.movieId);
 
     this.booking.set(booking);
     this.screening.set(screening);

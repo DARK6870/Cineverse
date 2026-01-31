@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
 import { Screening } from '../../../screening/api/screening.graphql.types';
-import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from '../../../movie/api/movie.graphql.types';
 import { MovieGraphqlService } from '../../../movie/api/movie.graphql.service';
@@ -55,21 +54,10 @@ export class CreateBooking implements OnInit {
       return;
     }
 
-    const screening = await firstValueFrom(
-      this.screeningGraphQlService.getScreeningById(screeningId),
-    );
-
-    const movie = await firstValueFrom(
-      this.movieGraphQlService.getMovieById(screening.movieId),
-    );
-
-    const hall = await firstValueFrom(
-      this.hallGraphQlService.getHallById(screening.hallId),
-    );
-
-    const bookedSeats = await firstValueFrom(
-      this.bookingGraphQlService.getBookedSeats(screeningId),
-    );
+    const screening = await this.screeningGraphQlService.getScreeningById(screeningId);
+    const movie = await this.movieGraphQlService.getMovieById(screening.movieId);
+    const hall = await this.hallGraphQlService.getHallById(screening.hallId);
+    const bookedSeats = await this.bookingGraphQlService.getBookedSeats(screeningId);
 
     this.movie.set(movie);
     this.screening.set(screening);
@@ -83,9 +71,7 @@ export class CreateBooking implements OnInit {
       seatsIds: $event,
     };
 
-    const result = await firstValueFrom(
-      this.bookingGraphQlService.createBooking(request)
-    );
+    const result = await this.bookingGraphQlService.createBooking(request);
 
     if (result) {
       this.router.navigate(['/']).then(() =>

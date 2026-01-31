@@ -41,7 +41,7 @@ public class CreateBookingHandler(
 
         if (!await hallRepository.ExistsAsync(x =>
                     x.Id == screening.HallId &&
-                    Enumerable.All<string>(request.SeatsIds, s => x.Seats.Select(seat => seat.SeatId).Contains(s)),
+                    request.SeatsIds.All(s => x.Seats.Select(seat => seat.SeatId).Contains(s)),
                 cancellationToken
            )
         ) throw new ApiRequestException("Some of the provided seat IDs do not exist in the selected hall", HttpStatusCode.BadRequest);
