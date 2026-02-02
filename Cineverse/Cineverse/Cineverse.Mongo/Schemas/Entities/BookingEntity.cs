@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Cineverse.Mongo.Schemas.Entities;
 
-[MongoCollection("Bookings")]
+[MongoCollection("bookings")]
 public class BookingEntity : BaseEntity
 {
     [BsonRepresentation(BsonType.ObjectId)]

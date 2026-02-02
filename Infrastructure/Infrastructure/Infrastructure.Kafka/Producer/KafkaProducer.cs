@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Confluent.Kafka;
+using Infrastructure.Common.Helpers;
 using Infrastructure.Common.Json.Configuration;
 using Infrastructure.Kafka.Exceptions;
 using Infrastructure.Kafka.Extensions;
@@ -37,7 +38,7 @@ public class KafkaProducer : IKafkaProducer
     {
         var kafkaMessage = new Message<string?, string>
         {
-            Value = JsonSerializer.Serialize(message, JsonSerializerConfiguration.JsonSerializerOptions)
+            Value = JsonHelper.Serialize(message)
         };
         kafkaMessage.AddInfrastructureMetadata<T>();
         

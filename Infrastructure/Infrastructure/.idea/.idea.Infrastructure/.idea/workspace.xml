@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="93c0d71d-e68d-4ffe-b99f-b2cc3dbd7c20" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Core/Categories/Categories.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Core/Collections/MainCollection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Core/Factory/CineverseWebApplicationFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Shared/Constants/GraphQl/BookingGraphQlConstants.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Shared/Constants/GraphQl/MovieGraphQlConstants.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Shared/Constants/Test/TestConstants.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Shared/Extensions/GraphQlHttpClientExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Shared/Extensions/WebApplicationFactoryExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Shared/Helpers/DataHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Shared/Helpers/SetupHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Shared/Models/GraphQlPaginatedResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Tests/Api/Booking/Query/BookingQueriesNegativeTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Tests/Api/Booking/Query/BookingQueriesPositiveTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Tests/Api/Movie/Mutation/MovieMutationsNegativeTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Tests/Api/Movie/Query/MovieQueriesNegativeTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.IntegrationTests/Tests/Api/Movie/Query/MovieQueriesPositiveTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Infrastructure/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure.Common/Helpers/JsonHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Api/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Bookings/GetBookingById/GetBookingByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Bookings/GetBookingById/GetBookingByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Bookings/GetBookingById/GetBookingByIdRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Bookings/GetBookingById/GetBookingByIdRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Hall/GetHallById/GetHallByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Hall/GetHallById/GetHallByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Hall/GetHallById/GetHallByIdRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Hall/GetHallById/GetHallByIdRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Movies/GetMovieById/GetMovieByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Movies/GetMovieById/GetMovieByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Movies/GetMovieById/GetMovieByIdRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Movies/GetMovieById/GetMovieByIdRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Screenings/GetScreeningById/GetScreeningByIdHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Screenings/GetScreeningById/GetScreeningByIdHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Screenings/GetScreeningById/GetScreeningByIdRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Application/MediatR/Requests/Screenings/GetScreeningById/GetScreeningByIdRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Configuration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Configuration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/BookingEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.Mongo/Schemas/Entities/BookingEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Cineverse.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/Cineverse/Directory.Packages.props" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/Cineverse/Directory.Packages.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/cineverse-ui/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/cineverse-ui/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/cineverse-ui/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/cineverse-ui/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/cineverse-ui/src/app/features/booking/pages/create-booking/create-booking.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/cineverse-ui/src/app/features/booking/pages/create-booking/create-booking.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/cineverse-ui/src/app/features/movie/pages/movie-details/movie-details.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Cineverse/cineverse-ui/src/app/features/movie/pages/movie-details/movie-details.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cineverse/cineverse-ui/src/mypreset.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Common/Infrastructure.Common.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Common/Infrastructure.Common.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Common/Json/Configuration/JsonSerializerConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Common/Json/Configuration/JsonSerializerConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Kafka/Extensions/ConsumeResultExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Extensions/ConsumeResultExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Kafka/Infrastructure.Kafka.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Infrastructure.Kafka.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Kafka/Producer/KafkaProducer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Kafka/Producer/KafkaProducer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.Mongo/Infrastructure.Mongo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.Mongo/Infrastructure.Mongo.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/Middlewares/GraphQlStatusCodeMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/GraphQl/Middlewares/GraphQlStatusCodeMiddleware.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure.WebApi/Infrastructure.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure.WebApi/Infrastructure.WebApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ui-infrastructure/projects/infrastructure-auth/src/lib/guards/user-status.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ui-infrastructure/projects/infrastructure-auth/src/lib/guards/user-status.guard.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "DARK6870"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "http://github.com/DARK6870/Cineverse",
+    "accountId": "783cb3ce-6404-4c1a-9b9d-6c834d798e0e"
+  }
+}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Infrastructure.Common/Helpers/JsonHelper.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="3970czh9kxauc1gFWCegxcph0Sr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "microservice-migration",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="93c0d71d-e68d-4ffe-b99f-b2cc3dbd7c20" name="Changes" comment="" />
+      <created>1770031885099</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1770031885099</updated>
+      <workItem from="1770031888728" duration="2602000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+</project>

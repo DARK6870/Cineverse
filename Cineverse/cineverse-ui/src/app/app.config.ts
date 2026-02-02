@@ -7,12 +7,12 @@ import { provideApollo } from 'apollo-angular';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { providePrimeNG } from 'primeng/config';
-import MyPreset from '../mypreset';
 import { CookieService } from 'ngx-cookie-service';
 import { createApolloClient } from './core/apollo/apollo.config';
 import { CLIPBOARD_OPTIONS, ClipboardButtonComponent, provideMarkdown } from 'ngx-markdown';
 import { ConfirmationService } from 'primeng/api';
 import { AuthLink } from '@cineverse/infrastructure-auth';
+import { PrimeNgPreset } from '@cineverse/infrastructure-common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: MyPreset,
+        preset: PrimeNgPreset,
         options: {
           darkModeSelector: false
         }

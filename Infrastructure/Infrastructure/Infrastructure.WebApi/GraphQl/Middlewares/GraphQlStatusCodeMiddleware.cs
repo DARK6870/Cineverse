@@ -46,7 +46,7 @@ public class GraphQlStatusCodeMiddleware(
         {
             try
             {
-                var errorResponse = JsonSerializer.Deserialize<ErrorResponse>(buffer, JsonSerializerConfiguration.JsonSerializerOptions);
+                var errorResponse = JsonSerializer.Deserialize<ErrorResponse>(buffer, JsonSerializerConfiguration.GetDefault());
                 var code = errorResponse?.Errors.FirstOrDefault()?.Extensions?.Code;
 
                 if (code != null)

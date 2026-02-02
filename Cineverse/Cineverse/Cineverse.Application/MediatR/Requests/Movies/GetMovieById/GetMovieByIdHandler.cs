@@ -6,10 +6,10 @@ namespace Cineverse.Application.MediatR.Requests.Movies.GetMovieById;
 
 public class GetMovieByIdHandler(
     IMovieRepository movieRepository
-) : IRequestHandler<GetMovieByIdRequest, MovieEntity?>
+) : IRequestHandler<GetMovieByIdRequest, MovieEntity>
 {
-    public async Task<MovieEntity?> Handle(GetMovieByIdRequest request, CancellationToken cancellationToken)
+    public async Task<MovieEntity> Handle(GetMovieByIdRequest request, CancellationToken cancellationToken)
     {
-        return await movieRepository.FindByIdAsync(request.Id, cancellationToken);
+        return await movieRepository.FindByIdOrThrowAsync(request.Id, cancellationToken);
     }
 }

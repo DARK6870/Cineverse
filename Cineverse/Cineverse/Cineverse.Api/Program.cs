@@ -46,3 +46,5 @@ app.UseGraphQlStatusCodeMiddleware();
 await app.ExecuteMigrationsAsync();
 
 app.Run();
+
+public partial class Program;

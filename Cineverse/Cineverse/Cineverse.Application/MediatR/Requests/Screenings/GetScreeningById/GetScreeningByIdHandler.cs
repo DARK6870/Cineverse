@@ -6,10 +6,10 @@ namespace Cineverse.Application.MediatR.Requests.Screenings.GetScreeningById;
 
 public class GetScreeningByIdHandler(
     IScreeningRepository screeningRepository
-) : IRequestHandler<GetScreeningByIdRequest, ScreeningEntity?>
+) : IRequestHandler<GetScreeningByIdRequest, ScreeningEntity>
 {
-    public async Task<ScreeningEntity?> Handle(GetScreeningByIdRequest request, CancellationToken cancellationToken)
+    public async Task<ScreeningEntity> Handle(GetScreeningByIdRequest request, CancellationToken cancellationToken)
     {
-        return await screeningRepository.FindByIdAsync(request.Id, cancellationToken);
+        return await screeningRepository.FindByIdOrThrowAsync(request.Id, cancellationToken);
     }
 }

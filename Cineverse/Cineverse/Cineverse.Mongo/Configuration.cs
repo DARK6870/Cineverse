@@ -13,11 +13,11 @@ public static class Configuration
     public static IServiceCollection AddMongoRepositories(this IServiceCollection services)
     {
         services
-            .AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>))
-            .AddSingleton<IMovieRepository, MovieRepository>()
-            .AddSingleton<IScreeningRepository, ScreeningRepository>()
-            .AddSingleton<IBookingRepository, BookingRepository>()
-            .AddSingleton<IHallRepository, HallRepository>()
+            .AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>))
+            .AddScoped<IMovieRepository, MovieRepository>()
+            .AddScoped<IScreeningRepository, ScreeningRepository>()
+            .AddScoped<IBookingRepository, BookingRepository>()
+            .AddScoped<IHallRepository, HallRepository>()
             ;
 
         return services;

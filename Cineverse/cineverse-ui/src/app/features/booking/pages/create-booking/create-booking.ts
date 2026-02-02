@@ -10,10 +10,6 @@ import { HallGraphqlService } from '../../../hall/api/hall.graphql.service';
 import { SeatSelector } from '../../../../shared/components/seat-selector/seat-selector';
 import { BookingGraphqlService } from '../../api/booking.graphql.service';
 import { CreateBookingRequestInput } from '../../api/booking.graphql.types';
-import {
-  AuthenticationService,
-  UserStatus,
-} from '@cineverse/infrastructure-auth';
 import { ToastService } from '@cineverse/infrastructure-common';
 import { formatDate } from '@cineverse/infrastructure-common';
 
@@ -31,7 +27,6 @@ export class CreateBooking implements OnInit {
   private bookingGraphQlService = inject(BookingGraphqlService);
   private route = inject(ActivatedRoute);
   private toastService = inject(ToastService);
-  private authenticationService = inject(AuthenticationService);
   private router = inject(Router);
 
   protected readonly formatDate = formatDate;
@@ -42,12 +37,6 @@ export class CreateBooking implements OnInit {
   bookedSeats = signal<string[] | null>(null);
 
   async ngOnInit() {
-    // TODO: //////////////
-    if ((await this.authenticationService.getUserDataAsync()).userStatus != UserStatus.Normal) {
-      this.router.navigate(['/profile']).then(() => {
-        this.toastService.warning('Please confirm your email');
-      });
-    }
     const screeningId = this.route.snapshot.paramMap.get('screeningId');
     if (!screeningId) {
       this.toastService.error('Invalid screening ID');
