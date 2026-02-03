@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
+using Infrastructure.Kafka;
 using Infrastructure.MediatR;
-using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NotificationService.Client;
@@ -18,6 +18,7 @@ public static class Configuration
 
         services.AddMediator(assembly)
             .AddValidatorsFromAssembly(assembly)
+            .AddKafkaSettings(configuration)
             .AddNotificationServiceClient(configuration);
 
         return services;

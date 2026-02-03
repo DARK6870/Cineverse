@@ -1,10 +1,10 @@
-# build stage
+﻿# build stage
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 
 # arguments
-ARG SERVICE_NAME="Cineverse"
+ARG SERVICE_NAME="ApiGateway"
 ARG SOLUTION_NAME="${SERVICE_NAME}.sln"
-ARG APP_NAME="cineverse"
+ARG APP_NAME="apigateway"
 ARG APP_PATH="/opt/${APP_NAME}"
 
 # copy source files
@@ -20,9 +20,9 @@ RUN dotnet publish ./${SOLUTION_NAME} --no-restore -c Release -o /app/out
 FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS runtime-app
 
 # arguments
-ARG SERVICE_NAME="Cineverse"
-ARG PROJECT_NAME="${SERVICE_NAME}.Api"
-ARG APP_NAME="cineverse"
+ARG SERVICE_NAME="ApiGateway"
+ARG PROJECT_NAME="${SERVICE_NAME}"
+ARG APP_NAME="apigateway"
 ARG APP_PATH="/opt/${APP_NAME}"
 
 WORKDIR ${APP_PATH}
@@ -56,4 +56,4 @@ RUN chmod -R g+rwX /usr/local/share/ca-certificates
 
 # application entry point
 EXPOSE 7400
-ENTRYPOINT ["/bin/sh", "/opt/cineverse/run.sh"]
+ENTRYPOINT ["/bin/sh", "/opt/apigateway/run.sh"]
