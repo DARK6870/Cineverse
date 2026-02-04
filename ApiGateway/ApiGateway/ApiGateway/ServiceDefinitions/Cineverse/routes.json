@@ -9,7 +9,7 @@
         },
         "Transforms": [
           {
-            "PathPattern": "/health"
+            "PathRemovePrefix": "/api/cineverse"
           }
         ]
       },
@@ -21,7 +21,7 @@
         },
         "Transforms": [
           {
-            "PathPattern": "/{**catch-all}"
+            "PathRemovePrefix": "/cineverse"
           }
         ]
       }

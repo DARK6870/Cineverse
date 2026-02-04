@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cineverse-config
+  namespace: cineverse
+data:
+  MongoSettings__ConnectionString: ""
+  MongoSettings__LogDatabaseQueries: "false"
+  KafkaSettings__BootstrapServers: "localhost:9092"
+  AuthenticationOptions__EnableSecurity: "true"
+  AuthenticationOptions__JwtOptions__SecretKey: "tu4fnjNVgfgGLjg5RIuUqygeA/BOgE2hXOnukRaUuJM="
+  AuthenticationOptions__JwtOptions__Issuer: "Cineverse"
+  AuthenticationOptions__JwtOptions__Audience: "Cineverse.UI"
+  AuthenticationOptions__JwtOptions__ExpireInMinutes: "30"
+  CorsOptions__UseCorsPolicy: "false"
+  
