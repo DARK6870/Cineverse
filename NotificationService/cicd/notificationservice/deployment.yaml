@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification
+  namespace: cineverse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification
+  template:
+    metadata:
+      labels:
+        app: notification
+    spec:
+      containers:
+        - name: notification
+          image: notification:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 7402
+          envFrom:
+            - configMapRef:
+                name: cineverse-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification
+  namespace: cineverse
+spec:
+  selector:
+    app: notification
+  ports:
+    - port: 7402
+      targetPort: 7402
+  type: NodePort

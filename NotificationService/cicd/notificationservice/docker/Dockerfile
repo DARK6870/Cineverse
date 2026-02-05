@@ -1,10 +1,10 @@
 ﻿# build stage
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 
-# arguments
+# declare build arguments
 ARG SERVICE_NAME="NotificationService"
 ARG SOLUTION_NAME="${SERVICE_NAME}.sln"
-ARG APP_NAME="notification"
+ARG APP_NAME="notificationservice"
 ARG APP_PATH="/opt/${APP_NAME}"
 
 # copy source files
@@ -19,10 +19,9 @@ RUN dotnet publish ./${SOLUTION_NAME} --no-restore -c Release -o /app/out
 # build a runtime application
 FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS runtime-app
 
-# arguments
 ARG SERVICE_NAME="NotificationService"
 ARG PROJECT_NAME="${SERVICE_NAME}.Api"
-ARG APP_NAME="notification"
+ARG APP_NAME="notificationservice"
 ARG APP_PATH="/opt/${APP_NAME}"
 
 WORKDIR ${APP_PATH}
@@ -30,6 +29,7 @@ WORKDIR ${APP_PATH}
 # copy files
 COPY --from=build /app/out .
 COPY cicd/${APP_NAME}/docker/run.sh ${APP_PATH}/run.sh
+COPY ${SERVICE_NAME}/NotificationTemplates ${APP_PATH}/NotificationTemplates
 
 # chmod
 RUN chmod +x ${APP_PATH}/${PROJECT_NAME}
@@ -55,5 +55,5 @@ RUN chgrp -R 0 /usr/local/share/ca-certificates
 RUN chmod -R g+rwX /usr/local/share/ca-certificates
 
 # application entry point
-EXPOSE 7402
-ENTRYPOINT ["/bin/sh", "/opt/notification/run.sh"]
+EXPOSE 7401
+ENTRYPOINT ["/bin/sh", "/opt/notificationservice/run.sh"]
