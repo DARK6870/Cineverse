@@ -1,0 +1,18 @@
+{
+  "ReverseProxy": {
+    "Routes": {
+      "notification-health": {
+        "ClusterId": "notification-cluster",
+        "Order": 1,
+        "Match": {
+          "Path": "/api/notification/health"
+        },
+        "Transforms": [
+          {
+            "PathRemovePrefix": "/api/notification"
+          }
+        ]
+      }
+    }
+  }
+}

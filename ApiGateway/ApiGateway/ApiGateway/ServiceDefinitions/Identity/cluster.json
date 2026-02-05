@@ -1,7 +1,7 @@
 {
   "ReverseProxy": {
     "Clusters": {
-      "cineverse-cluster": {
+      "identity-cluster": {
         "LoadBalancingPolicy": "PowerOfTwoChoices",
         "SessionAffinity": {
           "Enabled": false,
@@ -11,7 +11,7 @@
         "HealthCheck": {
           "Active": {
             "Enabled": true,
-            "Interval": "00:00:10",
+            "Interval": "00:00:30",
             "Timeout": "00:00:05",
             "Policy": "ConsecutiveFailures",
             "Path": "/health"
@@ -34,17 +34,8 @@
         },
         "Destinations": {
           "primary": {
-            "Address": "http://identity-api.cineverse.svc.cluster.local:7401",
-            "Metadata": {
-              "Region": "eu-west-1",
-              "Weight": "100"
-            }
+            "Address": "http://identity-api.cineverse.svc.cluster.local:7401"
           }
-        },
-        "Metadata": {
-          "Service": "Identity",
-          "Team": "CineverseTeam",
-          "Slack": "#cineverse-team"
         }
       }
     }

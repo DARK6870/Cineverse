@@ -1,7 +1,7 @@
 {
   "ReverseProxy": {
     "Clusters": {
-      "cineverse-cluster": {
+      "notification-cluster": {
         "LoadBalancingPolicy": "PowerOfTwoChoices",
         "SessionAffinity": {
           "Enabled": false,
@@ -34,17 +34,8 @@
         },
         "Destinations": {
           "primary": {
-            "Address": "http://cineverse-api.cineverse.svc.cluster.local:7400",
-            "Metadata": {
-              "Region": "eu-west-1",
-              "Weight": "100"
-            }
+            "Address": "http://notification.cineverse.svc.cluster.local:7402"
           }
-        },
-        "Metadata": {
-          "Service": "Cineverse",
-          "Team": "CineverseTeam",
-          "Slack": "#cineverse-team"
         }
       }
     }
