@@ -56,4 +56,4 @@ RUN chmod -R g+rwX /usr/local/share/ca-certificates
 
 # application entry point
 EXPOSE 7400
-ENTRYPOINT ["/bin/sh", "/opt/cineverse/run.sh"]
+ENTRYPOINT ["/bin/sh", "run.sh"]
