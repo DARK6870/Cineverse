@@ -55,4 +55,4 @@ RUN chmod -R g+rwX /usr/local/share/ca-certificates
 
 # application entry point
 EXPOSE 7401
-ENTRYPOINT ["/bin/sh", "/opt/identity/run.sh"]
+ENTRYPOINT ["/bin/sh", "run.sh"]

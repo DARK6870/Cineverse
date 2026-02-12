@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redis-ingress
+  namespace: cineverse
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: redisui.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: redis-ui
+                port:
+                  number: 8001
