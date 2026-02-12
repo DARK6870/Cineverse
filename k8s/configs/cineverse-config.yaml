@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cineverse-config
+  namespace: cineverse
+data:
+  MongoSettings__ConnectionString: "mongo"
+  MongoSettings__LogDatabaseQueries: "false"
+  KafkaSettings__BootstrapServers: "broker:9092"
+  RedisSettings__ConnectionString: "redis-stack:6379"
+  AuthenticationOptions__EnableSecurity: "true"
+  AuthenticationOptions__JwtOptions__SecretKey: "tu4fnjNVgfgGLjg5RIuUqygeA/BOgE2hXOnukRaUuJM="
+  AuthenticationOptions__JwtOptions__Issuer: "Cineverse"
+  AuthenticationOptions__JwtOptions__Audience: "Cineverse.UI"
+  AuthenticationOptions__JwtOptions__ExpireInMinutes: "30"
+  CorsOptions__UseCorsPolicy: "false"
+  SmtpOptions__SmtpServer: "smtp.gmail.com"
+  SmtpOptions__SmtpPort: "587"
+  SmtpOptions__SmtpEmail: "tsymbalvlad.6870@gmail.com"
+  SmtpOptions__SmtpPassword: "password"
+  SmtpOptions__EnableSsl: "true"
+  

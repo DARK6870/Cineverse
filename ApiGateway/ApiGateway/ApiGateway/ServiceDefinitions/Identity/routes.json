@@ -1,0 +1,30 @@
+{
+  "ReverseProxy": {
+    "Routes": {
+      "identity-health": {
+        "ClusterId": "identity-cluster",
+        "Order": 1,
+        "Match": {
+          "Path": "/api/identity/health"
+        },
+        "Transforms": [
+          {
+            "PathRemovePrefix": "/api/identity"
+          }
+        ]
+      },
+      "identity-api": {
+        "ClusterId": "identity-cluster",
+        "Order": 100,
+        "Match": {
+          "Path": "/api/identity/{**catch-all}"
+        },
+        "Transforms": [
+          {
+            "PathPattern": "/api/{**catch-all}"
+          }
+        ]
+      }
+    }
+  }
+}

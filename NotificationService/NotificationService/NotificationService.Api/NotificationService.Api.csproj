@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <RootNamespace>NotificationService.Api</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Cineverse.Infrastructure.Common" />
+      <PackageReference Include="Cineverse.Infrastructure.HealthCheck" />
+      <PackageReference Include="Cineverse.Infrastructure.Logging" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NotificationService.Application\NotificationService.Application.csproj" />
+    </ItemGroup>
+    
+</Project>

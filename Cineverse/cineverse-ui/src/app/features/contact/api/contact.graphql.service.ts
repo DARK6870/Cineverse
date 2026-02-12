@@ -1,0 +1,16 @@
+﻿import { inject, Injectable } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { firstValueFrom } from 'rxjs';
+import { CreateContactRequestInput } from './contact.graphql.types';
+import { createContactRequestMutation } from './contact.graphql';
+
+@Injectable({ providedIn: 'root' })
+export class ContactGraphqlService {
+  private apollo = inject(Apollo);
+
+  public createContactRequest(request: CreateContactRequestInput): Promise<any> {
+    return firstValueFrom(
+      this.apollo.mutate(createContactRequestMutation(request)),
+    );
+  }
+}

@@ -1,0 +1,71 @@
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
+import { Screening } from '../../../screening/api/screening.graphql.types';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Movie } from '../../../movie/api/movie.graphql.types';
+import { MovieGraphqlService } from '../../../movie/api/movie.graphql.service';
+import { MovieDetailsCard } from '../../../../shared/components/movie-details-card/movie-details-card';
+import { Hall } from '../../../hall/api/hall.graphql.types';
+import { HallGraphqlService } from '../../../hall/api/hall.graphql.service';
+import { SeatSelector } from '../../../../shared/components/seat-selector/seat-selector';
+import { BookingGraphqlService } from '../../api/booking.graphql.service';
+import { CreateBookingRequestInput } from '../../api/booking.graphql.types';
+import { ToastService } from '@cineverse/infrastructure-common';
+import { formatDate } from '@cineverse/infrastructure-common';
+
+@Component({
+  selector: 'app-create-booking',
+  imports: [MovieDetailsCard, SeatSelector],
+  standalone: true,
+  templateUrl: 'create-booking.html',
+  styleUrl: 'create-booking.css',
+})
+export class CreateBooking implements OnInit {
+  private screeningGraphQlService = inject(ScreeningGraphqlService);
+  private movieGraphQlService = inject(MovieGraphqlService);
+  private hallGraphQlService = inject(HallGraphqlService);
+  private bookingGraphQlService = inject(BookingGraphqlService);
+  private route = inject(ActivatedRoute);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
+
+  protected readonly formatDate = formatDate;
+
+  screening = signal<Screening | null>(null);
+  movie = signal<Movie | null>(null);
+  hall = signal<Hall | null>(null);
+  bookedSeats = signal<string[] | null>(null);
+
+  async ngOnInit() {
+    const screeningId = this.route.snapshot.paramMap.get('screeningId');
+    if (!screeningId) {
+      this.toastService.error('Invalid screening ID');
+      return;
+    }
+
+    const screening = await this.screeningGraphQlService.getScreeningById(screeningId);
+    const movie = await this.movieGraphQlService.getMovieById(screening.movieId);
+    const hall = await this.hallGraphQlService.getHallById(screening.hallId);
+    const bookedSeats = await this.bookingGraphQlService.getBookedSeats(screeningId);
+
+    this.movie.set(movie);
+    this.screening.set(screening);
+    this.hall.set(hall);
+    this.bookedSeats.set(bookedSeats);
+  }
+
+  protected async handleConfirm($event: string[]) {
+    const request: CreateBookingRequestInput = {
+      screeningId: this.screening()!.id,
+      seatsIds: $event,
+    };
+
+    const result = await this.bookingGraphQlService.createBooking(request);
+
+    if (result) {
+      this.router.navigate(['/']).then(() =>
+        this.toastService.success('Booking successfully created')
+      );
+    }
+  }
+}

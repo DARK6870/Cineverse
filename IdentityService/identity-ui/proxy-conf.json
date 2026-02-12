@@ -1,0 +1,18 @@
+{
+  "/api/identity": {
+    "target": "http://localhost:7402",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/identity": "/api"
+    }
+  },
+  "/api/identity/graphql": {
+    "target": "http://localhost:7402",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/identity/graphql": "/api/graphql"
+    }
+  }
+}

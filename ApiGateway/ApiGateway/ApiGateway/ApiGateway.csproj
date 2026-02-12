@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Cineverse.Auth" Version="1.0.2" />
+        <PackageReference Include="Cineverse.Infrastructure.HealthCheck" Version="1.0.2" />
+        <PackageReference Include="Cineverse.Infrastructure.Logging" Version="1.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
+        <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="ServiceDefinitions\Identity\cluster.json" />
+      <_ContentIncludedByDefault Remove="ServiceDefinitions\Identity\routes.json" />
+    </ItemGroup>
+
+</Project>

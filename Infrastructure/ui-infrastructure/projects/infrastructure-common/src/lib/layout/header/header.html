@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <header>
+    <nav>
+      <div class="logo-wrapper">
+        <a (click)="navigate('/')" class="logo">
+          CINEVERSE
+        </a>
+      </div>
+      <div class="menu-icon" (click)="toggleMenu($event)">
+        <i class="pi pi-bars fa-2x"></i>
+      </div>
+      <ul [class.showing]="isMenuOpen">
+        <li><a (click)="navigate('/')">Home</a></li>
+        <li><a (click)="navigate('/movies')">Movies</a></li>
+        <li><a (click)="navigate('/contact')">Contact</a></li>
+        <li><a (click)="navigate('/about')">About</a></li>
+        <li><a (click)="navigate('/identity/profile')">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>

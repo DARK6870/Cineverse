@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cineverse-ui
+  namespace: cineverse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cineverse-ui
+  template:
+    metadata:
+      labels:
+        app: cineverse-ui
+    spec:
+      containers:
+        - name: cineverse-ui
+          image: cineverseui:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 4200
+          envFrom:
+            - configMapRef:
+                name: cineverse-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cineverse-ui
+  namespace: cineverse
+spec:
+  selector:
+    app: cineverse-ui
+  ports:
+    - port: 4200
+      targetPort: 4200

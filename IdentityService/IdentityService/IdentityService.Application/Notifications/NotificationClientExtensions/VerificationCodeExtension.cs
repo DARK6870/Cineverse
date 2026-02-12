@@ -1,0 +1,31 @@
+﻿using NotificationService.Client.Builders;
+using NotificationService.Client.Services;
+
+namespace IdentityService.Application.Notifications.NotificationClientExtensions;
+
+public static class VerificationCodeExtension
+{
+    public static async Task SendVerificationEmailAsync(
+        this INotificationServiceClient notificationServiceClient,
+        string emailTo,
+        string fullName,
+        int verificationCode,
+        string actionUrl
+    )
+    {
+        var notification = new MessageBuilder()
+            .AppendTitle("Email Confirmation Code")
+            .AppendGreeting(fullName)
+            .AppendParagraphStart()
+            .AppendText("Please complete your account setup to explore our website without restrictions")
+            .AppendLineBreak()
+            .AppendLineBreak()
+            .AppendText("Your verification code is ").AppendBold(verificationCode.ToString())
+            .AppendLineBreak()
+            .AppendSmall("The code will be valid for 2 minutes")
+            .AppendAction(actionUrl, "to confirm your email")
+            ;
+        
+        await notificationServiceClient.SendEmailNotificationAsync(emailTo, "Email Confirmation Code", notification);
+    }
+}

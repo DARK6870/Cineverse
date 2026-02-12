@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Cineverse.Auth.Models" />
+    <PackageReference Include="Cineverse.Infrastructure.Common" />
+    <PackageReference Include="Cineverse.Infrastructure.Mongo" />
+  </ItemGroup>
+</Project>

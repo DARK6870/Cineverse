@@ -1,0 +1,74 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "paths": {
+      "infrastructure-auth": [
+        "./dist/infrastructure-auth"
+      ],
+      "infrastructure-common": [
+        "./dist/infrastructure-common"
+      ],
+      "infrastructure.auth": [
+        "./dist/infrastructure.auth"
+      ],
+      "infrastructure.common": [
+        "./dist/infrastructure.common"
+      ],
+      "infrastructure.layout": [
+        "./dist/infrastructure.layout"
+      ]
+    },
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/infrastructure.common/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/infrastructure.common/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/infrastructure.auth/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/infrastructure.auth/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/infrastructure.layout/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/infrastructure.layout/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/infrastructure-common/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/infrastructure-common/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/infrastructure-auth/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/infrastructure-auth/tsconfig.spec.json"
+    }
+  ]
+}

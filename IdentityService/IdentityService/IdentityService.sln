@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Api", "IdentityService.Api\IdentityService.Api.csproj", "{62CDE14E-51AD-46B0-B53D-BE2C3437DFD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{3FE44CEA-4B42-44F1-87EF-FE40A94B8E00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{512BB2D3-D35F-457C-A2B8-A42D09BFCAA3}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{28900D46-2234-4CDD-9F72-0B18CF954298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Application", "IdentityService.Application\IdentityService.Application.csproj", "{AC3660A4-D7D3-4640-8458-2DB1D838A275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Mongo", "IdentityService.Mongo\IdentityService.Mongo.csproj", "{D8C17B5A-2125-48BD-B8C7-2C78D65A4007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Mongo.Migrations", "IdentityService.Mongo.Migrations\IdentityService.Mongo.Migrations.csproj", "{07B2D23D-6CD0-41C1-BBBF-8A192BDA3A10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{E86CD9AB-831E-4F7B-B9B5-5AC6D0A2C4A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth.csproj", "{540DE136-F0FC-4F18-8353-D6D06A745BFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Models", "Auth.Models\Auth.Models.csproj", "{2EBB19DE-628E-4D0E-9028-E1DE51B3F164}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62CDE14E-51AD-46B0-B53D-BE2C3437DFD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62CDE14E-51AD-46B0-B53D-BE2C3437DFD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62CDE14E-51AD-46B0-B53D-BE2C3437DFD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62CDE14E-51AD-46B0-B53D-BE2C3437DFD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC3660A4-D7D3-4640-8458-2DB1D838A275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC3660A4-D7D3-4640-8458-2DB1D838A275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC3660A4-D7D3-4640-8458-2DB1D838A275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC3660A4-D7D3-4640-8458-2DB1D838A275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8C17B5A-2125-48BD-B8C7-2C78D65A4007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8C17B5A-2125-48BD-B8C7-2C78D65A4007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8C17B5A-2125-48BD-B8C7-2C78D65A4007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8C17B5A-2125-48BD-B8C7-2C78D65A4007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07B2D23D-6CD0-41C1-BBBF-8A192BDA3A10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07B2D23D-6CD0-41C1-BBBF-8A192BDA3A10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07B2D23D-6CD0-41C1-BBBF-8A192BDA3A10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07B2D23D-6CD0-41C1-BBBF-8A192BDA3A10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{540DE136-F0FC-4F18-8353-D6D06A745BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{540DE136-F0FC-4F18-8353-D6D06A745BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540DE136-F0FC-4F18-8353-D6D06A745BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{540DE136-F0FC-4F18-8353-D6D06A745BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EBB19DE-628E-4D0E-9028-E1DE51B3F164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EBB19DE-628E-4D0E-9028-E1DE51B3F164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EBB19DE-628E-4D0E-9028-E1DE51B3F164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EBB19DE-628E-4D0E-9028-E1DE51B3F164}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{62CDE14E-51AD-46B0-B53D-BE2C3437DFD7} = {3FE44CEA-4B42-44F1-87EF-FE40A94B8E00}
+		{AC3660A4-D7D3-4640-8458-2DB1D838A275} = {3FE44CEA-4B42-44F1-87EF-FE40A94B8E00}
+		{D8C17B5A-2125-48BD-B8C7-2C78D65A4007} = {3FE44CEA-4B42-44F1-87EF-FE40A94B8E00}
+		{07B2D23D-6CD0-41C1-BBBF-8A192BDA3A10} = {3FE44CEA-4B42-44F1-87EF-FE40A94B8E00}
+		{540DE136-F0FC-4F18-8353-D6D06A745BFB} = {E86CD9AB-831E-4F7B-B9B5-5AC6D0A2C4A7}
+		{2EBB19DE-628E-4D0E-9028-E1DE51B3F164} = {E86CD9AB-831E-4F7B-B9B5-5AC6D0A2C4A7}
+	EndGlobalSection
+EndGlobal

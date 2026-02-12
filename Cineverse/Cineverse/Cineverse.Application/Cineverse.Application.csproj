@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <ProjectReference Include="..\Cineverse.Mongo\Cineverse.Mongo.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Cineverse.Auth" />
+      <PackageReference Include="Cineverse.Infrastructure.Context" />
+      <PackageReference Include="Cineverse.Infrastructure.MediatR" />
+      <PackageReference Include="Cineverse.Infrastructure.WebApi" />
+      <PackageReference Include="Cineverse.NotificationService.Client" />
+      <PackageReference Include="FluentValidation.AspNetCore" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,1 @@
+dotnet nuget push ../nuget-packages/Cineverse.Infrastructure.HealthCheck.1.0.3.nupkg --api-key API_KEY --source https://api.nuget.org/v3/index.json

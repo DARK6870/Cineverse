@@ -1,0 +1,141 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": false
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "infrastructure.common": {
+      "projectType": "library",
+      "root": "projects/infrastructure.common",
+      "sourceRoot": "projects/infrastructure.common/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/infrastructure.common/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/infrastructure.common/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/infrastructure.common/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "infrastructure.auth": {
+      "projectType": "library",
+      "root": "projects/infrastructure.auth",
+      "sourceRoot": "projects/infrastructure.auth/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/infrastructure.auth/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/infrastructure.auth/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/infrastructure.auth/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "infrastructure.layout": {
+      "projectType": "library",
+      "root": "projects/infrastructure.layout",
+      "sourceRoot": "projects/infrastructure.layout/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/infrastructure.layout/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/infrastructure.layout/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/infrastructure.layout/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "infrastructure-common": {
+      "projectType": "library",
+      "root": "projects/infrastructure-common",
+      "sourceRoot": "projects/infrastructure-common/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/infrastructure-common/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/infrastructure-common/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/infrastructure-common/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "infrastructure-auth": {
+      "projectType": "library",
+      "root": "projects/infrastructure-auth",
+      "sourceRoot": "projects/infrastructure-auth/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/infrastructure-auth/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/infrastructure-auth/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/infrastructure-auth/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  }
+}

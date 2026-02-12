@@ -1,9 +1,0 @@
-:host {
-  display: block;
-  overflow: hidden;
-}
-
-.main-container{
-  min-width: 400px;
-  max-width: 500px;
-}

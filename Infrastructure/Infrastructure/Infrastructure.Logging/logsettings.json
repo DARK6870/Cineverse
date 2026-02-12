@@ -1,0 +1,43 @@
+{
+  "Serilog": {
+    "Using": [
+      "Serilog.Formatting.Compact",
+      "Serilog.Enrichers.ClientInfo"
+    ],
+    "LevelSwitches": {
+      "controlSwitch": "Debug"
+    },
+    "MinimumLevel": {
+      "ControlledBy": "$controlSwitch",
+      "Override": {
+        "Hangfire": "Warning",
+        "Microsoft": "Warning"
+      }
+    },
+    "Enrich": [
+      "WithLokiInfoLogLevel",
+      "FromLogContext",
+      "WithSpan",
+      "WithInstance",
+      "WithThreadId",
+      "WithThreadName",
+      "WithClientIp",
+      {
+        "Name": "WithRequestHeader",
+        "Args": {
+          "headerName": "User-Agent"
+        }
+      }
+    ],
+    "WriteTo": [
+      {
+        "Name": "Console",
+        "Args": {
+          "theme": "Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme::Code, Serilog.Sinks.Console",
+          "outputTemplate": "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
+          "restrictedToMinimumLevel": "Debug"
+        }
+      }
+    ]
+  }
+}
