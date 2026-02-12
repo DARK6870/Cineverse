@@ -14,4 +14,9 @@
         <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="ServiceDefinitions\Identity\cluster.json" />
+      <_ContentIncludedByDefault Remove="ServiceDefinitions\Identity\routes.json" />
+    </ItemGroup>
+
 </Project>

@@ -1,27 +1,27 @@
 {
   "ReverseProxy": {
     "Routes": {
-      "cineverse-health": {
-        "ClusterId": "cineverse-cluster",
+      "identity-health": {
+        "ClusterId": "identity-cluster",
         "Order": 1,
         "Match": {
-          "Path": "/api/cineverse/health"
+          "Path": "/api/identity/health"
         },
         "Transforms": [
           {
-            "PathPattern": "/health"
+            "PathRemovePrefix": "/api/identity"
           }
         ]
       },
-      "cineverse-all": {
-        "ClusterId": "cineverse-cluster",
+      "identity-api": {
+        "ClusterId": "identity-cluster",
         "Order": 100,
         "Match": {
-          "Path": "/api/cineverse/{**catch-all}"
+          "Path": "/api/identity/{**catch-all}"
         },
         "Transforms": [
           {
-            "PathPattern": "/{**catch-all}"
+            "PathPattern": "/api/{**catch-all}"
           }
         ]
       }

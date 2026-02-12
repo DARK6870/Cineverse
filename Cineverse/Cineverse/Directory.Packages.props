@@ -5,6 +5,7 @@
   <ItemGroup>
     <PackageVersion Include="Cineverse.Auth" Version="1.0.2" />
     <PackageVersion Include="Cineverse.Infrastructure.Context" Version="1.0.0" />
+    <PackageVersion Include="Cineverse.Infrastructure.HealthCheck" Version="1.0.3" />
     <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.2" />
     <PackageVersion Include="Cineverse.Infrastructure.MediatR" Version="1.0.0" />
     <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.4" />

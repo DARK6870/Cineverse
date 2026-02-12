@@ -33,7 +33,7 @@ internal static class NotificationTemplateHelper
             directory = directory.Parent;
 
         if (directory == null)
-            throw new DirectoryNotFoundException($"Could not find the target folder");
+            throw new DirectoryNotFoundException("Could not find the target folder");
 
         var templatePath = Path.Combine(directory.FullName, TemplatesFolderName);
         if (!Directory.Exists(templatePath))

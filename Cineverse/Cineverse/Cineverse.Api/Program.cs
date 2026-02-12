@@ -2,6 +2,7 @@ using Auth.Authentication;
 using Cineverse.Application;
 using Cineverse.Mongo;
 using Infrastructure.Context;
+using Infrastructure.HealthCheck;
 using Infrastructure.Logging;
 using Infrastructure.MediatR;
 using Infrastructure.Mongo;
@@ -17,6 +18,11 @@ builder.AddInfrastructureLogging();
 
 // ------ Configure services ------ //
 builder.Services
+    .AddInfrastructureHealthChecks(options =>
+    {
+        options.IncludeMongoDb = true;
+        options.IncludeKafka = true;
+    })
     .AddHttpContextAccessor()
     .AddMongoDatabase(configuration)
     .AddMongoRepositories()
@@ -41,6 +47,7 @@ app.MapGraphQlApi();
 
 app.UseUserContextMiddleware();
 app.UseGraphQlStatusCodeMiddleware();
+app.MapHealthCheck();
 
 // ------ Execute Migrations ------ //
 await app.ExecuteMigrationsAsync();

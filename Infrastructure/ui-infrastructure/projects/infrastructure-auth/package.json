@@ -7,7 +7,7 @@
     "ngx-cookie-service": "^21.1.0"
   },
   "dependencies": {
-    "@cineverse/infrastructure-common": "file:../../dist/infrastructure-common/cineverse-infrastructure-common-0.0.1.tgz",
+    "@cineverse/infrastructure-common": "^0.0.1",
     "tslib": "^2.3.0"
   },
   "sideEffects": false

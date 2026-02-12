@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cineverse-ingress
+  namespace: cineverse
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-gateway
+                port:
+                  number: 80
+          
+          - path: /identity
+            pathType: Prefix
+            backend:
+              service:
+                name: identity-ui
+                port:
+                  number: 4200
+          
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cineverse-ui
+                port:
+                  number: 4200

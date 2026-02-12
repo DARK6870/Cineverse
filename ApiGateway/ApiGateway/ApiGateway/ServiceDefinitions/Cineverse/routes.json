@@ -9,11 +9,11 @@
         },
         "Transforms": [
           {
-            "PathPattern": "/health"
+            "PathRemovePrefix": "/api/cineverse"
           }
         ]
       },
-      "cineverse-all": {
+      "cineverse-api": {
         "ClusterId": "cineverse-cluster",
         "Order": 100,
         "Match": {
@@ -21,7 +21,7 @@
         },
         "Transforms": [
           {
-            "PathPattern": "/{**catch-all}"
+            "PathPattern": "/api/{**catch-all}"
           }
         ]
       }

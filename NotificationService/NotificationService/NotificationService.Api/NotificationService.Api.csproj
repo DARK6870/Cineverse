@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="Cineverse.Infrastructure.Common" />
+      <PackageReference Include="Cineverse.Infrastructure.HealthCheck" />
       <PackageReference Include="Cineverse.Infrastructure.Logging" />
     </ItemGroup>
 

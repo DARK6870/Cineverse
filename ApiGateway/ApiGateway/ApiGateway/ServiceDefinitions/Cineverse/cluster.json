@@ -11,7 +11,7 @@
         "HealthCheck": {
           "Active": {
             "Enabled": true,
-            "Interval": "00:00:10",
+            "Interval": "00:00:30",
             "Timeout": "00:00:05",
             "Policy": "ConsecutiveFailures",
             "Path": "/health"
@@ -34,8 +34,7 @@
         },
         "Destinations": {
           "primary": {
-            "Address": "http://orders-service:80",
-            "Health": "http://orders-service:80/health",
+            "Address": "http://cineverse-api.cineverse.svc.cluster.local:7400",
             "Metadata": {
               "Region": "eu-west-1",
               "Weight": "100"
@@ -43,9 +42,9 @@
           }
         },
         "Metadata": {
-          "Service": "Orders",
-          "Team": "OrdersTeam",
-          "Slack": "#orders-team"
+          "Service": "Cineverse",
+          "Team": "CineverseTeam",
+          "Slack": "#cineverse-team"
         }
       }
     }
