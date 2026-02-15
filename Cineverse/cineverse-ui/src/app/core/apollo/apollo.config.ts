@@ -4,7 +4,7 @@ import { AuthLink } from '@cineverse/infrastructure-auth';
 
 export function createApolloClient(authLink: AuthLink) {
   const httpLink = createHttpLink({
-    uri: '/cineverse-api',
+    uri: '/api/cineverse',
   });
 
   return {
