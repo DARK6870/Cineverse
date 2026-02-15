@@ -3,7 +3,7 @@ import { Login } from './features/auth/pages/login/login';
 import {
   RestorePasswordRequest
 } from './features/auth/pages/restore-password/restore-password-request/restore-password-request';
-import {authenticationGuard, notAuthorizedGuard} from '@cineverse/infrastructure-auth';
+import { authenticationGuard, notAuthorizedGuard } from '@cineverse/infrastructure-auth';
 import {
   RestorePasswordConfirm
 } from './features/auth/pages/restore-password/restore-password-confirm/restore-password-confirm';
@@ -13,6 +13,7 @@ import { Logout } from './features/auth/pages/logout/logout';
 import { ConfirmEmail } from './features/auth/pages/confirm-email/confirm-email';
 import { ChangePassword } from './features/auth/pages/change-password/change-password';
 import { PersonalInformation } from './features/profile/pages/personal-information/personal-information';
+import { NotFound } from './shared/pages/not-found/not-found';
 
 export const routes: Routes = [
   {
@@ -30,12 +31,14 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: Profile,
-    title: 'Profile'
+    title: 'Profile',
+    canActivate: [authenticationGuard]
   },
   {
     path: 'confirm-email/:sent',
     component: ConfirmEmail,
-    title: 'Confirm Email'
+    title: 'Confirm Email',
+    canActivate: [authenticationGuard]
   },
   {
     path: 'logout',
@@ -70,6 +73,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'profile'
+    component: NotFound
   }
 ];
