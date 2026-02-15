@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "backoffice-ui": {
+    "admin-ui": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "backoffice-ui:build:production"
+              "buildTarget": "admin-ui:build:production"
             },
             "development": {
-              "buildTarget": "backoffice-ui:build:development"
+              "buildTarget": "admin-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
