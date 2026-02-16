@@ -1,0 +1,83 @@
+<aside class="cv-sidebar" aria-label="Primary">
+
+  <nav class="cv-sidebar__nav">
+    <button
+      pButton
+      type="button"
+      class="cv-side-link"
+      icon="pi pi-home"
+      aria-label="Dashboard"
+      routerLink="/"
+      routerLinkActive="is-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    ></button>
+
+    <button
+      pButton
+      type="button"
+      class="cv-side-link"
+      icon="pi pi-play"
+      aria-label="Movies"
+      routerLink="/movies"
+      routerLinkActive="is-active"
+    ></button>
+
+    <button
+      pButton
+      type="button"
+      class="cv-side-link"
+      icon="pi pi-ticket"
+      aria-label="Bookings"
+      routerLink="/bookings"
+      routerLinkActive="is-active"
+    ></button>
+
+    <button
+      pButton
+      type="button"
+      class="cv-side-link"
+      icon="pi pi-users"
+      aria-label="Users"
+      routerLink="/users"
+      routerLinkActive="is-active"
+    ></button>
+
+    <button
+      pButton
+      type="button"
+      class="cv-side-link"
+      icon="pi pi-building"
+      aria-label="Halls"
+      routerLink="/halls"
+      routerLinkActive="is-active"
+    ></button>
+
+    <button
+      pButton
+      type="button"
+      class="cv-side-link"
+      icon="pi pi-clock"
+      aria-label="Screenings"
+      routerLink="/screenings"
+      routerLinkActive="is-active"
+    ></button>
+
+  </nav>
+
+  <div class="cv-sidebar__divider" aria-hidden="true"></div>
+
+  <div class="cv-sidebar__footer">
+    <button
+      pButton
+      type="button"
+      class="cv-side-link"
+      icon="pi pi-cog"
+      aria-label="Settings"
+    ></button>
+
+    <div class="cv-avatar" aria-label="Profile">
+      CV
+    </div>
+
+  </div>
+</aside>

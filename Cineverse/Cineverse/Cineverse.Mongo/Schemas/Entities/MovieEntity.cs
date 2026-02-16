@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Cineverse.Mongo.Schemas.Entities;
 
-[MongoCollection("Movies")]
+[MongoCollection("movies")]
 public class MovieEntity : BaseEntity
 {
     public required string Title { get; set; }

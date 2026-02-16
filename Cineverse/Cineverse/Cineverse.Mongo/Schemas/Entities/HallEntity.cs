@@ -4,7 +4,7 @@ using Infrastructure.Mongo.Models.Entities;
 
 namespace Cineverse.Mongo.Schemas.Entities;
 
-[MongoCollection("Halls")]
+[MongoCollection("halls")]
 public class HallEntity : BaseEntity
 {
     public required string Name { get; set; }

@@ -1,0 +1,117 @@
+<section class="movie-form">
+  <!-- Header with navigation and actions -->
+  <header class="flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a
+        pButton
+        severity="contrast"
+        icon="pi pi-arrow-left"
+        routerLink="/movies"
+        aria-label="Back to Movies"
+      ></a>
+      <div>
+        <p class="text-sm text-slate-500">Library</p>
+        <h1 class="text-2xl font-semibold text-slate-900">
+          {{ isEdit() ? 'Edit Movie' : 'Create Movie' }}
+        </h1>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button
+        pButton
+        severity="contrast"
+        type="button"
+        (click)="saveMovie()"
+      >
+        {{ isEdit() ? 'Save Changes' : 'Create Movie' }}
+      </button>
+
+      @if(isEdit())
+      {
+        <button
+          pButton
+          severity="danger"
+          type="button"
+          (click)="deleteMovie()"
+        >
+          Delete
+        </button>
+      }
+    </div>
+  </header>
+
+  <!-- Movie fields -->
+  <form class="form-card" [formGroup]="form">
+    <div class="form-grid">
+      <label class="field">
+        <span class="field__label">Title</span>
+        <input pInputText type="text" formControlName="title" placeholder="Nobody 2" />
+        <small class="field__error" *ngIf="form.controls.title.touched && form.controls.title.invalid">
+          Title is required.
+        </small>
+      </label>
+      <label class="field">
+        <span class="field__label">Genre</span>
+        <input pInputText type="text" formControlName="genre" placeholder="Comedy" />
+        <small class="field__error" *ngIf="form.controls.genre.touched && form.controls.genre.invalid">
+          Genre is required.
+        </small>
+      </label>
+      <label class="field">
+        <span class="field__label">Release Date</span>
+        <p-datepicker
+          formControlName="releaseDate"
+          dateFormat="yy-mm-dd"
+          placeholder="yyyy-mm-dd"
+        ></p-datepicker>
+        <small class="field__error" *ngIf="form.controls.releaseDate.touched && form.controls.releaseDate.invalid">
+          Release date is required.
+        </small>
+      </label>
+      <label class="field">
+        <span class="field__label">Duration (min)</span>
+        <p-inputNumber
+          formControlName="duration"
+          [min]="1"
+          [useGrouping]="false"
+          placeholder="120"
+        ></p-inputNumber>
+        <small class="field__error" *ngIf="form.controls.duration.touched && form.controls.duration.invalid">
+          Duration must be at least 1 minute.
+        </small>
+      </label>
+      <label class="field field--full">
+        <span class="field__label">Description</span>
+        <textarea pInputTextarea rows="4" formControlName="description" placeholder="Write a short synopsis..."></textarea>
+        <small class="field__error" *ngIf="form.controls.description.touched && form.controls.description.invalid">
+          Description is required.
+        </small>
+      </label>
+      <label class="field">
+        <span class="field__label">Poster URL</span>
+        <input pInputText type="url" formControlName="posterUrl" placeholder="https://..." />
+        <small class="field__error" *ngIf="form.controls.posterUrl.touched && form.controls.posterUrl.invalid">
+          Poster URL is required.
+        </small>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Trailer URL</span>
+        <input pInputText type="url" formControlName="trailerUrl" placeholder="https://..." />
+        @if (form.controls.trailerUrl.touched && form.controls.trailerUrl.invalid) {
+        <small class="field__error">
+          Trailer URL is required.
+        </small>
+        }
+      </label>
+
+      <label class="field">
+        <span class="field__label">Is Available</span>
+        <p-checkbox
+          [binary]="true"
+          formControlName="isAvailable"
+        />
+      </label>
+    </div>
+  </form>
+</section>

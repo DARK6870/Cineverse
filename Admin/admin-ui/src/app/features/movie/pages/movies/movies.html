@@ -1,0 +1,98 @@
+<section class="movies-page">
+  <!-- Page title and total count -->
+  <header class="flex flex-wrap items-center justify-between gap-4">
+    <div>
+      <p class="text-sm text-slate-500">Library</p>
+      <h1 class="text-2xl font-semibold text-slate-900">Movies</h1>
+    </div>
+    <div class="text-sm text-slate-500">
+      {{ (facade.totalRecords$ | async) ?? 0 }} total
+    </div>
+  </header>
+
+  <!-- Table actions -->
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <p class="text-sm text-slate-500">
+      Manage your catalog entries and jump to edit any movie.
+    </p>
+    <a pButton label="Create Movie" routerLink="/movies/new"></a>
+  </div>
+
+  <!-- Movies data grid -->
+  <p-table
+    class="movies-table"
+    [value]="(facade.movies$ | async) ?? []"
+    [lazy]="true"
+    [paginator]="true"
+    [rows]="(facade.pageSize$ | async) ?? 25"
+    [first]="(facade.first$ | async) ?? 0"
+    [totalRecords]="(facade.totalRecords$ | async) ?? 0"
+    [rowsPerPageOptions]="[25, 50, 100]"
+    [scrollable]="true"
+    [scrollHeight]="tableHeight"
+    (onLazyLoad)="onLazyLoad($event)"
+  >
+    <ng-template #header>
+      <tr class="text-xs uppercase tracking-wide text-slate-500">
+        <th class="w-20">Poster</th>
+        <th>Title</th>
+        <th>Genre</th>
+        <th class="w-32">Release</th>
+        <th class="w-28">Duration</th>
+        <th class="w-28">Available</th>
+        <th class="w-24 text-right">Edit</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-movie>
+      <tr class="border-b border-slate-100 text-sm text-slate-700">
+        <td>
+          <img
+            class="h-12 w-9 rounded-md object-cover bg-slate-100"
+            [src]="movie.posterUrl"
+            [alt]="movie.title"
+            loading="lazy"
+          />
+        </td>
+        <td>
+          <div class="flex flex-col">
+            <span class="font-medium text-slate-900">{{ movie.title }}</span>
+            <span class="movies-desc text-xs text-slate-500">{{ movie.description }}</span>
+          </div>
+        </td>
+        <td>
+          <span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
+            {{ movie.genre }}
+          </span>
+        </td>
+        <td class="text-slate-600">
+          {{ movie.releaseDate | date: 'MMM dd, yyyy' }}
+        </td>
+        <td class="text-slate-600">
+          {{ movie.duration || '—' }}
+        </td>
+        <td>
+          <p-tag
+            [value]="movie.isAvailable ? 'Yes' : 'No'"
+            [severity]="movie.isAvailable ? 'success' : 'danger'"
+          ></p-tag>
+        </td>
+        <td class="text-right">
+          <a
+            pButton
+            class="p-button-text p-button-sm"
+            icon="pi pi-pencil"
+            [routerLink]="['/movies', movie.id, 'edit']"
+            aria-label="Edit movie"
+          ></a>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="7" class="py-8 text-center text-sm text-slate-500">
+          No movies found.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</section>

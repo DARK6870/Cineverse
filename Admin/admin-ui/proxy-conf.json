@@ -1,15 +1,12 @@
 {
-  "/api/identity": {
+  "/api/cineverse": {
     "target": "http://localhost:8080",
     "secure": false,
     "changeOrigin": true
   },
-  "/api/identity/graphql": {
-    "target": "http://localhost:7402",
+  "/api/identity": {
+    "target": "http://localhost:8080",
     "secure": false,
-    "changeOrigin": true,
-    "pathRewrite": {
-      "^/api/identity/graphql": "/api/graphql"
-    }
+    "changeOrigin": true
   }
 }

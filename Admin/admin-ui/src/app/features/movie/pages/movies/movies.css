@@ -1,0 +1,41 @@
+:host {
+  display: block;
+}
+
+.movies-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.movies-desc {
+  max-width: 360px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host ::ng-deep .movies-table .p-datatable-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+:host ::ng-deep .movies-table .p-datatable-thead > tr > th {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+:host ::ng-deep .movies-table .p-datatable-tbody > tr > td {
+  border-color: #e2e8f0;
+}
+
+:host ::ng-deep .movies-table .p-paginator {
+  border-radius: 0 0 16px 16px;
+}
+
+@media (max-width: 900px) {
+  :host ::ng-deep .movies-table .p-datatable-wrapper {
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  }
+}

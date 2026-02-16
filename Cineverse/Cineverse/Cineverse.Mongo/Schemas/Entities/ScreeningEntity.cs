@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Cineverse.Mongo.Schemas.Entities;
 
-[MongoCollection("Screenings")]
+[MongoCollection("screenings")]
 public class ScreeningEntity : BaseEntity
 {
     [BsonRepresentation(BsonType.ObjectId)]

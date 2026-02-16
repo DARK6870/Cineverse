@@ -6,8 +6,7 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Header, ToastContainer, BlockingOverlay, LoadingOverlay, Footer],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  templateUrl: 'app.html'
 })
 export class App implements OnInit {
   private router = inject(Router);

@@ -1,1 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap');
+@import "../node_modules/primeicons/primeicons.css";
 @import "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body{
+  margin: 0;
+  background-color: #f2f2f2;
+}
+
+:root {
+  color-scheme: light!important;
+  --cv-primary-dark: #000000;
+  --cv-light: #e6e6e6;
+  --cv-gray: #c7c7c7;
+  --cv-accent: #677C77;
+
+  --font-title: 'Oswald', sans-serif;
+  --font-text: 'Nunito Sans', sans-serif;
+}
+
+*{
+  font-family: var(--font-text), serif;
+}
+
+h1, h2, .title {
+  font-family: var(--font-title), serif;
+}
+
+.page-container {
+  margin-top: 6rem;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.p-field {
+  margin-bottom: 1rem;
+}
+
+.cineverse-logo{
+  width: 250px;
+}
+
+.p-confirmdialog .p-dialog-footer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.cv-shell {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem 2.5rem;
+  min-height: 100vh;
+}
+
+.cv-content {
+  flex: 1;
+  min-width: 0;
+}
+
+
+@media (max-width: 768px) {
+  .main-container{
+    padding: 15px;
+  }
+
+  .cineverse-logo{
+    width: 200px;
+  }
+
+  .cv-shell {
+    flex-direction: column;
+    padding: 1.25rem;
+  }
+}
