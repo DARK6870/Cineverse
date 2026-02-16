@@ -6,7 +6,7 @@
       <h1 class="text-2xl font-semibold text-slate-900">Movies</h1>
     </div>
     <div class="text-sm text-slate-500">
-      {{ (facade.totalRecords$ | async) ?? 0 }} total
+      {{ facade.totalRecords() }} total
     </div>
   </header>
 
@@ -15,22 +15,22 @@
     <p class="text-sm text-slate-500">
       Manage your catalog entries and jump to edit any movie.
     </p>
-    <a pButton label="Create Movie" routerLink="/movies/new"></a>
+    <a pButton severity="contrast" routerLink="/movies/new"><i class="pi pi-plus"></i> Create new</a>
   </div>
 
   <!-- Movies data grid -->
   <p-table
     class="movies-table"
-    [value]="(facade.movies$ | async) ?? []"
+    [value]="facade.movies()"
     [lazy]="true"
     [paginator]="true"
-    [rows]="(facade.pageSize$ | async) ?? 25"
-    [first]="(facade.first$ | async) ?? 0"
-    [totalRecords]="(facade.totalRecords$ | async) ?? 0"
+    [rows]="facade.pageSize()"
+    [first]="facade.first()"
+    [totalRecords]="facade.totalRecords()"
+    [loading]="facade.loading()"
     [rowsPerPageOptions]="[25, 50, 100]"
     [scrollable]="true"
     [scrollHeight]="tableHeight"
-    (onLazyLoad)="onLazyLoad($event)"
   >
     <ng-template #header>
       <tr class="text-xs uppercase tracking-wide text-slate-500">

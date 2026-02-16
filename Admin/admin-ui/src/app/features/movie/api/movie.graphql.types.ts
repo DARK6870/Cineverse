@@ -6,8 +6,8 @@
   posterUrl: string;
   trailerUrl: string;
   releaseDate: string;
-  duration?: string;
-  isAvailable?: boolean;
+  duration: string;
+  isAvailable: boolean;
 }
 
 export interface MoviePage {
@@ -27,5 +27,5 @@ export interface CreateMovieRequestInput {
 }
 
 export interface UpdateMovieRequestInput extends CreateMovieRequestInput {
-  id: string | null;
+  id: string;
 }

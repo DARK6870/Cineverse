@@ -44,3 +44,38 @@
   font-size: 0.75rem;
   color: #dc2626;
 }
+
+.markdown-preview {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 8px;
+  background: #f8fafc;
+  min-height: 160px;
+  line-height: 1.6;
+  font-size: 0.875rem;
+  color: #334155;
+}
+
+.markdown-preview {
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.markdown-preview {
+  margin: 0.5rem 0;
+}
+
+.markdown-preview {
+  font-family: monospace;
+  background: #e2e8f0;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.markdown-preview :deep(ul),
+.markdown-preview :deep(ol) {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}

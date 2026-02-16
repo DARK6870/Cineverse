@@ -24,13 +24,13 @@ export const getMoviesByIdsQuery = (ids: string[]) => ({
    }
   }
 `,
-  variables: {ids : ids},
+  variables: { ids: ids },
   context: {
     allowAnonymous: true
   }
 });
 
-export const getMovieByIdQuery = (id : string) => ({
+export const getMovieByIdQuery = (id: string) => ({
   query: gql`
   query getMovieById($id: String!){
   movieById(id: $id){
@@ -42,6 +42,7 @@ export const getMovieByIdQuery = (id : string) => ({
       trailerUrl
       releaseDate
       duration
+      isAvailable
       dateCreated
   }
 }
@@ -69,6 +70,7 @@ export const getMoviesPageQuery = (skip: number, take: number) => ({
         trailerUrl
         releaseDate
         duration
+        isAvailable
         dateCreated
       }
       totalCount
@@ -97,4 +99,13 @@ export const updateMovieMutation = (request: UpdateMovieRequestInput) => ({
   }
 `,
   variables: { request }
+});
+
+export const deleteMovieMutation = (id: string) => ({
+  mutation: gql`
+  mutation deleteMovieMutation($id: String!) {
+    deleteMovie(id: $id)
+  }
+  `,
+  variables: { id }
 });

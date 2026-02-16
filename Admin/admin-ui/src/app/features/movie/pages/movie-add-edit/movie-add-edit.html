@@ -1,14 +1,9 @@
 <section class="movie-form">
+
   <!-- Header with navigation and actions -->
   <header class="flex flex-wrap items-center justify-between gap-4">
     <div class="flex items-center gap-3">
-      <a
-        pButton
-        severity="contrast"
-        icon="pi pi-arrow-left"
-        routerLink="/movies"
-        aria-label="Back to Movies"
-      ></a>
+      <a pButton severity="contrast" icon="pi pi-arrow-left" routerLink="/movies" aria-label="Back to Movies"></a>
       <div>
         <p class="text-sm text-slate-500">Library</p>
         <h1 class="text-2xl font-semibold text-slate-900">
@@ -17,25 +12,14 @@
       </div>
     </div>
     <div class="flex items-center gap-2">
-      <button
-        pButton
-        severity="contrast"
-        type="button"
-        (click)="saveMovie()"
-      >
-        {{ isEdit() ? 'Save Changes' : 'Create Movie' }}
+      <button pButton severity="contrast" type="button" (click)="saveMovie()">
+        <i class="pi pi-check-circle"></i> {{ isEdit() ? 'Save Changes' : 'Create Movie' }}
       </button>
 
-      @if(isEdit())
-      {
-        <button
-          pButton
-          severity="danger"
-          type="button"
-          (click)="deleteMovie()"
-        >
-          Delete
-        </button>
+      @if(isEdit()) {
+      <button pButton severity="danger" type="button" (click)="deleteMovie()">
+        <i class="pi pi-trash"></i> Delete
+      </button>
       }
     </div>
   </header>
@@ -43,75 +27,113 @@
   <!-- Movie fields -->
   <form class="form-card" [formGroup]="form">
     <div class="form-grid">
+
+      <!-- Title -->
       <label class="field">
         <span class="field__label">Title</span>
-        <input pInputText type="text" formControlName="title" placeholder="Nobody 2" />
-        <small class="field__error" *ngIf="form.controls.title.touched && form.controls.title.invalid">
-          Title is required.
-        </small>
-      </label>
-      <label class="field">
-        <span class="field__label">Genre</span>
-        <input pInputText type="text" formControlName="genre" placeholder="Comedy" />
-        <small class="field__error" *ngIf="form.controls.genre.touched && form.controls.genre.invalid">
-          Genre is required.
-        </small>
-      </label>
-      <label class="field">
-        <span class="field__label">Release Date</span>
-        <p-datepicker
-          formControlName="releaseDate"
-          dateFormat="yy-mm-dd"
-          placeholder="yyyy-mm-dd"
-        ></p-datepicker>
-        <small class="field__error" *ngIf="form.controls.releaseDate.touched && form.controls.releaseDate.invalid">
-          Release date is required.
-        </small>
-      </label>
-      <label class="field">
-        <span class="field__label">Duration (min)</span>
-        <p-inputNumber
-          formControlName="duration"
-          [min]="1"
-          [useGrouping]="false"
-          placeholder="120"
-        ></p-inputNumber>
-        <small class="field__error" *ngIf="form.controls.duration.touched && form.controls.duration.invalid">
-          Duration must be at least 1 minute.
-        </small>
-      </label>
-      <label class="field field--full">
-        <span class="field__label">Description</span>
-        <textarea pInputTextarea rows="4" formControlName="description" placeholder="Write a short synopsis..."></textarea>
-        <small class="field__error" *ngIf="form.controls.description.touched && form.controls.description.invalid">
-          Description is required.
-        </small>
-      </label>
-      <label class="field">
-        <span class="field__label">Poster URL</span>
-        <input pInputText type="url" formControlName="posterUrl" placeholder="https://..." />
-        <small class="field__error" *ngIf="form.controls.posterUrl.touched && form.controls.posterUrl.invalid">
-          Poster URL is required.
-        </small>
-      </label>
-
-      <label class="field">
-        <span class="field__label">Trailer URL</span>
-        <input pInputText type="url" formControlName="trailerUrl" placeholder="https://..." />
-        @if (form.controls.trailerUrl.touched && form.controls.trailerUrl.invalid) {
-        <small class="field__error">
-          Trailer URL is required.
-        </small>
+        <input pInputText type="text" formControlName="title" placeholder="Nobody 2" [invalid]="isInvalid('title')" />
+        @if (getErrorMessageByName('title')) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ getErrorMessageByName('title') }}
+        </p-message>
         }
       </label>
 
+      <!-- Genre -->
       <label class="field">
-        <span class="field__label">Is Available</span>
-        <p-checkbox
-          [binary]="true"
-          formControlName="isAvailable"
-        />
+        <span class="field__label">Genre</span>
+        <input pInputText type="text" formControlName="genre" placeholder="Comedy" [invalid]="isInvalid('genre')" />
+        @if (getErrorMessageByName('genre')) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ getErrorMessageByName('genre') }}
+        </p-message>
+        }
       </label>
+
+      <!-- Release Date -->
+      <label class="field">
+        <span class="field__label">Release Date</span>
+        <p-datepicker formControlName="releaseDate" dateFormat="yy-mm-dd" placeholder="yyyy-mm-dd"
+          [invalid]="isInvalid('releaseDate')"></p-datepicker>
+        @if (getErrorMessageByName('releaseDate')) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ getErrorMessageByName('releaseDate') }}
+        </p-message>
+        }
+      </label>
+
+      <!-- Duration -->
+      <label class="field">
+        <span class="field__label">Duration (min)</span>
+        <p-inputNumber formControlName="duration" [min]="1" [useGrouping]="false" placeholder="120"
+          [invalid]="isInvalid('duration')"></p-inputNumber>
+        @if (getErrorMessageByName('duration')) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ getErrorMessageByName('duration') }}
+        </p-message>
+        }
+      </label>
+
+      <!-- Description -->
+      <div class="field field--full">
+        <div class="flex items-center justify-between mb-2">
+          <span class="field__label">Description</span>
+          <div class="flex gap-2">
+            <button pButton type="button" class="p-button-sm p-button-text" [class.font-bold]="!previewMarkdown()"
+              (click)="previewMarkdown.set(false)">Write</button>
+            <button pButton type="button" class="p-button-sm p-button-text" [class.font-bold]="previewMarkdown()"
+              (click)="previewMarkdown.set(true)">Preview</button>
+          </div>
+        </div>
+
+        @if (!previewMarkdown()) {
+        <textarea pInputTextarea rows="6" formControlName="description"
+          placeholder="Write a short synopsis (Markdown supported)..." [invalid]="isInvalid('description')"
+          class="w-full"></textarea>
+        } @else {
+        <div class="markdown-preview" [innerHTML]="parsedDescription"></div>
+        }
+
+        @if (getErrorMessageByName('description')) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ getErrorMessageByName('description') }}
+        </p-message>
+        }
+      </div>
+
+      <!-- Poster URL -->
+      <label class="field">
+        <span class="field__label">Poster URL</span>
+        <input pInputText type="url" formControlName="posterUrl" placeholder="https://..."
+          [invalid]="isInvalid('posterUrl')" />
+        @if (getErrorMessageByName('posterUrl')) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ getErrorMessageByName('posterUrl') }}
+        </p-message>
+        }
+      </label>
+
+      <!-- Trailer URL -->
+      <label class="field">
+        <span class="field__label">Trailer URL</span>
+        <input pInputText type="url" formControlName="trailerUrl" placeholder="https://..."
+          [invalid]="isInvalid('trailerUrl')" />
+        @if (getErrorMessageByName('trailerUrl')) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ getErrorMessageByName('trailerUrl') }}
+        </p-message>
+        }
+      </label>
+
+      <!-- Is Available -->
+      <div class="field">
+        <span class="field__label">Is Available</span>
+        <p-selectButton [options]="availableOptions" formControlName="isAvailable" optionLabel="label"
+          optionValue="value"></p-selectButton>
+      </div>
+
     </div>
   </form>
+
+  <p-confirmDialog />
 </section>

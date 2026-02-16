@@ -1,45 +1,55 @@
-import { Injectable, inject } from '@angular/core';
-import { ComponentStore } from '@ngrx/component-store';
-import { from } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Injectable, inject, signal, computed } from '@angular/core';
 import { MovieGraphqlService } from '../api/movie.graphql.service';
-import { MoviesState, initialMoviesState } from './movies.state';
+import { Movie } from '../api/movie.graphql.types';
 
-@Injectable()
-export class MoviesStore extends ComponentStore<MoviesState> {
+interface MoviesState {
+  movies: Movie[];
+  totalRecords: number;
+  first: number;
+  pageSize: number;
+  loading: boolean;
+}
+
+const initialState: MoviesState = {
+  movies: [],
+  totalRecords: 0,
+  first: 0,
+  pageSize: 25,
+  loading: false,
+};
+
+@Injectable({ providedIn: 'root' })
+export class MoviesStore {
   private movieService = inject(MovieGraphqlService);
 
-  constructor() {
-    super(initialMoviesState);
+  // State
+  private state = signal<MoviesState>(initialState);
+
+  // Selectors
+  readonly movies = computed(() => this.state().movies);
+  readonly totalRecords = computed(() => this.state().totalRecords);
+  readonly first = computed(() => this.state().first);
+  readonly pageSize = computed(() => this.state().pageSize);
+  readonly loading = computed(() => this.state().loading);
+
+  async loadPage(first: number, pageSize: number): Promise<void> {
+    this.state.update((s) => ({ ...s, first, pageSize, loading: true }));
+    try {
+      const data = await this.movieService.getMoviesPage(first, pageSize);
+      this.state.update((s) => ({
+        ...s,
+        movies: data.items ?? [],
+        totalRecords: data.totalCount ?? 0,
+        loading: false,
+      }));
+    } catch (error) {
+      this.state.update((s) => ({ ...s, loading: false }));
+      throw error;
+    }
   }
 
-  readonly movies$ = this.select((state) => state.movies);
-  readonly totalRecords$ = this.select((state) => state.totalRecords);
-  readonly pageSize$ = this.select((state) => state.pageSize);
-  readonly first$ = this.select((state) => state.first);
-
-  readonly loadPage = this.effect<{ first: number; pageSize: number }>((params$) =>
-    params$.pipe(
-      tap(({ first, pageSize }) => {
-        this.patchState({ first, pageSize });
-      }),
-      switchMap(({ first, pageSize }) =>
-        from(this.movieService.getMoviesPage(first, pageSize)).pipe(
-          tap((data) => {
-            const items = data.items ?? [];
-            this.patchState({
-              movies: items,
-              totalRecords: data.totalCount ?? items.length,
-            });
-          }),
-        ),
-      ),
-    ),
-  );
-
-  refresh(): void {
-    const { first, pageSize } = this.get();
-    this.loadPage({ first, pageSize });
+  async refresh(): Promise<void> {
+    const { first, pageSize } = this.state();
+    await this.loadPage(first, pageSize);
   }
-
 }

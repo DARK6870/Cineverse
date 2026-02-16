@@ -7,13 +7,13 @@ html {
   scroll-behavior: smooth;
 }
 
-body{
+body {
   margin: 0;
   background-color: #f2f2f2;
 }
 
 :root {
-  color-scheme: light!important;
+  color-scheme: light !important;
   --cv-primary-dark: #000000;
   --cv-light: #e6e6e6;
   --cv-gray: #c7c7c7;
@@ -23,11 +23,13 @@ body{
   --font-text: 'Nunito Sans', sans-serif;
 }
 
-*{
+* {
   font-family: var(--font-text), serif;
 }
 
-h1, h2, .title {
+h1,
+h2,
+.title {
   font-family: var(--font-title), serif;
 }
 
@@ -52,7 +54,7 @@ h1, h2, .title {
   margin-bottom: 1rem;
 }
 
-.cineverse-logo{
+.cineverse-logo {
   width: 250px;
 }
 
@@ -66,28 +68,32 @@ h1, h2, .title {
 .cv-shell {
   display: flex;
   align-items: flex-start;
-  gap: 1.5rem;
-  padding: 1.5rem 2rem 2.5rem;
   min-height: 100vh;
 }
 
 .cv-content {
   flex: 1;
   min-width: 0;
+  margin-left: 86px;
+  padding: 1.5rem 2rem 2.5rem;
 }
 
 
-@media (max-width: 768px) {
-  .main-container{
+@media (max-width: 900px) {
+  .cv-shell {
+    flex-direction: column;
+  }
+
+  .cv-content {
+    margin-left: 0;
+    padding: 1.25rem;
+  }
+
+  .main-container {
     padding: 15px;
   }
 
-  .cineverse-logo{
+  .cineverse-logo {
     width: 200px;
-  }
-
-  .cv-shell {
-    flex-direction: column;
-    padding: 1.25rem;
   }
 }

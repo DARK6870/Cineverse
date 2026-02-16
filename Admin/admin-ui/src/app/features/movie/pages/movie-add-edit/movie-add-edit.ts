@@ -8,11 +8,15 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ToastService } from '@cineverse/infrastructure-common';
-import { CreateMovieRequestInput, Movie } from '../../api/movie.graphql.types';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { Message } from 'primeng/message';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { ToastService, getValidationError } from '@cineverse/infrastructure-common';
+import { CreateMovieRequestInput } from '../../api/movie.graphql.types';
 import { MoviesFacade } from '../../store/movies.facade';
-import { MoviesStore } from '../../store/movies.store';
+import { HasUnsavedChanges } from '../../../../core/guards/unsaved-changes.guard';
+import { marked } from 'marked';
 
 @Component({
   selector: 'app-movie-add-edit',
@@ -25,21 +29,32 @@ import { MoviesStore } from '../../store/movies.store';
     InputNumberModule,
     InputTextModule,
     TextareaModule,
-    CheckboxModule,
+    SelectButtonModule,
+    Message,
+    ConfirmDialogModule,
   ],
   templateUrl: 'movie-add-edit.html',
   styleUrl: 'movie-add-edit.css',
-  providers: [MoviesStore, MoviesFacade],
 })
-export class MovieAddEdit {
+export class MovieAddEdit implements HasUnsavedChanges {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private moviesFacade = inject(MoviesFacade);
   private fb = inject(FormBuilder);
   private toastService = inject(ToastService);
+  private confirmationService = inject(ConfirmationService);
 
   movieId = signal<string | null>(null);
   isEdit = computed(() => Boolean(this.movieId()));
+  formSubmitted = false;
+  private navigatingAway = false;
+
+  previewMarkdown = signal(false);
+
+  availableOptions = [
+    { label: 'Yes', value: true },
+    { label: 'No', value: false },
+  ];
 
   form = this.fb.group({
     title: ['', Validators.required],
@@ -64,11 +79,58 @@ export class MovieAddEdit {
     });
   }
 
-  async saveMovie(): Promise<void> {
+  // ── Guard contract ──
+
+  hasUnsavedChanges(): boolean {
+    return this.form.dirty && !this.navigatingAway;
+  }
+
+  get parsedDescription(): string | Promise<string> {
+    const raw = this.form.get('description')?.value || '';
+    return marked.parse(raw);
+  }
+
+  getErrorMessageByName(controlName: string): string | null {
+    return getValidationError(this.form.get(controlName));
+  }
+
+  isInvalid(controlName: string): boolean {
+    const control = this.form.get(controlName);
+    return !!(control?.invalid && (control.touched || this.formSubmitted));
+  }
+
+  saveMovie() {
+    this.formSubmitted = true;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
+
+    this.confirmationService.confirm({
+      header: 'Confirm Save',
+      message: this.isEdit()
+        ? 'Are you sure you want to save these changes?'
+        : 'Are you sure you want to create this movie?',
+      rejectButtonProps: { label: 'Cancel', severity: 'secondary', outlined: true },
+      acceptButtonProps: { label: this.isEdit() ? 'Save' : 'Create', severity: 'contrast' },
+      accept: () => this.executeSave(),
+    });
+  }
+
+  deleteMovie() {
+    const movieId = this.movieId();
+    if (!movieId) return;
+
+    this.confirmationService.confirm({
+      header: 'Confirm Delete',
+      message: 'Are you sure you want to delete this movie? This action cannot be undone.',
+      rejectButtonProps: { label: 'Cancel', severity: 'secondary', outlined: true },
+      acceptButtonProps: { label: 'Delete', severity: 'contrast' },
+      accept: () => this.executeDelete(movieId),
+    });
+  }
+
+  private async executeSave() {
     const formValue = this.form.getRawValue();
     const request: CreateMovieRequestInput = {
       title: (formValue.title ?? '').trim(),
@@ -84,33 +146,27 @@ export class MovieAddEdit {
     if (this.isEdit() && this.movieId()) {
       await this.moviesFacade.updateMovie({
         ...request,
-        id: this.movieId(),
+        id: this.movieId()!,
       });
-      this.toastService.success('Movie updated');
+      this.toastService.success('Movie updated successfully');
     } else {
       await this.moviesFacade.createMovie(request);
-      this.toastService.success('Movie created');
+      this.toastService.success('Movie created successfully');
     }
 
-    this.router.navigate(['/movies'], {
-      state: { refresh: true }
-    }).then();
+    this.navigatingAway = true;
+    this.router.navigate(['/movies'], { state: { refresh: true } }).then();
   }
 
-  async deleteMovie(): Promise<void> {
-    const movieId = this.movieId();
-    if (!movieId) {
-      return;
-    }
+  private async executeDelete(movieId: string) {
     await this.moviesFacade.deleteMovie(movieId);
-    this.toastService.success('Movie deleted');
-    this.router.navigate(['/movies'], {
-      state: { refresh: true }
-    }).then();
+    this.toastService.success('Movie deleted successfully');
+    this.navigatingAway = true;
+    this.router.navigate(['/movies'], { state: { refresh: true } }).then();
   }
 
-  private async loadMovie(id: string): Promise<void> {
-    const movie: Movie = await this.moviesFacade.getMovieById(id);
+  private async loadMovie(id: string) {
+    const movie = await this.moviesFacade.getMovieById(id);
     this.form.patchValue({
       title: movie.title ?? '',
       description: movie.description ?? '',
@@ -121,25 +177,17 @@ export class MovieAddEdit {
       genre: movie.genre ?? '',
       isAvailable: movie.isAvailable ?? true,
     });
+    this.form.markAsPristine();
   }
 
   private resetForm(): void {
-    this.form.reset({
-      title: '',
-      description: '',
-      posterUrl: '',
-      trailerUrl: '',
-      duration: 0,
-      releaseDate: null,
-      genre: '',
-      isAvailable: true,
-    });
+    this.formSubmitted = false;
+    this.navigatingAway = false;
+    this.form.reset();
   }
 
   private formatDate(date: Date | null): string {
-    if (!date) {
-      return '';
-    }
+    if (!date) return '';
     return date.toISOString().slice(0, 10);
   }
 }

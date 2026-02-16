@@ -4,6 +4,7 @@ import { firstValueFrom, map } from 'rxjs';
 import { CreateMovieRequestInput, Movie, MoviePage, UpdateMovieRequestInput } from './movie.graphql.types';
 import {
   createMovieMutation,
+  deleteMovieMutation,
   getMovieByIdQuery,
   getMoviesByIdsQuery,
   getMoviesPageQuery,
@@ -19,6 +20,7 @@ export class MovieGraphqlService {
       this.apollo
         .query<{ movies: { items: Movie[] } }>({
           ...getMoviesByIdsQuery(ids),
+          fetchPolicy: 'network-only',
         })
         .pipe(map((res) => res.data!.movies.items)),
     );
@@ -29,6 +31,7 @@ export class MovieGraphqlService {
       this.apollo
         .query<{ movieById: Movie }>({
           ...getMovieByIdQuery(id),
+          fetchPolicy: 'network-only',
         })
         .pipe(map((res) => res.data!.movieById)),
     );
@@ -39,6 +42,7 @@ export class MovieGraphqlService {
       this.apollo
         .query<{ movies: MoviePage }>({
           ...getMoviesPageQuery(skip, take),
+          fetchPolicy: 'network-only',
         })
         .pipe(map((res) => res.data!.movies)),
     );
@@ -54,13 +58,19 @@ export class MovieGraphqlService {
     );
   }
 
-  public updateMovie(request: UpdateMovieRequestInput): Promise<string> {
+  public updateMovie(request: UpdateMovieRequestInput) {
     return firstValueFrom(
       this.apollo
         .mutate<{ updateMovie: string }>({
           ...updateMovieMutation(request)
         })
         .pipe(map((res) => res.data!.updateMovie)),
+    );
+  }
+
+  public deleteMovie(id: string) {
+    return firstValueFrom(
+      this.apollo.mutate(deleteMovieMutation(id))
     );
   }
 }

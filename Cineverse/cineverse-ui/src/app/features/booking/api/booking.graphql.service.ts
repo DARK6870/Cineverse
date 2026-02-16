@@ -32,6 +32,7 @@ export class BookingGraphqlService {
     );
   }
 
+  // TODO: remove return result
   public createBooking(request: CreateBookingRequestInput): Promise<boolean> {
     return firstValueFrom(
       this.apollo

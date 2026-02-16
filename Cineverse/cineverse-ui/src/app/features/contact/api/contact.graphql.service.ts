@@ -9,8 +9,6 @@ export class ContactGraphqlService {
   private apollo = inject(Apollo);
 
   public createContactRequest(request: CreateContactRequestInput): Promise<any> {
-    return firstValueFrom(
-      this.apollo.mutate(createContactRequestMutation(request)),
-    );
+    return firstValueFrom(this.apollo.mutate(createContactRequestMutation(request)));
   }
 }

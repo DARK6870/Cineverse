@@ -6,6 +6,7 @@ import { Bookings } from './features/booking/pages/bookings/bookings';
 import { Users } from './features/user/pages/users/users';
 import { Halls } from './features/hall/pages/halls/halls';
 import { Screenings } from './features/screening/pages/screenings/screenings';
+import { unsavedChangesGuard } from './core/guards/unsaved-changes.guard';
 
 export const routes: Routes = [
   {
@@ -22,11 +23,13 @@ export const routes: Routes = [
     path: 'movies/new',
     component: MovieAddEdit,
     title: 'Admin - New Movie',
+    canDeactivate: [unsavedChangesGuard],
   },
   {
     path: 'movies/:id/edit',
     component: MovieAddEdit,
     title: 'Admin - Edit Movie',
+    canDeactivate: [unsavedChangesGuard],
   },
   {
     path: 'bookings',
