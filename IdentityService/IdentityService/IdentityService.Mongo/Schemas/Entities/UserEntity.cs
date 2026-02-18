@@ -1,4 +1,5 @@
 ﻿using Auth.Models.Enums;
+using IdentityService.Mongo.Schemas.Enums;
 using Infrastructure.Mongo.Attributes;
 using Infrastructure.Mongo.Models.Entities;
 
@@ -18,6 +19,8 @@ public class UserEntity : BaseEntity
     public UserStatus Status { get; set; } = UserStatus.PendingEmailConfirmation;
     
     public string? PasswordHash { get; set; }
+    
+    public AuthenticationProvider Provider { get; set; } = AuthenticationProvider.Identity;
     
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     

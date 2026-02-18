@@ -1,5 +1,6 @@
 ﻿using Auth.Models.Enums;
 using IdentityService.Mongo.Schemas.Entities;
+using IdentityService.Mongo.Schemas.Enums;
 using Infrastructure.Common.Helpers;
 using Infrastructure.Mongo.Repositories.Implementations;
 using MongoDB.Driver;
@@ -17,6 +18,7 @@ public class UserRepository(
 
         return await Collection.Find(
             x => x.Email == email &&
+            x.Provider == AuthenticationProvider.Identity &&
             x.PasswordHash == passwordHash
         ).FirstOrDefaultAsync();
     }

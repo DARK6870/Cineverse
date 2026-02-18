@@ -12,14 +12,18 @@ using Infrastructure.WebApi.Rest;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+var services = builder.Services;
 var assembly = typeof(Program).Assembly;
 
 builder.AddInfrastructureLogging();
 
-// ------ Configure services ------ //
-builder.Services
-    .AddRestApi()
+// configure services
+services
     .AddAuth(configuration)
+    .AddExternalProviders(services, configuration);
+
+services
+    .AddRestApi()
     .AddUserContext()
     .AddMemoryCache()
     .AddMongoDatabase(configuration)
@@ -38,7 +42,7 @@ builder.Services
     .AddGraphQlMutationsFromAssembly(assembly)
     ;
 
-// ------ Configure WebApplication ------ //
+// configure web application
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -57,7 +61,7 @@ app.UseRestApiExceptionHandlerMiddleware();
 
 app.MapHealthCheck();
 
-// ------ Execute Migrations ------ //
+// execute migrations
 await app.ExecuteMigrationsAsync();
 
 app.Run();

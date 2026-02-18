@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Auth.Authentication;
@@ -7,7 +8,7 @@ public static class AuthenticationSetup
 {
     public static bool EnableSecurity;
 
-    public static IServiceCollection AddAuth(
+    public static AuthenticationBuilder AddAuth(
         this IServiceCollection services,
         IConfiguration configuration
     )
@@ -17,8 +18,6 @@ public static class AuthenticationSetup
         EnableSecurity = authenticationOptions.EnableSecurity;
         
         services.ConfigurePolicies();
-        services.AddJwtAuthentication(authenticationOptions);
-        
-        return services;
+        return services.AddJwtAuthentication(authenticationOptions);
     }
 }

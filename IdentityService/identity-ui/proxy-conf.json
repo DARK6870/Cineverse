@@ -1,7 +1,10 @@
 {
   "/api/identity": {
-    "target": "http://localhost:8080",
+    "target": "http://localhost:7401",
     "secure": false,
-    "changeOrigin": true
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/identity": "/api"
+    }
   }
 }

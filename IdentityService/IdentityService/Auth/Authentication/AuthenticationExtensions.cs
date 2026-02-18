@@ -1,9 +1,10 @@
 ﻿using System.Text;
-using Auth.Models.Options;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using AuthenticationOptions = Auth.Models.Options.AuthenticationOptions;
 
 namespace Auth.Authentication;
 
@@ -37,12 +38,18 @@ internal static class AuthenticationExtensions
         return services;
     }
 
-    public static IServiceCollection AddJwtAuthentication(
+    public static AuthenticationBuilder AddJwtAuthentication(
         this IServiceCollection services,
         AuthenticationOptions authenticationOptions
     )
     {
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        return services
+            .AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = "Cookies";
+            })
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -58,7 +65,5 @@ internal static class AuthenticationExtensions
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationOptions.JwtOptions.SecretKey))
                 };
             });
-
-        return services;
     }
 }
