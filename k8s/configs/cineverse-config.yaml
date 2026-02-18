@@ -4,7 +4,7 @@ metadata:
   name: cineverse-config
   namespace: cineverse
 data:
-  MongoSettings__ConnectionString: "mongo"
+  MongoSettings__ConnectionString: "/"
   MongoSettings__LogDatabaseQueries: "false"
   KafkaSettings__BootstrapServers: "broker:9092"
   RedisSettings__ConnectionString: "redis-stack:6379"
@@ -19,4 +19,11 @@ data:
   SmtpOptions__SmtpEmail: "tsymbalvlad.6870@gmail.com"
   SmtpOptions__SmtpPassword: "password"
   SmtpOptions__EnableSsl: "true"
+  ExternalProvidersOptions__RedirectUrl: "http://localhost:8080"
+  ExternalProvidersOptions__Google__ClientId: "/"
+  ExternalProvidersOptions__Google__ClientSecret: "/"
+  ExternalProvidersOptions__Github__ClientId: "/"
+  ExternalProvidersOptions__Githib__ClientSecret: "/"
+  CorsOptions__UseCors: "true"
+  CorsOptions__AllowedOrigins__0: "http://localhost:8080"
   

@@ -10,6 +10,7 @@ public static class Configuration
     public static IServiceCollection AddUserContext(this IServiceCollection services)
     {
         services.AddScoped<IUserContext, UserContext.UserContext>();
+        services.AddHttpContextAccessor();
         
         return services;
     }

@@ -1,5 +1,7 @@
 using Auth.Authentication;
+using IdentityService.Api.Extensions;
 using IdentityService.Application;
+using IdentityService.Application.Extensions;
 using IdentityService.Mongo;
 using Infrastructure.Context;
 using Infrastructure.HealthCheck;
@@ -44,22 +46,7 @@ services
 
 // configure web application
 var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-    app.MapScalar();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.UseUserContextMiddleware();
-
-app.MapControllers();
-app.MapGraphQlApi();
-
-app.UseGraphQlStatusCodeMiddleware();
-app.UseRestApiExceptionHandlerMiddleware();
-
-app.MapHealthCheck();
+app.ConfigureWebApplication();
 
 // execute migrations
 await app.ExecuteMigrationsAsync();
