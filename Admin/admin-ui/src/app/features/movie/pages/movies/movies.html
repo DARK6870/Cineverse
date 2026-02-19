@@ -5,17 +5,13 @@
       <p class="text-sm text-slate-500">Library</p>
       <h1 class="text-2xl font-semibold text-slate-900">Movies</h1>
     </div>
-    <div class="text-sm text-slate-500">
-      {{ facade.totalRecords() }} total
-    </div>
   </header>
 
   <!-- Table actions -->
-  <div class="flex flex-wrap items-center justify-between gap-3">
+  <div class="flex flex-wrap items-center gap-3">
     <p class="text-sm text-slate-500">
       Manage your catalog entries and jump to edit any movie.
     </p>
-    <a pButton severity="contrast" routerLink="/movies/new"><i class="pi pi-plus"></i> Create new</a>
   </div>
 
   <!-- Movies data grid -->
@@ -23,23 +19,105 @@
     class="movies-table"
     [value]="facade.movies()"
     [lazy]="true"
+    sortMode="single"
+    [sortField]="facade.sortField()"
+    [sortOrder]="facade.sortOrder()"
     [paginator]="true"
     [rows]="facade.pageSize()"
     [first]="facade.first()"
     [totalRecords]="facade.totalRecords()"
-    [loading]="facade.loading()"
     [rowsPerPageOptions]="[25, 50, 100]"
     [scrollable]="true"
     [scrollHeight]="tableHeight"
+    (onLazyLoad)="onLazyLoad($event)"
   >
     <ng-template #header>
+      <tr>
+        <th colspan="7" class="grid-filter-header">
+          <div class="grid-filter-controls">
+            <div class="grid-filter-left">
+              <div class="filter-menu">
+                <button pButton type="button" class="p-button-outlined p-button-sm" (click)="toggleGenreFilterMenu()">
+                  <i class="pi pi-filter"></i>
+                  {{ genreFilterButtonLabel() }}
+                </button>
+                <div class="filter-menu-panel" *ngIf="isGenreFilterOpen">
+                  <p class="filter-menu-title">Genre</p>
+                  <input
+                    type="text"
+                    class="filter-menu-search"
+                    placeholder="Search genre"
+                    [value]="genreSearchTerm"
+                    (input)="genreSearchTerm = $any($event.target).value"
+                  />
+                  <div class="filter-menu-list">
+                    <label class="filter-menu-option" *ngFor="let genre of filteredGenreOptions()">
+                      <input
+                        type="checkbox"
+                        [checked]="isGenreSelected(genre)"
+                        (change)="toggleGenreSelection(genre, $any($event.target).checked)"
+                      />
+                      <span>{{ genre }}</span>
+                    </label>
+                    <p class="filter-menu-empty" *ngIf="filteredGenreOptions().length === 0">No options found.</p>
+                  </div>
+                  <div class="filter-menu-actions">
+                    <button pButton type="button" class="p-button-text p-button-sm" (click)="clearGenreFilters()">Clear</button>
+                    <button pButton type="button" class="p-button-sm" (click)="applyGenreFilters()">Apply</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="filter-menu">
+                <button pButton type="button" class="p-button-outlined p-button-sm" (click)="toggleAvailabilityFilterMenu()">
+                  <i class="pi pi-filter"></i>
+                  {{ availabilityFilterButtonLabel() }}
+                </button>
+                <div class="filter-menu-panel" *ngIf="isAvailabilityFilterOpen">
+                  <p class="filter-menu-title">Availability</p>
+                  <input
+                    type="text"
+                    class="filter-menu-search"
+                    placeholder="Search availability"
+                    [value]="availabilitySearchTerm"
+                    (input)="availabilitySearchTerm = $any($event.target).value"
+                  />
+                  <div class="filter-menu-list">
+                    <label class="filter-menu-option" *ngFor="let availabilityOption of filteredAvailabilityOptions()">
+                      <input
+                        type="checkbox"
+                        [checked]="isAvailabilitySelected(availabilityOption.value)"
+                        (change)="toggleAvailabilitySelection(availabilityOption.value, $any($event.target).checked)"
+                      />
+                      <span>{{ availabilityOption.label }}</span>
+                    </label>
+                    <p class="filter-menu-empty" *ngIf="filteredAvailabilityOptions().length === 0">No options found.</p>
+                  </div>
+                  <div class="filter-menu-actions">
+                    <button pButton type="button" class="p-button-text p-button-sm" (click)="clearAvailabilityFilters()">Clear</button>
+                    <button pButton type="button" class="p-button-sm" (click)="applyAvailabilityFilters()">Apply</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-filter-right">
+              <span class="text-sm text-slate-500">{{ facade.totalRecords() }} total</span>
+              <a pButton severity="contrast" class="p-button-sm" routerLink="/movies/new">
+                <i class="pi pi-plus"></i>
+                Create new
+              </a>
+            </div>
+          </div>
+        </th>
+      </tr>
       <tr class="text-xs uppercase tracking-wide text-slate-500">
         <th class="w-20">Poster</th>
-        <th>Title</th>
-        <th>Genre</th>
-        <th class="w-32">Release</th>
-        <th class="w-28">Duration</th>
-        <th class="w-28">Available</th>
+        <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
+        <th pSortableColumn="genre">Genre <p-sortIcon field="genre"></p-sortIcon></th>
+        <th class="w-32" pSortableColumn="releaseDate">Release <p-sortIcon field="releaseDate"></p-sortIcon></th>
+        <th class="w-28" pSortableColumn="duration">Duration <p-sortIcon field="duration"></p-sortIcon></th>
+        <th class="w-28" pSortableColumn="isAvailable">Available <p-sortIcon field="isAvailable"></p-sortIcon></th>
         <th class="w-24 text-right">Edit</th>
       </tr>
     </ng-template>

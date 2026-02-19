@@ -1,5 +1,36 @@
 ﻿import { gql } from 'apollo-angular';
-import { CreateMovieRequestInput, UpdateMovieRequestInput } from './movie.graphql.types';
+import { CreateMovieRequestInput, MovieFilters, MovieSort, UpdateMovieRequestInput } from './movie.graphql.types';
+
+const escapeGraphqlString = (value: string): string => value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+
+const buildMoviesWhereClause = (filters: MovieFilters): string => {
+  const conditions: string[] = [];
+
+  if (Array.isArray(filters.genre)) {
+    if (filters.genre.length > 0) {
+      const values = filters.genre.map((genre) => `"${escapeGraphqlString(genre)}"`).join(', ');
+      conditions.push(`genre: { in: [${values}] }`);
+    }
+  } else if (filters.genre) {
+    conditions.push(`genre: { eq: "${escapeGraphqlString(filters.genre)}" }`);
+  }
+
+  if (Array.isArray(filters.isAvailable)) {
+    if (filters.isAvailable.length === 1) {
+      conditions.push(`isAvailable: { eq: ${filters.isAvailable[0]} }`);
+    } else if (filters.isAvailable.length > 1) {
+      conditions.push(`isAvailable: { in: [${filters.isAvailable.join(', ')}] }`);
+    }
+  } else if (typeof filters.isAvailable === 'boolean') {
+    conditions.push(`isAvailable: { eq: ${filters.isAvailable} }`);
+  }
+
+  if (conditions.length === 0) {
+    return '';
+  }
+
+  return `where: { ${conditions.join(', ')} }`;
+};
 
 export const getMoviesByIdsQuery = (ids: string[]) => ({
   query: gql`
@@ -53,13 +84,14 @@ export const getMovieByIdQuery = (id: string) => ({
   }
 })
 
-export const getMoviesPageQuery = (skip: number, take: number) => ({
+export const getMoviesPageQuery = (skip: number, take: number, sort: MovieSort, filters: MovieFilters) => ({
   query: gql`
   query getMoviesPage($skip: Int!, $take: Int!) {
     movies(
       skip: $skip,
       take: $take,
-      order: { dateCreated: DESC }
+      order: { ${sort.field}: ${sort.direction} }
+      ${buildMoviesWhereClause(filters)}
     ) {
       items {
         id

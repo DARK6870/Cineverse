@@ -47,7 +47,6 @@ export class MovieAddEdit implements HasUnsavedChanges {
   movieId = signal<string | null>(null);
   isEdit = computed(() => Boolean(this.movieId()));
   formSubmitted = false;
-  private navigatingAway = false;
 
   previewMarkdown = signal(false);
 
@@ -79,10 +78,8 @@ export class MovieAddEdit implements HasUnsavedChanges {
     });
   }
 
-  // ── Guard contract ──
-
   hasUnsavedChanges(): boolean {
-    return this.form.dirty && !this.navigatingAway;
+    return this.form.dirty;
   }
 
   get parsedDescription(): string | Promise<string> {
@@ -154,14 +151,14 @@ export class MovieAddEdit implements HasUnsavedChanges {
       this.toastService.success('Movie created successfully');
     }
 
-    this.navigatingAway = true;
-    this.router.navigate(['/movies'], { state: { refresh: true } }).then();
+    this.form.markAsPristine();
+    this.router.navigate(['/movies']).then();
   }
 
   private async executeDelete(movieId: string) {
     await this.moviesFacade.deleteMovie(movieId);
     this.toastService.success('Movie deleted successfully');
-    this.navigatingAway = true;
+    this.form.markAsPristine();
     this.router.navigate(['/movies'], { state: { refresh: true } }).then();
   }
 
@@ -182,7 +179,6 @@ export class MovieAddEdit implements HasUnsavedChanges {
 
   private resetForm(): void {
     this.formSubmitted = false;
-    this.navigatingAway = false;
     this.form.reset();
   }
 

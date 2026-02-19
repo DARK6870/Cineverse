@@ -1,4 +1,6 @@
-﻿export interface Movie {
+﻿import { SortDirection } from '../../../shared/types/sort-direction.type';
+
+export interface Movie {
   id: string;
   title: string;
   genre: string;
@@ -8,6 +10,18 @@
   releaseDate: string;
   duration: string;
   isAvailable: boolean;
+}
+
+export type MovieSortField = 'dateCreated' | 'title' | 'genre' | 'releaseDate' | 'duration' | 'isAvailable';
+
+export interface MovieSort {
+  field: MovieSortField;
+  direction: SortDirection;
+}
+
+export interface MovieFilters {
+  genre?: string | string[];
+  isAvailable?: boolean | boolean[];
 }
 
 export interface MoviePage {

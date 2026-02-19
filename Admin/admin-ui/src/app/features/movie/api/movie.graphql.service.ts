@@ -1,7 +1,7 @@
 ﻿import { inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { firstValueFrom, map } from 'rxjs';
-import { CreateMovieRequestInput, Movie, MoviePage, UpdateMovieRequestInput } from './movie.graphql.types';
+import { CreateMovieRequestInput, Movie, MovieFilters, MoviePage, MovieSort, UpdateMovieRequestInput } from './movie.graphql.types';
 import {
   createMovieMutation,
   deleteMovieMutation,
@@ -37,11 +37,11 @@ export class MovieGraphqlService {
     );
   }
 
-  public getMoviesPage(skip: number, take: number): Promise<MoviePage> {
+  public getMoviesPage(skip: number, take: number, sort: MovieSort, filters: MovieFilters): Promise<MoviePage> {
     return firstValueFrom(
       this.apollo
         .query<{ movies: MoviePage }>({
-          ...getMoviesPageQuery(skip, take),
+          ...getMoviesPageQuery(skip, take, sort, filters),
           fetchPolicy: 'network-only',
         })
         .pipe(map((res) => res.data!.movies)),
