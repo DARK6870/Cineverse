@@ -1,10 +1,9 @@
 ﻿using System.Linq.Expressions;
-using Infrastructure.Mongo.Models.Entities;
 using MongoDB.Driver;
 
 namespace Infrastructure.Mongo.Repositories.Implementations;
 
-public partial class GenericRepository<T> where T : IEntity
+public partial class GenericRepository<T>
 {
     public async Task DeleteByIdAsync(
         string id,

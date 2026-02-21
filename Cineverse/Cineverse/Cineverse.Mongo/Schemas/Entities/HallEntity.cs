@@ -5,11 +5,9 @@ using Infrastructure.Mongo.Models.Entities;
 namespace Cineverse.Mongo.Schemas.Entities;
 
 [MongoCollection("halls")]
-public class HallEntity : BaseEntity
+public record HallEntity : TimestampedEntity
 {
-    public required string Name { get; set; }
+    public required string Name { get; init; }
     
-    public required Seat[] Seats { get; set; }
-    
-    public DateTime DateCreated { get; set; } =  DateTime.UtcNow;
+    public required Seat[] Seats { get; init; }
 }

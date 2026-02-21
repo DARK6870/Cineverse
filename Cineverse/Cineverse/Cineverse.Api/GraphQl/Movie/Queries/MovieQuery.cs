@@ -1,4 +1,5 @@
-﻿using Cineverse.Application.MediatR.Requests.Movies.GetMovieById;
+﻿using Cineverse.Application.MediatR.Requests.Movies.GetGenreDistinctFilterValues;
+using Cineverse.Application.MediatR.Requests.Movies.GetMovieById;
 using Cineverse.Application.MediatR.Requests.Movies.GetMovies;
 using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;
@@ -18,11 +19,12 @@ public class MovieQuery
     [UseFiltering]
     [UseSorting]
     public Task<IQueryable<MovieEntity>> GetMovies(
+        string? searchTerm,
         [Service] IMediator mediator,
         CancellationToken cancellationToken
     )
     {
-        return mediator.Send(new GetMoviesRequest(), cancellationToken);
+        return mediator.Send(new GetMoviesRequest(searchTerm), cancellationToken);
     }
 
     public async Task<MovieEntity?> GetMovieById(
@@ -32,5 +34,13 @@ public class MovieQuery
     )
     {
         return await mediator.Send(new GetMovieByIdRequest(id), cancellationToken);
+    }
+
+    public async Task<IEnumerable<string>> GetGenreDistinctFilterValues(
+        [Service] IMediator mediator,
+        CancellationToken cancellationToken
+    )
+    {
+        return await mediator.Send(new GetGenreDistinctFilterValuesRequest(), cancellationToken);
     }
 }

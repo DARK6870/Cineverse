@@ -10,6 +10,15 @@ public class GetMoviesHandler(
 {
     public Task<IQueryable<MovieEntity>> Handle(GetMoviesRequest request, CancellationToken cancellationToken)
     {
-        return Task.FromResult(movieRepository.AsQueryable());
+        if (string.IsNullOrEmpty(request.SearchTerm))
+            return Task.FromResult(movieRepository.AsQueryable());
+
+        return Task.FromResult(movieRepository.SearchByText(
+                request.SearchTerm,
+                x => x.Description,
+                x => x.TrailerUrl,
+                x => x.PosterUrl
+            )
+        );
     }
 }

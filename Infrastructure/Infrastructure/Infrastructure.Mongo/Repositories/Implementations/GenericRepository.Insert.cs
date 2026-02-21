@@ -1,8 +1,6 @@
-﻿using Infrastructure.Mongo.Models.Entities;
+﻿namespace Infrastructure.Mongo.Repositories.Implementations;
 
-namespace Infrastructure.Mongo.Repositories.Implementations;
-
-public partial class GenericRepository<T> where T : IEntity
+public partial class GenericRepository<T>
 {
     public async Task InsertOneAsync(
         T entity,

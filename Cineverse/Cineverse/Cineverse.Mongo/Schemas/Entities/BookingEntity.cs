@@ -6,17 +6,17 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Cineverse.Mongo.Schemas.Entities;
 
 [MongoCollection("bookings")]
-public class BookingEntity : BaseEntity
+public record BookingEntity : BaseEntity
 {
     [BsonRepresentation(BsonType.ObjectId)]
-    public required string UserId { get; set; }
+    public required string UserId { get; init; }
 
     [BsonRepresentation(BsonType.ObjectId)]
-    public required string ScreeningId { get; set; }
+    public required string ScreeningId { get; init; }
 
-    public required string[] SeatIds { get; set; }
+    public required string[] SeatIds { get; init; }
     
-    public required int TotalPrice { get; set; }
+    public required int TotalPrice { get; init; }
 
-    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+    public DateTime DateCreated { get; init; } = DateTime.UtcNow;
 }

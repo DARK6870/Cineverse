@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Infrastructure.Mongo.Repositories.Interfaces.Queries;
+namespace Infrastructure.Mongo.Repositories.Interfaces.Commands;
 
 public interface IDeleteRepository<T>
 {

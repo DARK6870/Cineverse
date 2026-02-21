@@ -1,5 +1,7 @@
 ﻿using Infrastructure.Mongo.Conventions;
 using Infrastructure.Mongo.Models.Settings;
+using Infrastructure.Mongo.Repositories.Implementations;
+using Infrastructure.Mongo.Repositories.Interfaces.Generic;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -60,6 +62,9 @@ public static class Configuration
             var client = sp.GetRequiredService<IMongoClient>();
             return client.GetDatabase(mongoSettings.DatabaseName);
         });
+        
+        // add generic repositories
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
         return services;
     }

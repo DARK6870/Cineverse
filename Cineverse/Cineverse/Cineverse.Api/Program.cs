@@ -28,6 +28,7 @@ builder.Services
     .AddMongoRepositories()
     .AddMongoMigrations()
     .AddAuth(configuration)
+    .Services
     .AddUserContext()
     .AddApplicationServices(configuration)
     .AddPipelineBehaviours()

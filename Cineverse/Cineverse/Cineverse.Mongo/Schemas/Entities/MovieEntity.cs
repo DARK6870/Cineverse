@@ -6,24 +6,22 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Cineverse.Mongo.Schemas.Entities;
 
 [MongoCollection("movies")]
-public class MovieEntity : BaseEntity
+public record MovieEntity : TimestampedEntity
 {
-    public required string Title { get; set; }
+    public required string Title { get; init; }
     
-    public required string Genre { get; set; }
+    public required string Genre { get; init; }
     
-    public required string Description { get; set; }
+    public required string Description { get; init; }
     
-    public required string PosterUrl { get; set; }
+    public required string PosterUrl { get; init; }
     
-    public required string TrailerUrl { get; set; }
+    public required string TrailerUrl { get; init; }
     
     [BsonRepresentation(BsonType.String)]
-    public required DateOnly ReleaseDate { get; set; }
+    public required DateOnly ReleaseDate { get; init; }
     
-    public required int Duration { get; set; }
+    public required int Duration { get; init; }
 
-    public bool IsAvailable { get; set; } = true;
-
-    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+    public bool IsAvailable { get; init; } = true;
 }

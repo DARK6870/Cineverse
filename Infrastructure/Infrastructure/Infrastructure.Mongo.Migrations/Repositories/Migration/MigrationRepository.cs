@@ -6,7 +6,4 @@ namespace Infrastructure.Mongo.Migrations.Repositories.Migration;
 
 public class MigrationRepository(
     IMongoDatabase mongoDatabase
-): GenericRepository<MigrationEntity>(mongoDatabase), IMigrationRepository
-{
-    
-}
+): GenericRepository<MigrationEntity>(mongoDatabase), IMigrationRepository;

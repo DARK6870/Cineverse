@@ -3,4 +3,4 @@ using MediatR;
 
 namespace Cineverse.Application.MediatR.Requests.Movies.GetMovies;
 
-public record GetMoviesRequest : IRequest<IQueryable<MovieEntity>>;
+public record GetMoviesRequest(string? SearchTerm) : IRequest<IQueryable<MovieEntity>>;

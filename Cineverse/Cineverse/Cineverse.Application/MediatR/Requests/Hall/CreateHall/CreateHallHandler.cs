@@ -10,8 +10,6 @@ public class CreateHallHandler(
 {
     public async Task<bool> Handle(CreateHallRequest request, CancellationToken cancellationToken)
     {
-        request.Seats.ForEach(seat => seat.GenerateSeatId());
-        
         var hall = new HallEntity
         {
             Name = request.Name,
