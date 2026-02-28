@@ -1,17 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, HostListener, inject, OnInit } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { ButtonDirective } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
-import { filter } from 'rxjs/operators';
 import { MovieFilters, MovieSort } from '../../api/movie.graphql.types';
 import { MoviesFacade } from '../../store/movies.facade';
 
 @Component({
   selector: 'app-movies',
-  imports: [CommonModule, TableModule, ButtonDirective, RouterLink, TagModule],
+  imports: [CommonModule, TableModule, ButtonDirective, RouterLink, TagModule, NgOptimizedImage],
   templateUrl: 'movies.html',
   styleUrl: 'movies.css',
   standalone: true,
@@ -24,30 +22,11 @@ export class Movies implements OnInit {
     { label: 'Available', value: 'available' as const },
     { label: 'Unavailable', value: 'unavailable' as const },
   ];
-  protected readonly genreFilterOptions = [
-    'Action',
-    'Adventure',
-    'Animation',
-    'Comedy',
-    'Crime',
-    'Documentary',
-    'Drama',
-    'Family',
-    'Fantasy',
-    'Horror',
-    'Romance',
-    'Sci-Fi',
-    'Thriller',
-  ];
 
   protected facade = inject(MoviesFacade);
-  private router = inject(Router);
-  private destroyRef = inject(DestroyRef);
 
   protected isGenreFilterOpen = false;
   protected isAvailabilityFilterOpen = false;
-  protected selectedGenres: string[] = [];
-  protected selectedAvailability: Array<(typeof Movies.AVAILABILITY_VALUES)[number]> = [];
   protected genreSearchTerm = '';
   protected availabilitySearchTerm = '';
 
@@ -61,19 +40,7 @@ export class Movies implements OnInit {
   };
 
   ngOnInit() {
-    this.selectedGenres = [...this.facade.genreFilter()];
-    this.selectedAvailability = [...this.facade.availabilityFilter()] as Array<(typeof Movies.AVAILABILITY_VALUES)[number]>;
-
-    this.router.events
-      .pipe(
-        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe(() => {
-        if (this.router.url.startsWith('/movies') && history.state?.refresh) {
-          this.facade.refresh();
-        }
-      });
+    this.facade.loadGenreFilterOptions();
   }
 
   onLazyLoad(event: TableLazyLoadEvent): void {
@@ -81,6 +48,10 @@ export class Movies implements OnInit {
     const pageSize = event.rows ?? this.facade.pageSize();
     const sort = this.getSortFromEvent(event.sortField, event.sortOrder);
     this.facade.loadPage(first, pageSize, sort);
+  }
+
+  protected applySearch(searchTerm: string): void {
+    this.facade.applySearch(searchTerm);
   }
 
   protected toggleGenreFilterMenu(): void {
@@ -98,73 +69,93 @@ export class Movies implements OnInit {
   }
 
   protected toggleGenreSelection(genre: string, checked: boolean): void {
+    const selectedGenres = [...this.facade.genreFilter()];
     if (checked) {
-      if (!this.selectedGenres.includes(genre)) {
-        this.selectedGenres = [...this.selectedGenres, genre];
+      if (!selectedGenres.includes(genre)) {
+        selectedGenres.push(genre);
       }
-      return;
+    } else {
+      const index = selectedGenres.indexOf(genre);
+      if (index >= 0) {
+        selectedGenres.splice(index, 1);
+      }
     }
 
-    this.selectedGenres = this.selectedGenres.filter((value) => value !== genre);
+    this.facade.applyFilters({
+      genre: selectedGenres.length > 0 ? selectedGenres : undefined,
+      isAvailable: this.parseAvailabilityValues(this.currentAvailabilitySelection()),
+    });
   }
 
   protected toggleAvailabilitySelection(
     value: (typeof Movies.AVAILABILITY_VALUES)[number],
     checked: boolean,
   ): void {
+    const selectedAvailability = [...this.currentAvailabilitySelection()];
     if (checked) {
-      if (!this.selectedAvailability.includes(value)) {
-        this.selectedAvailability = [...this.selectedAvailability, value];
+      if (!selectedAvailability.includes(value)) {
+        selectedAvailability.push(value);
       }
-      return;
+    } else {
+      const index = selectedAvailability.indexOf(value);
+      if (index >= 0) {
+        selectedAvailability.splice(index, 1);
+      }
     }
 
-    this.selectedAvailability = this.selectedAvailability.filter((currentValue) => currentValue !== value);
+    this.facade.applyFilters({
+      genre: this.facade.genreFilter().length > 0 ? this.facade.genreFilter() : undefined,
+      isAvailable: this.parseAvailabilityValues(selectedAvailability),
+    });
   }
 
   protected applyGenreFilters(): void {
-    this.applyFilters();
     this.isGenreFilterOpen = false;
   }
 
   protected applyAvailabilityFilters(): void {
-    this.applyFilters();
     this.isAvailabilityFilterOpen = false;
   }
 
   protected clearGenreFilters(): void {
-    this.selectedGenres = [];
+    this.facade.applyFilters({
+      genre: undefined,
+      isAvailable: this.parseAvailabilityValues(this.currentAvailabilitySelection()),
+    });
     this.closeAllFilterMenus();
   }
 
   protected clearAvailabilityFilters(): void {
-    this.selectedAvailability = [];
+    this.facade.applyFilters({
+      genre: this.facade.genreFilter().length > 0 ? this.facade.genreFilter() : undefined,
+      isAvailable: undefined,
+    });
     this.closeAllFilterMenus();
   }
 
   protected isGenreSelected(genre: string): boolean {
-    return this.selectedGenres.includes(genre);
+    return this.facade.genreFilter().includes(genre);
   }
 
   protected isAvailabilitySelected(value: (typeof Movies.AVAILABILITY_VALUES)[number]): boolean {
-    return this.selectedAvailability.includes(value);
+    return this.facade.availabilityFilter().includes(value);
   }
 
   protected genreFilterButtonLabel(): string {
-    return this.getFilterButtonLabel('Genre', this.selectedGenres.length);
+    return this.getFilterButtonLabel('Genre', this.facade.genreFilter().length);
   }
 
   protected availabilityFilterButtonLabel(): string {
-    return this.getFilterButtonLabel('Availability', this.selectedAvailability.length);
+    return this.getFilterButtonLabel('Availability', this.facade.availabilityFilter().length);
   }
 
   protected filteredGenreOptions(): string[] {
     const normalizedSearch = this.genreSearchTerm.trim().toLowerCase();
     if (!normalizedSearch) {
-      return this.genreFilterOptions;
+      return this.facade.genreFilterOptions();
     }
 
-    return this.genreFilterOptions.filter((genre) => genre.toLowerCase().includes(normalizedSearch));
+    return this.facade.genreFilterOptions().filter((genre) => genre.toLowerCase().includes(normalizedSearch));
   }
 
   protected filteredAvailabilityOptions(): typeof this.availabilityFilterOptions {
@@ -188,11 +179,15 @@ export class Movies implements OnInit {
     this.closeAllFilterMenus();
   }
 
-  private applyFilters(): void {
-    this.facade.applyFilters({
-      genre: this.selectedGenres.length > 0 ? this.selectedGenres : undefined,
-      isAvailable: this.parseAvailabilityValues(this.selectedAvailability),
-    });
+  protected highlightSearchTerm(value: string | null | undefined): string {
+    const safeValue = this.escapeHtml(value ?? '');
+    const activeSearchTerm = this.facade.searchTerm().trim();
+    if (!activeSearchTerm) {
+      return safeValue;
+    }
+
+    const searchRegex = new RegExp(`(${this.escapeRegExp(activeSearchTerm)})`, 'gi');
+    return safeValue.replace(searchRegex, '<mark class="movie-search-highlight">$1</mark>');
   }
 
   private closeAllFilterMenus(): void {
@@ -246,5 +241,27 @@ export class Movies implements OnInit {
     }
 
     return values;
+  }
+
+  private currentAvailabilitySelection(): Array<(typeof Movies.AVAILABILITY_VALUES)[number]> {
+    return this.facade
+      .availabilityFilter()
+      .filter(
+        (value): value is (typeof Movies.AVAILABILITY_VALUES)[number] =>
+          Movies.AVAILABILITY_VALUES.includes(value as (typeof Movies.AVAILABILITY_VALUES)[number]),
+      );
+  }
+
+  private escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  private escapeHtml(value: string): string {
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 }

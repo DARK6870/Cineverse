@@ -1,0 +1,96 @@
+<section class="hall-form">
+  <header class="flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a pButton severity="contrast" icon="pi pi-arrow-left" routerLink="/halls" aria-label="Back to Halls"></a>
+      <div>
+        <p class="text-sm text-slate-500">Library</p>
+        <h1 class="text-2xl font-semibold text-slate-900">
+          {{ isEdit() ? 'Edit Hall' : 'Create Hall' }}
+        </h1>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button pButton severity="contrast" type="button" (click)="saveHall()">
+        <i class="pi pi-check-circle"></i> {{ isEdit() ? 'Save Changes' : 'Create Hall' }}
+      </button>
+      @if (isEdit()) {
+        <button pButton severity="danger" type="button" (click)="deleteHall()">
+          <i class="pi pi-trash"></i> Delete
+        </button>
+      }
+    </div>
+  </header>
+
+  <form class="form-card" [formGroup]="form">
+    <div class="form-grid">
+      <label class="field">
+        <span class="field__label">Name</span>
+        <input pInputText type="text" formControlName="name" placeholder="Hall 1" [invalid]="isInvalid('name')" />
+        @if (getErrorMessageByName('name')) {
+          <p-message severity="error" size="small" variant="simple">
+            {{ getErrorMessageByName('name') }}
+          </p-message>
+        }
+      </label>
+
+      <label class="field">
+        <span class="field__label">Rows</span>
+        <input pInputText type="number" min="1" formControlName="rowCount" [invalid]="isInvalid('rowCount')" />
+        @if (getErrorMessageByName('rowCount')) {
+          <p-message severity="error" size="small" variant="simple">
+            {{ getErrorMessageByName('rowCount') }}
+          </p-message>
+        }
+      </label>
+
+      <label class="field">
+        <span class="field__label">Seats Per Row</span>
+        <input pInputText type="number" min="1" formControlName="seatsPerRow" [invalid]="isInvalid('seatsPerRow')" />
+        @if (getErrorMessageByName('seatsPerRow')) {
+          <p-message severity="error" size="small" variant="simple">
+            {{ getErrorMessageByName('seatsPerRow') }}
+          </p-message>
+        }
+      </label>
+    </div>
+
+    <div class="seat-toolbar">
+      <button pButton type="button" class="p-button-sm p-button-outlined" (click)="generateSeats()">
+        <i class="pi pi-th-large"></i>
+        Generate Seats
+      </button>
+      <button pButton type="button" class="p-button-sm p-button-outlined" (click)="addSeat()">
+        <i class="pi pi-plus"></i>
+        Add Seat
+      </button>
+      <span class="seat-stats">Rows: {{ totalRows() }} | Seats: {{ totalSeats() }}</span>
+    </div>
+
+    @if (seatsError()) {
+      <p-message severity="error" size="small" variant="simple">
+        {{ seatsError() }}
+      </p-message>
+    }
+
+    <div class="seat-list" formArrayName="seats">
+      @for (seatControl of seatsArray.controls; track $index) {
+        <div class="seat-row" [formGroupName]="$index">
+          <div class="seat-input">
+            <span class="field__label">Row</span>
+            <input pInputText type="number" min="1" formControlName="row" />
+          </div>
+          <div class="seat-input">
+            <span class="field__label">Number</span>
+            <input pInputText type="number" min="1" formControlName="number" />
+          </div>
+          <button pButton type="button" class="p-button-text p-button-danger" icon="pi pi-trash" (click)="removeSeat($index)">
+          </button>
+        </div>
+      } @empty {
+        <p class="seat-empty">No seats configured. Add seats manually or generate from rows.</p>
+      }
+    </div>
+  </form>
+
+  <p-confirmDialog />
+</section>

@@ -84,12 +84,19 @@ export const getMovieByIdQuery = (id: string) => ({
   }
 })
 
-export const getMoviesPageQuery = (skip: number, take: number, sort: MovieSort, filters: MovieFilters) => ({
+export const getMoviesPageQuery = (
+  skip: number,
+  take: number,
+  sort: MovieSort,
+  filters: MovieFilters,
+  searchTerm?: string,
+) => ({
   query: gql`
-  query getMoviesPage($skip: Int!, $take: Int!) {
+  query getMoviesPage($skip: Int!, $take: Int!, $searchTerm: String) {
     movies(
       skip: $skip,
       take: $take,
+      searchTerm: $searchTerm,
       order: { ${sort.field}: ${sort.direction} }
       ${buildMoviesWhereClause(filters)}
     ) {
@@ -109,7 +116,7 @@ export const getMoviesPageQuery = (skip: number, take: number, sort: MovieSort, 
     }
   }
 `,
-  variables: { skip, take },
+  variables: { skip, take, searchTerm },
   context: {
     allowAnonymous: true
   }
@@ -140,4 +147,15 @@ export const deleteMovieMutation = (id: string) => ({
   }
   `,
   variables: { id }
+});
+
+export const getGenreDistinctFilterValuesQuery =  ({
+  query: gql`
+  query getGenreDistinctFilterValues {
+    genreDistinctFilterValues
+  }
+`,
+  context: {
+    allowAnonymous: true
+  }
 });

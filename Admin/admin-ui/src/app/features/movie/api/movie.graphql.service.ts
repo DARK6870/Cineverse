@@ -5,6 +5,7 @@ import { CreateMovieRequestInput, Movie, MovieFilters, MoviePage, MovieSort, Upd
 import {
   createMovieMutation,
   deleteMovieMutation,
+  getGenreDistinctFilterValuesQuery,
   getMovieByIdQuery,
   getMoviesByIdsQuery,
   getMoviesPageQuery,
@@ -37,40 +38,53 @@ export class MovieGraphqlService {
     );
   }
 
-  public getMoviesPage(skip: number, take: number, sort: MovieSort, filters: MovieFilters): Promise<MoviePage> {
+  public getMoviesPage(
+    skip: number,
+    take: number,
+    sort: MovieSort,
+    filters: MovieFilters,
+    searchTerm?: string,
+  ): Promise<MoviePage> {
     return firstValueFrom(
       this.apollo
         .query<{ movies: MoviePage }>({
-          ...getMoviesPageQuery(skip, take, sort, filters),
+          ...getMoviesPageQuery(skip, take, sort, filters, searchTerm),
           fetchPolicy: 'network-only',
         })
         .pipe(map((res) => res.data!.movies)),
     );
   }
 
-  public createMovie(request: CreateMovieRequestInput): Promise<string> {
+  public getGenreDistinctFilterValues(): Promise<string[]> {
     return firstValueFrom(
       this.apollo
-        .mutate<{ createMovie: string }>({
-          ...createMovieMutation(request)
+        .query<{ genreDistinctFilterValues: string[] }>({
+          ...getGenreDistinctFilterValuesQuery,
+          fetchPolicy: 'network-only',
         })
-        .pipe(map((res) => res.data!.createMovie)),
+        .pipe(map((res) => res.data?.genreDistinctFilterValues ?? [])),
     );
   }
 
-  public updateMovie(request: UpdateMovieRequestInput) {
-    return firstValueFrom(
-      this.apollo
-        .mutate<{ updateMovie: string }>({
-          ...updateMovieMutation(request)
-        })
-        .pipe(map((res) => res.data!.updateMovie)),
+  public async createMovie(request: CreateMovieRequestInput): Promise<void> {
+    await firstValueFrom(
+      this.apollo.mutate({
+        ...createMovieMutation(request),
+      }),
     );
   }
 
-  public deleteMovie(id: string) {
-    return firstValueFrom(
-      this.apollo.mutate(deleteMovieMutation(id))
+  public async updateMovie(request: UpdateMovieRequestInput): Promise<void> {
+    await firstValueFrom(
+      this.apollo.mutate({
+        ...updateMovieMutation(request),
+      }),
+    );
+  }
+
+  public async deleteMovie(id: string): Promise<void> {
+    await firstValueFrom(
+      this.apollo.mutate(deleteMovieMutation(id)),
     );
   }
 }

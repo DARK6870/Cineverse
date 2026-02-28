@@ -1,22 +1,27 @@
-<section class="movies-page">
+<section class="admin-page">
   <!-- Page title and total count -->
-  <header class="flex flex-wrap items-center justify-between gap-4">
+  <header class="admin-page-header">
     <div>
-      <p class="text-sm text-slate-500">Library</p>
-      <h1 class="text-2xl font-semibold text-slate-900">Movies</h1>
+      <p class="admin-page-kicker">Library</p>
+      <h1 class="admin-page-title">Movies ({{ facade.totalRecords() }})</h1>
     </div>
   </header>
 
   <!-- Table actions -->
-  <div class="flex flex-wrap items-center gap-3">
-    <p class="text-sm text-slate-500">
+  <div class="admin-page-actions">
+    <p class="admin-page-description">
       Manage your catalog entries and jump to edit any movie.
     </p>
+    <a pButton severity="contrast" class="p-button-sm" routerLink="/movies/new">
+      <i class="pi pi-plus"></i>
+      Create new
+    </a>
   </div>
 
   <!-- Movies data grid -->
   <p-table
-    class="movies-table"
+    class="admin-data-table movies-table"
+    [style.--admin-grid-min-height]="tableHeight"
     [value]="facade.movies()"
     [lazy]="true"
     sortMode="single"
@@ -41,7 +46,8 @@
                   <i class="pi pi-filter"></i>
                   {{ genreFilterButtonLabel() }}
                 </button>
-                <div class="filter-menu-panel" *ngIf="isGenreFilterOpen">
+                @if (isGenreFilterOpen) {
+                <div class="filter-menu-panel">
                   <p class="filter-menu-title">Genre</p>
                   <input
                     type="text"
@@ -51,7 +57,8 @@
                     (input)="genreSearchTerm = $any($event.target).value"
                   />
                   <div class="filter-menu-list">
-                    <label class="filter-menu-option" *ngFor="let genre of filteredGenreOptions()">
+                    @for (genre of filteredGenreOptions(); track genre) {
+                    <label class="filter-menu-option">
                       <input
                         type="checkbox"
                         [checked]="isGenreSelected(genre)"
@@ -59,13 +66,16 @@
                       />
                       <span>{{ genre }}</span>
                     </label>
-                    <p class="filter-menu-empty" *ngIf="filteredGenreOptions().length === 0">No options found.</p>
+                    } @empty {
+                    <p class="filter-menu-empty">No options found.</p>
+                    }
                   </div>
                   <div class="filter-menu-actions">
                     <button pButton type="button" class="p-button-text p-button-sm" (click)="clearGenreFilters()">Clear</button>
                     <button pButton type="button" class="p-button-sm" (click)="applyGenreFilters()">Apply</button>
                   </div>
                 </div>
+                }
               </div>
 
               <div class="filter-menu">
@@ -73,7 +83,8 @@
                   <i class="pi pi-filter"></i>
                   {{ availabilityFilterButtonLabel() }}
                 </button>
-                <div class="filter-menu-panel" *ngIf="isAvailabilityFilterOpen">
+                @if (isAvailabilityFilterOpen) {
+                <div class="filter-menu-panel">
                   <p class="filter-menu-title">Availability</p>
                   <input
                     type="text"
@@ -83,7 +94,8 @@
                     (input)="availabilitySearchTerm = $any($event.target).value"
                   />
                   <div class="filter-menu-list">
-                    <label class="filter-menu-option" *ngFor="let availabilityOption of filteredAvailabilityOptions()">
+                    @for (availabilityOption of filteredAvailabilityOptions(); track availabilityOption.value) {
+                    <label class="filter-menu-option">
                       <input
                         type="checkbox"
                         [checked]="isAvailabilitySelected(availabilityOption.value)"
@@ -91,22 +103,34 @@
                       />
                       <span>{{ availabilityOption.label }}</span>
                     </label>
-                    <p class="filter-menu-empty" *ngIf="filteredAvailabilityOptions().length === 0">No options found.</p>
+                    } @empty {
+                    <p class="filter-menu-empty">No options found.</p>
+                    }
                   </div>
                   <div class="filter-menu-actions">
                     <button pButton type="button" class="p-button-text p-button-sm" (click)="clearAvailabilityFilters()">Clear</button>
                     <button pButton type="button" class="p-button-sm" (click)="applyAvailabilityFilters()">Apply</button>
                   </div>
                 </div>
+                }
               </div>
             </div>
 
             <div class="grid-filter-right">
-              <span class="text-sm text-slate-500">{{ facade.totalRecords() }} total</span>
-              <a pButton severity="contrast" class="p-button-sm" routerLink="/movies/new">
-                <i class="pi pi-plus"></i>
-                Create new
-              </a>
+              <div class="flex items-center gap-2">
+                <input
+                  #searchInput
+                  type="text"
+                  class="w-56 rounded-lg border border-slate-300 px-2 py-1.5 text-sm text-slate-900 focus:border-slate-400 focus:outline-none max-[900px]:w-44"
+                  placeholder="Search movies"
+                  [value]="facade.searchTerm()"
+                  (keydown.enter)="applySearch(searchInput.value)"
+                />
+                <button pButton type="button" class="p-button-sm p-button-outlined" (click)="applySearch(searchInput.value)">
+                  <i class="pi pi-search"></i>
+                  Search
+                </button>
+              </div>
             </div>
           </div>
         </th>
@@ -116,8 +140,8 @@
         <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
         <th pSortableColumn="genre">Genre <p-sortIcon field="genre"></p-sortIcon></th>
         <th class="w-32" pSortableColumn="releaseDate">Release <p-sortIcon field="releaseDate"></p-sortIcon></th>
-        <th class="w-28" pSortableColumn="duration">Duration <p-sortIcon field="duration"></p-sortIcon></th>
-        <th class="w-28" pSortableColumn="isAvailable">Available <p-sortIcon field="isAvailable"></p-sortIcon></th>
+        <th class="w-32" pSortableColumn="duration">Duration <p-sortIcon field="duration"></p-sortIcon></th>
+        <th class="w-32" pSortableColumn="isAvailable">Available <p-sortIcon field="isAvailable"></p-sortIcon></th>
         <th class="w-24 text-right">Edit</th>
       </tr>
     </ng-template>
@@ -133,14 +157,15 @@
         </td>
         <td>
           <div class="flex flex-col">
-            <span class="font-medium text-slate-900">{{ movie.title }}</span>
-            <span class="movies-desc text-xs text-slate-500">{{ movie.description }}</span>
+            <span class="font-medium text-slate-900" [innerHTML]="highlightSearchTerm(movie.title)"></span>
+            <span class="movies-desc text-xs text-slate-500" [innerHTML]="highlightSearchTerm(movie.description)"></span>
           </div>
         </td>
         <td>
-          <span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
-            {{ movie.genre }}
-          </span>
+          <span
+            class="inline-flex items-center rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600"
+            [innerHTML]="highlightSearchTerm(movie.genre)"
+          ></span>
         </td>
         <td class="text-slate-600">
           {{ movie.releaseDate | date: 'MMM dd, yyyy' }}
@@ -165,7 +190,7 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template #emptymessage>
+    <ng-template>
       <tr>
         <td colspan="7" class="py-8 text-center text-sm text-slate-500">
           No movies found.

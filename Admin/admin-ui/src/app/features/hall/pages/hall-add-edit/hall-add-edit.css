@@ -1,0 +1,98 @@
+:host {
+  display: block;
+}
+
+.hall-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-card {
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field :is(input[type='text'], input[type='number']) {
+  width: 100%;
+}
+
+.field__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.seat-toolbar {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.seat-stats {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.seat-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.seat-row {
+  display: grid;
+  grid-template-columns: max-content max-content auto;
+  gap: 0.75rem;
+  align-items: end;
+  justify-content: start;
+  padding: 0.75rem;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.seat-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 5.5rem;
+  justify-self: start;
+}
+
+.seat-input input[type='number'] {
+  width: 100%;
+}
+
+.seat-input :is(input[type='number'], .p-inputtext) {
+  width: 100% !important;
+}
+
+.seat-empty {
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  border: 1px dashed rgba(15, 23, 42, 0.2);
+  color: #64748b;
+  font-size: 0.875rem;
+}

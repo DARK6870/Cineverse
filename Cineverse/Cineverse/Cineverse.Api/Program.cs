@@ -1,4 +1,5 @@
 using Auth.Authentication;
+using Cineverse.Api.Extensions;
 using Cineverse.Application;
 using Cineverse.Mongo;
 using Infrastructure.Context;
@@ -11,24 +12,23 @@ using Infrastructure.WebApi.GraphQl;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+var services = builder.Services;
 var assembly = typeof(Program).Assembly;
 
-// ------ Configure logger ------ //
 builder.AddInfrastructureLogging();
 
-// ------ Configure services ------ //
-builder.Services
+// configure services
+services.AddAuth(configuration);
+
+services
     .AddInfrastructureHealthChecks(options =>
     {
         options.IncludeMongoDb = true;
         options.IncludeKafka = true;
     })
-    .AddHttpContextAccessor()
     .AddMongoDatabase(configuration)
     .AddMongoRepositories()
     .AddMongoMigrations()
-    .AddAuth(configuration)
-    .Services
     .AddUserContext()
     .AddApplicationServices(configuration)
     .AddPipelineBehaviours()
@@ -38,19 +38,11 @@ builder.Services
     .AddGraphQlMutationsFromAssembly(assembly)
     ;
 
-// ------ Configure WebApplication ------ //
+// configure web application
 var app = builder.Build();
+app.ConfigureWebApplication();
 
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapGraphQlApi();
-
-app.UseUserContextMiddleware();
-app.UseGraphQlStatusCodeMiddleware();
-app.MapHealthCheck();
-
-// ------ Execute Migrations ------ //
+// execute migrations
 await app.ExecuteMigrationsAsync();
 
 app.Run();

@@ -1,1 +1,72 @@
-<p>halls works!</p>
+<section class="admin-page">
+  <header class="admin-page-header">
+    <div>
+      <p class="admin-page-kicker">Library</p>
+      <h1 class="admin-page-title">Halls ({{ facade.totalRecords() }})</h1>
+    </div>
+  </header>
+
+  <div class="admin-page-actions">
+    <p class="admin-page-description">
+      Manage cinema halls and keep seating plans visible for operations.
+    </p>
+    <a pButton severity="contrast" class="p-button-sm" routerLink="/halls/new">
+      <i class="pi pi-plus"></i>
+      Create new
+    </a>
+  </div>
+
+  <p-table
+    class="admin-data-table"
+    [style.--admin-grid-min-height]="tableHeight"
+    [value]="facade.halls()"
+    [lazy]="true"
+    sortMode="single"
+    [sortField]="facade.sortField()"
+    [sortOrder]="facade.sortOrder()"
+    [paginator]="true"
+    [rows]="facade.pageSize()"
+    [first]="facade.first()"
+    [totalRecords]="facade.totalRecords()"
+    [rowsPerPageOptions]="[25, 50, 100]"
+    [scrollable]="true"
+    [scrollHeight]="tableHeight"
+    (onLazyLoad)="onLazyLoad($event)"
+  >
+    <ng-template #header>
+      <tr class="text-xs uppercase tracking-wide text-slate-500">
+        <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+        <th class="w-28 text-right">Rows</th>
+        <th class="w-28 text-right">Seats</th>
+        <th class="w-24 text-right">Edit</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-hall>
+      <tr class="border-b border-slate-100 text-sm text-slate-700">
+        <td>
+          <span class="font-medium text-slate-900">{{ hall.name }}</span>
+        </td>
+        <td class="text-right text-slate-600">{{ rowCount(hall) }}</td>
+        <td class="text-right text-slate-600">{{ seatsCount(hall) }}</td>
+        <td class="text-right">
+          <a
+            pButton
+            class="p-button-text p-button-sm"
+            icon="pi pi-pencil"
+            [routerLink]="['/halls', hall.id, 'edit']"
+            aria-label="Edit hall"
+          ></a>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="4" class="py-8 text-center text-sm text-slate-500">
+          No halls found.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</section>

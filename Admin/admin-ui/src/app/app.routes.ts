@@ -5,6 +5,7 @@ import { MovieAddEdit } from './features/movie/pages/movie-add-edit/movie-add-ed
 import { Bookings } from './features/booking/pages/bookings/bookings';
 import { Users } from './features/user/pages/users/users';
 import { Halls } from './features/hall/pages/halls/halls';
+import { HallAddEdit } from './features/hall/pages/hall-add-edit/hall-add-edit';
 import { Screenings } from './features/screening/pages/screenings/screenings';
 import { unsavedChangesGuard } from './core/guards/unsaved-changes.guard';
 
@@ -45,6 +46,18 @@ export const routes: Routes = [
     path: 'halls',
     component: Halls,
     title: 'Admin - Halls',
+  },
+  {
+    path: 'halls/new',
+    component: HallAddEdit,
+    title: 'Admin - New Hall',
+    canDeactivate: [unsavedChangesGuard],
+  },
+  {
+    path: 'halls/:id/edit',
+    component: HallAddEdit,
+    title: 'Admin - Edit Hall',
+    canDeactivate: [unsavedChangesGuard],
   },
   {
     path: 'screenings',
