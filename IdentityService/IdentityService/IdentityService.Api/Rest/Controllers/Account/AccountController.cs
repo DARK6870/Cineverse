@@ -1,8 +1,8 @@
-﻿using IdentityService.Application.MediatR.Requests.Authentication.DeleteRefreshToken;
+﻿using IdentityService.Application.Common.Models.Options;
+using IdentityService.Application.MediatR.Requests.Authentication.DeleteRefreshToken;
 using IdentityService.Application.MediatR.Requests.Authentication.ExternalLogin;
 using IdentityService.Application.MediatR.Requests.Authentication.Login;
 using IdentityService.Application.MediatR.Requests.Authentication.Register;
-using IdentityService.Application.Models.Options;
 using IdentityService.Mongo.Schemas.Enums;
 using Infrastructure.WebApi.Rest.Base;
 using Microsoft.AspNetCore.Authentication;

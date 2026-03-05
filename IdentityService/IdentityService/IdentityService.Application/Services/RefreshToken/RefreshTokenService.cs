@@ -1,4 +1,4 @@
-﻿using IdentityService.Application.Helpers;
+﻿using IdentityService.Application.Common.Helpers;
 using IdentityService.Mongo.Repositories.RefreshToken;
 using IdentityService.Mongo.Schemas.Entities;
 using Infrastructure.Common.Helpers;

@@ -1,7 +1,7 @@
 using Auth.Authentication;
 using IdentityService.Api.Extensions;
 using IdentityService.Application;
-using IdentityService.Application.Extensions;
+using IdentityService.Application.Common.Extensions;
 using IdentityService.Mongo;
 using Infrastructure.Context;
 using Infrastructure.HealthCheck;

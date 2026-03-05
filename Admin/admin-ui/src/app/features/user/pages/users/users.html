@@ -1,1 +1,218 @@
-<p>users works!</p>
+<section class="admin-page">
+  <header class="admin-page-header">
+    <div>
+      <p class="admin-page-kicker">Identity</p>
+      <h1 class="admin-page-title">Users ({{ facade.totalRecords() }})</h1>
+    </div>
+  </header>
+
+  <div class="admin-page-actions">
+    <p class="admin-page-description">
+      Search users and narrow results by status, provider, and role.
+    </p>
+  </div>
+
+  <p-table
+    class="admin-data-table"
+    [style.--admin-grid-min-height]="tableHeight"
+    [value]="facade.users()"
+    [lazy]="true"
+    sortMode="single"
+    [sortField]="facade.sortField()"
+    [sortOrder]="facade.sortOrder()"
+    [paginator]="true"
+    [rows]="facade.pageSize()"
+    [first]="facade.first()"
+    [totalRecords]="facade.totalRecords()"
+    [rowsPerPageOptions]="[25, 50, 100]"
+    [scrollable]="true"
+    [scrollHeight]="tableHeight"
+    (onLazyLoad)="onLazyLoad($event)"
+  >
+    <ng-template #header>
+      <tr>
+        <th colspan="6" class="grid-filter-header">
+          <div class="grid-filter-controls">
+            <div class="grid-filter-left">
+              <div class="filter-menu">
+                <button pButton type="button" class="p-button-outlined p-button-sm" (click)="toggleStatusFilterMenu()">
+                  <i class="pi pi-filter"></i>
+                  {{ statusFilterButtonLabel() }}
+                </button>
+                @if (isStatusFilterOpen) {
+                <div class="filter-menu-panel">
+                  <p class="filter-menu-title">Status</p>
+                  <input
+                    type="text"
+                    class="filter-menu-search"
+                    placeholder="Search status"
+                    [value]="statusSearchTerm"
+                    (input)="statusSearchTerm = $any($event.target).value"
+                  />
+                  <div class="filter-menu-list">
+                    @for (status of filteredStatusOptions(); track status) {
+                    <label class="filter-menu-option">
+                      <input
+                        type="checkbox"
+                        [checked]="isStatusSelected(status)"
+                        (change)="toggleStatusSelection(status, $any($event.target).checked)"
+                      />
+                      <span>{{ status }}</span>
+                    </label>
+                    } @empty {
+                    <p class="filter-menu-empty">No options found.</p>
+                    }
+                  </div>
+                  <div class="filter-menu-actions">
+                    <button pButton type="button" class="p-button-text p-button-sm" (click)="clearStatusFilters()">Clear</button>
+                    <button pButton type="button" class="p-button-sm" (click)="applyStatusFilters()">Apply</button>
+                  </div>
+                </div>
+                }
+              </div>
+
+              <div class="filter-menu">
+                <button pButton type="button" class="p-button-outlined p-button-sm" (click)="toggleProviderFilterMenu()">
+                  <i class="pi pi-filter"></i>
+                  {{ providerFilterButtonLabel() }}
+                </button>
+                @if (isProviderFilterOpen) {
+                <div class="filter-menu-panel">
+                  <p class="filter-menu-title">Provider</p>
+                  <input
+                    type="text"
+                    class="filter-menu-search"
+                    placeholder="Search provider"
+                    [value]="providerSearchTerm"
+                    (input)="providerSearchTerm = $any($event.target).value"
+                  />
+                  <div class="filter-menu-list">
+                    @for (provider of filteredProviderOptions(); track provider) {
+                    <label class="filter-menu-option">
+                      <input
+                        type="checkbox"
+                        [checked]="isProviderSelected(provider)"
+                        (change)="toggleProviderSelection(provider, $any($event.target).checked)"
+                      />
+                      <span>{{ provider }}</span>
+                    </label>
+                    } @empty {
+                    <p class="filter-menu-empty">No options found.</p>
+                    }
+                  </div>
+                  <div class="filter-menu-actions">
+                    <button pButton type="button" class="p-button-text p-button-sm" (click)="clearProviderFilters()">Clear</button>
+                    <button pButton type="button" class="p-button-sm" (click)="applyProviderFilters()">Apply</button>
+                  </div>
+                </div>
+                }
+              </div>
+
+              <div class="filter-menu">
+                <button pButton type="button" class="p-button-outlined p-button-sm" (click)="toggleRoleFilterMenu()">
+                  <i class="pi pi-filter"></i>
+                  {{ roleFilterButtonLabel() }}
+                </button>
+                @if (isRoleFilterOpen) {
+                <div class="filter-menu-panel">
+                  <p class="filter-menu-title">Role</p>
+                  <input
+                    type="text"
+                    class="filter-menu-search"
+                    placeholder="Search role"
+                    [value]="roleSearchTerm"
+                    (input)="roleSearchTerm = $any($event.target).value"
+                  />
+                  <div class="filter-menu-list">
+                    @for (role of filteredRoleOptions(); track role) {
+                    <label class="filter-menu-option">
+                      <input
+                        type="checkbox"
+                        [checked]="isRoleSelected(role)"
+                        (change)="toggleRoleSelection(role, $any($event.target).checked)"
+                      />
+                      <span>{{ role }}</span>
+                    </label>
+                    } @empty {
+                    <p class="filter-menu-empty">No options found.</p>
+                    }
+                  </div>
+                  <div class="filter-menu-actions">
+                    <button pButton type="button" class="p-button-text p-button-sm" (click)="clearRoleFilters()">Clear</button>
+                    <button pButton type="button" class="p-button-sm" (click)="applyRoleFilters()">Apply</button>
+                  </div>
+                </div>
+                }
+              </div>
+            </div>
+
+            <div class="grid-filter-right">
+              <div class="flex items-center gap-2">
+                <input
+                  #searchInput
+                  type="text"
+                  class="w-56 rounded-lg border border-slate-300 px-2 py-1.5 text-sm text-slate-900 focus:border-slate-400 focus:outline-none max-[900px]:w-44"
+                  placeholder="Search users"
+                  [value]="facade.searchTerm()"
+                  (keydown.enter)="applySearch(searchInput.value)"
+                />
+                <button pButton type="button" class="p-button-sm p-button-outlined" (click)="applySearch(searchInput.value)">
+                  <i class="pi pi-search"></i>
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+        </th>
+      </tr>
+      <tr class="text-xs uppercase tracking-wide text-slate-500">
+        <th pSortableColumn="email">User <p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="provider">Provider <p-sortIcon field="provider"></p-sortIcon></th>
+        <th pSortableColumn="role">Role <p-sortIcon field="role"></p-sortIcon></th>
+        <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+        <th class="w-24 text-right">Edit</th>
+        <th class="w-24 text-right">ID</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-user>
+      <tr class="border-b border-slate-100 text-sm text-slate-700">
+        <td>
+          <div class="flex flex-col">
+            <span class="font-medium text-slate-900" [innerHTML]="highlightSearchTerm(fullName(user.firstName, user.lastName))"></span>
+            <span class="users-email text-xs text-slate-500" [innerHTML]="highlightSearchTerm(user.email)"></span>
+          </div>
+        </td>
+        <td>
+          <span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600" [innerHTML]="highlightSearchTerm(user.provider)"></span>
+        </td>
+        <td>
+          <span [innerHTML]="highlightSearchTerm(user.role)"></span>
+        </td>
+        <td>
+          <span [innerHTML]="highlightSearchTerm(user.status)"></span>
+        </td>
+        <td class="text-right">
+          <a
+            pButton
+            class="p-button-text p-button-sm"
+            icon="pi pi-pencil"
+            [routerLink]="['/users', user.id, 'edit']"
+            aria-label="Edit user"
+          ></a>
+        </td>
+        <td class="text-xs text-slate-500 text-right">
+          {{ user.id }}
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="6" class="py-8 text-center text-sm text-slate-500">
+          No users found.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</section>

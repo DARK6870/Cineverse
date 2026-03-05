@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TableLazyLoadEvent, TableModule } from 'primeng/table';
@@ -6,10 +6,11 @@ import { ButtonDirective } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { MovieFilters, MovieSort } from '../../api/movie.graphql.types';
 import { MoviesFacade } from '../../store/movies.facade';
+import { highlightSearchMatch } from '../../../../shared/utils/search-highlight.util';
 
 @Component({
   selector: 'app-movies',
-  imports: [CommonModule, TableModule, ButtonDirective, RouterLink, TagModule, NgOptimizedImage],
+  imports: [CommonModule, TableModule, ButtonDirective, RouterLink, TagModule],
   templateUrl: 'movies.html',
   styleUrl: 'movies.css',
   standalone: true,
@@ -27,6 +28,8 @@ export class Movies implements OnInit {
 
   protected isGenreFilterOpen = false;
   protected isAvailabilityFilterOpen = false;
+  protected selectedGenres: string[] = [];
+  protected selectedAvailability: Array<(typeof Movies.AVAILABILITY_VALUES)[number]> = [];
   protected genreSearchTerm = '';
   protected availabilitySearchTerm = '';
 
@@ -40,7 +43,8 @@ export class Movies implements OnInit {
   };
 
   ngOnInit() {
-    this.facade.loadGenreFilterOptions();
+    this.selectedGenres = this.currentGenreSelection();
+    this.selectedAvailability = this.currentAvailabilitySelection();
   }
 
   onLazyLoad(event: TableLazyLoadEvent): void {
@@ -55,90 +59,61 @@ export class Movies implements OnInit {
   }
 
   protected toggleGenreFilterMenu(): void {
-    this.isGenreFilterOpen = !this.isGenreFilterOpen;
+    const willOpen = !this.isGenreFilterOpen;
+    this.isGenreFilterOpen = willOpen;
     if (this.isGenreFilterOpen) {
+      if (this.facade.genreFilterOptions().length === 0) {
+        this.facade.loadGenreFilterOptions();
+      }
+      this.selectedGenres = this.currentGenreSelection();
       this.isAvailabilityFilterOpen = false;
     }
   }
 
   protected toggleAvailabilityFilterMenu(): void {
-    this.isAvailabilityFilterOpen = !this.isAvailabilityFilterOpen;
+    const willOpen = !this.isAvailabilityFilterOpen;
+    this.isAvailabilityFilterOpen = willOpen;
     if (this.isAvailabilityFilterOpen) {
+      this.selectedAvailability = this.currentAvailabilitySelection();
       this.isGenreFilterOpen = false;
     }
   }
 
   protected toggleGenreSelection(genre: string, checked: boolean): void {
-    const selectedGenres = [...this.facade.genreFilter()];
-    if (checked) {
-      if (!selectedGenres.includes(genre)) {
-        selectedGenres.push(genre);
-      }
-    } else {
-      const index = selectedGenres.indexOf(genre);
-      if (index >= 0) {
-        selectedGenres.splice(index, 1);
-      }
-    }
-
-    this.facade.applyFilters({
-      genre: selectedGenres.length > 0 ? selectedGenres : undefined,
-      isAvailable: this.parseAvailabilityValues(this.currentAvailabilitySelection()),
-    });
+    this.selectedGenres = this.toggleSelection(this.selectedGenres, genre, checked);
   }
 
   protected toggleAvailabilitySelection(
     value: (typeof Movies.AVAILABILITY_VALUES)[number],
     checked: boolean,
   ): void {
-    const selectedAvailability = [...this.currentAvailabilitySelection()];
-    if (checked) {
-      if (!selectedAvailability.includes(value)) {
-        selectedAvailability.push(value);
-      }
-    } else {
-      const index = selectedAvailability.indexOf(value);
-      if (index >= 0) {
-        selectedAvailability.splice(index, 1);
-      }
-    }
-
-    this.facade.applyFilters({
-      genre: this.facade.genreFilter().length > 0 ? this.facade.genreFilter() : undefined,
-      isAvailable: this.parseAvailabilityValues(selectedAvailability),
-    });
+    this.selectedAvailability = this.toggleSelection(this.selectedAvailability, value, checked);
   }
 
   protected applyGenreFilters(): void {
+    this.applySelectionFilters(this.selectedGenres, this.currentAvailabilitySelection());
     this.isGenreFilterOpen = false;
   }
 
   protected applyAvailabilityFilters(): void {
+    this.applySelectionFilters(this.currentGenreSelection(), this.selectedAvailability);
     this.isAvailabilityFilterOpen = false;
   }
 
   protected clearGenreFilters(): void {
-    this.facade.applyFilters({
-      genre: undefined,
-      isAvailable: this.parseAvailabilityValues(this.currentAvailabilitySelection()),
-    });
-    this.closeAllFilterMenus();
+    this.selectedGenres = [];
   }
 
   protected clearAvailabilityFilters(): void {
-    this.facade.applyFilters({
-      genre: this.facade.genreFilter().length > 0 ? this.facade.genreFilter() : undefined,
-      isAvailable: undefined,
-    });
-    this.closeAllFilterMenus();
+    this.selectedAvailability = [];
   }
 
   protected isGenreSelected(genre: string): boolean {
-    return this.facade.genreFilter().includes(genre);
+    return this.selectedGenres.includes(genre);
   }
 
   protected isAvailabilitySelected(value: (typeof Movies.AVAILABILITY_VALUES)[number]): boolean {
-    return this.facade.availabilityFilter().includes(value);
+    return this.selectedAvailability.includes(value);
   }
 
   protected genreFilterButtonLabel(): string {
@@ -180,14 +155,7 @@ export class Movies implements OnInit {
   }
 
   protected highlightSearchTerm(value: string | null | undefined): string {
-    const safeValue = this.escapeHtml(value ?? '');
-    const activeSearchTerm = this.facade.searchTerm().trim();
-    if (!activeSearchTerm) {
-      return safeValue;
-    }
-
-    const searchRegex = new RegExp(`(${this.escapeRegExp(activeSearchTerm)})`, 'gi');
-    return safeValue.replace(searchRegex, '<mark class="movie-search-highlight">$1</mark>');
+    return highlightSearchMatch(value, this.facade.searchTerm());
   }
 
   private closeAllFilterMenus(): void {
@@ -243,6 +211,20 @@ export class Movies implements OnInit {
     return values;
   }
 
+  private applySelectionFilters(
+    selectedGenres: string[],
+    selectedAvailability: Array<(typeof Movies.AVAILABILITY_VALUES)[number]>,
+  ): void {
+    this.facade.applyFilters({
+      genre: selectedGenres.length > 0 ? selectedGenres : undefined,
+      isAvailable: this.parseAvailabilityValues(selectedAvailability),
+    });
+  }
+
+  private currentGenreSelection(): string[] {
+    return [...this.facade.genreFilter()];
+  }
+
   private currentAvailabilitySelection(): Array<(typeof Movies.AVAILABILITY_VALUES)[number]> {
     return this.facade
       .availabilityFilter()
@@ -252,16 +234,11 @@ export class Movies implements OnInit {
       );
   }
 
-  private escapeRegExp(value: string): string {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
+  private toggleSelection<T extends string>(values: T[], value: T, checked: boolean): T[] {
+    if (checked) {
+      return values.includes(value) ? values : [...values, value];
+    }
 
-  private escapeHtml(value: string): string {
-    return value
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
+    return values.filter((item) => item !== value);
   }
 }

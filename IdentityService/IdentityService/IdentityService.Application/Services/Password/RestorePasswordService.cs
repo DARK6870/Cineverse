@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using IdentityService.Application.Constants;
+using IdentityService.Application.Common.Constants;
 using IdentityService.Application.Notifications.NotificationClientExtensions;
 using IdentityService.Mongo.Repositories.RefreshToken;
 using IdentityService.Mongo.Repositories.User;

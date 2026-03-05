@@ -11,7 +11,7 @@ public partial class GenericRepository<T>
 {
     public IQueryable<T> SearchByText(
         string searchText,
-        params Expression<Func<T, object>>[] excludedFields
+        params Expression<Func<T, object?>>[] excludedFields
     )
     {
         var query = Collection.AsQueryable();

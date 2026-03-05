@@ -5,7 +5,7 @@ namespace Infrastructure.Mongo.Repositories.Implementations;
 
 public partial class GenericRepository<T>
 {
-    public async Task<IEnumerable<TField>> GetDistinctFilterValuesAsync<TField>(
+    public async Task<IEnumerable<TField>> GetDistinctFieldValuesAsync<TField>(
         Expression<Func<T, TField>> fieldSelector,
         CancellationToken cancellationToken
     )

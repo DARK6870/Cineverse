@@ -3,14 +3,16 @@ import { Apollo } from 'apollo-angular';
 import { firstValueFrom, map } from 'rxjs';
 import { CreateHallRequestInput, Hall, HallPage, HallSort, UpdateHallRequestInput } from './hall.graphql.types';
 import { createHallMutation, deleteHallMutation, getHallByIdQuery, getHallsPageQuery, updateHallMutation } from './hall.graphql';
+import { APOLLO_CLIENTS } from '../../../apollo/apollo.config';
 
 @Injectable({ providedIn: 'root' })
 export class HallGraphqlService {
   private apollo = inject(Apollo);
+  private cineverseClient = this.apollo.use(APOLLO_CLIENTS.CINEVERSE);
 
   public getHallById(id: string): Promise<Hall> {
     return firstValueFrom(
-      this.apollo
+      this.cineverseClient
         .query<{ hallById: Hall }>({
           ...getHallByIdQuery(id),
           fetchPolicy: 'network-only',
@@ -21,7 +23,7 @@ export class HallGraphqlService {
 
   public getHallsPage(skip: number, take: number, sort: HallSort): Promise<HallPage> {
     return firstValueFrom(
-      this.apollo
+      this.cineverseClient
         .query<{ halls: HallPage }>({
           ...getHallsPageQuery(skip, take, sort),
           fetchPolicy: 'network-only',
@@ -32,7 +34,7 @@ export class HallGraphqlService {
 
   public async createHall(request: CreateHallRequestInput): Promise<void> {
     await firstValueFrom(
-      this.apollo.mutate({
+      this.cineverseClient.mutate({
         ...createHallMutation(request),
       }),
     );
@@ -40,7 +42,7 @@ export class HallGraphqlService {
 
   public async updateHall(request: UpdateHallRequestInput): Promise<void> {
     await firstValueFrom(
-      this.apollo.mutate({
+      this.cineverseClient.mutate({
         ...updateHallMutation(request),
       }),
     );
@@ -48,7 +50,7 @@ export class HallGraphqlService {
 
   public async deleteHall(id: string): Promise<void> {
     await firstValueFrom(
-      this.apollo.mutate({
+      this.cineverseClient.mutate({
         ...deleteHallMutation(id),
       }),
     );

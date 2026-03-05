@@ -1,0 +1,76 @@
+<section class="user-form">
+  <header class="flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a pButton severity="contrast" icon="pi pi-arrow-left" routerLink="/users" aria-label="Back to Users"></a>
+      <div>
+        <p class="text-sm text-slate-500">Identity</p>
+        <h1 class="text-2xl font-semibold text-slate-900">Edit User</h1>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button pButton severity="contrast" type="button" (click)="saveUser()">
+        <i class="pi pi-check-circle"></i> Save Changes
+      </button>
+    </div>
+  </header>
+
+  <form class="form-card" [formGroup]="form">
+    <div class="form-grid">
+      <label class="field">
+        <span class="field__label">First Name</span>
+        <input pInputText type="text" formControlName="firstName" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Last Name</span>
+        <input pInputText type="text" formControlName="lastName" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Email</span>
+        <input pInputText type="email" formControlName="email" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Provider</span>
+        <input pInputText type="text" formControlName="provider" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Role</span>
+        <select
+          class="w-full rounded-lg border border-slate-300 px-2 py-2 text-sm text-slate-900 focus:border-slate-400 focus:outline-none"
+          formControlName="role"
+        >
+          @for (role of roleOptions(); track role) {
+          <option [value]="role">{{ role }}</option>
+          }
+        </select>
+        @if (getErrorMessageByName('role')) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ getErrorMessageByName('role') }}
+        </p-message>
+        }
+      </label>
+
+      <label class="field">
+        <span class="field__label">Status</span>
+        <select
+          class="w-full rounded-lg border border-slate-300 px-2 py-2 text-sm text-slate-900 focus:border-slate-400 focus:outline-none"
+          formControlName="status"
+        >
+          @for (status of statusOptions(); track status) {
+          <option [value]="status">{{ status }}</option>
+          }
+        </select>
+        @if (getErrorMessageByName('status')) {
+        <p-message severity="error" size="small" variant="simple">
+          {{ getErrorMessageByName('status') }}
+        </p-message>
+        }
+      </label>
+    </div>
+  </form>
+
+  <p-confirmDialog />
+</section>

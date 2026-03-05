@@ -5,15 +5,15 @@ import { providePrimeNG } from 'primeng/config';
 import { errorInterceptor, loadingInterceptor, PrimeNgPreset } from '@cineverse/infrastructure-common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor, AuthLink } from '@cineverse/infrastructure-auth';
-import { provideApollo } from 'apollo-angular';
-import { createApolloClient } from './apollo/apollo.config';
+import { provideNamedApollo } from 'apollo-angular';
+import { createNamedApolloClients } from './apollo/apollo.config';
 import { ConfirmationService } from 'primeng/api';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withInterceptors([loadingInterceptor, authInterceptor, errorInterceptor])),
-    provideApollo(() => createApolloClient(inject(AuthLink))),
+    provideNamedApollo(() => createNamedApolloClients(inject(AuthLink))),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideAnimations(),

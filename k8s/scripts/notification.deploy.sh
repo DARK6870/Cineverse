@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-cd ..
-cd ..
+set -eu
 
-docker build -t notification -f NotificationService/cicd/notificationservice/docker/Dockerfile NotificationService --no-cache
-
-kind load docker-image notification:latest --name cineverse
-
-kubectl delete -f NotificationService/cicd/notificationservice/deployment.yaml
-kubectl apply -f NotificationService/cicd/notificationservice/deployment.yaml
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+"$SCRIPT_DIR/deploy-common.sh" \
+  notification \
+  NotificationService/cicd/notificationservice/docker/Dockerfile \
+  NotificationService \
+  NotificationService/cicd/notificationservice/deployment.yaml \
+  cineverse

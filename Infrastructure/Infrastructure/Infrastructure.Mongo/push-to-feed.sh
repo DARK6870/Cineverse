@@ -1,1 +1,1 @@
-dotnet nuget push ../nuget-packages/Cineverse.Infrastructure.Mongo.1.0.10.nupkg --api-key API_KEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push ../nuget-packages/Cineverse.Infrastructure.Mongo.1.0.11.nupkg --api-key API_KEY --source https://api.nuget.org/v3/index.json

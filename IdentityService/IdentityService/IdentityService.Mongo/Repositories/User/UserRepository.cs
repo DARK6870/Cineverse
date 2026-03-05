@@ -26,9 +26,7 @@ public class UserRepository(
     public async Task CreateUserAsync(UserEntity user, string password)
     {
         var passwordHash = HashHelper.ComputeSha256(password);
-
-        user.PasswordHash = passwordHash;
-        await Collection.InsertOneAsync(user);
+        await Collection.InsertOneAsync(user with { PasswordHash = passwordHash });
     }
 
     public async Task<bool> UpdateUserStatusAsync(string userId, UserStatus status)

@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-cd ..
-cd ..
+set -eu
 
-docker build -t cineverse -f Cineverse/cicd/cineverse/docker/Dockerfile Cineverse --no-cache
-
-kind load docker-image cineverse:latest --name cineverse
-
-kubectl delete -f Cineverse/cicd/cineverse/deployment.yaml
-kubectl apply -f Cineverse/cicd/cineverse/deployment.yaml
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+"$SCRIPT_DIR/deploy-common.sh" \
+  cineverse \
+  Cineverse/cicd/cineverse/docker/Dockerfile \
+  Cineverse \
+  Cineverse/cicd/cineverse/deployment.yaml \
+  cineverse

@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-cd ..
-cd ..
+set -eu
 
-docker build -t identity -f IdentityService/cicd/identity/docker/Dockerfile IdentityService --no-cache
-
-kind load docker-image identity:latest --name cineverse
-
-kubectl delete -f IdentityService/cicd/identity/deployment.yaml
-kubectl apply -f IdentityService/cicd/identity/deployment.yaml
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+"$SCRIPT_DIR/deploy-common.sh" \
+  identity \
+  IdentityService/cicd/identity/docker/Dockerfile \
+  IdentityService \
+  IdentityService/cicd/identity/deployment.yaml \
+  cineverse

@@ -4,7 +4,7 @@ namespace Infrastructure.Mongo.Repositories.Interfaces.Queries;
 
 public interface IDistinctRepository<T>
 {
-    Task<IEnumerable<TField>> GetDistinctFilterValuesAsync<TField>(
+    Task<IEnumerable<TField>> GetDistinctFieldValuesAsync<TField>(
         Expression<Func<T, TField>> fieldSelector,
         CancellationToken cancellationToken
     );

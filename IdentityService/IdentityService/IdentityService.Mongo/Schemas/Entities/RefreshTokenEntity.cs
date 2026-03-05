@@ -6,16 +6,16 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace IdentityService.Mongo.Schemas.Entities;
 
 [MongoCollection("refreshTokens")]
-public class RefreshTokenEntity : BaseEntity
+public record RefreshTokenEntity : BaseEntity
 {
     [BsonRepresentation(BsonType.ObjectId)]
-    public required string UserId { get; set; }
+    public required string UserId { get; init; }
     
-    public required string IpAddress { get; set; }
+    public required string IpAddress { get; init; }
     
-    public required string TokenHash { get; set; }
+    public required string TokenHash { get; init; }
     
-    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+    public DateTime DateCreated { get; init; } = DateTime.UtcNow;
     
-    public DateTime DateExpired { get; set; } = DateTime.UtcNow.AddDays(14);
+    public DateTime DateExpired { get; init; } = DateTime.UtcNow.AddDays(14);
 }

@@ -13,8 +13,7 @@ public class UpdatePersonalInformationHandler(
 {
     public async Task<bool> Handle(UpdatePersonalInformationRequest request, CancellationToken cancellationToken)
     {
-        var user = await userRepository.FindByIdAsync(userContext.UserId, cancellationToken)
-            ?? throw new ApiRequestException("User not found", HttpStatusCode.NotFound);
+        var user = await userRepository.FindByIdOrThrowAsync(userContext.UserId, cancellationToken);
 
         return await userRepository.UpdateUserPersonalInformationAsync(
             user.Id,

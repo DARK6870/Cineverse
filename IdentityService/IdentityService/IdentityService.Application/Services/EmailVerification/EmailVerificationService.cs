@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Auth.Models.Enums;
-using IdentityService.Application.Constants;
-using IdentityService.Application.Helpers;
+using IdentityService.Application.Common.Constants;
+using IdentityService.Application.Common.Helpers;
 using IdentityService.Application.Notifications.NotificationClientExtensions;
 using IdentityService.Mongo.Repositories.User;
 using Infrastructure.Context.UserContext;

@@ -6,25 +6,21 @@ using Infrastructure.Mongo.Models.Entities;
 namespace IdentityService.Mongo.Schemas.Entities;
 
 [MongoCollection("users")]
-public class UserEntity : BaseEntity
+public record UserEntity : TimestampedEntity
 {
-    public required string Email { get; set; }
+    public required string Email { get; init; }
     
-    public required string FirstName { get; set; }
+    public required string FirstName { get; init; }
     
-    public required string LastName { get; set; }
+    public required string LastName { get; init; }
 
-    public Role Role { get; set; } = Role.User;
+    public Role Role { get; init; } = Role.User;
 
-    public UserStatus Status { get; set; } = UserStatus.PendingEmailConfirmation;
+    public UserStatus Status { get; init; } = UserStatus.PendingEmailConfirmation;
     
-    public string? PasswordHash { get; set; }
+    public string? PasswordHash { get; init; }
     
-    public AuthenticationProvider Provider { get; set; } = AuthenticationProvider.Identity;
-    
-    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
-    
-    public DateTime DateUpdated { get; set; } = DateTime.UtcNow;
+    public AuthenticationProvider Provider { get; init; } = AuthenticationProvider.Identity;
 
     public string GetFullName()
     {

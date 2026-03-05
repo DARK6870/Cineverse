@@ -4,6 +4,7 @@ import { Movies } from './features/movie/pages/movies/movies';
 import { MovieAddEdit } from './features/movie/pages/movie-add-edit/movie-add-edit';
 import { Bookings } from './features/booking/pages/bookings/bookings';
 import { Users } from './features/user/pages/users/users';
+import { UserEdit } from './features/user/pages/user-edit/user-edit';
 import { Halls } from './features/hall/pages/halls/halls';
 import { HallAddEdit } from './features/hall/pages/hall-add-edit/hall-add-edit';
 import { Screenings } from './features/screening/pages/screenings/screenings';
@@ -41,6 +42,12 @@ export const routes: Routes = [
     path: 'users',
     component: Users,
     title: 'Admin - Users',
+  },
+  {
+    path: 'users/:id/edit',
+    component: UserEdit,
+    title: 'Admin - Edit User',
+    canDeactivate: [unsavedChangesGuard],
   },
   {
     path: 'halls',

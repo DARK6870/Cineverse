@@ -2,6 +2,7 @@
 import { Apollo } from 'apollo-angular';
 import { firstValueFrom, map } from 'rxjs';
 import { CreateMovieRequestInput, Movie, MovieFilters, MoviePage, MovieSort, UpdateMovieRequestInput } from './movie.graphql.types';
+import { APOLLO_CLIENTS } from '../../../apollo/apollo.config';
 import {
   createMovieMutation,
   deleteMovieMutation,
@@ -15,10 +16,11 @@ import {
 @Injectable({ providedIn: 'root' })
 export class MovieGraphqlService {
   private apollo = inject(Apollo);
+  private cineverseClient = this.apollo.use(APOLLO_CLIENTS.CINEVERSE);
 
   public getMoviesByIds(ids: string[]): Promise<Movie[]> {
     return firstValueFrom(
-      this.apollo
+      this.cineverseClient
         .query<{ movies: { items: Movie[] } }>({
           ...getMoviesByIdsQuery(ids),
           fetchPolicy: 'network-only',
@@ -29,7 +31,7 @@ export class MovieGraphqlService {
 
   public getMovieById(id: string): Promise<Movie> {
     return firstValueFrom(
-      this.apollo
+      this.cineverseClient
         .query<{ movieById: Movie }>({
           ...getMovieByIdQuery(id),
           fetchPolicy: 'network-only',
@@ -46,7 +48,7 @@ export class MovieGraphqlService {
     searchTerm?: string,
   ): Promise<MoviePage> {
     return firstValueFrom(
-      this.apollo
+      this.cineverseClient
         .query<{ movies: MoviePage }>({
           ...getMoviesPageQuery(skip, take, sort, filters, searchTerm),
           fetchPolicy: 'network-only',
@@ -57,7 +59,7 @@ export class MovieGraphqlService {
 
   public getGenreDistinctFilterValues(): Promise<string[]> {
     return firstValueFrom(
-      this.apollo
+      this.cineverseClient
         .query<{ genreDistinctFilterValues: string[] }>({
           ...getGenreDistinctFilterValuesQuery,
           fetchPolicy: 'network-only',
@@ -68,7 +70,7 @@ export class MovieGraphqlService {
 
   public async createMovie(request: CreateMovieRequestInput): Promise<void> {
     await firstValueFrom(
-      this.apollo.mutate({
+      this.cineverseClient.mutate({
         ...createMovieMutation(request),
       }),
     );
@@ -76,7 +78,7 @@ export class MovieGraphqlService {
 
   public async updateMovie(request: UpdateMovieRequestInput): Promise<void> {
     await firstValueFrom(
-      this.apollo.mutate({
+      this.cineverseClient.mutate({
         ...updateMovieMutation(request),
       }),
     );
@@ -84,7 +86,7 @@ export class MovieGraphqlService {
 
   public async deleteMovie(id: string): Promise<void> {
     await firstValueFrom(
-      this.apollo.mutate(deleteMovieMutation(id)),
+      this.cineverseClient.mutate(deleteMovieMutation(id)),
     );
   }
 }
