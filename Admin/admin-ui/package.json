@@ -11,6 +11,7 @@
   "private": true,
   "packageManager": "npm@11.6.2",
   "dependencies": {
+    "@apollo/client": "^4.0.7",
     "@angular/animations": "^21.1.4",
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
@@ -22,7 +23,10 @@
     "@cineverse/infrastructure-common": "^0.0.5",
     "@ngrx/component-store": "^21.0.0",
     "@primeuix/themes": "^2.0.3",
+    "apollo-angular": "^13.0.0",
+    "graphql": "^16.12.0",
     "marked": "^17.0.2",
+    "ngx-cookie-service": "^21.1.0",
     "primeflex": "^4.0.0",
     "primeicons": "^7.0.0",
     "primeng": "^21.1.1",

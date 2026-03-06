@@ -2,9 +2,9 @@
 FROM node:22.12-alpine AS build
 
 # args
-ARG APP_NAME="identityui"
-ARG PROJECT_NAME="identity-ui"
-ARG BASE_HREF="/identity/"
+ARG APP_NAME="adminui"
+ARG PROJECT_NAME="admin-ui"
+ARG BASE_HREF="/admin/"
 
 # copy files
 COPY ${PROJECT_NAME} /opt/${APP_NAME}/
@@ -20,8 +20,8 @@ RUN npx ng build --base-href=${BASE_HREF} --output-path /app/out
 FROM nginx:alpine-slim AS runtime-app
 
 # args
-ARG APP_NAME="identityui"
-ARG BASE_HREF="/identity/"
+ARG APP_NAME="adminui"
+ARG BASE_HREF="/admin/"
 ENV BASE_HREF=${BASE_HREF}
 
 WORKDIR /opt/${APP_NAME}/
