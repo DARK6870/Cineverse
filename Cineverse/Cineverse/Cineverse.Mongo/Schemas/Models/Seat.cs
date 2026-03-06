@@ -2,7 +2,7 @@
 
 public record Seat
 {
-    public string SeatId => $"{Row}-{Number}";
+    public required string SeatId { get; init; }
     
     public int Row { get; init; }
     

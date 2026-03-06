@@ -11,11 +11,11 @@
     </div>
     <div class="flex items-center gap-2">
       <button pButton severity="contrast" type="button" (click)="saveHall()">
-        <i class="pi pi-check-circle"></i> {{ isEdit() ? 'Save Changes' : 'Create Hall' }}
+        {{ isEdit() ? 'Save Changes' : 'Create Hall' }}
       </button>
       @if (isEdit()) {
         <button pButton severity="danger" type="button" (click)="deleteHall()">
-          <i class="pi pi-trash"></i> Delete
+          Delete
         </button>
       }
     </div>

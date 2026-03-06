@@ -1,21 +1,96 @@
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
-<p>dashboard works!</p>
+<section class="dashboard-page">
+  <header class="dashboard-header">
+    <div>
+      <p class="dashboard-kicker">Operations</p>
+      <h1 class="dashboard-title">Cinema Dashboard</h1>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <div class="dashboard-loading">
+      Loading dashboard metrics...
+    </div>
+  } @else {
+    <div class="dashboard-grid dashboard-grid--kpi">
+      <article class="kpi-card kpi-card--movies">
+        <i class="pi pi-video kpi-card__icon"></i>
+        <p class="kpi-card__label">Movies</p>
+        <p class="kpi-card__value">{{ totals().movies }}</p>
+      </article>
+      <article class="kpi-card kpi-card--users">
+        <i class="pi pi-users kpi-card__icon"></i>
+        <p class="kpi-card__label">Users</p>
+        <p class="kpi-card__value">{{ totals().users }}</p>
+      </article>
+    </div>
+
+    <div class="dashboard-grid dashboard-grid--summary">
+      <article class="summary-card summary-card--screenings">
+        <i class="pi pi-calendar summary-card__icon"></i>
+        <p class="summary-card__label">Screenings In Next 7 Days</p>
+        <p class="summary-card__value">{{ screeningsThisWeek() }}</p>
+      </article>
+      <article class="summary-card summary-card--bookings">
+        <i class="pi pi-shopping-cart summary-card__icon"></i>
+        <p class="summary-card__label">Bookings This Week</p>
+        <p class="summary-card__value">{{ bookingsThisWeek() }}</p>
+      </article>
+      <article class="summary-card summary-card--revenue-week">
+        <i class="pi pi-dollar summary-card__icon"></i>
+        <p class="summary-card__label">Revenue This Week</p>
+        <p class="summary-card__value">${{ revenueThisWeek() }}</p>
+      </article>
+      <article class="summary-card summary-card--revenue-month">
+        <i class="pi pi-wallet summary-card__icon"></i>
+        <p class="summary-card__label">Revenue This Month</p>
+        <p class="summary-card__value">${{ revenueThisMonth() }}</p>
+      </article>
+    </div>
+
+    @if (analyticsNotice()) {
+      <p class="dashboard-note">
+        {{ analyticsNotice() }}
+      </p>
+    }
+
+    <div class="dashboard-grid dashboard-grid--trends">
+      <article class="panel-card">
+        <header class="panel-card__header">
+          <h2>Bookings Per Week (Last 8 Weeks)</h2>
+        </header>
+        <div class="trend-list">
+          @for (point of bookingsWeeklyTrend(); track point.label) {
+            <div class="trend-row">
+              <span class="trend-row__label">{{ point.label }}</span>
+              <div class="trend-row__bar-wrap">
+                <div class="trend-row__bar" [style.width.%]="trendWidth(point.value, bookingTrendMax())"></div>
+              </div>
+              <span class="trend-row__value">{{ point.value }}</span>
+            </div>
+          } @empty {
+            <p class="trend-empty">No booking trend data available.</p>
+          }
+        </div>
+      </article>
+
+      <article class="panel-card">
+        <header class="panel-card__header">
+          <h2>Screenings Per Month (Last 6 Months)</h2>
+        </header>
+        <div class="trend-list">
+          @for (point of screeningsMonthlyTrend(); track point.label) {
+            <div class="trend-row">
+              <span class="trend-row__label">{{ point.label }}</span>
+              <div class="trend-row__bar-wrap">
+                <div class="trend-row__bar trend-row__bar--alt" [style.width.%]="trendWidth(point.value, screeningTrendMax())"></div>
+              </div>
+              <span class="trend-row__value">{{ point.value }}</span>
+            </div>
+          } @empty {
+            <p class="trend-empty">No screening trend data available.</p>
+          }
+        </div>
+      </article>
+    </div>
+  }
+</section>

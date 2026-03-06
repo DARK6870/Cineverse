@@ -1,0 +1,146 @@
+<section class="screening-form">
+  <header class="flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a pButton severity="contrast" icon="pi pi-arrow-left" routerLink="/screenings" aria-label="Back to Screenings"></a>
+      <div>
+        <p class="text-sm text-slate-500">Showtimes</p>
+        <h1 class="text-2xl font-semibold text-slate-900">
+          {{ isEdit() ? 'Edit Screening' : 'Create Screening' }}
+        </h1>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button pButton severity="contrast" type="button" (click)="saveScreening()">
+        {{ isEdit() ? 'Save Changes' : 'Create Screening' }}
+      </button>
+
+      @if (isEdit()) {
+        <button pButton severity="danger" type="button" (click)="deleteScreening()">
+          Delete
+        </button>
+      }
+    </div>
+  </header>
+
+  <form class="form-card" [formGroup]="form">
+    <div class="form-grid">
+      <div class="field">
+        <span class="field__label">Movie</span>
+        <div class="filter-menu movie-select-menu">
+          <button
+            pButton
+            type="button"
+            class="p-button-outlined p-button-sm field-select-trigger"
+            [class.field__control--invalid]="isInvalid('movieId')"
+            (click)="toggleMovieSelectMenu()"
+          >
+            <span class="field-select-trigger__label">{{ selectedMovieLabel() }}</span>
+            <i class="pi" [class.pi-chevron-down]="!isMovieSelectOpen" [class.pi-chevron-up]="isMovieSelectOpen"></i>
+          </button>
+
+          @if (isMovieSelectOpen) {
+            <div class="filter-menu-panel field-select-panel">
+              <p class="filter-menu-title">Movie</p>
+              <input
+                type="text"
+                class="filter-menu-search"
+                placeholder="Search movie"
+                [value]="movieSearchTerm"
+                (input)="movieSearchTerm = $any($event.target).value"
+              />
+              <div class="filter-menu-list">
+                @for (movieOption of filteredMovieOptions(); track movieOption.id) {
+                  <label class="filter-menu-option">
+                    <input
+                      type="radio"
+                      name="movie-option"
+                      [checked]="isMovieSelected(movieOption.id)"
+                      (change)="selectMovie(movieOption.id)"
+                    />
+                    <span>{{ movieOption.label }}</span>
+                  </label>
+                } @empty {
+                  <p class="filter-menu-empty">No options found.</p>
+                }
+              </div>
+              <div class="filter-menu-actions">
+                <button pButton type="button" class="p-button-text p-button-sm" (click)="clearMovieSelection()">Clear</button>
+              </div>
+            </div>
+          }
+        </div>
+        @if (getErrorMessageByName('movieId')) {
+          <p-message severity="error" size="small" variant="simple">
+            {{ getErrorMessageByName('movieId') }}
+          </p-message>
+        }
+      </div>
+
+      <label class="field">
+        <span class="field__label">Hall</span>
+        <select class="field__control" formControlName="hallId" [class.field__control--invalid]="isInvalid('hallId')">
+          <option value="">Select hall</option>
+          @for (hallOption of hallOptions(); track hallOption.id) {
+            <option [value]="hallOption.id">{{ hallOption.label }}</option>
+          }
+        </select>
+        @if (getErrorMessageByName('hallId')) {
+          <p-message severity="error" size="small" variant="simple">
+            {{ getErrorMessageByName('hallId') }}
+          </p-message>
+        }
+      </label>
+
+      <label class="field">
+        <span class="field__label">Date</span>
+        <input pInputText type="date" formControlName="date" [invalid]="isInvalid('date')" />
+        @if (getErrorMessageByName('date')) {
+          <p-message severity="error" size="small" variant="simple">
+            {{ getErrorMessageByName('date') }}
+          </p-message>
+        }
+      </label>
+
+      <label class="field">
+        <span class="field__label">Start Time</span>
+        <input pInputText type="time" formControlName="startTime" [invalid]="isInvalid('startTime')" />
+        @if (getErrorMessageByName('startTime')) {
+          <p-message severity="error" size="small" variant="simple">
+            {{ getErrorMessageByName('startTime') }}
+          </p-message>
+        }
+      </label>
+
+      <label class="field">
+        <span class="field__label">End Time</span>
+        <input pInputText type="time" formControlName="endTime" [invalid]="isInvalid('endTime')" />
+        @if (getErrorMessageByName('endTime')) {
+          <p-message severity="error" size="small" variant="simple">
+            {{ getErrorMessageByName('endTime') }}
+          </p-message>
+        }
+      </label>
+
+      <label class="field">
+        <span class="field__label">Ticket Price</span>
+        <p-inputNumber formControlName="ticketPrice" [min]="1" [useGrouping]="false" [invalid]="isInvalid('ticketPrice')"></p-inputNumber>
+        @if (getErrorMessageByName('ticketPrice')) {
+          <p-message severity="error" size="small" variant="simple">
+            {{ getErrorMessageByName('ticketPrice') }}
+          </p-message>
+        }
+      </label>
+
+      @if (timeRangeError()) {
+        <div class="field field--full">
+          <p-message severity="error" size="small" variant="simple">
+            {{ timeRangeError() }}
+          </p-message>
+        </div>
+      }
+    </div>
+  </form>
+
+  <p-confirmDialog />
+</section>

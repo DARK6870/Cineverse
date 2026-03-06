@@ -1,4 +1,4 @@
-﻿using Cineverse.Mongo.Schemas.Models;
+﻿using Cineverse.Application.MediatR.Requests.Hall.CreateHall;
 using MediatR;
 
 namespace Cineverse.Application.MediatR.Requests.Hall.UpdateHall;
@@ -6,5 +6,5 @@ namespace Cineverse.Application.MediatR.Requests.Hall.UpdateHall;
 public record UpdateHallRequest(
     string Id,
     string Name,
-    Seat[] Seats
+    SeatRequest[] Seats
 ) : IRequest<bool>;

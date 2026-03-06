@@ -1,0 +1,7 @@
+:host {
+  display: block;
+}
+
+.filter-menu-panel--date {
+  min-width: 240px;
+}

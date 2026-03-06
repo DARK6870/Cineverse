@@ -13,12 +13,12 @@
     </div>
     <div class="flex items-center gap-2">
       <button pButton severity="contrast" type="button" (click)="saveMovie()">
-        <i class="pi pi-check-circle"></i> {{ isEdit() ? 'Save Changes' : 'Create Movie' }}
+        {{ isEdit() ? 'Save Changes' : 'Create Movie' }}
       </button>
 
       @if(isEdit()) {
       <button pButton severity="danger" type="button" (click)="deleteMovie()">
-        <i class="pi pi-trash"></i> Delete
+        Delete
       </button>
       }
     </div>

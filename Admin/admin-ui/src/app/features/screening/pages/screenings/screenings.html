@@ -1,1 +1,184 @@
-<p>screenings works!</p>
+<section class="admin-page">
+  <header class="admin-page-header">
+    <div>
+      <p class="admin-page-kicker">Showtimes</p>
+      <h1 class="admin-page-title">Screenings ({{ facade.totalRecords() }})</h1>
+    </div>
+  </header>
+
+  <div class="admin-page-actions">
+    <p class="admin-page-description">
+      Manage screening schedule and quickly edit prices, halls, and timeslots.
+    </p>
+    <a pButton severity="contrast" class="p-button-sm" routerLink="/screenings/new">
+      <i class="pi pi-plus"></i>
+      Create new
+    </a>
+  </div>
+
+  <p-table
+    class="admin-data-table"
+    [style.--admin-grid-min-height]="tableHeight"
+    [value]="facade.screenings()"
+    [lazy]="true"
+    sortMode="single"
+    [sortField]="facade.sortField()"
+    [sortOrder]="facade.sortOrder()"
+    [paginator]="true"
+    [rows]="facade.pageSize()"
+    [first]="facade.first()"
+    [totalRecords]="facade.totalRecords()"
+    [rowsPerPageOptions]="[25, 50, 100]"
+    [scrollable]="true"
+    [scrollHeight]="tableHeight"
+    (onLazyLoad)="onLazyLoad($event)"
+  >
+    <ng-template #header>
+      <tr>
+        <th colspan="7" class="grid-filter-header">
+          <div class="grid-filter-controls">
+            <div class="grid-filter-left">
+              <div class="filter-menu">
+                <button pButton type="button" class="p-button-outlined p-button-sm" (click)="toggleMovieFilterMenu()">
+                  <i class="pi pi-filter"></i>
+                  {{ movieFilterButtonLabel() }}
+                </button>
+                @if (isMovieFilterOpen) {
+                  <div class="filter-menu-panel">
+                    <p class="filter-menu-title">Movie</p>
+                    <input
+                      type="text"
+                      class="filter-menu-search"
+                      placeholder="Search movie"
+                      [value]="movieSearchTerm"
+                      (input)="movieSearchTerm = $any($event.target).value"
+                    />
+                    <div class="filter-menu-list">
+                      @for (movieOption of filteredMovieOptions(); track movieOption.id) {
+                        <label class="filter-menu-option">
+                          <input
+                            type="checkbox"
+                            [checked]="isMovieSelected(movieOption.id)"
+                            (change)="toggleMovieSelection(movieOption.id, $any($event.target).checked)"
+                          />
+                          <span>{{ movieOption.label }}</span>
+                        </label>
+                      } @empty {
+                        <p class="filter-menu-empty">No options found.</p>
+                      }
+                    </div>
+                    <div class="filter-menu-actions">
+                      <button pButton type="button" class="p-button-text p-button-sm" (click)="clearMovieFilters()">Clear</button>
+                      <button pButton type="button" class="p-button-sm" (click)="applyMovieFilters()">Apply</button>
+                    </div>
+                  </div>
+                }
+              </div>
+
+              <div class="filter-menu">
+                <button pButton type="button" class="p-button-outlined p-button-sm" (click)="toggleHallFilterMenu()">
+                  <i class="pi pi-filter"></i>
+                  {{ hallFilterButtonLabel() }}
+                </button>
+                @if (isHallFilterOpen) {
+                  <div class="filter-menu-panel">
+                    <p class="filter-menu-title">Hall</p>
+                    <input
+                      type="text"
+                      class="filter-menu-search"
+                      placeholder="Search hall"
+                      [value]="hallSearchTerm"
+                      (input)="hallSearchTerm = $any($event.target).value"
+                    />
+                    <div class="filter-menu-list">
+                      @for (hallOption of filteredHallOptions(); track hallOption.id) {
+                        <label class="filter-menu-option">
+                          <input
+                            type="checkbox"
+                            [checked]="isHallSelected(hallOption.id)"
+                            (change)="toggleHallSelection(hallOption.id, $any($event.target).checked)"
+                          />
+                          <span>{{ hallOption.label }}</span>
+                        </label>
+                      } @empty {
+                        <p class="filter-menu-empty">No options found.</p>
+                      }
+                    </div>
+                    <div class="filter-menu-actions">
+                      <button pButton type="button" class="p-button-text p-button-sm" (click)="clearHallFilters()">Clear</button>
+                      <button pButton type="button" class="p-button-sm" (click)="applyHallFilters()">Apply</button>
+                    </div>
+                  </div>
+                }
+              </div>
+
+              <div class="filter-menu">
+                <button pButton type="button" class="p-button-outlined p-button-sm" (click)="toggleDateFilterMenu()">
+                  <i class="pi pi-filter"></i>
+                  {{ dateFilterButtonLabel() }}
+                </button>
+                @if (isDateFilterOpen) {
+                  <div class="filter-menu-panel filter-menu-panel--date">
+                    <p class="filter-menu-title">Date</p>
+                    <input
+                      type="date"
+                      class="filter-menu-search"
+                      [value]="selectedDate"
+                      (input)="selectedDate = $any($event.target).value"
+                    />
+                    <div class="filter-menu-actions">
+                      <button pButton type="button" class="p-button-text p-button-sm" (click)="clearDateFilter()">Clear</button>
+                      <button pButton type="button" class="p-button-sm" (click)="applyDateFilter()">Apply</button>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </th>
+      </tr>
+
+      <tr class="text-xs uppercase tracking-wide text-slate-500">
+        <th>Movie</th>
+        <th>Hall</th>
+        <th class="w-32" pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
+        <th class="w-24" pSortableColumn="startTime">Start <p-sortIcon field="startTime"></p-sortIcon></th>
+        <th class="w-24" pSortableColumn="endTime">End <p-sortIcon field="endTime"></p-sortIcon></th>
+        <th class="w-24 text-right" pSortableColumn="ticketPrice">Price <p-sortIcon field="ticketPrice"></p-sortIcon></th>
+        <th class="w-24 text-right">Edit</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-screening>
+      <tr class="border-b border-slate-100 text-sm text-slate-700">
+        <td>
+          <span class="font-medium text-slate-900">{{ movieLabel(screening.movieId) }}</span>
+        </td>
+        <td>
+          <span class="text-slate-700">{{ hallLabel(screening.hallId) }}</span>
+        </td>
+        <td class="text-slate-600">{{ screening.date | date: 'MMM dd, yyyy' }}</td>
+        <td class="text-slate-600">{{ formatTime(screening.startTime) }}</td>
+        <td class="text-slate-600">{{ formatTime(screening.endTime) }}</td>
+        <td class="text-right font-medium text-slate-700">${{ screening.ticketPrice }}</td>
+        <td class="text-right">
+          <a
+            pButton
+            class="p-button-text p-button-sm"
+            icon="pi pi-pencil"
+            [routerLink]="['/screenings', screening.id, 'edit']"
+            aria-label="Edit screening"
+          ></a>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="7" class="py-8 text-center text-sm text-slate-500">
+          No screenings found.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</section>

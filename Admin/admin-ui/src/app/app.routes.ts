@@ -8,6 +8,7 @@ import { UserEdit } from './features/user/pages/user-edit/user-edit';
 import { Halls } from './features/hall/pages/halls/halls';
 import { HallAddEdit } from './features/hall/pages/hall-add-edit/hall-add-edit';
 import { Screenings } from './features/screening/pages/screenings/screenings';
+import { ScreeningAddEdit } from './features/screening/pages/screening-add-edit/screening-add-edit';
 import { unsavedChangesGuard } from './core/guards/unsaved-changes.guard';
 
 export const routes: Routes = [
@@ -70,6 +71,18 @@ export const routes: Routes = [
     path: 'screenings',
     component: Screenings,
     title: 'Admin - Screenings',
+  },
+  {
+    path: 'screenings/new',
+    component: ScreeningAddEdit,
+    title: 'Admin - New Screening',
+    canDeactivate: [unsavedChangesGuard],
+  },
+  {
+    path: 'screenings/:id/edit',
+    component: ScreeningAddEdit,
+    title: 'Admin - Edit Screening',
+    canDeactivate: [unsavedChangesGuard],
   },
   {
     path: '**',
