@@ -1,1 +1,1 @@
-dotnet nuget push ../nuget-packages/Cineverse.Infrastructure.Common.1.0.4.nupkg --api-key API_KEY --source https://api.nuget.org/v3/index.json
+dotnet nuget push ../nuget-packages/Cineverse.Infrastructure.Common.1.0.5.nupkg --api-key API_KEY --source https://api.nuget.org/v3/index.json

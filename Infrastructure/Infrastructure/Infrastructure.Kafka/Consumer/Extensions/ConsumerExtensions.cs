@@ -1,4 +1,4 @@
-﻿using Infrastructure.Kafka.Exceptions;
+﻿using Infrastructure.Kafka.Common.Exceptions;
 
 namespace Infrastructure.Kafka.Consumer.Extensions;
 

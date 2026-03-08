@@ -1,5 +1,5 @@
 ﻿using Confluent.Kafka;
-using Infrastructure.Kafka.Models.Metadata;
+using Infrastructure.Kafka.Common.Models.Metadata;
 
 namespace Infrastructure.Kafka.Consumer;
 

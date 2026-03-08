@@ -1,4 +1,4 @@
-﻿using Infrastructure.Kafka.Models.Settings;
+﻿using Infrastructure.Kafka.Common.Models.Settings;
 
 namespace NotificationService.Client.Kafka.Settings;
 

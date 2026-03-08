@@ -1,5 +1,5 @@
-﻿using Infrastructure.Kafka.Exceptions;
-using Infrastructure.Kafka.Models.Settings;
+﻿using Infrastructure.Kafka.Common.Exceptions;
+using Infrastructure.Kafka.Common.Models.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

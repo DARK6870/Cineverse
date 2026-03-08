@@ -1,10 +1,8 @@
-﻿using System.Text.Json;
-using Confluent.Kafka;
+﻿using Confluent.Kafka;
 using Infrastructure.Common.Helpers;
-using Infrastructure.Common.Json.Configuration;
-using Infrastructure.Kafka.Exceptions;
-using Infrastructure.Kafka.Extensions;
-using Infrastructure.Kafka.Models.Settings;
+using Infrastructure.Kafka.Common.Exceptions;
+using Infrastructure.Kafka.Common.Extensions;
+using Infrastructure.Kafka.Common.Models.Settings;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Kafka.Producer;

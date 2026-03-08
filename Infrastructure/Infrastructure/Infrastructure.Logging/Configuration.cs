@@ -33,29 +33,6 @@ public static class Configuration
         return builder;
     }
     
-    public static WebApplicationBuilder AddInfrastructureLogging(
-        this WebApplicationBuilder builder,
-        string configFilePath
-    )
-    {
-        if (!File.Exists(configFilePath))
-            throw new FileNotFoundException($"Log configuration file not found: {configFilePath}");
-
-        var cfg = new ConfigurationBuilder()
-            .AddJsonFile(configFilePath, optional: false, reloadOnChange: true)
-            .Build();
-
-        var loggerConfiguration = new LoggerConfiguration()
-            .ReadFrom.Configuration(cfg)
-            .Enrich.FromLogContext();
-
-        Log.Logger = loggerConfiguration.CreateLogger();
-
-        builder.Host.UseSerilog();
-
-        return builder;
-    }
-    
     private static IConfiguration LoadEmbeddedConfiguration()
     {
         var assembly = Assembly.GetExecutingAssembly();
@@ -104,7 +81,7 @@ public static class Configuration
             
             options.ResourceAttributes = new Dictionary<string, object>
             {
-                [ServiceNameAttribute] = Assembly.GetExecutingAssembly().GetName().Name ?? "Unknown"
+                [ServiceNameAttribute] = AppDomain.CurrentDomain.FriendlyName
             };
         });
     }

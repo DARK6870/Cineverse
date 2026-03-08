@@ -1,1 +1,1 @@
-dotnet nuget push ./nuget-packages/Cineverse.NotificationService.Client.1.0.0.nupkg --api-key <API_KEY> --source https://api.nuget.org/v3/index.json
+dotnet nuget push ../nuget-packages/Cineverse.NotificationService.Client.1.0.1.nupkg --api-key API_KEY --source https://api.nuget.org/v3/index.json

@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Kafka.Models.Metadata;
+﻿namespace Infrastructure.Kafka.Common.Models.Metadata;
 
 public class ProducedBy
 {

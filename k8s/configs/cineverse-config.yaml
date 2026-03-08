@@ -4,7 +4,7 @@ metadata:
   name: cineverse-config
   namespace: cineverse
 data:
-  MongoSettings__ConnectionString: "/"
+  MongoSettings__ConnectionString: "mongodb+srv://tsymbalvlad6870:M93Pfb2VCarhBfjB@cineverse.0ns7se7.mongodb.net/"
   MongoSettings__LogDatabaseQueries: "false"
   KafkaSettings__BootstrapServers: "broker:9092"
   RedisSettings__ConnectionString: "redis-stack:6379"
@@ -26,4 +26,7 @@ data:
   ExternalProvidersOptions__Githib__ClientSecret: "/"
   CorsOptions__UseCors: "true"
   CorsOptions__AllowedOrigins__0: "http://localhost:8080"
+  TelemetrySettings__ApiKey: "7Wj545qXityPDfdl73yx"
+  TelemetrySettings__IsEnabled: "true"
+  TelemetrySettings__Endpoint: "http://seq:5341/ingest/otlp/v1/logs"
   

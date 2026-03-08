@@ -21,4 +21,11 @@ public static class Configuration
         
         return app;
     }
+    
+    public static IApplicationBuilder UseTraceIdMiddleware(this IApplicationBuilder app)
+    {
+        app.UseMiddleware<TraceIdMiddleware>();
+        
+        return app;
+    }
 }

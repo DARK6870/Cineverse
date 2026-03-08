@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
 
         <PackageId>Cineverse.Auth</PackageId>
-        <Version>1.0.4</Version>
+        <Version>1.0.5</Version>
         <Authors>Cineverse Team</Authors>
         <Company>Cineverse</Company>
         <Description>Auth package</Description>
@@ -19,6 +19,7 @@
     <ItemGroup>
       <PackageReference Include="Cineverse.Auth.Models" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+      <PackageReference Include="Microsoft.IdentityModel.Abstractions" />
     </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 using HealthChecks.Kafka;
 using HealthChecks.UI.Client;
 using Infrastructure.HealthCheck.Options;
-using Infrastructure.Kafka.Models.Settings;
+using Infrastructure.Kafka.Common.Models.Settings;
 using Infrastructure.Mongo.Models.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;

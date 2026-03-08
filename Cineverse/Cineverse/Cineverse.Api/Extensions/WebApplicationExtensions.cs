@@ -8,6 +8,7 @@ public static class WebApplicationExtensions
 {
     public static void ConfigureWebApplication(this WebApplication app)
     {
+        app.UseTraceIdMiddleware();
         app.UseAuthentication();
         app.UseAuthorization();
 

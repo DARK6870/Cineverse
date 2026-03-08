@@ -1,21 +1,22 @@
-﻿using Confluent.Kafka;
-using Infrastructure.Kafka.Consumer.Extensions;
-using Infrastructure.Kafka.Extensions;
-using Infrastructure.Kafka.Models.Metadata;
-using Infrastructure.Kafka.Models.Settings;
+﻿using System.Diagnostics;
+using Confluent.Kafka;
+using Infrastructure.Common.Helpers;
+using Infrastructure.Kafka.Common.Extensions;
+using Infrastructure.Kafka.Common.Models.Metadata;
+using Infrastructure.Kafka.Common.Models.Settings;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Kafka.Consumer;
 
-public class KafkaConsumer: IKafkaConsumer
+public class KafkaConsumer : IKafkaConsumer
 {
     private readonly ILogger<KafkaConsumer> _logger;
     private readonly ConsumerSettings _settings;
-    
+
     public string Identifier { get; set; }
     public string[] TopicNames { get; set; }
-    
-    
+
+
     public KafkaConsumer(
         ILogger<KafkaConsumer> logger,
         ConsumerSettings settings
@@ -49,18 +50,20 @@ public class KafkaConsumer: IKafkaConsumer
     )
     {
         // auto-commit
-        var autoCommitConfigured = _settings.ConsumerConfig.EnableAutoCommit is not null && _settings.ConsumerConfig.EnableAutoCommit.Value;
+        var autoCommitConfigured = _settings.ConsumerConfig.EnableAutoCommit is not null &&
+                                   _settings.ConsumerConfig.EnableAutoCommit.Value;
 
         // build consumer
         using var consumer = new ConsumerBuilder<string?, string>(_settings.ConsumerConfig)
             .SetErrorHandler((_, e) =>
-                _logger.LogError("Consumer exception, reason: {reason} | ConsumerIdentifier: {identifier}", e.Reason, Identifier)
+                _logger.LogError("Consumer exception, reason: {reason} | ConsumerIdentifier: {identifier}", e.Reason,
+                    Identifier)
             )
             .Build();
 
         // subscribe to topics
         consumer.Subscribe(TopicNames);
-        
+
         while (!cancellationToken.IsCancellationRequested)
         {
             try
@@ -78,9 +81,20 @@ public class KafkaConsumer: IKafkaConsumer
                         consumeResult.Offset,
                         Identifier
                     );
-                    
+
                     continue;
                 }
+
+                // set trace id
+                using var activity = new Activity(nameof(KafkaConsumer));
+                activity.SetIdFormat(ActivityIdFormat.W3C);
+
+                ActivityTraceHelper.TrySetTraceId(
+                    activity,
+                    metadata.TraceId
+                );
+
+                activity.Start();
 
                 _logger.LogDebug(
                     "Received message with offset {offset} on topic {topic}, partition {partition}. Identifier: {identifier}",
@@ -90,37 +104,37 @@ public class KafkaConsumer: IKafkaConsumer
                     Identifier
                 );
 
-                    try
-                    {
-                        // call handler function to handle the incoming message
-                        await handlerFunction(consumeResult, metadata);
+                try
+                {
+                    // call handler function to handle the incoming message
+                    await handlerFunction(consumeResult, metadata);
 
-                        _logger.LogDebug(
-                            "Message with offset {offset} on topic {topic}, partition {partition} processed successfully. Identifier: {identifier}",
-                            consumeResult.Offset,
-                            consumeResult.Topic,
-                            consumeResult.TopicPartition.Partition,
-                            Identifier
-                        );
-                        
-                        // commit the message
-                        if (autoCommitConfigured)
-                            consumer.Commit(consumeResult);
-                    }
-                    catch (Exception ex)
-                    {
-                        if (!autoCommitConfigured)
-                            consumer.Seek(consumeResult.TopicPartitionOffset);
-                        
-                        _logger.LogError(
-                            ex,
-                            "Processing of message with offset {offset} on topic {topic}, partition {partition} has failed. Identifier: {identifier}",
-                            consumeResult.Offset,
-                            consumeResult.Topic,
-                            consumeResult.TopicPartition.Partition,
-                            Identifier
-                        );
-                    }
+                    _logger.LogDebug(
+                        "Message with offset {offset} on topic {topic}, partition {partition} processed successfully. Identifier: {identifier}",
+                        consumeResult.Offset,
+                        consumeResult.Topic,
+                        consumeResult.TopicPartition.Partition,
+                        Identifier
+                    );
+
+                    // commit the message
+                    if (autoCommitConfigured)
+                        consumer.Commit(consumeResult);
+                }
+                catch (Exception ex)
+                {
+                    if (!autoCommitConfigured)
+                        consumer.Seek(consumeResult.TopicPartitionOffset);
+
+                    _logger.LogError(
+                        ex,
+                        "Processing of message with offset {offset} on topic {topic}, partition {partition} has failed. Identifier: {identifier}",
+                        consumeResult.Offset,
+                        consumeResult.Topic,
+                        consumeResult.TopicPartition.Partition,
+                        Identifier
+                    );
+                }
             }
             catch (Exception ex)
             {

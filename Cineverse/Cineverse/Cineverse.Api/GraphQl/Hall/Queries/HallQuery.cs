@@ -1,4 +1,5 @@
-﻿using Cineverse.Application.MediatR.Requests.Hall.GetHallById;
+﻿using System.Diagnostics;
+using Cineverse.Application.MediatR.Requests.Hall.GetHallById;
 using Cineverse.Application.MediatR.Requests.Hall.GetHalls;
 using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;
@@ -22,6 +23,7 @@ public class HallQuery
         CancellationToken cancellationToken
     )
     {
+        Console.WriteLine(Activity.Current?.TraceId);
         return mediator.Send(new GetHallsRequest(), cancellationToken);
     }
 

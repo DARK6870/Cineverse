@@ -1,8 +1,8 @@
 ﻿using Confluent.Kafka;
+using Infrastructure.Kafka.Common.Extensions;
+using Infrastructure.Kafka.Common.Models.Metadata;
 using Infrastructure.Kafka.Consumer;
 using Infrastructure.Kafka.Consumer.Extensions;
-using Infrastructure.Kafka.Extensions;
-using Infrastructure.Kafka.Models.Metadata;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
