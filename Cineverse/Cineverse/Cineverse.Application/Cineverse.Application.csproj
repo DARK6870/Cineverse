@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="Cineverse.Auth" />
+      <PackageReference Include="Cineverse.Infrastructure.Common" />
       <PackageReference Include="Cineverse.Infrastructure.Context" />
       <PackageReference Include="Cineverse.Infrastructure.MediatR" />
       <PackageReference Include="Cineverse.Infrastructure.WebApi" />

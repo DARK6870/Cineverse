@@ -1,4 +1,4 @@
-﻿using Cineverse.Application.MediatR.Requests.Hall.CreateHall;
+﻿using Cineverse.Application.Common.Models.Requests;
 using MediatR;
 
 namespace Cineverse.Application.MediatR.Requests.Hall.UpdateHall;

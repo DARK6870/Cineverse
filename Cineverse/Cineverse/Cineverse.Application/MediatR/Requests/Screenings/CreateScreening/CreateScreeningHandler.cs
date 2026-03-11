@@ -10,9 +10,9 @@ public class CreateScreeningHandler(
     IScreeningRepository screeningRepository,
     IMovieRepository movieRepository,
     IHallRepository hallRepository
-) : IRequestHandler<CreateScreeningRequest, bool>
+) : IRequestHandler<CreateScreeningRequest, string>
 {
-    public async Task<bool> Handle(CreateScreeningRequest request, CancellationToken cancellationToken)
+    public async Task<string> Handle(CreateScreeningRequest request, CancellationToken cancellationToken)
     {
         await movieRepository.ExistOrThrowAsync(
             x => x.Id == request.MovieId &&
@@ -36,6 +36,6 @@ public class CreateScreeningHandler(
         };
         await screeningRepository.InsertOneAsync(screening, cancellationToken);
         
-        return true;
+        return screening.Id;
     }
 }

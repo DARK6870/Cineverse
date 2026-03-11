@@ -4,6 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Cineverse.Auth" Version="1.0.5" />
+    <PackageVersion Include="Cineverse.Infrastructure.Common" Version="1.0.6" />
     <PackageVersion Include="Cineverse.Infrastructure.Context" Version="1.0.7" />
     <PackageVersion Include="Cineverse.Infrastructure.HealthCheck" Version="1.0.8" />
     <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.9" />

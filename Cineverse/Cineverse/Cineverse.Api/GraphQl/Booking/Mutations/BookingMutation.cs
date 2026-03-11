@@ -10,7 +10,7 @@ namespace Cineverse.Api.GraphQl.Booking.Mutations;
 [ExtendObjectType(nameof(BaseGraphQlMutation))]
 public class BookingMutation
 {
-    public async Task<bool> CreateBooking(
+    public async Task<string> CreateBooking(
         [Service] IMediator mediator,
         CreateBookingRequest request,
         CancellationToken cancellationToken

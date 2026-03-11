@@ -4,15 +4,14 @@ public static class ConfigurationExtensions
 {
     public static IConfigurationBuilder AddGatewayConfiguration(
         this IConfigurationBuilder builder,
-        string environment)
+        string environment
+    )
     {
         var serviceDefinitionsPath = GetServiceDefinitionsRootPath();
         var serviceDirs = Directory.GetDirectories(serviceDefinitionsPath);
 
         foreach (var serviceDir in serviceDirs)
         {
-            var serviceName = Path.GetFileName(serviceDir);
-            
             var routesFile = Path.Combine(serviceDir, "routes.json");
             if (File.Exists(routesFile))
                 builder.AddJsonFile(routesFile, optional: false, reloadOnChange: true);
@@ -52,28 +51,6 @@ public static class ConfigurationExtensions
         }
     }
 
-    public static void LogGatewayConfiguration(
-        this IConfiguration configuration,
-        ILogger logger)
-    {
-        var routes = configuration.GetSection("ReverseProxy:Routes").GetChildren().ToArray();
-        var clusters = configuration.GetSection("ReverseProxy:Clusters").GetChildren();
-
-        logger.LogInformation("=== Gateway Configuration ===");
-        logger.LogInformation("Routes loaded: {Count}", routes.Count());
-        logger.LogInformation("Clusters loaded: {Count}", clusters.Count());
-
-        foreach (var route in routes)
-        {
-            var path = route["Match:Path"];
-            var clusterId = route["ClusterId"];
-            
-            logger.LogInformation("Route: {RouteKey} -> {Path} => {ClusterId}", route.Key, path, clusterId);
-        }
-
-        logger.LogInformation("=============================");
-    }
-    
     private static string GetServiceDefinitionsRootPath()
     {
         const string targetFolderName = "ApiGateway";

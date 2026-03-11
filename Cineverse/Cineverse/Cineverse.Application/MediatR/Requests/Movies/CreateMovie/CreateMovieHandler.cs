@@ -6,9 +6,9 @@ namespace Cineverse.Application.MediatR.Requests.Movies.CreateMovie;
 
 public class CreateMovieHandler(
     IMovieRepository movieRepository
-) : IRequestHandler<CreateMovieRequest, bool>
+) : IRequestHandler<CreateMovieRequest, string>
 {
-    public async Task<bool> Handle(CreateMovieRequest request, CancellationToken cancellationToken)
+    public async Task<string> Handle(CreateMovieRequest request, CancellationToken cancellationToken)
     {
         var movie = new MovieEntity
         {
@@ -22,6 +22,6 @@ public class CreateMovieHandler(
         };
 
         await movieRepository.InsertOneAsync(movie, cancellationToken);
-        return true;
+        return movie.Id;
     }
 }

@@ -9,4 +9,4 @@ public record CreateScreeningRequest(
     TimeOnly StartTime,
     TimeOnly EndTime,
     int TicketPrice
-) : IRequest<bool>;
+) : IRequest<string>;

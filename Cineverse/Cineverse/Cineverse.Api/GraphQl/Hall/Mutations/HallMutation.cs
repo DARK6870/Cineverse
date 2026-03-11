@@ -11,7 +11,7 @@ namespace Cineverse.Api.GraphQl.Hall.Mutations;
 [ExtendObjectType(nameof(BaseGraphQlMutation))]
 public class HallMutation
 {
-    public async Task<bool> CreateHall(
+    public async Task<string> CreateHall(
         [Service] IMediator mediator,
         CreateHallRequest request,
         CancellationToken cancellationToken

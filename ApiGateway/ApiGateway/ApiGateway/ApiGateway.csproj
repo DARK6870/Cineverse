@@ -7,10 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cineverse.Auth" Version="1.0.2" />
-        <PackageReference Include="Cineverse.Infrastructure.HealthCheck" Version="1.0.2" />
-        <PackageReference Include="Cineverse.Infrastructure.Logging" Version="1.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
+        <PackageReference Include="Cineverse.Auth" Version="1.0.5" />
+        <PackageReference Include="Cineverse.Infrastructure.HealthCheck" Version="1.0.8" />
+        <PackageReference Include="Cineverse.Infrastructure.Logging" Version="1.0.9" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.4" />
         <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
     </ItemGroup>
 

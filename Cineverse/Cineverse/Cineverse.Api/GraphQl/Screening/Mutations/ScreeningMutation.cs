@@ -11,7 +11,7 @@ namespace Cineverse.Api.GraphQl.Screening.Mutations;
 [ExtendObjectType(nameof(BaseGraphQlMutation))]
 public class ScreeningMutation
 {
-    public async Task<bool> CreateScreening(
+    public async Task<string> CreateScreening(
         [Service] IMediator mediator,
         CreateScreeningRequest request,
         CancellationToken cancellationToken

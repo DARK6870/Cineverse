@@ -11,13 +11,12 @@ builder.AddInfrastructureLogging();
 configuration.AddGatewayConfiguration(builder.Environment.EnvironmentName);
 configuration.ValidateGatewayConfiguration();
 
-builder
-    .Services
+builder.Services
     .AddCorsPolicy(configuration)
     .AddApiGateway(configuration)
     .AddRateLimit(configuration)
-    .AddAuth(configuration)
     .AddInfrastructureHealthChecks(_ => { })
+    .AddAuth(configuration)
     ;
 
 builder.Services.AddRateLimiter();

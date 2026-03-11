@@ -11,7 +11,7 @@ namespace Cineverse.Api.GraphQl.Movie.Mutations;
 [ExtendObjectType(nameof(BaseGraphQlMutation))]
 public class MovieMutation
 {
-    public async Task<bool> CreateMovie(
+    public async Task<string> CreateMovie(
         [Service] IMediator mediator,
         CreateMovieRequest request,
         CancellationToken cancellationToken

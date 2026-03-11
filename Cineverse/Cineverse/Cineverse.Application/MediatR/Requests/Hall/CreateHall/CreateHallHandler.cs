@@ -7,9 +7,9 @@ namespace Cineverse.Application.MediatR.Requests.Hall.CreateHall;
 
 public class CreateHallHandler(
     IHallRepository hallRepository
-) : IRequestHandler<CreateHallRequest, bool>
+) : IRequestHandler<CreateHallRequest, string>
 {
-    public async Task<bool> Handle(CreateHallRequest request, CancellationToken cancellationToken)
+    public async Task<string> Handle(CreateHallRequest request, CancellationToken cancellationToken)
     {
         var seats = request.Seats
             .Select(s => new Seat
@@ -27,6 +27,6 @@ public class CreateHallHandler(
         };
         await hallRepository.InsertOneAsync(hall, cancellationToken);
         
-        return true;
+        return hall.Id;
     }
 }

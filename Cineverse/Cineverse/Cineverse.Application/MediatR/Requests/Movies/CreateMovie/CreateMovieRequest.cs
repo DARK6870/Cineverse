@@ -10,4 +10,4 @@ public record CreateMovieRequest(
     string TrailerUrl,
     DateOnly ReleaseDate,
     int Duration
-) : IRequest<bool>;
+) : IRequest<string>;
