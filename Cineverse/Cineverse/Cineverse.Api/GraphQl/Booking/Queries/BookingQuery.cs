@@ -1,6 +1,7 @@
 ﻿using Cineverse.Application.MediatR.Requests.Bookings.GetBookedSeats;
 using Cineverse.Application.MediatR.Requests.Bookings.GetBookingById;
 using Cineverse.Application.MediatR.Requests.Bookings.GetBookings;
+using Cineverse.Application.MediatR.Requests.Bookings.GetUserBookings;
 using Cineverse.Mongo.Schemas.Entities;
 using HotChocolate;
 using HotChocolate.Data;
@@ -24,6 +25,18 @@ public class BookingQuery
     )
     {
         return mediator.Send(new GetBookingsRequest(), cancellationToken);
+    }
+    
+    [UseOffsetPaging(ProviderName = GraphQlConstants.QueryablePaginationProvider)]
+    [UseProjection]
+    [UseFiltering]
+    [UseSorting]
+    public Task<IQueryable<BookingEntity>> GetUserBookings(
+        [Service] IMediator mediator,
+        CancellationToken cancellationToken
+    )
+    {
+        return mediator.Send(new GetUserBookingsRequest(), cancellationToken);
     }
 
     public async Task<BookingEntity?> GetBookingById(

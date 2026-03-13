@@ -1,17 +1,15 @@
-using System.Net;
 using System.Security.Claims;
 using Auth.Models.Enums;
 using IdentityService.Application.Services.RefreshToken;
 using IdentityService.Application.Services.Token;
 using IdentityService.Mongo.Repositories.User;
 using IdentityService.Mongo.Schemas.Entities;
+using Infrastructure.Common.Exceptions;
 using Infrastructure.Context.UserContext;
-using Infrastructure.WebApi.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
-using MongoDB.Driver.Linq;
 
 namespace IdentityService.Application.MediatR.Requests.Authentication.ExternalLogin;
 
@@ -28,8 +26,7 @@ public class ExternalLoginHandler(
         var user = await ExtractUserAsync(request);
         
         var existingUser = await userRepository
-            .AsQueryable()
-            .FirstOrDefaultAsync(
+            .FindFirstAsync(
                 x => x.Email == user.Email,
                 cancellationToken: cancellationToken
             );
@@ -55,7 +52,7 @@ public class ExternalLoginHandler(
         var authenticateResult = await httpContextAccessor.HttpContext!.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
         if (!authenticateResult.Succeeded)
-            throw new ApiRequestException("Authentication failed", HttpStatusCode.BadRequest);
+            throw new ForbiddenException("Authentication failed");
         
         var externalUser = authenticateResult.Principal;
         

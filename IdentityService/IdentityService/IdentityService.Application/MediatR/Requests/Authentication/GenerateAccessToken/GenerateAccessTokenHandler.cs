@@ -18,10 +18,10 @@ public class GenerateAccessTokenHandler(
 {
     public async Task<AuthenticationResponse> Handle(GenerateAccessTokenRequest request, CancellationToken cancellationToken)
     {
-        var token = await refreshTokenRepository.GetRefreshTokenAsync(
+        var token = await refreshTokenRepository.GetRefreshTokenOrThrowAsync(
             request.RefreshToken,
             userContext.IpAddress
-        ) ??  throw new ApiRequestException("No active sessions found", HttpStatusCode.Unauthorized);
+        );
 
         var user = await userRepository.FindByIdOrThrowAsync(token.UserId, cancellationToken);
         var accessToken = tokenService.GenerateJwtToken(user);

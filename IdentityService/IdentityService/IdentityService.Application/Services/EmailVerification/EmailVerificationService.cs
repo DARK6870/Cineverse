@@ -4,6 +4,7 @@ using IdentityService.Application.Common.Constants;
 using IdentityService.Application.Common.Helpers;
 using IdentityService.Application.Notifications.NotificationClientExtensions;
 using IdentityService.Mongo.Repositories.User;
+using Infrastructure.Common.Exceptions;
 using Infrastructure.Context.UserContext;
 using Infrastructure.WebApi.Exceptions;
 using Microsoft.Extensions.Caching.Memory;
@@ -24,7 +25,7 @@ public class EmailVerificationService(
     public async Task<int> GenerateAndSendVerificationCodeAsync(string email, string fullName)
     {
         if (cache.TryGetValue<int>(CacheConstants.VerificationCodeCacheKey(email), out var _))
-            throw new ApiRequestException("You already received verification code, try again later", HttpStatusCode.BadRequest);
+            throw new ConflictException("You already received verification code, try again later");
 
         var verificationCode = EmailVerificationHelper.GenerateVerificationCode();
         
@@ -58,10 +59,10 @@ public class EmailVerificationService(
         var user = await userRepository.FindByIdOrThrowAsync(userContext.UserId);
 
         if (user.Status is not UserStatus.PendingEmailConfirmation)
-            throw new ApiRequestException("Email already confirmed", HttpStatusCode.Conflict);
+            throw new ConflictException("Email already confirmed");
 
         if (!await ValidateVerificationCodeAsync(user.Email, verificationCode))
-            throw new ApiRequestException("Verification code invalid or expired, please try again", HttpStatusCode.BadRequest);
+            throw new ValidationException("Verification code invalid or expired, please try again");
 
         await userRepository.UpdateUserStatusAsync(user.Id, UserStatus.Normal);
     }

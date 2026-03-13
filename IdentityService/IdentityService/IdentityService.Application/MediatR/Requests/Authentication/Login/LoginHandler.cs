@@ -1,10 +1,9 @@
-﻿using System.Net;
-using Auth.Models.Responses;
+﻿using Auth.Models.Responses;
 using IdentityService.Application.Services.RefreshToken;
 using IdentityService.Application.Services.Token;
 using IdentityService.Mongo.Repositories.User;
+using Infrastructure.Common.Exceptions;
 using Infrastructure.Context.UserContext;
-using Infrastructure.WebApi.Exceptions;
 using MediatR;
 
 namespace IdentityService.Application.MediatR.Requests.Authentication.Login;
@@ -19,7 +18,7 @@ public class LoginHandler(
     public async Task<AuthenticationResponse> Handle(LoginRequest request, CancellationToken cancellationToken)
     {
         var user = await userRepository.GetUserByCredentialsAsync(request.Email, request.Password)
-                   ?? throw new ApiRequestException("Invalid credentials, please try again", HttpStatusCode.BadRequest);
+                   ?? throw new ValidationException("Invalid credentials, please try again");
 
         var refreshToken = await refreshTokenService.CreateOrUpdateTokenAsync(
             user.Id,

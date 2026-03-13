@@ -22,9 +22,6 @@ public class RegisterHandler(
 {
     public async Task<AuthenticationResponse> Handle(RegisterRequest request, CancellationToken cancellationToken)
     {
-        if (await userRepository.ExistsAsync(x => x.Email == request.Email, cancellationToken))
-            throw new ApiRequestException("This email already exists", HttpStatusCode.Conflict);
-
         var user = new UserEntity
         {
             Email = request.Email,

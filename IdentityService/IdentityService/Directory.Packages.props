@@ -9,7 +9,7 @@
     <PackageVersion Include="Cineverse.Infrastructure.HealthCheck" Version="1.0.8" />
     <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.9" />
     <PackageVersion Include="Cineverse.Infrastructure.MediatR" Version="1.0.0" />
-    <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.12" />
+    <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.13" />
     <PackageVersion Include="Cineverse.Infrastructure.Mongo.Migrations" Version="1.0.7" />
     <PackageVersion Include="Cineverse.Infrastructure.WebApi" Version="2.0.2" />
     <PackageVersion Include="Cineverse.NotificationService.Client" Version="1.0.1" />

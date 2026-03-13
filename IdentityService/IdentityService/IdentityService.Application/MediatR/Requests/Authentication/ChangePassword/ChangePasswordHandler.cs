@@ -1,9 +1,8 @@
-﻿using System.Net;
-using IdentityService.Application.Notifications.NotificationClientExtensions;
+﻿using IdentityService.Application.Notifications.NotificationClientExtensions;
 using IdentityService.Mongo.Repositories.RefreshToken;
 using IdentityService.Mongo.Repositories.User;
+using Infrastructure.Common.Exceptions;
 using Infrastructure.Context.UserContext;
-using Infrastructure.WebApi.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Options;
 using NotificationService.Client.Models.Options;
@@ -22,7 +21,7 @@ public class ChangePasswordHandler(
     public async Task<bool> Handle(ChangePasswordRequest request, CancellationToken cancellationToken)
     {
         var user = await userRepository.GetUserByCredentialsAsync(userContext.Email, request.Password)
-                   ?? throw new ApiRequestException("Invalid password", HttpStatusCode.BadRequest);
+                   ?? throw new ValidationException("Invalid password");
 
         var result = await userRepository.UpdateUserPasswordAsync(user.Id, request.NewPassword);
         if (result)

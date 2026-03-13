@@ -7,5 +7,5 @@ public interface IRefreshTokenRepository : IGenericRepository<RefreshTokenEntity
 {
     Task<RefreshTokenEntity?> GetActiveTokenAsync(string userId, string ipAddress);
     
-    Task<RefreshTokenEntity?> GetRefreshTokenAsync(string refreshToken, string ipAddress);
+    Task<RefreshTokenEntity> GetRefreshTokenOrThrowAsync(string refreshToken, string ipAddress);
 }

@@ -1,4 +1,5 @@
-﻿using Cineverse.Application.MediatR.Requests.Movies.UpdateMovie;
+﻿using Cineverse.Application.Common.Extensions;
+using Cineverse.Application.MediatR.Requests.Movies.UpdateMovie;
 using FluentValidation;
 
 namespace Cineverse.Application.FluentValidation.Movies;
@@ -7,6 +8,9 @@ public class UpdateMovieRequestValidator : AbstractValidator<UpdateMovieRequest>
 {
     public UpdateMovieRequestValidator()
     {
+        RuleFor(x => x.Id)
+            .MustBeValidObjectId();
+        
         RuleFor(x => x.Title)
             .NotEmpty()
             .WithMessage("Title cannot be empty");

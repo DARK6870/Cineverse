@@ -1,7 +1,5 @@
-﻿using System.Net;
-using IdentityService.Mongo.Repositories.User;
+﻿using IdentityService.Mongo.Repositories.User;
 using Infrastructure.Context.UserContext;
-using Infrastructure.WebApi.Exceptions;
 using MediatR;
 
 namespace IdentityService.Application.MediatR.Requests.Users.UpdatePersonalInformation;

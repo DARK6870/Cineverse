@@ -1,8 +1,7 @@
-﻿using System.Net;
-using Auth.Models.Enums;
+﻿using Auth.Models.Enums;
 using IdentityService.Application.Services.EmailVerification;
+using Infrastructure.Common.Exceptions;
 using Infrastructure.Context.UserContext;
-using Infrastructure.WebApi.Exceptions;
 using MediatR;
 
 namespace IdentityService.Application.MediatR.Requests.Authentication.GenerateEmailVerificationCode;
@@ -15,7 +14,7 @@ public class GenerateEmailVerificationCodeHandler(
     public async Task<bool> Handle(GenerateVerificationCodeRequest request, CancellationToken cancellationToken)
     {
         if (userContext.UserStatus is not UserStatus.PendingEmailConfirmation)
-            throw new ApiRequestException("Email already confirmed", HttpStatusCode.Conflict);
+            throw new ConflictException("Email already confirmed");
         
         await emailVerificationService.GenerateAndSendVerificationCodeAsync(userContext.Email, userContext.UserName);
         

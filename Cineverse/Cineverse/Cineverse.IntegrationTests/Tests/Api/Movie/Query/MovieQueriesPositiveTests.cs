@@ -39,12 +39,14 @@ public class MovieQueriesPositiveTests(CineverseWebApplicationFactory factory)
         Assert.EquivalentWithExclusions(
             paginatedResponse.Items.First(x => x.Id == movie1.Id),
             movie1,
-            x => x.DateCreated
+            x => x.DateCreated,
+             x => x.DateModified
         );
         Assert.EquivalentWithExclusions(
             paginatedResponse.Items.First(x => x.Id == movie2.Id),
             movie2,
-            x => x.DateCreated
+            x => x.DateCreated,
+            x => x.DateModified
         );
     }
     
@@ -66,7 +68,8 @@ public class MovieQueriesPositiveTests(CineverseWebApplicationFactory factory)
         Assert.EquivalentWithExclusions(
             movie,
             movieById,
-            x => x.DateCreated
+            x => x.DateCreated,
+            x => x.DateModified
         );
     }
 }

@@ -15,6 +15,10 @@ public class BookingQueryType : ObjectTypeExtension<BookingQuery>
             .Field(x => x.GetBookings(null!, CancellationToken.None))
             .Authorize(AuthenticationPolicies.ManagerAccessPolicy);
         
+        descriptor
+            .Field(x => x.GetUserBookings(null!, CancellationToken.None))
+            .Authorize();
+        
         descriptor.Field(x => x.GetBookingById(null!, null!, CancellationToken.None))
             .Authorize();
     }

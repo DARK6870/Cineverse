@@ -1,11 +1,13 @@
 ﻿using FluentValidation;
 using IdentityService.Application.MediatR.Requests.Authentication.Register;
+using IdentityService.Mongo.Repositories.User;
+using Infrastructure.Common.Exceptions;
 
 namespace IdentityService.Application.FluentValidation.Authentication;
 
 public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
 {
-    public RegisterRequestValidator()
+    public RegisterRequestValidator(IUserRepository userRepository)
     {
         RuleFor(x => x.Email)
             .NotEmpty()
@@ -30,5 +32,11 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
         RuleFor(x => x.LastName)
             .NotEmpty()
             .WithMessage("Last name cannot be empty");
+        
+        RuleFor(x => x).CustomAsync(async (request, _, cancellationToken) =>
+        {
+            if (await userRepository.ExistsAsync(x => x.Email == request.Email, cancellationToken))
+                throw new ConflictException("This email already exists");
+        });
     }
 }
