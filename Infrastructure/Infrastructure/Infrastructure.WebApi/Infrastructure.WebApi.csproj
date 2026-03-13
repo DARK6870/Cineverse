@@ -17,8 +17,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Cineverse.Auth" Version="1.0.4" />
-      <PackageReference Include="Cineverse.Infrastructure.Common" Version="1.0.5" />
+      <PackageReference Include="Cineverse.Auth" Version="1.0.5" />
+      <PackageReference Include="Cineverse.Infrastructure.Common" Version="1.0.6" />
       <PackageReference Include="FluentValidation" Version="12.1.1" />
       <PackageReference Include="HotChocolate" Version="15.1.11" />
       <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.11" />

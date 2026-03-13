@@ -14,10 +14,10 @@ public class MoviesCreatePositiveTests(CineverseFixture fixture) : CineverseApiT
         var movie = MovieDataGenerator.ValidCreateMovieRequest();
         
         // Act
-        var createMovieResponse = await Client.CreateMovie(movie, fixture.AdminToken);
+        var createMovieResponse = await AdminClient.CreateMovie(movie);
         Assert.NotNull(createMovieResponse.Data);
         
-        var getMovieByIdResponse = await Client.GetMovie(createMovieResponse.Data);
+        var getMovieByIdResponse = await UnauthorizedClient.GetMovie(createMovieResponse.Data);
         var movieById = getMovieByIdResponse.Data;
 
         // Assert

@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace AutomationTests.Models.Cineverse.Requests.Movie;
 
 public record CreateMovieRequest(

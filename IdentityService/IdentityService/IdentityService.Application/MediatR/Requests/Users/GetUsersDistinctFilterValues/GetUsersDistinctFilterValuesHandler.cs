@@ -32,7 +32,7 @@ public class GetUsersDistinctFilterValuesHandler(
                 throw new ArgumentOutOfRangeException(nameof(request.FilterField));
         }
 
-        var values = await userRepository.GetDistinctFilterValuesAsync(selector, cancellationToken);
+        var values = await userRepository.GetDistinctFieldValuesAsync(selector, cancellationToken);
         return values.Select(x => x.ToString() ?? string.Empty);
     }
 }

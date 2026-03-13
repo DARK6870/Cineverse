@@ -1,11 +1,9 @@
-using System.Net.Http.Headers;
 using AutomationTests.Core.Common.Constants.Cineverse;
 using AutomationTests.Core.Common.Extensions;
 using AutomationTests.Core.DataGenerators.Cineverse;
 using AutomationTests.Models.Cineverse.Entities;
 using AutomationTests.Models.Cineverse.Requests.Movie;
 using AutomationTests.Models.Generic;
-using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
 using Xunit;
 
@@ -42,7 +40,7 @@ public partial class CineverseClient
         );
     }
 
-    public async Task<BaseResponse<string>> CreateMovie(CreateMovieRequest? movie = null, string? accessToken = null)
+    public async Task<BaseResponse<string>> CreateMovie(CreateMovieRequest? movie = null)
     {
         var request = new GraphQLHttpRequest
         {
@@ -50,11 +48,28 @@ public partial class CineverseClient
             Variables = new { request = movie ?? MovieDataGenerator.ValidCreateMovieRequest() }
         };
 
-        if (!string.IsNullOrWhiteSpace(accessToken))
-        {
-            graphQlClient.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-        }
-
         return await graphQlClient.SendAsync<string>(request, TestContext.Current.CancellationToken);
+    }
+
+    public async Task<BaseResponse<bool>> UpdateMovie(UpdateMovieRequest updatedMovie)
+    {
+        var request = new GraphQLHttpRequest
+        {
+            Query = MovieGraphQlConstants.UpdateMovieMutation,
+            Variables = new { request = updatedMovie }
+        };
+
+        return await graphQlClient.SendAsync<bool>(request, TestContext.Current.CancellationToken);
+    }
+
+    public async Task<BaseResponse<bool>> DeleteMovie(string id)
+    {
+        var request = new GraphQLHttpRequest
+        {
+            Query = MovieGraphQlConstants.DeleteMovieMutation,
+            Variables = new { id }
+        };
+        
+        return await graphQlClient.SendAsync<bool>(request, TestContext.Current.CancellationToken);
     }
 }

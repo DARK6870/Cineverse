@@ -5,10 +5,12 @@ namespace AutomationTests.Core.Configuration;
 
 public static class TestConfiguration
 {
+    private const string FileName = "appsettings.json";
+    
     private static readonly Lazy<IConfigurationRoot> Configuration = new(() =>
         new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+            .AddJsonFile(FileName, optional: false, reloadOnChange: false)
             .Build());
 
     private static readonly Lazy<CineverseOptions> CineverseOptionsLazy = new(() =>
@@ -20,6 +22,17 @@ public static class TestConfiguration
 
         return options;
     });
+    
+    private static readonly Lazy<MongoOptions> MongoOptionsLazy = new(() =>
+    {
+        var options = Configuration.Value
+                          .GetRequiredSection(nameof(MongoOptions))
+                          .Get<MongoOptions>()
+                      ?? throw new NullReferenceException(nameof(MongoOptions));
+
+        return options;
+    });
 
     public static CineverseOptions Cineverse => CineverseOptionsLazy.Value;
+    public static MongoOptions Mongo => MongoOptionsLazy.Value;
 }

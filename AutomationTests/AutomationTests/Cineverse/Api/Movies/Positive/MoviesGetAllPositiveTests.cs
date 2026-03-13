@@ -10,11 +10,11 @@ public class MoviesGetAllPositiveTests(CineverseFixture fixture) : CineverseApiT
     public async Task GetAllMovies_ShouldReturnAllMovies()
     {
         // Arrange
-        var createMovieResponse1 = await Client.CreateMovie(accessToken: fixture.AdminToken);
-        var createMovieResponse2 = await Client.CreateMovie(accessToken: fixture.AdminToken);
+        var createMovieResponse1 = await AdminClient.CreateMovie();
+        var createMovieResponse2 = await AdminClient.CreateMovie();
         
         // Act
-        var paginatedMovies = await Client.GetMovies();
+        var paginatedMovies = await UnauthorizedClient.GetMovies();
 
         // Assert
         Assert.NotEmpty(paginatedMovies.Items);

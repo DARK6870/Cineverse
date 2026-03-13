@@ -52,4 +52,11 @@ public static class MovieGraphQlConstants
           updateMovie(request: $request)
         }
         """;
+
+    public const string DeleteMovieMutation =
+        """
+        mutation deleteMovieMutation($id: String!) {
+          deleteMovie(id: $id)
+        }
+        """;
 }

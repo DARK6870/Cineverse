@@ -9,6 +9,6 @@ public class GetGenreDistinctFilterValuesHandler(
 {
     public async Task<IEnumerable<string>> Handle(GetGenreDistinctFilterValuesRequest request, CancellationToken cancellationToken)
     {
-        return await movieRepository.GetDistinctFilterValuesAsync(x => x.Genre, cancellationToken);
+        return await movieRepository.GetDistinctFieldValuesAsync(x => x.Genre, cancellationToken);
     }
 }

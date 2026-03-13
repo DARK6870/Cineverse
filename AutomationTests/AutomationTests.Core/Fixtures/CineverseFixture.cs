@@ -1,41 +1,71 @@
+using AutomationTests.Core.Clients.Cineverse;
+using AutomationTests.Core.Clients.IdentityService;
 using AutomationTests.Core.Common.Helpers;
 using AutomationTests.Core.Configuration;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.SystemTextJson;
 using Infrastructure.Common.Json.Configuration;
 using RestSharp;
+using RestSharp.Authenticators;
 using Xunit;
 
 namespace AutomationTests.Core.Fixtures;
 
 public class CineverseFixture : IAsyncLifetime
 {
-    public RestClient RestClient { get; private set; } = null!;
-    public GraphQLHttpClient GraphQlClient { get; private set; } = null!;
-    public string AdminToken { get; private set; } = null!;
-    public string UserToken { get; private set; } = null!;
+    private readonly List<RestClient> _restClients = new();
+    private readonly List<GraphQLHttpClient> _graphQlClients = new();
+
+    public CineverseClient AdminClient { get; private set; } = null!;
+    public CineverseClient UserClient { get; private set; } = null!;
+    public CineverseClient UnauthorizedClient { get; private set; } = null!;
+    public DateTime TestsStartDate { get; init; } = DateTime.UtcNow;
 
     public async ValueTask InitializeAsync()
     {
-        RestClient = new RestClient(TestConfiguration.Cineverse.HomepageUrl);
+        var identityClient = new IdentityServiceClient(
+            new RestClient(TestConfiguration.Cineverse.HomepageUrl + TestConfiguration.Cineverse.IdentityApiBasePath));
 
-        GraphQlClient = new GraphQLHttpClient(
-            new GraphQLHttpClientOptions
-            {
-                EndPoint = new Uri($"{TestConfiguration.Cineverse.HomepageUrl}{TestConfiguration.Cineverse.CineverseApiBasePath}" + "/graphql")
-            },
-            new SystemTextJsonSerializer(JsonSerializerConfiguration.GetDefault())
-        );
+        var adminToken = await identityClient.GetAdminToken();
+        var userToken = await identityClient.GetUserToken();
 
-        AdminToken = await TokenHelper.GetAdminToken();
-        UserToken = await TokenHelper.GetUserToken();
+        AdminClient = CreateClient(adminToken);
+        UserClient = CreateClient(userToken);
+        UnauthorizedClient = CreateClient(null);
     }
 
-    public ValueTask DisposeAsync()
+    private CineverseClient CreateClient(string? token)
     {
-        RestClient.Dispose();
-        GraphQlClient.Dispose();
+        var restClientOptions = new RestClientOptions(TestConfiguration.Cineverse.HomepageUrl);
+        var httpClient = new HttpClient { BaseAddress = new Uri(TestConfiguration.Cineverse.HomepageUrl) };
         
-        return ValueTask.CompletedTask;
+        if (!string.IsNullOrWhiteSpace(token))
+        {
+            restClientOptions.Authenticator = new JwtAuthenticator(token);
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
+
+        var restClient = new RestClient(restClientOptions);
+        var graphQlClient = new GraphQLHttpClient(
+            new GraphQLHttpClientOptions
+            {
+                EndPoint = new Uri($"{TestConfiguration.Cineverse.HomepageUrl}{TestConfiguration.Cineverse.CineverseApiBasePath}/graphql")
+            },
+            new SystemTextJsonSerializer(JsonSerializerConfiguration.GetDefault()),
+            httpClient
+        );
+
+        _restClients.Add(restClient);
+        _graphQlClients.Add(graphQlClient);
+
+        return new CineverseClient(restClient, graphQlClient);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await DatabaseCleanUpHelper.CleanDataFromDatabase(TestsStartDate);
+        
+        foreach (var client in _restClients) client.Dispose();
+        foreach (var client in _graphQlClients) client.Dispose();
     }
 }
