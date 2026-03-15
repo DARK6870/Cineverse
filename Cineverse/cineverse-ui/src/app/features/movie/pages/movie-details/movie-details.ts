@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MovieGraphqlService } from '../../api/movie.graphql.service';
 import { Movie } from '../../api/movie.graphql.types';
@@ -6,7 +6,6 @@ import { Screening } from '../../../screening/api/screening.graphql.types';
 import { ScreeningGraphqlService } from '../../../screening/api/screening.graphql.service';
 import { Button } from 'primeng/button';
 import { MovieDetailsCard } from '../../../../shared/components/movie-details-card/movie-details-card';
-import { ToastService } from '@cineverse/infrastructure-common';
 
 @Component({
   selector: 'app-movies-details',
@@ -19,8 +18,6 @@ export class MovieDetails implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private movieGraphqlService = inject(MovieGraphqlService);
   private screeningGraphqlService = inject(ScreeningGraphqlService);
-  private destroyRef = inject(DestroyRef);
-  private toastService = inject(ToastService);
 
   movie = signal<Movie | null>(null);
   screenings = signal<Screening[] | null>(null);

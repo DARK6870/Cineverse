@@ -37,9 +37,9 @@ export interface CreateMovieRequestInput {
   duration: number;
   releaseDate: string;
   genre: string;
-  isAvailable: boolean;
 }
 
 export interface UpdateMovieRequestInput extends CreateMovieRequestInput {
   id: string;
+  isAvailable: boolean;
 }

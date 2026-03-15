@@ -136,14 +136,14 @@ export class MovieAddEdit implements HasUnsavedChanges {
       trailerUrl: (formValue.trailerUrl ?? '').trim(),
       duration: formValue.duration ?? 0,
       releaseDate: this.formatDate(formValue.releaseDate),
-      genre: (formValue.genre ?? '').trim(),
-      isAvailable: Boolean(formValue.isAvailable),
+      genre: (formValue.genre ?? '').trim()
     };
 
     if (this.isEdit() && this.movieId()) {
       await this.moviesFacade.updateMovie({
         ...request,
         id: this.movieId()!,
+        isAvailable: Boolean(formValue.isAvailable),
       });
       this.toastService.success('Movie updated successfully');
     } else {

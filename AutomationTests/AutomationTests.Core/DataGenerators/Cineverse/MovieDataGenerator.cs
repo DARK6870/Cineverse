@@ -46,10 +46,10 @@ public static class MovieDataGenerator
         );
     }
 
-    public static UpdateMovieRequest InvalidUpdateMovieRequest(string? movieId = null)
+    public static UpdateMovieRequest InvalidUpdateMovieRequest()
     {
         return new UpdateMovieRequest(
-            movieId ?? ObjectId.GenerateNewId().ToString(),
+            "",
             "",
             "",
             "",

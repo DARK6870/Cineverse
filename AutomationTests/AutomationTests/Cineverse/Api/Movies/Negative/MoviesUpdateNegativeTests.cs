@@ -34,16 +34,16 @@ public class MoviesUpdateNegativeTests(CineverseFixture fixture) : CineverseApiT
     public async Task UpdateMovie_WithInvalidRequest_ShouldReturnBadRequest()
     {
         // Arrange
-        var createMovieResponse = await AdminClient.CreateMovie();
-        Assert.NotNull(createMovieResponse.Data);
-        
-        var updateMovieRequest = MovieDataGenerator.InvalidUpdateMovieRequest(createMovieResponse.Data);
+        var updateMovieRequest = MovieDataGenerator.InvalidUpdateMovieRequest();
         
         // Act
         var updateMovieResponse = await AdminClient.UpdateMovie(updateMovieRequest);
 
         // Assert
         Assert.False(updateMovieResponse.IsSuccess);
+        Assert.NotNull(updateMovieResponse.ValidationErrors);
+        Assert.True(updateMovieResponse.ValidationErrors.Length is 6);
+        Assert.Contains("Id must be a valid ObjectId", updateMovieResponse.ValidationErrors);
         Assert.Contains("Title cannot be empty", updateMovieResponse.ValidationErrors);
         Assert.Contains("Genre cannot be empty", updateMovieResponse.ValidationErrors);
         Assert.Contains("Description cannot be empty", updateMovieResponse.ValidationErrors);

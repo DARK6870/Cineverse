@@ -27,6 +27,8 @@ public class MoviesCreateNegativeTests(CineverseFixture fixture) : CineverseApiT
 
         // Assert
         Assert.False(createMovieResponse.IsSuccess);
+        Assert.NotNull(createMovieResponse.ValidationErrors);
+        Assert.True(createMovieResponse.ValidationErrors.Length is 5);
         Assert.Contains("Title cannot be empty", createMovieResponse.ValidationErrors);
         Assert.Contains("Genre cannot be empty", createMovieResponse.ValidationErrors);
         Assert.Contains("Description cannot be empty", createMovieResponse.ValidationErrors);

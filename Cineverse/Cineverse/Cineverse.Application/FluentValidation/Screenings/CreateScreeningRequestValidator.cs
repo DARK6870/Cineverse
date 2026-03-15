@@ -7,6 +7,10 @@ public class CreateScreeningRequestValidator : AbstractValidator<CreateScreening
 {
     public CreateScreeningRequestValidator()
     {
+        RuleFor(x => x.Date)
+            .GreaterThan(DateOnly.FromDateTime(DateTime.Now))
+            .WithMessage("Date must be greater than today's date");
+        
         RuleFor(x => x.EndTime)
             .GreaterThan(x => x.StartTime)
             .WithMessage("End time must be greater than start time");

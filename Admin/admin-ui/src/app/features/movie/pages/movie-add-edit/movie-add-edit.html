@@ -126,11 +126,13 @@
       </label>
 
       <!-- Is Available -->
-      <div class="field">
-        <span class="field__label">Is Available</span>
-        <p-selectButton [options]="availableOptions" formControlName="isAvailable" optionLabel="label"
-          optionValue="value"></p-selectButton>
-      </div>
+      @if (isEdit()) {
+        <div class="field">
+          <span class="field__label">Is Available</span>
+          <p-selectButton [options]="availableOptions" formControlName="isAvailable" optionLabel="label"
+                          optionValue="value"></p-selectButton>
+        </div>
+      }
 
     </div>
   </form>

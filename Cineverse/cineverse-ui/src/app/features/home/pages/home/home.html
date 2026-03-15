@@ -3,10 +3,33 @@
     <!-- Banner -->
     <div class="banner-container mb-8 rounded-lg overflow-hidden shadow-lg">
       <div class="relative">
-        <img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_3392/q_auto/v1740000000/fom-website/2025/F1%20movie/f1_movie_poster16x9%20(1).webp"
-             alt="Now Showing" class="w-full h-auto">
-        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-          <h1 class="text-4xl font-bold text-white absolute bottom-5">Now in Cinemas</h1>
+        <img
+          src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_3392/q_auto/v1740000000/fom-website/2025/F1%20movie/f1_movie_poster16x9%20(1).webp"
+          alt="Now Showing" class="w-full h-auto">
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/60 to-transparent p-8">
+
+          <!-- Genre + Rating badges -->
+          <div class="flex gap-2 mb-3">
+            <span class="text-xs font-semibold uppercase tracking-widest text-white border border-white/40 px-2 py-1 rounded">Action</span>
+            <span class="text-xs font-semibold uppercase tracking-widest text-white border border-white/40 px-2 py-1 rounded">Sport</span>
+            <span class="text-xs font-semibold uppercase tracking-widest bg-amber-500 text-black px-2 py-1 rounded">PG-13</span>
+          </div>
+
+          <h1 class="text-5xl font-bold text-white mb-2">F1</h1>
+
+          <!-- Meta info -->
+          <div class="flex items-center gap-4 text-white/70 text-sm mb-4">
+            <span>⭐ 8.4 / 10</span>
+            <span>•</span>
+            <span>2h 18m</span>
+            <span>•</span>
+            <span>In Cinemas June 27</span>
+          </div>
+
+          <p class="text-white/80 text-sm max-w-lg mb-5 leading-relaxed">
+            A veteran driver comes out of retirement to mentor a rookie teammate as they compete against the best in the world.
+          </p>
+
         </div>
       </div>
     </div>
@@ -33,64 +56,67 @@
       </div>
     </div>
 
-      <!-- Current movies -->
-    <div class="current-movies mb-8">
-      <h2 class="text-2xl font-bold mb-6 text-gray-800">Now showing</h2>
+    <!-- Current movies -->
+    @if (movies().length > 0) {
+      <div class="current-movies mb-8">
+        <h2 class="text-2xl font-bold text-gray-800">Now showing</h2>
+        <p class="mb-4 text-gray-600">Reserve seats for the most popular screenings this week</p>
 
-      <swiper-container
-        slides-per-view="2"
-        space-between="16"
-        loop="true"
-        autoPlay="true"
-        breakpoints='{
+        <swiper-container
+          slides-per-view="2"
+          space-between="16"
+          loop="true"
+          autoPlay="true"
+          breakpoints='{
           "640": { "slidesPerView": 2 },
           "768": { "slidesPerView": 3 },
           "1024": { "slidesPerView": 4 }
           }'
-        class="mySwiper"
-      >
-        @for (movie of movies(); track movie.id) {
-          <swiper-slide>
-            <app-movie-card [movie]='movie' [isShowingNow]=true></app-movie-card>
-          </swiper-slide>
-        }
-      </swiper-container>
+          class="mySwiper"
+        >
+          @for (movie of movies(); track movie.id) {
+            <swiper-slide>
+              <app-movie-card [movie]='movie' [isShowingNow]=true></app-movie-card>
+            </swiper-slide>
+          }
+        </swiper-container>
 
-      <div class="mt-3 flex justify-center items-center">
-        <a routerLink="/movies" class="flex flex-col items-center text-center">
-          <span>Show More</span>
-          <i class="pi pi-angle-down mt-1"></i>
-        </a>
+        <div class="mt-3 flex justify-center items-center">
+          <a routerLink="/movies" class="flex flex-col items-center text-center">
+            <span>See full schedule</span>
+            <i class="pi pi-angle-down mt-1"></i>
+          </a>
+        </div>
+
       </div>
-
-    </div>
+    }
 
 
     <!-- Coming soon -->
-    @if (comingSoonMovies().length > 0)
-    {
-    <div class="current-movies mb-8">
-      <h2 class="text-2xl font-bold mb-4">Coming soon</h2>
+    @if (comingSoonMovies().length > 0) {
+      <div class="current-movies mb-8">
+        <h2 class="text-2xl font-bold">Coming soon</h2>
+        <p class="mb-4 text-gray-600">Fresh releases and audience favorites, updated daily</p>
 
-      <swiper-container
-        slides-per-view="2"
-        space-between="16"
-        loop="true"
-        breakpoints='{
+        <swiper-container
+          slides-per-view="2"
+          space-between="16"
+          loop="true"
+          breakpoints='{
           "640": { "slidesPerView": 2 },
           "768": { "slidesPerView": 3 },
           "1024": { "slidesPerView": 4 }
           }'
-        class="mySwiper"
-      >
-        @for (movie of comingSoonMovies(); track movie.id) {
-          <swiper-slide>
-            <app-movie-card [movie]='movie' [isShowingNow]=false></app-movie-card>
-          </swiper-slide>
-        }
-      </swiper-container>
+          class="mySwiper"
+        >
+          @for (movie of comingSoonMovies(); track movie.id) {
+            <swiper-slide>
+              <app-movie-card [movie]='movie' [isShowingNow]=false></app-movie-card>
+            </swiper-slide>
+          }
+        </swiper-container>
 
-    </div>
+      </div>
     }
 
     <!-- About cinema section -->
@@ -99,7 +125,7 @@
 
       <div class="bg-gray-50 rounded-lg p-6 grid md:grid-cols-2 gap-8 mb-8">
         <div>
-          <h3 class="text-xl font-semibold mb-4 text-gray-800">About Us</h3>
+          <h3 class="text-xl font-bold mb-4 text-gray-800">About Us</h3>
           <p class="mb-4 text-gray-700 leading-relaxed">
             Welcome to <strong class="text-black">Cineverse</strong>, where movie magic comes to life.
             Established in 2010, we've been bringing the ultimate cinematic experience to our community
@@ -115,15 +141,16 @@
         </div>
 
         <div class="overflow-hidden">
-          <img src="https://cdn.celluloidjunkie.com/wp-content/uploads/2024/07/24024452/ScreenX_Auditorium_BrandTrailer-TopRight-ALT.jpg"
-               alt="Modern cinema auditorium with luxury seating"
-               class="w-full h-64 object-cover rounded-lg">
+          <img
+            src="https://cdn.celluloidjunkie.com/wp-content/uploads/2024/07/24024452/ScreenX_Auditorium_BrandTrailer-TopRight-ALT.jpg"
+            alt="Modern cinema auditorium with luxury seating"
+            class="w-full h-64 object-cover rounded-lg">
         </div>
       </div>
 
       <!-- Technology Section -->
       <div class="bg-gray-50 rounded-lg p-6 mb-8">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800">Cutting-Edge Technology</h3>
+        <h3 class="text-xl font-bold mb-4 text-gray-800">Cutting-Edge Technology</h3>
         <div class="grid md:grid-cols-2 gap-6">
           <div class="rounded-lg overflow-hidden">
             <img src="https://www.cultura.id/wp-content/uploads/2024/11/screenX-1.jpg"
@@ -144,8 +171,8 @@
       </div>
 
       <!-- Features Grid -->
-      <h3 class="text-2xl font-semibold mb-4 text-gray-800">Cineverse features</h3>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+      <h3 class="text-2xl font-bold text-gray-800">Cineverse features</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-3">
         <div class="feature text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
           <i class="pi pi-thumbs-up text-4xl text-blue-600 mb-3"></i>
           <h3 class="font-bold text-gray-800 mb-2">8K Projection</h3>

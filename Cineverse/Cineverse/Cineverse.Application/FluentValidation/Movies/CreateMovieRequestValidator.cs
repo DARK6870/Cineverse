@@ -1,15 +1,25 @@
 ﻿using Cineverse.Application.MediatR.Requests.Movies.CreateMovie;
+using Cineverse.Mongo.Repositories.Movie;
 using FluentValidation;
+using Infrastructure.Common.Exceptions;
 
 namespace Cineverse.Application.FluentValidation.Movies;
 
 public class CreateMovieRequestValidator : AbstractValidator<CreateMovieRequest>
 {
-    public CreateMovieRequestValidator()
+    public CreateMovieRequestValidator(IMovieRepository movieRepository)
     {
         RuleFor(x => x.Title)
             .NotEmpty()
-            .WithMessage("Title cannot be empty");
+            .WithMessage("Title cannot be empty")
+            .DependentRules(() =>
+            {
+                RuleFor(x => x).CustomAsync(async (request, _, cancellationToken) =>
+                {
+                    if (await movieRepository.ExistsAsync(x => x.Title == request.Title && x.ReleaseDate == request.ReleaseDate, cancellationToken))
+                        throw new ConflictException("A movie with the same title and release date already exists");
+                });
+            });
         
         RuleFor(x => x.Genre)
             .NotEmpty()
@@ -23,7 +33,7 @@ public class CreateMovieRequestValidator : AbstractValidator<CreateMovieRequest>
             .NotEmpty()
             .WithMessage("PosterUrl cannot be empty");
         
-        RuleForEach(x => x.TrailerUrl)
+        RuleFor(x => x.TrailerUrl)
             .NotEmpty()
             .WithMessage("TrailerUrl cannot be empty");
 

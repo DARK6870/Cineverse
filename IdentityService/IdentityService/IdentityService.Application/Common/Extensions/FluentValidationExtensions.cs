@@ -10,6 +10,8 @@ public static class FluentValidationExtensions
     )
     {
         return ruleBuilder
+            .NotEmpty()
+            .WithMessage("{PropertyName} can not be empty")
             .Must(id => ObjectId.TryParse(id, out _))
             .WithMessage("{PropertyName} must be a valid ObjectId");
     }
