@@ -4,7 +4,7 @@ import { firstValueFrom, map } from 'rxjs';
 import {
   createBookingMutation,
   getBookedSeatsQuery,
-  getBookingByIdQuery,
+  getBookingByIdQuery, getUserBookingsQuery,
 } from './booking.graphql';
 import { Booking, CreateBookingRequestInput } from './booking.graphql.types';
 
@@ -32,7 +32,6 @@ export class BookingGraphqlService {
     );
   }
 
-  // TODO: remove return result
   public createBooking(request: CreateBookingRequestInput): Promise<boolean> {
     return firstValueFrom(
       this.apollo
@@ -40,6 +39,16 @@ export class BookingGraphqlService {
           ...createBookingMutation(request),
         })
         .pipe(map((res) => res.data!.createBooking)),
+    );
+  }
+
+  public getUserBookings(): Promise<Booking[]> {
+    return firstValueFrom(
+      this.apollo
+        .query<{ userBookings: Booking[] }>({
+          ...getUserBookingsQuery
+        })
+        .pipe(map((res) => res.data!.userBookings))
     );
   }
 }

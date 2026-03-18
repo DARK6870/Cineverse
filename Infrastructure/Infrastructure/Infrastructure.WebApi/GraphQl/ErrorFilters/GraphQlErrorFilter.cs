@@ -31,7 +31,7 @@ public class GraphQlErrorFilter(
                 HandleValidationException(errorBuilder, exception);
                 break;
             default:
-                logger.LogError("Unhandled error occured, error: {error}", error);
+                logger.LogError(error.Exception, "Unhandled exception occured");
                 break;
         }
         

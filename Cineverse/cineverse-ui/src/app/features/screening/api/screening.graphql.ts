@@ -57,6 +57,37 @@ query getScreenings($movieId: String!, $currentDate: LocalDate!, $endDate: Local
   }
 });
 
+export const getScreeningsByIds = (ids: string[],): QueryOptions => ({
+  query: gql`
+    query getScreenings(
+      $ids: [String]!
+    ) {
+      screenings(
+        take: 100
+        where: { id: { in: $ids } }
+      ) {
+        totalCount
+        items {
+          id
+          movieId
+          hallId
+          date
+          startTime
+          endTime
+          ticketPrice
+          dateCreated
+        }
+      }
+    }
+  `,
+  variables: {
+    ids: ids
+  },
+  context: {
+    allowAnonymous: true,
+  },
+});
+
 
 export const getScreeningByIdQuery = (id: string) : QueryOptions => ({
   query: gql`

@@ -41,3 +41,18 @@ export const createBookingMutation = (request: CreateBookingRequestInput) : Muta
     request: request
   }
 });
+
+export const getUserBookingsQuery = {
+  query: gql`
+    query getUserBookings {
+      userBookings {
+          id
+          userId
+          screeningId
+          seatIds
+          totalPrice
+          dateCreated
+      }
+    }
+  `,
+};

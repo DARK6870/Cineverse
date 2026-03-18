@@ -4,24 +4,24 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Cineverse.Auth" Version="1.0.5" />
-    <PackageVersion Include="Cineverse.Infrastructure.Common" Version="1.0.6" />
-    <PackageVersion Include="Cineverse.Infrastructure.Context" Version="1.0.7" />
+    <PackageVersion Include="Cineverse.Infrastructure.Common" Version="1.0.7" />
+    <PackageVersion Include="Cineverse.Infrastructure.Context" Version="1.0.8" />
     <PackageVersion Include="Cineverse.Infrastructure.HealthCheck" Version="1.0.8" />
     <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.9" />
     <PackageVersion Include="Cineverse.Infrastructure.MediatR" Version="1.0.0" />
-    <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.12" />
+    <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.13" />
     <PackageVersion Include="Cineverse.Infrastructure.Mongo.Migrations" Version="1.0.7" />
-    <PackageVersion Include="Cineverse.Infrastructure.WebApi" Version="2.0.2" />
+    <PackageVersion Include="Cineverse.Infrastructure.WebApi" Version="2.0.3" />
     <PackageVersion Include="Cineverse.NotificationService.Client" Version="1.0.1" />
-    <PackageVersion Include="coverlet.collector" Version="8.0.0" />
+    <PackageVersion Include="coverlet.collector" Version="8.0.1" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.1" />
     <PackageVersion Include="GraphQL.Client" Version="6.1.0" />
     <PackageVersion Include="GraphQL.Client.Serializer.SystemTextJson" Version="6.1.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.3" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.5" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
     <PackageVersion Include="MongoDB.Analyzer" Version="2.0.0" />
     <PackageVersion Include="Moq" Version="4.20.72" />
-    <PackageVersion Include="Testcontainers.MongoDb" Version="4.10.0" />
+    <PackageVersion Include="Testcontainers.MongoDb" Version="4.11.0" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
     <PackageVersion Include="xunit.v3" Version="3.2.2" />
   </ItemGroup>

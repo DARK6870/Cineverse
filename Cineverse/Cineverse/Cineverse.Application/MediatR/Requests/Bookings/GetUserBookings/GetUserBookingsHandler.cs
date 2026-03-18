@@ -12,6 +12,12 @@ public class GetUserBookingsHandler(
 {
     public Task<IQueryable<BookingEntity>> Handle(GetUserBookingsRequest request, CancellationToken cancellationToken)
     {
-        return Task.FromResult(bookingRepository.AsQueryable().Where(x => x.UserId == userContext.UserId)); 
+        // return bookings for last month
+        return Task.FromResult(
+            bookingRepository.AsQueryable()
+                .Where(x => x.UserId == userContext.UserId &&
+                            x.DateCreated >= DateTime.UtcNow.AddMonths(-1)
+                )
+        );
     }
 }

@@ -9,12 +9,12 @@ public class TraceIdMiddleware(RequestDelegate next)
 {
     public async Task InvokeAsync(HttpContext context)
     {
-        using var activity = new Activity(TraceConstants.TraceIdHeaderName);
+        using var activity = new Activity(HeaderConstants.TraceIdHeaderName);
         activity.SetIdFormat(ActivityIdFormat.W3C);
 
         ActivityTraceHelper.TrySetTraceId(
             activity,
-            context.Request.Headers[TraceConstants.TraceIdHeaderName].FirstOrDefault()
+            context.Request.Headers[HeaderConstants.TraceIdHeaderName].FirstOrDefault()
         );
 
         activity.Start();
@@ -22,7 +22,7 @@ public class TraceIdMiddleware(RequestDelegate next)
 
         context.Response.OnStarting(() =>
         {
-            context.Response.Headers[TraceConstants.TraceIdHeaderName] = traceId;
+            context.Response.Headers[HeaderConstants.TraceIdHeaderName] = traceId;
             return Task.CompletedTask;
         });
 

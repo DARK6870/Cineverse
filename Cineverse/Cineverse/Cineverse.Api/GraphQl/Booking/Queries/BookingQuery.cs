@@ -27,7 +27,6 @@ public class BookingQuery
         return mediator.Send(new GetBookingsRequest(), cancellationToken);
     }
     
-    [UseOffsetPaging(ProviderName = GraphQlConstants.QueryablePaginationProvider)]
     [UseProjection]
     [UseFiltering]
     [UseSorting]
