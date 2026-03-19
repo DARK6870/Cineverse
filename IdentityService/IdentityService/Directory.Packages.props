@@ -4,19 +4,19 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Cineverse.Auth.Models" Version="1.0.0" />
-    <PackageVersion Include="Cineverse.Infrastructure.Common" Version="1.0.6" />
-    <PackageVersion Include="Cineverse.Infrastructure.Context" Version="1.0.7" />
+    <PackageVersion Include="Cineverse.Infrastructure.Common" Version="1.0.7" />
+    <PackageVersion Include="Cineverse.Infrastructure.Context" Version="1.0.8" />
     <PackageVersion Include="Cineverse.Infrastructure.HealthCheck" Version="1.0.8" />
     <PackageVersion Include="Cineverse.Infrastructure.Logging" Version="1.0.9" />
     <PackageVersion Include="Cineverse.Infrastructure.MediatR" Version="1.0.0" />
     <PackageVersion Include="Cineverse.Infrastructure.Mongo" Version="1.0.13" />
     <PackageVersion Include="Cineverse.Infrastructure.Mongo.Migrations" Version="1.0.7" />
-    <PackageVersion Include="Cineverse.Infrastructure.WebApi" Version="2.0.2" />
+    <PackageVersion Include="Cineverse.Infrastructure.WebApi" Version="2.0.3" />
     <PackageVersion Include="Cineverse.NotificationService.Client" Version="1.0.1" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
     <PackageVersion Include="MediatR" Version="14.1.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.4" />
-    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.4" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.5" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.5" />
     <PackageVersion Include="Microsoft.IdentityModel.Abstractions" Version="8.16.0" />
     <PackageVersion Include="MongoDB.Analyzer" Version="2.0.0" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.11.6" />

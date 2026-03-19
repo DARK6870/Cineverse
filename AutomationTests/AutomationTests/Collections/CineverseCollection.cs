@@ -1,4 +1,4 @@
-using AutomationTests.Core.Fixtures;
+using AutomationTests.Core.Cineverse.Fixture;
 using Xunit;
 
 namespace AutomationTests.Collections;

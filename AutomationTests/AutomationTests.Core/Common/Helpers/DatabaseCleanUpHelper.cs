@@ -1,4 +1,4 @@
-using AutomationTests.Core.Configuration;
+using AutomationTests.Core.Common.Configuration;
 using MongoDB.Bson;
 using MongoDB.Driver;
 

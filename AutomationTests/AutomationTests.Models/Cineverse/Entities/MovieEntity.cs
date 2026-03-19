@@ -3,6 +3,7 @@ namespace AutomationTests.Models.Cineverse.Entities;
 public record MovieEntity
 {
     public required string Id { get; init; }
+    
     public required string Title { get; init; }
     
     public required string Genre { get; init; }

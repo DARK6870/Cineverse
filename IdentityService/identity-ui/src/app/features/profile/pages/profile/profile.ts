@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthenticationService, UserData, UserStatus } from '@cineverse/infrastructure-auth';
+import {RouterHelper} from '@cineverse/infrastructure-common';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +12,7 @@ import { AuthenticationService, UserData, UserStatus } from '@cineverse/infrastr
 })
 export class Profile implements OnInit {
   private authenticationService = inject(AuthenticationService);
+  protected routerHelper = inject(RouterHelper);
 
   userData = signal<UserData | null>(null);
 

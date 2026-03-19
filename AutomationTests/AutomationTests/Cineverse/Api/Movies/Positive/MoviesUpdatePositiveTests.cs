@@ -1,6 +1,6 @@
-using AutomationTests.Core.DataGenerators.Cineverse;
-using AutomationTests.Core.Fixtures;
-using AutomationTests.Core.TestBases;
+using AutomationTests.Core.Cineverse.Base;
+using AutomationTests.Core.Cineverse.DataGenerators;
+using AutomationTests.Core.Cineverse.Fixture;
 using Xunit;
 
 namespace AutomationTests.Cineverse.Api.Movies.Positive;

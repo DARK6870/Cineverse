@@ -25,6 +25,6 @@ public class RefreshTokenRepository(
         return await FindFirstAsync(x => 
                 x.TokenHash == hashedToken && 
                 x.IpAddress == ipAddress
-            ) ?? throw new NotFoundException("No active sessions found");
+            ) ?? throw new UnauthorizedException("No active sessions found");
     }
 }

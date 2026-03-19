@@ -41,11 +41,11 @@
         }
 
         <!-- My Bookings -->
-        <a routerLink="/my-bookings" class="block text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
+        <div (click)="routerHelper.navigate('/my-bookings')" class="block text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer">
           <i class="pi pi-calendar text-4xl text-red-600 mb-3"></i>
           <h3 class="font-bold text-gray-800 mb-2">My Bookings</h3>
           <p class="text-sm text-gray-600">View your booking history and details</p>
-        </a>
+        </div>
 
         <!-- Password -->
         <a routerLink="/change-password" class="block text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
@@ -55,11 +55,11 @@
         </a>
 
         <!-- Notifications -->
-        <a routerLink="/notifications" class="block text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
+        <div class="block text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
           <i class="pi pi-bell text-4xl text-yellow-500 mb-3"></i>
           <h3 class="font-bold text-gray-800 mb-2">Notifications</h3>
           <p class="text-sm text-gray-600">Manage your notification preferences</p>
-        </a>
+        </div>
 
         <!-- Logout -->
         <a routerLink="/logout" class="block text-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer">

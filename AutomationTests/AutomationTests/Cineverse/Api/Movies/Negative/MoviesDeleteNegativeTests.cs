@@ -1,6 +1,6 @@
+using AutomationTests.Core.Cineverse.Base;
+using AutomationTests.Core.Cineverse.Fixture;
 using AutomationTests.Core.Common.Constants.Shared;
-using AutomationTests.Core.Fixtures;
-using AutomationTests.Core.TestBases;
 using MongoDB.Bson;
 using Xunit;
 
