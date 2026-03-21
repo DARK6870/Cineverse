@@ -4,8 +4,8 @@ public static class MovieConstants
 {
     public const string GetMoviesQuery =
         """
-        query getMovies {
-        movies(take: 250) {
+        query getMovies($take: Int, $skip: Int) {
+        movies(take: $take, skip: $skip, where: {filter}, order: {sorting}) {
           items {
             id
             title
@@ -16,7 +16,14 @@ public static class MovieConstants
             releaseDate
             duration
             isAvailable
+            dateCreated
+            dateModified
           }
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+          }
+          totalCount
          }
         }
         """;
@@ -34,6 +41,8 @@ public static class MovieConstants
               releaseDate
               duration
               isAvailable
+              dateCreated
+              dateModified
           }
         }
         """;

@@ -15,6 +15,7 @@ public static class ScreeningConstants
               endTime
               ticketPrice
               dateCreated
+              dateModified
             }
             totalCount
           }
@@ -33,6 +34,7 @@ public static class ScreeningConstants
             endTime
             ticketPrice
             dateCreated
+            dateModified
           }
         }
         """;

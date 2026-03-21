@@ -1,32 +1,17 @@
-﻿using Cineverse.Mongo.Repositories.Hall;
-using Cineverse.Mongo.Repositories.Movie;
-using Cineverse.Mongo.Repositories.Screening;
+﻿using Cineverse.Mongo.Repositories.Screening;
 using Cineverse.Mongo.Schemas.Entities;
 using MediatR;
 
 namespace Cineverse.Application.MediatR.Requests.Screenings.UpdateScreening;
 
 public class UpdateScreeningHandler(
-    IScreeningRepository screeningRepository,
-    IMovieRepository movieRepository,
-    IHallRepository hallRepository
+    IScreeningRepository screeningRepository
 ) : IRequestHandler<UpdateScreeningRequest, bool>
 {
     public async Task<bool> Handle(UpdateScreeningRequest request, CancellationToken cancellationToken)
     {
         var screening = await screeningRepository.FindByIdOrThrowAsync(
             request.Id,
-            cancellationToken: cancellationToken
-        );
-
-        await movieRepository.ExistOrThrowAsync(
-            x => x.Id == request.MovieId &&
-                 x.IsAvailable,
-            cancellationToken: cancellationToken
-        );
-
-        await hallRepository.ExistOrThrowAsync(
-            x => x.Id == request.HallId,
             cancellationToken: cancellationToken
         );
 

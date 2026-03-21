@@ -1,4 +1,5 @@
 using AutomationTests.Core.Cineverse.Constants;
+using AutomationTests.Core.Cineverse.DataGenerators;
 using AutomationTests.Core.Common.Extensions;
 using AutomationTests.Models.Cineverse.Requests.Screening;
 using AutomationTests.Models.Generic;
@@ -9,6 +10,12 @@ namespace AutomationTests.Core.Cineverse.Client;
 
 public partial class CineverseClient
 {
+    public async Task<BaseResponse<string>> CreateScreening(string movieId, string hallId)
+    {
+        var createScreeningRequest = ScreeningDataGenerator.ValidCreateScreeningRequest(movieId, hallId);
+        return await CreateScreening(createScreeningRequest);
+    }
+    
     public async Task<BaseResponse<string>> CreateScreening(CreateScreeningRequest createScreeningRequest)
     {
         var request = new GraphQLHttpRequest

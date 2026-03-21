@@ -9,10 +9,10 @@ namespace AutomationTests.Cineverse.Api.Movies.Negative;
 public class MoviesUpdateNegativeTests(CineverseFixture fixture) : CineverseApiTestBase(fixture)
 {
     [Fact]
-    public async Task UpdateMovie_WithoutAdminPermissions_ShouldReturnForbidden()
+    public async Task UpdateMovie_WithoutAdminPermissions_ShouldReturnError()
     {
         // Act
-        var updateMovieResponse = await UserClient.UpdateMovie(MovieDataGenerator.ValidUpdateMovieRequest("test"));
+        var updateMovieResponse = await UserClient.UpdateMovie(MovieDataGenerator.ValidUpdateMovieRequest());
 
         // Assert
         Assert.False(updateMovieResponse.IsSuccess);
@@ -20,7 +20,7 @@ public class MoviesUpdateNegativeTests(CineverseFixture fixture) : CineverseApiT
     }
 
     [Fact]
-    public async Task UpdateMovie_WhenMovieIsNotFound_ShouldReturnNotFound()
+    public async Task UpdateMovie_WhenMovieIsNotFound_ShouldReturnError()
     {
         // Act
         var updateMovieResponse = await AdminClient.UpdateMovie(MovieDataGenerator.ValidUpdateMovieRequest());
@@ -31,7 +31,7 @@ public class MoviesUpdateNegativeTests(CineverseFixture fixture) : CineverseApiT
     }
     
     [Fact]
-    public async Task UpdateMovie_WithInvalidRequest_ShouldReturnBadRequest()
+    public async Task UpdateMovie_WithInvalidRequest_ShouldReturnValidationErrors()
     {
         // Arrange
         var updateMovieRequest = MovieDataGenerator.InvalidUpdateMovieRequest();
@@ -42,12 +42,28 @@ public class MoviesUpdateNegativeTests(CineverseFixture fixture) : CineverseApiT
         // Assert
         Assert.False(updateMovieResponse.IsSuccess);
         Assert.NotNull(updateMovieResponse.ValidationErrors);
-        Assert.True(updateMovieResponse.ValidationErrors.Length is 6);
-        Assert.Contains("Id must be a valid ObjectId", updateMovieResponse.ValidationErrors);
+        Assert.True(updateMovieResponse.ValidationErrors.Length is 7);
+        Assert.Contains("Id cannot be empty", updateMovieResponse.ValidationErrors);
         Assert.Contains("Title cannot be empty", updateMovieResponse.ValidationErrors);
         Assert.Contains("Genre cannot be empty", updateMovieResponse.ValidationErrors);
         Assert.Contains("Description cannot be empty", updateMovieResponse.ValidationErrors);
         Assert.Contains("PosterUrl cannot be empty", updateMovieResponse.ValidationErrors);
+        Assert.Contains("TrailerUrl cannot be empty", updateMovieResponse.ValidationErrors);
         Assert.Contains("Invalid movie duration", updateMovieResponse.ValidationErrors);
+    }
+
+    [Fact]
+    public async Task UpdateMovie_WithInvalidObjectId_ShouldReturnValidationError()
+    {
+        // Arrange
+        var updateMovieRequest = MovieDataGenerator.ValidUpdateMovieRequest("invalid_object_id");
+        
+        // Act
+        var updateMovieResponse = await AdminClient.UpdateMovie(updateMovieRequest);
+        
+        // Assert
+        Assert.False(updateMovieResponse.IsSuccess);
+        Assert.NotNull(updateMovieResponse.ValidationErrors);
+        Assert.Contains("Id must be a valid ObjectId", updateMovieResponse.ValidationErrors);
     }
 }

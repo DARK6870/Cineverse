@@ -8,7 +8,7 @@ public static class MovieDataGenerator
     public static CreateMovieRequest ValidCreateMovieRequest()
     {
         return new CreateMovieRequest(
-            Guid.NewGuid().ToString(),
+            Guid.CreateVersion7().ToString(),
             "Horror",
             "Test movie description",
             "https://test.com/poster.png",

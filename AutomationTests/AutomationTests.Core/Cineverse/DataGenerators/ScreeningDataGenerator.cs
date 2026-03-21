@@ -4,14 +4,14 @@ namespace AutomationTests.Core.Cineverse.DataGenerators;
 
 public static class ScreeningDataGenerator
 {
-    public static CreateScreeningRequest ValidCreateScreeningRequest(string? movieId, string? hallId = null)
+    public static CreateScreeningRequest ValidCreateScreeningRequest(string movieId, string hallId)
     {
         return new CreateScreeningRequest(
-            "",
-            hallId ?? "test",// TODO: use default hall id
-            DateOnly.FromDateTime(DateTime.Now),
+            movieId,
+            hallId,
+            DateOnly.FromDateTime(DateTime.Now.AddDays(7)),
             TimeOnly.FromDateTime(DateTime.Now),
-            TimeOnly.FromDateTime(DateTime.Now),
+            TimeOnly.FromDateTime(DateTime.Now.AddHours(2)),
             10
         );
     }

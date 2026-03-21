@@ -9,12 +9,13 @@ public static class HallConstants
             items {
               id
               name
-              dateCreated
               seats {
                 seatId
                 row
                 number
               }
+              dateCreated
+              dateModified
             }
             totalCount
           }
@@ -27,12 +28,13 @@ public static class HallConstants
           hallById(id: $id) {
             id
             name
-            dateCreated
             seats {
               seatId
               row
               number
             }
+            dateCreated
+            dateModified
           }
         }
         """;

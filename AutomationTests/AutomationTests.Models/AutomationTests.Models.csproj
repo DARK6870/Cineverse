@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Cineverse.Infrastructure.Mongo" Version="1.0.13" />
+    </ItemGroup>
+
 </Project>

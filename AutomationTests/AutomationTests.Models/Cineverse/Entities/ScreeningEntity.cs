@@ -1,9 +1,9 @@
-﻿namespace AutomationTests.Models.Cineverse.Entities;
+﻿using Infrastructure.Mongo.Models.Entities;
 
-public record ScreeningEntity
+namespace AutomationTests.Models.Cineverse.Entities;
+
+public record ScreeningEntity : TimestampedEntity
 {
-    public required string Id { get; init; }
-    
     public required string MovieId { get; init; }
     
     public required string HallId { get; init; }
@@ -15,6 +15,4 @@ public record ScreeningEntity
     public TimeOnly EndTime { get; init; }
     
     public int TicketPrice { get; init; }
-    
-    public DateTime DateCreated  { get; init; } = DateTime.UtcNow;
 }

@@ -2,6 +2,7 @@ using AutomationTests.Core.Cineverse.DataGenerators;
 using AutomationTests.Core.Common.Configuration;
 using AutomationTests.Core.Common.Helpers;
 using AutomationTests.Core.Identity.Client;
+using AutomationTests.Models.Cineverse.Entities;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.SystemTextJson;
 using Infrastructure.Common.Json.Configuration;
@@ -20,7 +21,7 @@ public sealed class CineverseFixture : IAsyncLifetime
     public CineverseClient AdminClient { get; private set; } = null!;
     public CineverseClient UserClient { get; private set; } = null!;
     public CineverseClient UnauthorizedClient { get; private set; } = null!;
-    public string DefaultHallId { get; private set; } = null!;
+    public HallEntity DefaultHall { get; private set; } = null!;
     private DateTime TestsStartDate { get; init; } = DateTime.UtcNow;
 
     public async ValueTask InitializeAsync()
@@ -36,7 +37,9 @@ public sealed class CineverseFixture : IAsyncLifetime
         UnauthorizedClient = CreateClient(null);
 
         var createHallResponse = await AdminClient.CreateHall(HallDataGenerator.DefaultHall);
-        DefaultHallId = createHallResponse.Data ?? throw new NullReferenceException("Unable to create a default hall");
+        var hallId = createHallResponse.Data ?? throw new NullReferenceException("Unable to create a default hall");
+        var getHallByIdResponse = await AdminClient.GetHallById(hallId);
+        DefaultHall = getHallByIdResponse.Data ?? throw new NullReferenceException("Unable to retrieve a default hall");
     }
 
     private CineverseClient CreateClient(string? token)

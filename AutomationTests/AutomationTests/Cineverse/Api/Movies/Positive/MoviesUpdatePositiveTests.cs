@@ -34,5 +34,6 @@ public class MoviesUpdatePositiveTests(CineverseFixture fixture) : CineverseApiT
         Assert.Equal(updatedMovie.TrailerUrl, updateMovieRequest.TrailerUrl);
         Assert.Equal(updatedMovie.ReleaseDate, updateMovieRequest.ReleaseDate);
         Assert.Equal(updatedMovie.Duration, updateMovieRequest.Duration);
+        Assert.True(updatedMovie.DateModified > updatedMovie.DateCreated);
     }
 }

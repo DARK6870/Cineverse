@@ -1,9 +1,9 @@
-﻿namespace AutomationTests.Models.Cineverse.Entities;
+﻿using Infrastructure.Mongo.Models.Entities;
 
-public record BookingEntity
+namespace AutomationTests.Models.Cineverse.Entities;
+
+public record BookingEntity : BaseEntity
 {
-    public required string Id { get; init; }
-    
     public required string UserId { get; init; }
 
     public required string ScreeningId { get; init; }
@@ -11,4 +11,6 @@ public record BookingEntity
     public required string[] SeatIds { get; init; }
     
     public required int TotalPrice { get; init; }
+    
+    public DateTime DateCreated { get; init; }
 }

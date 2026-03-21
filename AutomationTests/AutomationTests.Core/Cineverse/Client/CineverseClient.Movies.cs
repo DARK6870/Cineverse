@@ -1,5 +1,6 @@
 using AutomationTests.Core.Cineverse.Constants;
 using AutomationTests.Core.Cineverse.DataGenerators;
+using AutomationTests.Core.Common.Constants.Shared;
 using AutomationTests.Core.Common.Extensions;
 using AutomationTests.Models.Cineverse.Entities;
 using AutomationTests.Models.Cineverse.Requests.Movie;
@@ -11,19 +12,27 @@ namespace AutomationTests.Core.Cineverse.Client;
 
 public partial class CineverseClient
 {
-    public async Task<GraphQlPaginatedResponse<MovieEntity[]>> GetMovies()
+    public async Task<BaseResponse<GraphQlPaginatedResponse<MovieEntity[]>>> GetMovies(
+        int pageSize = 250,
+        int pageNumber = 1,
+        string filtering = "null",
+        string sorting = "null"
+    )
     {
+        var query = MovieConstants.GetMoviesQuery
+            .Replace(GraphQlConstants.FilteringKey, filtering)
+            .Replace(GraphQlConstants.SortingKey, sorting);
+        
         var request = new GraphQLHttpRequest
         {
-            Query = MovieConstants.GetMoviesQuery
+            Query = query,
+            Variables = new { take = pageSize, skip = (pageNumber-1) * pageSize }
         };
         
-        var response = await graphQlClient.SendAsync<GraphQlPaginatedResponse<MovieEntity[]>>(
+        return await graphQlClient.SendAsync<GraphQlPaginatedResponse<MovieEntity[]>>(
             request,
             TestContext.Current.CancellationToken
         );
-        
-        return response.Data ?? throw new InvalidOperationException("Movies is null");
     }
 
     public async Task<BaseResponse<MovieEntity>> GetMovie(string id)

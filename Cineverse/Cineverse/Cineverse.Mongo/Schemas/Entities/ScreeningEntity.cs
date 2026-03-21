@@ -6,7 +6,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Cineverse.Mongo.Schemas.Entities;
 
 [MongoCollection("screenings")]
-public record ScreeningEntity : BaseEntity
+public record ScreeningEntity : TimestampedEntity
 {
     [BsonRepresentation(BsonType.ObjectId)]
     public required string MovieId { get; init; }
@@ -24,6 +24,4 @@ public record ScreeningEntity : BaseEntity
     public TimeOnly EndTime { get; init; }
     
     public int TicketPrice { get; init; }
-    
-    public DateTime DateCreated  { get; init; } = DateTime.UtcNow;
 }
