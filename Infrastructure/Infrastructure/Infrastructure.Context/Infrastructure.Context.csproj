@@ -18,7 +18,7 @@
 
     <ItemGroup>
       <PackageReference Include="Cineverse.Auth" Version="1.0.5" />
-      <PackageReference Include="Cineverse.Infrastructure.Common" Version="1.0.6" />
+      <PackageReference Include="Cineverse.Infrastructure.Common" Version="1.0.8" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
       <PackageReference Include="Serilog" Version="4.3.0" />
     </ItemGroup>

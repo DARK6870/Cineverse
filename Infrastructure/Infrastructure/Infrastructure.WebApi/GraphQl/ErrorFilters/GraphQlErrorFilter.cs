@@ -49,8 +49,8 @@ public class GraphQlErrorFilter(
     private static void HandleValidationException(IErrorBuilder errorBuilder, ValidationException exception)
     {
         errorBuilder
-            .SetMessage("Invalid request")
-            .SetCode("INVALID_INPUT")
-            .SetExtension("validationErrors", exception.Errors);
+            .SetMessage("Validation Failed")
+            .SetCode("400")
+            .SetExtension("validationErrors", exception.Errors.Select(x => x.ErrorMessage));
     }
 }

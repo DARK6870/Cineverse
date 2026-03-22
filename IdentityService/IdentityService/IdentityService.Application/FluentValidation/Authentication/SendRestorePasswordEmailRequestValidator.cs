@@ -8,6 +8,7 @@ public class SendRestorePasswordEmailRequestValidator : AbstractValidator<SendRe
     public SendRestorePasswordEmailRequestValidator()
     {
         RuleFor(x => x.Email)
+            .Cascade(CascadeMode.Stop)
             .NotEmpty()
             .WithMessage("Email cannot be empty")
             .EmailAddress()

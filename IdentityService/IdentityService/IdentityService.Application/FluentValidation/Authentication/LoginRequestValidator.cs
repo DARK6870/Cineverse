@@ -8,6 +8,7 @@ public class LoginRequestValidator : AbstractValidator<LoginRequest>
     public LoginRequestValidator()
     {
         RuleFor(x => x.Email)
+            .Cascade(CascadeMode.Stop)
             .NotEmpty()
             .WithMessage("Email cannot be empty")
             .EmailAddress()

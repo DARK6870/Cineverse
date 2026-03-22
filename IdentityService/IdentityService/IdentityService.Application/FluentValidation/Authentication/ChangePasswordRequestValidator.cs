@@ -8,6 +8,7 @@ public class ChangePasswordRequestValidator : AbstractValidator<ChangePasswordRe
     public ChangePasswordRequestValidator()
     {
         RuleFor(x => x.Password)
+            .Cascade(CascadeMode.Stop)
             .NotEmpty()
             .WithMessage("Password must not be empty")
             .NotEqual(x => x.NewPassword)
@@ -18,6 +19,7 @@ public class ChangePasswordRequestValidator : AbstractValidator<ChangePasswordRe
             .WithMessage("Password must be between 6 and 20 characters");
         
         RuleFor(x => x.ConfirmNewPassword)
+            .Cascade(CascadeMode.Stop)
             .Length(6, 20)
             .WithMessage("Password must be between 6 and 20 characters")
             .Equal(x => x.NewPassword)

@@ -46,7 +46,7 @@ public partial class CineverseClient
         return await graphQlClient.SendAsync<MovieEntity>(request, TestContext.Current.CancellationToken);
     }
 
-    public async Task<BaseResponse<string[]>> GetGenreDistinctFilterValues(string genre)
+    public async Task<BaseResponse<string[]>> GetGenreDistinctFilterValues()
     {
         var request = new GraphQLHttpRequest
         {

@@ -29,4 +29,8 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Identity\DataGenerators\" />
+    </ItemGroup>
+
 </Project>

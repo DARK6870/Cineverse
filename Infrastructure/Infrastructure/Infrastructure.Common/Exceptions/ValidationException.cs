@@ -3,4 +3,4 @@ using Infrastructure.Common.Exceptions.Base;
 
 namespace Infrastructure.Common.Exceptions;
 
-public class ValidationException(string error) : BaseException(error, HttpStatusCode.NotFound);
+public class ValidationException(string error) : BaseException(error, HttpStatusCode.BadRequest);

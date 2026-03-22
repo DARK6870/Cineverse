@@ -6,7 +6,7 @@ using CineverseClient = AutomationTests.Core.Cineverse.Client.CineverseClient;
 namespace AutomationTests.Core.Cineverse.Base;
 
 [Collection("CineverseCollection")]
-[Trait(Categories.FilterName, Categories.ApiTest)]
+[Trait(Categories.FilterName, Categories.CineverseApiTests)]
 public abstract class CineverseApiTestBase(CineverseFixture fixture)
 {
     protected readonly CineverseClient AdminClient = fixture.AdminClient;

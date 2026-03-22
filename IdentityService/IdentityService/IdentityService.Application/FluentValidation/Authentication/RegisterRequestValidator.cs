@@ -10,6 +10,7 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
     public RegisterRequestValidator(IUserRepository userRepository)
     {
         RuleFor(x => x.Email)
+            .Cascade(CascadeMode.Stop)
             .NotEmpty()
             .WithMessage("Email cannot be empty")
             .EmailAddress()
@@ -20,6 +21,7 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
             .WithMessage("Password must be between 6 and 20 characters");
         
         RuleFor(x => x.ConfirmPassword)
+            .Cascade(CascadeMode.Stop)
             .Length(6, 20)
             .WithMessage("Password must be between 6 and 20 characters")
             .Equal(x => x.Password)

@@ -5,7 +5,7 @@ using RestSharp;
 
 namespace AutomationTests.Core.Identity.Client;
 
-public class IdentityServiceClient(RestClient restClient)
+public partial class IdentityClient
 {
     public Task<string> GetAdminToken() => GetToken("admin@cineverse.com", "TestPass_1");
 
@@ -19,7 +19,6 @@ public class IdentityServiceClient(RestClient restClient)
                 .AddJsonBody(loginRequest)
         );
 
-        return response.Data?.AccessToken
-               ?? throw new InvalidOperationException("Unexpected error occurred while retrieving token");
+        return response.Data?.AccessToken ?? throw new InvalidOperationException("Unexpected error occurred while retrieving token");
     }
 }

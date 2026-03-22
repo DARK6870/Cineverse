@@ -9,7 +9,6 @@ public class CineverseHealthTests(CineverseFixture fixture) : CineverseApiTestBa
     [Fact]
     public async Task CheckHealth_ShouldReturnOk()
     {
-        // Assert
         Assert.True(await UnauthorizedClient.IsHealthy());
     }
 }
