@@ -1,4 +1,4 @@
-namespace AutomationTests.Models.Identity.Requests;
+namespace AutomationTests.Models.Identity.Requests.Register;
 
 public record RegisterRequest(
     string Email,

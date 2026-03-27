@@ -2,6 +2,7 @@ using System.Net;
 using AutomationTests.Core.Identity.Base;
 using AutomationTests.Core.Identity.Fixture;
 using AutomationTests.Models.Identity.Requests;
+using AutomationTests.Models.Identity.Requests.Login;
 using Xunit;
 
 namespace AutomationTests.Identity.Api.Authentication.Negative;

@@ -2,6 +2,7 @@ using AutomationTests.Core.Common.Extensions;
 using AutomationTests.Core.Identity.Constants;
 using AutomationTests.Models.Generic;
 using AutomationTests.Models.Identity.Requests;
+using AutomationTests.Models.Identity.Requests.Login;
 using AutomationTests.Models.Identity.Responses;
 using RestSharp;
 using Xunit;
