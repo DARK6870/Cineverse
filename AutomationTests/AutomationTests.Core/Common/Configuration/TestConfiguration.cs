@@ -33,6 +33,17 @@ public static class TestConfiguration
         return options;
     });
 
+    private static readonly Lazy<UiOptions> UiOptionsLazy = new(() =>
+    {
+        var options = Configuration.Value
+                          .GetRequiredSection(nameof(UiOptions))
+                          .Get<UiOptions>()
+                      ?? throw new NullReferenceException(nameof(UiOptions));
+
+        return options;
+    });
+
     public static CineverseOptions Cineverse => CineverseOptionsLazy.Value;
     public static MongoOptions Mongo => MongoOptionsLazy.Value;
+    public static UiOptions Ui => UiOptionsLazy.Value;
 }

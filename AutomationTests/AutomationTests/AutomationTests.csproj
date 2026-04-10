@@ -22,4 +22,5 @@
       <ProjectReference Include="..\AutomationTests.Core\AutomationTests.Core.csproj" />
     </ItemGroup>
 
+
 </Project>
