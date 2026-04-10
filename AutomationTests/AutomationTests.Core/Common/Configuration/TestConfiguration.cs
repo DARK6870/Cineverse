@@ -43,7 +43,17 @@ public static class TestConfiguration
         return options;
     });
 
+    private static readonly Lazy<ImapOptions> ImapOptionsLazy = new(() =>
+    {
+        var options = Configuration.Value
+            .GetRequiredSection(nameof(ImapOptions))
+            .Get<ImapOptions>() ?? throw new NullReferenceException(nameof(ImapOptions));
+
+        return options;
+    });
+
     public static CineverseOptions Cineverse => CineverseOptionsLazy.Value;
     public static MongoOptions Mongo => MongoOptionsLazy.Value;
     public static UiOptions Ui => UiOptionsLazy.Value;
+    public static ImapOptions Imap => ImapOptionsLazy.Value;
 }

@@ -14,6 +14,7 @@
       <PackageReference Include="Cineverse.Infrastructure.Common" Version="1.0.7" />
       <PackageReference Include="GraphQL.Client" Version="6.1.0" />
       <PackageReference Include="GraphQL.Client.Serializer.SystemTextJson" Version="6.1.0" />
+      <PackageReference Include="MailKit" Version="4.15.1" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.5" />
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.5" />
       <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="10.0.5" />

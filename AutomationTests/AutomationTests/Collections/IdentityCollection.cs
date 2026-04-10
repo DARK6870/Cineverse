@@ -3,5 +3,5 @@ using Xunit;
 
 namespace AutomationTests.Collections;
 
-[CollectionDefinition(nameof(IdentityCollection))]
+[CollectionDefinition(nameof(IdentityCollection), DisableParallelization = true)]
 public class IdentityCollection : ICollectionFixture<IdentityFixture>;

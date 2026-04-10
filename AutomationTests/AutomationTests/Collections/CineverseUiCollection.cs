@@ -3,5 +3,5 @@ using Xunit;
 
 namespace AutomationTests.Collections;
 
-[CollectionDefinition(nameof(CineverseUiCollection))]
+[CollectionDefinition(nameof(CineverseUiCollection), DisableParallelization = true)]
 public class CineverseUiCollection : ICollectionFixture<CineverseUiFixture>;

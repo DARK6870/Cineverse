@@ -3,6 +3,7 @@ using AutomationTests.Core.Identity.Constants;
 using AutomationTests.Models.Generic;
 using AutomationTests.Models.Identity.Requests;
 using AutomationTests.Models.Identity.Requests.Login;
+using AutomationTests.Models.Identity.Requests.Register;
 using AutomationTests.Models.Identity.Responses;
 using RestSharp;
 using Xunit;
@@ -18,6 +19,17 @@ public partial class IdentityClient
             Resource = IdentityRoutes.Login,
             Method = Method.Post
         }.AddJsonBody(loginRequest);
+        
+        return await restClient.SendAsync<AuthenticationResponse>(request, TestContext.Current.CancellationToken);
+    }
+
+    public async Task<BaseResponse<AuthenticationResponse>> Register(RegisterRequest registerRequest)
+    {
+        var request = new RestRequest
+        {
+            Resource = IdentityRoutes.Register,
+            Method = Method.Post
+        }.AddJsonBody(registerRequest);
         
         return await restClient.SendAsync<AuthenticationResponse>(request, TestContext.Current.CancellationToken);
     }

@@ -3,5 +3,5 @@ using Xunit;
 
 namespace AutomationTests.Collections;
 
-[CollectionDefinition(nameof(UiCollection))]
+[CollectionDefinition(nameof(UiCollection), DisableParallelization = true)]
 public class UiCollection : ICollectionFixture<WebDriverFixture>;
